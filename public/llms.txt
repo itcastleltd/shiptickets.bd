@@ -1,0 +1,20 @@
+# ShipTickets.bd
+
+> Saint Martin ship tickets, made simple.
+
+ShipTickets.bd is a Bangladesh-focused information and human-assisted booking website for Saint Martin ship tickets from Cox's Bazar.
+
+## Primary topics
+- Saint Martin ship ticket price
+- Saint Martin ship schedule
+- Cox's Bazar to Saint Martin ship
+- Travel Pass and QR ticket guidance
+- Ship classes, cabins and facilities
+- Seasonal travel rules
+
+## Accuracy policy
+Fares, schedules, operating status and government rules are seasonal. Pages show verification dates and should not be treated as real-time inventory. Visitors should confirm current availability before booking.
+
+## Contact
+Website: https://www.shiptickets.bd/
+Booking support: WhatsApp or phone CTA on the website.

@@ -1,0 +1,8 @@
+import type { Metadata } from 'next'
+import { SeoPage, Section, Bullet, Schema, siteSchema } from '@/components/seo-page'
+
+export const metadata: Metadata = { title: 'Keari Cruise & Dine Saint Martin Ship Tickets', description: 'Keari Cruise and Dine ticket information for Saint Martin travel, including seasonal schedule, seating and booking guidance.' }
+
+export default function KeariCruiseDinePage() {
+  return <SeoPage eyebrow="Ship guide · Keari Cruise & Dine" title="Keari Cruise & Dine ship tickets" intro="Plan your Saint Martin trip with clear information about Keari Cruise & Dine seating, dining and seasonal ticket confirmation."><Section title="A cruise-style Saint Martin journey"><p>Keari Cruise &amp; Dine is associated with a more experience-led passenger journey. Facilities, meal arrangements, sailing dates and ticket classes can vary, so confirm the exact inclusions before payment.</p><ul className="flex flex-col gap-3"><Bullet>Ask what is included in the selected ticket class.</Bullet><Bullet>Confirm reporting time and boarding point for your date.</Bullet><Bullet>Check return-trip, cancellation and passenger-name rules.</Bullet></ul></Section><Section title="Check before booking"><p>Share your date and group size with ShipTickets.bd to receive current guidance. We keep seasonal information separate from confirmed operator details.</p></Section><Schema data={{ '@context':'https://schema.org', '@graph':[siteSchema, { '@type':'FAQPage', mainEntity:[{ '@type':'Question', name:'Does Keari Cruise & Dine include dining?', acceptedAnswer:{ '@type':'Answer', text:'Dining and inclusions depend on the selected package and current operator terms. Confirm them before booking.' }}] }] }} /></SeoPage>
+}
