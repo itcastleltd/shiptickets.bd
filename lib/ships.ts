@@ -82,6 +82,13 @@ export const ships: Ship[] = [
     faq: [
       ['Is Keari Sindbad operating today?', 'Operating status is seasonal and should be confirmed for your travel date before booking.'],
       ['What classes does Keari Sindbad offer?', 'Typical classes include open deck and AC lounge. Cabin options may also be available subject to the sailing.'],
+      ['How much is a Keari Sindbad ticket?', 'Indicative one-way fare starts at ৳1,500 and round-trip from ৳3,000. Confirm the latest price for your date on WhatsApp.'],
+      ['Where does Keari Sindbad depart from?', 'Departs from the BIWTA Nuniachhara jetty in Cox\'s Bazar. Verify the latest departure jetty and check-in time before travel.'],
+      ['Does Keari Sindbad have AC seating?', 'Keari Sindbad offers AC lounge seating. Confirm AC availability for your specific sailing date.'],
+      ['Can I book a cabin on Keari Sindbad?', 'Family cabins may be available subject to operator inventory. Confirm cabin type, occupancy and included facilities before payment.'],
+      ['Do I need a Travel Pass for Keari Sindbad?', 'A Travel Pass and QR-coded ticket are required for Saint Martin entry during the tourist season. Check the latest government rules before travel.'],
+      ['What is the cancellation policy for Keari Sindbad?', 'Cancellation depends on the operator and season. Confirm the policy before payment.'],
+      ['How long is the journey on Keari Sindbad?', 'The Cox\'s Bazar to Saint Martin crossing takes approximately 2 hours. Sailing time varies with weather and sea conditions.'],
     ],
   },
   {
@@ -122,6 +129,12 @@ export const ships: Ship[] = [
     faq: [
       ['Does Keari Cruise & Dine include dining?', 'Dining and inclusions depend on the selected package and current operator terms. Confirm them before booking.'],
       ['What is the route for Keari Cruise & Dine?', 'It operates on the Cox\'s Bazar to Saint Martin passenger route. Confirm the current departure port for your date.'],
+      ['How much is a Keari Cruise & Dine ticket?', 'Indicative one-way fare starts at ৳1,800 and round-trip from ৳3,600. Confirm the latest price for your date on WhatsApp.'],
+      ['Where does Keari Cruise & Dine depart from?', 'Departs from the BIWTA Nuniachhara jetty in Cox\'s Bazar. Verify the latest departure jetty and check-in time before travel.'],
+      ['Does Keari Cruise & Dine have AC seating?', 'Keari Cruise & Dine offers indoor lounge seating with AC. Confirm AC availability for your specific sailing date.'],
+      ['Do I need a Travel Pass for Keari Cruise & Dine?', 'A Travel Pass and QR-coded ticket are required for Saint Martin entry during the tourist season. Check the latest government rules before travel.'],
+      ['What is the cancellation policy for Keari Cruise & Dine?', 'Cancellation depends on the operator and season. Confirm the policy before payment.'],
+      ['How long is the journey on Keari Cruise & Dine?', 'The Cox\'s Bazar to Saint Martin crossing takes approximately 2 hours. Sailing time varies with weather and sea conditions.'],
     ],
   },
   {
@@ -161,6 +174,12 @@ export const ships: Ship[] = [
     faq: [
       ['How can I check MV Bay Cruiser 1 tickets?', 'Share your travel date and passenger count with ShipTickets.bd to confirm current service and ticket guidance.'],
       ['What facilities are on MV Bay Cruiser 1?', 'Open deck, washroom and AC seating are typical. Confirm specific facilities for your sailing date.'],
+      ['How much is an MV Bay Cruiser 1 ticket?', 'Indicative one-way fare starts at ৳1,500 and round-trip from ৳3,000. Confirm the latest price for your date on WhatsApp.'],
+      ['Where does MV Bay Cruiser 1 depart from?', 'Departs from the BIWTA Nuniachhara jetty in Cox\'s Bazar. Verify the latest departure jetty and check-in time before travel.'],
+      ['Does MV Bay Cruiser 1 have AC options?', 'MV Bay Cruiser 1 offers air-conditioned indoor seating. Confirm AC availability for your specific sailing date.'],
+      ['Do I need a Travel Pass for MV Bay Cruiser 1?', 'A Travel Pass and QR-coded ticket are required for Saint Martin entry during the tourist season. Check the latest government rules before travel.'],
+      ['What is the cancellation policy for MV Bay Cruiser 1?', 'Cancellation depends on the operator and season. Confirm the policy before payment.'],
+      ['How long is the journey on MV Bay Cruiser 1?', 'The Cox\'s Bazar to Saint Martin crossing takes approximately 2 hours. Sailing time varies with weather and sea conditions.'],
     ],
   },
   {
@@ -246,6 +265,11 @@ export const ships: Ship[] = [
     faq: [
       ['How much is an MV Baro Awlia ticket?', 'The fare varies by season, class and cabin type. Share your travel date on WhatsApp to confirm the latest price.' ],
       ['Does MV Baro Awlia have AC options?', 'Some classes include air-conditioned seating and selected premium options. Confirm availability for your date.' ],
+      ['Where does MV Baro Awlia depart from?', 'Departs from the BIWTA Nuniachhara jetty in Cox\'s Bazar. Verify the latest departure jetty and check-in time before travel.' ],
+      ['Does MV Baro Awlia have cabins?', 'MV Baro Awlia offers Bunker Bed, Deluxe Cabin and Family Bunker/VIP Cabin options. Confirm cabin type and occupancy before payment.' ],
+      ['Do I need a Travel Pass for MV Baro Awlia?', 'A Travel Pass and QR-coded ticket are required for Saint Martin entry during the tourist season. Check the latest government rules before travel.' ],
+      ['What is the cancellation policy for MV Baro Awlia?', 'Cancellation depends on the operator and season. Confirm the policy before payment.' ],
+      ['How long is the journey on MV Baro Awlia?', 'The Cox\'s Bazar to Saint Martin crossing takes approximately 2 hours. Sailing time varies with weather and sea conditions.' ],
     ],
   },
 ]

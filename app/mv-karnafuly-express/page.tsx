@@ -1,10 +1,13 @@
 import type { Metadata } from 'next'
-import { SeoPage, Section, Bullet, Pill, Schema, siteSchema } from '@/components/seo-page'
+import { SeoPage, Section, Bullet, Pill, Schema, siteSchema, websiteSchema, breadcrumbSchema } from '@/components/seo-page'
+import { getShipBySlug } from '@/lib/ships'
+
+const ship = getShipBySlug('karnafuly-express')
 
 export const metadata: Metadata = {
   title: 'MV Karnafuly Express Ship Ticket | Fare, Cabin & Route Guide',
   description: 'Read the MV Karnafuly Express Saint Martin ship ticket guide: route, one-way and return fare guidance, seat classes, cabins, facilities and booking support.',
-  alternates: { canonical: 'https://www.shiptickets.bd/mv-karnafuly-express/' },
+  alternates: { canonical: 'https://www.shiptickets.bd/mv-karnafuly-express' },
 }
 
 export default function MVKarnafulyExpressPage() {
@@ -12,6 +15,26 @@ export default function MVKarnafulyExpressPage() {
     ['What route does MV Karnafuly Express serve?', 'MV Karnafuly Express is listed for the Cox’s Bazar to Saint Martin passenger route. Confirm the current departure port and sailing date before booking because seasonal operations can change.'],
     ['How much is an MV Karnafuly Express ticket?', 'The current one-way and return fare depends on the season, class and operator release. Share your travel date and passenger count on WhatsApp to verify the latest price.'],
     ['Does MV Karnafuly Express have cabins?', 'Cabin availability can include single, twin and VIP categories, subject to the sailing and operator inventory. Confirm cabin type, occupancy and included facilities before payment.'],
+  ]
+
+  const graph = [
+    siteSchema,
+    websiteSchema,
+    breadcrumbSchema([{ name: 'Home', url: '/' }, { name: ship?.name || 'MV Karnafuly Express' }]),
+    {
+      '@type': 'Product',
+      name: 'MV Karnafuly Express Saint Martin ship ticket',
+      description: 'Passenger ship ticket information for MV Karnafuly Express between Cox\'s Bazar and Saint Martin.',
+      brand: { '@type': 'Brand', name: 'MV Karnafuly Express' },
+      offers: {
+        '@type': 'Offer',
+        priceCurrency: 'BDT',
+        availability: 'https://schema.org/LimitedAvailability',
+        url: 'https://www.shiptickets.bd/mv-karnafuly-express',
+        seller: { '@id': 'https://www.shiptickets.bd/#organization' },
+      },
+    },
+    { '@type': 'FAQPage', mainEntity: faqs.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })) },
   ]
 
   return <SeoPage eyebrow="Ship detail · MV Karnafuly Express" title="MV Karnafuly Express ship ticket, fare & cabin guide" intro="Everything to compare before booking MV Karnafuly Express for a Saint Martin trip: route, ticket types, seating, cabins, facilities and seasonal booking checks.">
@@ -44,7 +67,7 @@ export default function MVKarnafulyExpressPage() {
       <div className="flex flex-col gap-5">{faqs.map(([question, answer]) => <div key={question}><h3 className="font-extrabold text-[#0d1b2a]">{question}</h3><p>{answer}</p></div>)}</div>
     </Section>
 
-    <Schema data={{ '@context': 'https://schema.org', '@graph': [siteSchema, { '@type': 'Product', name: 'MV Karnafuly Express Saint Martin ship ticket', description: 'Passenger ship ticket information for MV Karnafuly Express between Cox’s Bazar and Saint Martin.', brand: { '@type': 'Brand', name: 'MV Karnafuly Express' }, offers: { '@type': 'Offer', priceCurrency: 'BDT', availability: 'https://schema.org/LimitedAvailability', url: 'https://www.shiptickets.bd/mv-karnafuly-express/' } }, { '@type': 'FAQPage', mainEntity: faqs.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })) }] }} />
+    <Schema data={{ '@context': 'https://schema.org', '@graph': graph }} />
   </SeoPage>
 }
 

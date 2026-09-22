@@ -1,16 +1,17 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { SeoPage, Section, Bullet, Schema, siteSchema, breadcrumbSchema, productSchema, faqSchema, whatsapp } from '@/components/seo-page'
+import { SeoPage, Section, Bullet, Schema, siteSchema, websiteSchema, breadcrumbSchema, productSchema, faqSchema, whatsapp } from '@/components/seo-page'
 import { getShipBySlug } from '@/lib/ships'
 import { Clock, MapPin, Users, Waves, CalendarDays } from 'lucide-react'
 
 const ship = getShipBySlug('keari-cruise-dine')!
 
 export const metadata: Metadata = {
-  title: `${ship.name} Saint Martin Ship Tickets | ShipTickets.bd`,
+  title: `${ship.name} Saint Martin Ship Tickets`,
   description: `Compare ${ship.name} ticket prices, dining options, classes and schedule for Cox's Bazar to Saint Martin. Last verified: ${ship.lastVerified}.`,
+  alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-ship/keari-cruise-dine' },
   openGraph: {
-    title: `${ship.name} Saint Martin Ship Tickets | ShipTickets.bd`,
+    title: `${ship.name} Saint Martin Ship Tickets`,
     description: `Compare ${ship.name} ticket prices, dining options, classes and schedule for Cox's Bazar to Saint Martin. Last verified: ${ship.lastVerified}.`,
     images: ship.image ? [`https://www.shiptickets.bd${ship.image}`] : undefined,
   },
@@ -27,9 +28,16 @@ export default function KeariCruiseDinePage() {
     >
       {ship.image && (
         <div className="relative mb-8 h-64 w-full overflow-hidden rounded-2xl">
-          <Image src={ship.image} alt={`${ship.name} passenger ship`} fill className="object-cover" />
+          <Image src={ship.image} alt={`${ship.name} passenger ship at jetty`} fill className="object-cover" />
         </div>
       )}
+
+      <Section title="Quick Answer">
+        <p><strong>How much is a Keari Cruise & Dine ticket?</strong> Indicative one-way fares start at <strong>{ship.oneWay}</strong> and round-trip from <strong>{ship.roundTrip}</strong>. Fares vary by class, dining package, travel date and one-way or return journey. Confirm the latest price for your date on WhatsApp.</p>
+        <p className="mt-3"><strong>Does Keari Cruise & Dine include dining?</strong> Dining and meal arrangements depend on the selected ticket package and current operator terms. Always confirm what is included before booking.</p>
+        <p className="mt-3"><strong>Where does Keari Cruise & Dine depart from?</strong> Passenger vessels serving Saint Martin Island depart from the BIWTA Nuniachhara jetty in Cox's Bazar. Verify the latest departure jetty and boarding time for your date.</p>
+        <p className="mt-3"><strong>How long is the journey?</strong> The Cox's Bazar to Saint Martin crossing takes approximately {ship.journeyDuration || '2 hours'}. Sailing time can vary with weather and sea conditions.</p>
+      </Section>
 
       <Section title="Quick facts">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -102,12 +110,22 @@ export default function KeariCruiseDinePage() {
         </div>
       </Section>
 
+      <Section title="Travel Pass & booking notes">
+        <ul className="flex flex-col gap-3">
+          <Bullet>Ask what is included in the selected ticket class — dining, seating and deck access.</Bullet>
+          <Bullet>Confirm reporting time and boarding point for your travel date.</Bullet>
+          <Bullet>Check return-trip, cancellation and passenger-name rules before payment.</Bullet>
+          <Bullet>A Travel Pass and QR-coded ticket are required for Saint Martin entry during the tourist season.</Bullet>
+          <Bullet>Share your date and group size on WhatsApp to receive current guidance.</Bullet>
+        </ul>
+      </Section>
+
       <Section title="Need current availability?">
         <p className="mb-4">Share your date and passenger count on WhatsApp. Our team will confirm the latest dining packages, fares and boarding time for {ship.name}.</p>
         <a href={`${whatsapp}Hello ShipTickets.bd, I want to check ${ship.name} ticket availability for my travel date.`} className="inline-flex items-center gap-2 rounded-full bg-[#1d9e75] px-5 py-3 text-sm font-extrabold text-white">Check on WhatsApp</a>
       </Section>
 
-      <Schema data={{ '@context': 'https://schema.org', '@graph': [siteSchema, productSchema(ship), breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Saint Martin ships', url: '/saint-martin-ship' }, { name: ship.name }]), faqSchema(ship.faq)] }} />
+      <Schema data={{ '@context': 'https://schema.org', '@graph': [siteSchema, websiteSchema, productSchema(ship), breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Saint Martin ships', url: '/saint-martin-ship' }, { name: ship.name }]), faqSchema(ship.faq)] }} />
     </SeoPage>
   )
 }

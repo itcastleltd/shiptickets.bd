@@ -1,16 +1,17 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { SeoPage, Section, Bullet, Pill, Schema, siteSchema, breadcrumbSchema, productSchema, faqSchema, whatsapp } from '@/components/seo-page'
+import { SeoPage, Section, Bullet, Pill, Schema, siteSchema, websiteSchema, breadcrumbSchema, productSchema, faqSchema, whatsapp } from '@/components/seo-page'
 import { getShipBySlug } from '@/lib/ships'
 import { Clock, MapPin, Users, Waves, CalendarDays } from 'lucide-react'
 
 const ship = getShipBySlug('baro-awlia')!
 
 export const metadata: Metadata = {
-  title: `${ship.name} Saint Martin Ship Tickets | ShipTickets.bd`,
+  title: `${ship.name} Saint Martin Ship Tickets`,
   description: `Compare ${ship.name} ticket prices, classes, facilities and schedule for Cox's Bazar to Saint Martin. Last verified: ${ship.lastVerified}.`,
+  alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-ship/baro-awlia' },
   openGraph: {
-    title: `${ship.name} Saint Martin Ship Tickets | ShipTickets.bd`,
+    title: `${ship.name} Saint Martin Ship Tickets`,
     description: `Compare ${ship.name} ticket prices, classes, facilities and schedule for Cox's Bazar to Saint Martin. Last verified: ${ship.lastVerified}.`,
     images: ship.image ? [`https://www.shiptickets.bd${ship.image}`] : undefined,
   },
@@ -27,9 +28,17 @@ export default function BaroAwliaPage() {
     >
       {ship.image && (
         <div className="relative mb-8 h-64 w-full overflow-hidden rounded-2xl">
-          <Image src={ship.image} alt={`${ship.name} passenger ship`} fill className="object-cover" />
+          <Image src={ship.image} alt={`${ship.name} passenger ship at jetty`} fill className="object-cover" />
         </div>
       )}
+
+      <Section title="Quick Answer">
+        <p><strong>How much is an MV Baro Awlia ticket?</strong> Indicative one-way fares start at <strong>{ship.oneWay}</strong> and round-trip from <strong>{ship.roundTrip}</strong>. Ticket prices vary by ship, seat category (Sun Deck, Main Deck, Panorama Chair), travel date and one-way or return journey. Confirm the latest fare for your date on WhatsApp.</p>
+        <p className="mt-3"><strong>Where does MV Baro Awlia depart from?</strong> Passenger vessels serving Saint Martin Island operate from the BIWTA Nuniachhara jetty in Cox's Bazar. Verify the latest departure jetty and check-in time before your travel date.</p>
+        <p className="mt-3"><strong>Does MV Baro Awlia have AC options?</strong> Some classes include air-conditioned seating and selected premium options. Confirm AC availability for your specific sailing date before booking.</p>
+        <p className="mt-3"><strong>How long is the journey?</strong> The Cox's Bazar to Saint Martin sea crossing typically takes approximately {ship.journeyDuration || '2 hours'}. Sailing time varies with weather and sea conditions.</p>
+        <p className="mt-3"><strong>Do I need a Travel Pass?</strong> Saint Martin tourist tickets require a Travel Pass and QR code during the applicable season. Check the latest government rules before travel.</p>
+      </Section>
 
       <Section title="Quick facts">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -102,14 +111,12 @@ export default function BaroAwliaPage() {
         </div>
       </Section>
 
-      <Section title="What to ask before booking">
-        <ul className="grid gap-3 md:grid-cols-2">
-          <Bullet>Which class is available on your date?</Bullet>
-          <Bullet>Where and when is check-in?</Bullet>
-          <Bullet>Is the fare one-way or return?</Bullet>
-          <Bullet>Are food, cabin and deck access included?</Bullet>
-          <Bullet>What is the cancellation policy?</Bullet>
-          <Bullet>How is the Travel Pass or QR ticket issued?</Bullet>
+      <Section title="Travel Pass & booking notes">
+        <ul className="flex flex-col gap-3">
+          <Bullet>MV Baro Awlia offers Sun Deck, Main Deck and Panorama Chair seating classes.</Bullet>
+          <Bullet>Bunker Bed, Deluxe Cabin and Family Bunker/VIP Cabin options are available.</Bullet>
+          <Bullet>A Travel Pass and QR-coded ticket are required for Saint Martin entry during the tourist season.</Bullet>
+          <Bullet>Share your date and passenger count on WhatsApp to confirm current availability.</Bullet>
         </ul>
       </Section>
 
@@ -118,7 +125,7 @@ export default function BaroAwliaPage() {
         <a href={`${whatsapp}Hello ShipTickets.bd, I want to check ${ship.name} ticket availability for my travel date.`} className="inline-flex items-center gap-2 rounded-full bg-[#1d9e75] px-5 py-3 text-sm font-extrabold text-white">Check on WhatsApp</a>
       </Section>
 
-      <Schema data={{ '@context': 'https://schema.org', '@graph': [siteSchema, productSchema(ship), breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Saint Martin ships', url: '/saint-martin-ship' }, { name: ship.name }]), faqSchema(ship.faq)] }} />
+      <Schema data={{ '@context': 'https://schema.org', '@graph': [siteSchema, websiteSchema, productSchema(ship), breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Saint Martin ships', url: '/saint-martin-ship' }, { name: ship.name }]), faqSchema(ship.faq)] }} />
     </SeoPage>
   )
 }

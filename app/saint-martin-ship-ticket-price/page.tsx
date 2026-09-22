@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight, BadgeCheck, BedDouble, Check, Clock3, Info, MessageCircle, Ship, Ticket } from 'lucide-react'
-import { LinkCard, Pill, Schema, Section, SeoPage, faqSchema, siteSchema, whatsapp } from '@/components/seo-page'
+import { LinkCard, Pill, Schema, Section, SeoPage, faqSchema, siteSchema, websiteSchema, breadcrumbSchema, whatsapp } from '@/components/seo-page'
 
 export const metadata: Metadata = {
   title: 'Saint Martin Ship Ticket Price 2026 | One Way & Round Trip Fare',
@@ -74,7 +74,7 @@ export default function PricePage() {
     <div className="mb-10 grid gap-3 md:grid-cols-2"><LinkCard href="/saint-martin-ship-schedule" title="Check ship schedule" text="Review seasonal departure and return schedule guidance." /><LinkCard href="/saint-martin-travel-pass" title="Understand Travel Pass" text="Learn about pass, QR and current travel requirements." /><LinkCard href="/saint-martin-ship" title="Compare ships" text="Explore available Saint Martin ships and operator pages." /><LinkCard href="/saint-martin-guide" title="Read the Saint Martin guide" text="Plan jetty, boarding, stay and island activities." /></div>
 
     <div className="flex items-center gap-2 text-xs font-bold text-[#888780]"><Clock3 size={15} /> Fare source: operator-published reference information · Last price review: September 2026 · Confirm before booking</div>
-    <Schema data={{ '@context': 'https://schema.org', '@graph': [siteSchema, ...productSchema, faqSchema(faqs), { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.shiptickets.bd/' }, { '@type': 'ListItem', position: 2, name: 'Saint Martin Ship Ticket Price', item: 'https://www.shiptickets.bd/saint-martin-ship-ticket-price' }] }] }} />
+    <Schema data={{ '@context': 'https://schema.org', '@graph': [siteSchema, websiteSchema, ...productSchema, faqSchema(faqs), breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Saint Martin Ship Ticket Price' }])] }} />
   </SeoPage>
 }
 

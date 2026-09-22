@@ -8,7 +8,7 @@ const whatsapp = `https://wa.me/${WHATSAPP_NUMBER}?text=`
 
 export function SeoPage({ eyebrow, title, intro, updated = '21 September 2026', children }: { eyebrow: string; title: string; intro: string; updated?: string; children: React.ReactNode }) {
   const pageUrl = `https://www.shiptickets.bd${typeof window === 'undefined' ? '' : window.location.pathname}`
-  const pageSchema = { '@context': 'https://schema.org', '@type': 'WebPage', name: title, description: intro, url: pageUrl, isPartOf: { '@type': 'WebSite', name: 'ShipTickets.bd', url: 'https://www.shiptickets.bd' }, about: { '@type': 'Place', name: "Saint Martin's Island, Bangladesh" } }
+  const pageSchema = { '@context': 'https://schema.org', '@type': 'WebPage', name: title, description: intro, url: pageUrl, isPartOf: { '@id': 'https://www.shiptickets.bd/#website' }, publisher: { '@id': 'https://www.shiptickets.bd/#organization' }, about: { '@type': 'Place', name: "Saint Martin's Island, Bangladesh" } }
   return <main className="min-h-screen bg-white text-[#0d1b2a]">
     <Schema data={pageSchema} />
     <div className="bg-[#0d1b2a] px-5 py-2 text-center text-xs font-semibold text-white/80">Saint Martin Island, Bangladesh · <span className="text-[#ef9f27]">Seasonal information is verified before booking</span></div>
@@ -26,7 +26,9 @@ export function Schema({ data }: { data: object }) { return <script type="applic
 
 export const faqSchema = (items: [string, string][]) => ({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })) })
 
-export const siteSchema = { '@context': 'https://schema.org', '@type': 'Organization', name: 'ShipTickets.bd', url: 'https://www.shiptickets.bd', areaServed: 'Bangladesh', description: 'Saint Martin ship ticket information, comparison and booking support.' }
+export const siteSchema = { '@context': 'https://schema.org', '@type': 'Organization', '@id': 'https://www.shiptickets.bd/#organization', name: 'ShipTickets.bd', url: 'https://www.shiptickets.bd', areaServed: 'Bangladesh', description: 'Saint Martin ship ticket information, comparison and booking support.' }
+
+export const websiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': 'https://www.shiptickets.bd/#website', url: 'https://www.shiptickets.bd/', name: 'ShipTickets.bd', publisher: { '@id': 'https://www.shiptickets.bd/#organization' } }
 
 export const breadcrumbSchema = (items: { name: string; url?: string }[]) => ({
   '@context': 'https://schema.org',
@@ -60,7 +62,7 @@ export const productSchema = (ship: Ship) => ({
     }, 0).toString(),
     availability: ship.status === 'verified' ? 'https://schema.org/InStock' : 'https://schema.org/LimitedAvailability',
     url: `https://www.shiptickets.bd/saint-martin-ship/${ship.slug}`,
-    seller: { '@type': 'Organization', name: 'ShipTickets.bd', address: { '@type': 'PostalAddress', addressLocality: 'Cox\'s Bazar', addressCountry: 'BD' } },
+    seller: { '@id': 'https://www.shiptickets.bd/#organization' },
   },
 })
 

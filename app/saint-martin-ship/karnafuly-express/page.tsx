@@ -1,16 +1,17 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { SeoPage, Section, Bullet, Pill, Schema, siteSchema, breadcrumbSchema, productSchema, faqSchema, whatsapp } from '@/components/seo-page'
+import { SeoPage, Section, Bullet, Pill, Schema, siteSchema, websiteSchema, breadcrumbSchema, productSchema, faqSchema, whatsapp } from '@/components/seo-page'
 import { getShipBySlug } from '@/lib/ships'
 import { Clock, MapPin, Users, Waves, CalendarDays } from 'lucide-react'
 
 const ship = getShipBySlug('karnafuly-express')!
 
 export const metadata: Metadata = {
-  title: `${ship.name} Saint Martin Ship Tickets | ShipTickets.bd`,
+  title: `${ship.name} Saint Martin Ship Tickets`,
   description: `Compare ${ship.name} ticket prices, classes, cabins, facilities and schedule for Cox's Bazar to Saint Martin. Last verified: ${ship.lastVerified}.`,
+  alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-ship/karnafuly-express' },
   openGraph: {
-    title: `${ship.name} Saint Martin Ship Tickets | ShipTickets.bd`,
+    title: `${ship.name} Saint Martin Ship Tickets`,
     description: `Compare ${ship.name} ticket prices, classes, cabins, facilities and schedule for Cox's Bazar to Saint Martin. Last verified: ${ship.lastVerified}.`,
     images: ship.image ? [`https://www.shiptickets.bd${ship.image}`] : undefined,
   },
@@ -27,9 +28,17 @@ export default function KarnafulyPage() {
     >
       {ship.image && (
         <div className="relative mb-8 h-64 w-full overflow-hidden rounded-2xl">
-          <Image src={ship.image} alt={`${ship.name} passenger ship`} fill className="object-cover" />
+          <Image src={ship.image} alt={`${ship.name} passenger ship at jetty`} fill className="object-cover" />
         </div>
       )}
+
+      <Section title="Quick Answer">
+        <p><strong>How much is an MV Karnafuly Express ticket?</strong> Indicative one-way fares start at <strong>{ship.oneWay}</strong> and round-trip from <strong>{ship.roundTrip}</strong>. Fares vary by ship, class (Open Deck, Lavender, Marigold, Lilac Lounge), travel date and one-way or return journey. Confirm the latest fare for your date on WhatsApp.</p>
+        <p className="mt-3"><strong>Does MV Karnafuly Express have cabins?</strong> Yes — MV Karnafuly Express offers single, twin and VIP cabin categories. Cabin availability depends on the sailing and operator inventory. Confirm cabin type, occupancy and included facilities before booking.</p>
+        <p className="mt-3"><strong>Where does MV Karnafuly Express depart from?</strong> Passenger vessels serving Saint Martin Island operate from the BIWTA Nuniachhara jetty in Cox's Bazar. Verify the latest departure jetty and check-in time for your date.</p>
+        <p className="mt-3"><strong>How long is the journey?</strong> The Cox's Bazar to Saint Martin crossing typically takes approximately {ship.journeyDuration || '2 hours'}. Sailing time varies with weather and sea conditions.</p>
+        <p className="mt-3"><strong>Can I cancel my ticket?</strong> Cancellation and reschedule policies depend on the operator and season. Confirm the cancellation policy before payment, as rules may differ by class and travel date.</p>
+      </Section>
 
       <Section title="Quick facts">
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -102,14 +111,13 @@ export default function KarnafulyPage() {
         </div>
       </Section>
 
-      <Section title="What to confirm before booking">
-        <ul className="grid gap-3 md:grid-cols-2">
-          <Bullet>Indoor and open-deck seating availability for your date</Bullet>
-          <Bullet>Restaurant or food service access and inclusions</Bullet>
-          <Bullet>Prayer room and washroom facilities</Bullet>
-          <Bullet>Cabin configuration and bedding</Bullet>
-          <Bullet>Check-in point and boarding time</Bullet>
-          <Bullet>Cancellation or reschedule policy</Bullet>
+      <Section title="Travel Pass & booking notes">
+        <ul className="flex flex-col gap-3">
+          <Bullet>MV Karnafuly Express offers Open Deck, Lavender, Marigold and Lilac Lounge seating classes.</Bullet>
+          <Bullet>Rooftop restaurant and food service access may be included on select classes — confirm before payment.</Bullet>
+          <Bullet>Single, Twin and VIP cabin categories are available subject to operator inventory.</Bullet>
+          <Bullet>A Travel Pass and QR-coded ticket are required for Saint Martin entry during the tourist season.</Bullet>
+          <Bullet>Share your travel date and passenger count on WhatsApp to verify the latest schedule and fare.</Bullet>
         </ul>
       </Section>
 
@@ -118,7 +126,7 @@ export default function KarnafulyPage() {
         <a href={`${whatsapp}Hello ShipTickets.bd, I want to check ${ship.name} ticket availability for my travel date.`} className="inline-flex items-center gap-2 rounded-full bg-[#1d9e75] px-5 py-3 text-sm font-extrabold text-white">Check on WhatsApp</a>
       </Section>
 
-      <Schema data={{ '@context': 'https://schema.org', '@graph': [siteSchema, productSchema(ship), breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Saint Martin ships', url: '/saint-martin-ship' }, { name: ship.name }]), faqSchema(ship.faq)] }} />
+      <Schema data={{ '@context': 'https://schema.org', '@graph': [siteSchema, websiteSchema, productSchema(ship), breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Saint Martin ships', url: '/saint-martin-ship' }, { name: ship.name }]), faqSchema(ship.faq)] }} />
     </SeoPage>
   )
 }
