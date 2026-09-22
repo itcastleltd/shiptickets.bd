@@ -1,20 +1,204 @@
 # ShipTickets.bd
-
 > Saint Martin ship tickets, made simple.
 
-ShipTickets.bd is a Bangladesh-focused information and human-assisted booking website for Saint Martin ship tickets from Cox's Bazar.
+ShipTickets.bd is a Bangladesh-focused information and human-assisted booking website for Saint Martin ship tickets from Cox's Bazar. Compare ships, check fares, verify schedules and contact our support team on WhatsApp or phone before you travel.
 
-## Primary topics
-- Saint Martin ship ticket price
-- Saint Martin ship schedule
-- Cox's Bazar to Saint Martin ship
-- Travel Pass and QR ticket guidance
-- Ship classes, cabins and facilities
-- Seasonal travel rules
+## How to use ShipTickets.bd
+This site does **not** run a live booking engine or inventory system. It provides verified reference information about Saint Martin passenger ships, ticket classes, fares, schedules and government rules. Use it to research, then confirm the latest availability, fare and Travel Pass requirements with a real support agent on WhatsApp or phone before payment.
+
+All information is seasonal. Every page shows a **Last verified** date and a clear status.
+
+---
+
+## Ships operating Cox's Bazar to Saint Martin
+
+### 1. MV Karnafuly Express (কর্ণফুলী এক্সপ্রেস)
+- **Route:** Cox's Bazar → Saint Martin
+- **Operator:** Karnafuly Shipbuilding & Engineering
+- **Status:** Seasonal confirmation required
+- **Last verified:** 21 September 2026
+- **One-way fare (reference):** From ৳2,000
+- **Round-trip fare (reference):** From ৳4,000
+- **Ticket classes:** Open Deck, Lavender, Marigold, Lilac Lounge
+- **Cabins:** Single Cabin, Twin Cabin, VIP Cabin
+- **Facilities:** Indoor and open-deck seating, premium lounge, restaurant/food service, prayer room, washrooms
+
+### 2. MV Baro Awlia (বারো আওলিয়া)
+- **Route:** Cox's Bazar → Saint Martin
+- **Operator:** Baro Awlia Shipping
+- **Status:** Seasonal confirmation required
+- **Last verified:** 21 September 2026
+- **One-way fare (reference):** From ৳1,800
+- **Round-trip fare (reference):** From ৳3,600
+- **Ticket classes:** Sun Deck, Main Deck, Panorama Chair
+- **Cabins:** Bunker Bed, Deluxe Cabin, Family Bunker / VIP Cabin
+- **Facilities:** Open deck, washroom, indoor seating
+
+### 3. Keari Sindbad (কেয়ারী সিন্দবাদ)
+- **Route:** Cox's Bazar → Saint Martin
+- **Operator:** Keari Group
+- **Status:** Seasonal confirmation required
+- **Last verified:** 21 September 2026
+- **One-way fare (reference):** From ৳1,500
+- **Round-trip fare (reference):** From ৳3,000
+- **Ticket classes:** Open Deck, Lounge
+- **Cabins:** AC Lounge, Family Cabin
+- **Facilities:** Washroom, open deck, reserved seating
+
+### 4. Keari Cruise & Dine (কেয়ারী ক্রুজ অ্যান্ড ডাইন)
+- **Route:** Cox's Bazar → Saint Martin
+- **Operator:** Keari Group
+- **Status:** Needs confirmation
+- **Last verified:** 21 September 2026
+- **One-way fare (reference):** From ৳1,800
+- **Round-trip fare (reference):** From ৳3,600
+- **Ticket classes:** Open Deck, Lounge
+- **Cabins:** Lounge, Cabin, Dining area
+- **Facilities:** Restaurant/dining, washroom, indoor lounge, open deck
+
+### 5. MV Bay Cruiser 1 (এমভি বে ক্রুজার ১)
+- **Route:** Cox's Bazar → Saint Martin
+- **Operator:** Bay Cruiser Shipping
+- **Status:** Needs confirmation
+- **Last verified:** 21 September 2026
+- **One-way fare (reference):** From ৳1,500
+- **Round-trip fare (reference):** From ৳3,000
+- **Ticket classes:** Open Deck, AC Seating
+- **Cabins:** Deck, AC seating
+- **Facilities:** Open deck, washroom, AC seats
+
+---
+
+## Ticket price reference
+
+Saint Martin ship ticket prices are not a single fixed number. The fare depends on the ship, ticket class, cabin type, one-way vs round-trip, travel date and current season.
+
+| Ship | One-way (from) | Round-trip (from) |
+|---|---|---|
+| Keari Sindbad | ৳1,500 | ৳3,000 |
+| Keari Cruise & Dine | ৳1,800 | ৳3,600 |
+| MV Bay Cruiser 1 | ৳1,500 | ৳3,000 |
+| MV Karnafuly Express | ৳2,000 | ৳4,000 |
+| MV Baro Awlia | ৳1,800 | ৳3,600 |
+
+**Cabin pricing (reference, per person unless noted):**
+- Single Cabin: From ৳3,300 one-way
+- Twin Cabin: From ৳7,000 one-way (2 passengers)
+- VIP Cabin: From ৳8,500 one-way
+- VVIP Cabin: From ৳10,500 one-way
+
+**Ticket class types across ships:**
+- **Open deck** — entry-level outdoor seating
+- **Lounge** — comfortable indoor seating
+- **AC seating** — air-conditioned indoor seats
+- **VIP / VVIP cabin** — premium private accommodation
+
+> All fares above are **reference values** published by operators and are **not live prices**. Confirm the exact fare, cabin basis (per person vs per cabin) and availability for your travel date before payment.
+
+---
+
+## Ship schedule
+
+Ship departure and return times are seasonal and operator-specific. Do not rely on a departure time copied from a previous year.
+
+**What to confirm before travel:**
+1. Approved departure jetty in Cox's Bazar
+2. Check-in / boarding time for your sailing
+3. Estimated journey duration
+4. Return sailing date and time
+5. Weather or tide-related changes
+6. Travel Pass and QR ticket requirements
+
+**Schedule status:** Seasonal confirmation required. Last verified: 21 September 2026.
+
+---
+
+## Travel Pass and QR ticket
+
+- The Saint Martin **Travel Pass** is the travel authorization or pass used under applicable government rules for visitors to Saint Martin Island, Bangladesh.
+- **QR-coded tickets** may be required alongside the Travel Pass.
+- Requirements can change between seasons.
+- Use only a valid ticket issued through an authorized process and verify the details before departure.
+- Ensure passenger names on the ticket match your ID.
+
+---
+
+## Travel rules
+
+Saint Martin Island access is seasonal and regulated. Check before booking:
+
+- Whether the island is open for tourism in your planned month
+- Daily visitor and overnight stay limits
+- Travel Pass and QR ticket requirements
+- Approved jetty and vessel list
+- Environmental protections and restricted items
+- Weather and sea-condition notices
+
+Saint Martin is a sensitive marine environment. Follow local authority instructions, avoid single-use plastic where restricted, and do not damage coral or wildlife.
+
+---
+
+## How booking works (human-assisted)
+
+1. **Share your date** — Tell us your travel date, passenger count and preferred ticket type or ship.
+2. **Compare options** — We help you check the latest fare, class, cabin and sailing details.
+3. **Book on WhatsApp** — Confirm the final details (fare, availability, Travel Pass) before making payment.
+
+The frontend does not process payments or hold real-time inventory. Final booking confirmation is done by a human support agent.
+
+---
+
+## FAQ — quick answers
+
+**How much is a Saint Martin ship ticket?**
+Fares vary by ship, ticket class, cabin type, travel date and whether you need a one-way or round-trip ticket. Reference one-way fares range from ৳1,500 to ৳2,000 depending on the ship and class. Check the latest verified fare on WhatsApp before booking.
+
+**কক্সবাজার থেকে সেন্টমার্টিন কোন জাহাজ যায়?**
+Multiple passenger ships operate this route seasonally, including MV Karnafuly Express, MV Baro Awlia, Keari Sindbad, Keari Cruise & Dine and MV Bay Cruiser 1. Operating status changes by season — confirm the current sailing with our support team.
+
+**Do I need a Travel Pass for Saint Martin?**
+Yes, a Travel Pass and possibly a QR-coded ticket are typically required under current government rules. Requirements change with the season. Read the latest guidance before confirming your journey.
+
+**Can I book a Saint Martin ship ticket by WhatsApp?**
+Yes. Send your travel date, passenger count and preferred ship or class to our WhatsApp number. Our support team will help confirm current availability and fare.
+
+**Is the fare one-way or round-trip?**
+Both are available. One-way covers Cox's Bazar → Saint Martin. Round-trip covers the return journey. Confirm the return date, boarding time and ticket conditions before paying.
+
+**What is the difference between open deck, lounge and cabin?**
+Open deck is outdoor seating. Lounge is indoor comfort seating. Cabin is private or family accommodation (single, twin, VIP, VVIP) — subject to availability and often quoted per person.
+
+**How do I reach the jetty in Cox's Bazar?**
+The exact jetty and check-in counter vary by operator and season. Confirm the approved departure point with our support team before you leave.
+
+---
 
 ## Accuracy policy
-Fares, schedules, operating status and government rules are seasonal. Pages show verification dates and should not be treated as real-time inventory. Visitors should confirm current availability before booking.
+
+- Fares, schedules, operating status and government rules are seasonal.
+- Last verified: 21 September 2026.
+- We do **not** publish fake live availability, reviews, ratings or booking counts.
+- We do **not** invent schedules or prices.
+- Always confirm current availability and fare before payment.
 
 ## Contact
-Website: https://www.shiptickets.bd/
-Booking support: WhatsApp or phone CTA on the website.
+
+- **Website:** https://www.shiptickets.bd/
+- **WhatsApp:** Use the WhatsApp CTA on any page (number in site header and footer)
+- **Phone:** Use the Call CTA on the website
+
+## Navigation
+
+- Home: https://www.shiptickets.bd/
+- All ships: https://www.shiptickets.bd/saint-martin-ship
+- Ship ticket price: https://www.shiptickets.bd/saint-martin-ship-ticket-price
+- Ship schedule: https://www.shiptickets.bd/saint-martin-ship-schedule
+- Travel Pass: https://www.shiptickets.bd/saint-martin-travel-pass
+- Travel rules: https://www.shiptickets.bd/saint-martin-travel-rules
+- Travel guide: https://www.shiptickets.bd/saint-martin-guide
+- Route guide: https://www.shiptickets.bd/routes/coxs-bazar-to-saint-martin
+- Keari Sindbad: https://www.shiptickets.bd/saint-martin-ship/keari-sindbad
+- Keari Cruise & Dine: https://www.shiptickets.bd/saint-martin-ship/keari-cruise-dine
+- MV Bay Cruiser 1: https://www.shiptickets.bd/saint-martin-ship/bay-cruiser-1
+- MV Karnafuly Express: https://www.shiptickets.bd/saint-martin-ship/karnafuly-express
+- MV Baro Awlia: https://www.shiptickets.bd/saint-martin-ship/baro-awlia
