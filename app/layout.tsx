@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   keywords: ['Saint Martin ship ticket', 'Saint Martin ship ticket price', 'Cox’s Bazar to Saint Martin ship', 'সেন্টমার্টিন জাহাজের টিকিট'],
   alternates: { canonical: '/' },
   icons: {
-    icon: [{ url: '/favicon.ico' }, { url: '/Icon.svg', type: 'image/svg+xml' }, { url: '/icon-light-32x32.png', sizes: '32x32', type: 'image/png' }, { url: '/icon-dark-32x32.png', sizes: '32x32', type: 'image/png' }],
+    icon: [{ url: '/Icon.svg', type: 'image/svg+xml' }, { url: '/favicon.ico' }],
     apple: '/apple-icon.png',
     shortcut: '/Icon.svg',
   },
