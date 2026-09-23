@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Disallow: /_not-found
+Disallow: /api/
+
+Sitemap: https://www.shiptickets.bd/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+Disallow: /_not-found
+Disallow: /api/
+
+User-agent: bingbot
+Allow: /
+Disallow: /_not-found
+Disallow: /api/

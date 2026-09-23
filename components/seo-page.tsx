@@ -3,6 +3,7 @@ import { ArrowRight, Check, MessageCircle } from 'lucide-react'
 import { WHATSAPP_NUMBER, type Ship } from '@/lib/ships'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { BackToTop } from '@/components/BackToTop'
 
 const whatsapp = `https://wa.me/${WHATSAPP_NUMBER}?text=`
 
@@ -11,11 +12,12 @@ export function SeoPage({ eyebrow, title, intro, updated = '21 September 2026', 
   const pageSchema = { '@context': 'https://schema.org', '@type': 'WebPage', name: title, description: intro, url: pageUrl, isPartOf: { '@id': 'https://www.shiptickets.bd/#website' }, publisher: { '@id': 'https://www.shiptickets.bd/#organization' }, about: { '@type': 'Place', name: "Saint Martin's Island, Bangladesh" } }
   return <main className="min-h-screen bg-white text-[#0d1b2a]">
     <Schema data={pageSchema} />
-    <div className="bg-[#0d1b2a] px-5 py-2 text-center text-xs font-semibold text-white/80">Saint Martin Island, Bangladesh · <span className="text-[#ef9f27]">Seasonal information is verified before booking</span></div>
+    <div className="bg-[#0d1b2a] px-5 py-2 text-center text-xs font-semibold text-white/80">Saint Martin Island, Bangladesh · <span className="text-[#ef9f27]">shiptickets.bd is an authorized ship ticket reseller</span></div>
     <Header />
     <section className="mx-auto max-w-6xl px-5 pb-12 pt-14 md:pb-16 md:pt-20"><p className="mb-4 text-xs font-extrabold uppercase tracking-[.2em] text-[#1d9e75]">{eyebrow}</p><h1 className="max-w-4xl text-4xl font-extrabold leading-tight tracking-[-.04em] md:text-6xl">{title}</h1><p className="mt-5 max-w-2xl text-lg leading-8 text-[#5f5e5a]">{intro}</p><p className="mt-5 text-xs font-bold text-[#888780]">Information last reviewed: {updated}</p></section>
     <div className="mx-auto max-w-6xl px-5 pb-20"><div className="grid gap-10 lg:grid-cols-[1fr_280px]"><article className="min-w-0">{children}</article><aside className="h-fit rounded-3xl border border-[#dedcd3] bg-white p-6 lg:sticky lg:top-6"><p className="text-xs font-extrabold uppercase tracking-[.16em] text-[#1d9e75]">Need help?</p><h2 className="mt-3 text-xl font-extrabold">Get the latest answer before you travel.</h2><p className="mt-3 text-sm leading-6 text-[#5f5e5a]">Share your date and passenger count. Our team can confirm current ship status and ticket guidance.</p><a href={`${whatsapp}Hello ShipTickets.bd, please help me with Saint Martin ship tickets.`} className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#1d9e75] px-4 py-3 text-sm font-extrabold text-white"><MessageCircle size={16}/> Ask on WhatsApp</a><Link href="/" className="mt-4 flex items-center gap-2 text-sm font-extrabold text-[#0d1b2a]">Back to homepage <ArrowRight size={15}/></Link></aside></div></div>
     <Footer />
+    <BackToTop />
   </main>
 }
 

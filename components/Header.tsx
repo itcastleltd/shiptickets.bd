@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, MessageCircle, Phone, ShipWheel, X } from 'lucide-react'
+import { Menu, MessageCircle, Phone, X } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 import { WHATSAPP_NUMBER, PHONE_NUMBER } from '@/lib/ships'
 
 const waLink = (message: string) =>
@@ -11,6 +12,7 @@ const waLink = (message: string) =>
 const phoneHref = `tel:${PHONE_NUMBER.replace(/[^+\d]/g, '')}`
 
 const navLinks = [
+  { href: '/', label: 'Home' },
   { href: '/saint-martin-ship', label: 'Ships' },
   { href: '/saint-martin-ship-ticket-price', label: 'Ticket price' },
   { href: '/saint-martin-ship-schedule', label: 'Schedule' },
@@ -20,6 +22,8 @@ const navLinks = [
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const pathname = usePathname()
+  const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.startsWith(href)
 
   return (
     <header className="sticky top-0 z-40 border-b border-[#ecf0ee] bg-white/95 backdrop-blur">
@@ -29,15 +33,18 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm font-semibold text-[#507279] lg:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="transition-colors hover:text-[#1d9e75]"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const active = isActive(link.href)
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`transition-colors ${active ? 'text-[#1d9e75]' : 'text-[#507279] hover:text-[#1d9e75]'}`}
+              >
+                {link.label}
+              </Link>
+            )
+          })}
         </nav>
 
         <div className="flex items-center gap-2">
@@ -70,16 +77,19 @@ export function Header() {
       {menuOpen && (
         <div className="lg:hidden">
           <nav className="flex flex-col gap-1 border-t border-[#ecf0ee] bg-white px-5 py-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="flex items-center justify-between py-3 text-sm font-semibold text-[#507279] hover:text-[#1d9e75]"
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const active = isActive(link.href)
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`flex items-center justify-between py-3 text-sm font-semibold ${active ? 'text-[#1d9e75]' : 'text-[#507279] hover:text-[#1d9e75]'}`}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
           </nav>
         </div>
       )}

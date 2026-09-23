@@ -11,11 +11,22 @@ const nextConfig = {
       ],
     }]
   },
+  async redirects() {
+    return [{
+      source: '/:path*',
+      has: [{ type: 'host', value: 'shiptickets.bd' }],
+      destination: 'https://www.shiptickets.bd/:path*',
+      permanent: true,
+    }]
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
   images: {
-    unoptimized: true,
+    unoptimized: false,
+    formats: ['image/webp'],
+    deviceSizes: [640, 768, 1024, 1280, 1366, 1792, 1920, 2560],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
 }
 

@@ -1,17 +1,17 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import { SeoPage, Section, Bullet, Schema, siteSchema, websiteSchema, breadcrumbSchema, productSchema, faqSchema, whatsapp } from '@/components/seo-page'
+import { SeoPage, Section, Bullet, LinkCard, Schema, siteSchema, websiteSchema, breadcrumbSchema, productSchema, faqSchema, whatsapp } from '@/components/seo-page'
 import { getShipBySlug } from '@/lib/ships'
 import { Clock, MapPin, Users, Waves, CalendarDays } from 'lucide-react'
 
 const ship = getShipBySlug('keari-sindbad')!
 
 export const metadata: Metadata = {
-  title: `${ship.name} Saint Martin Ship Tickets`,
-  description: `Compare ${ship.name} ticket prices, classes, capacity and schedule for Cox's Bazar to Saint Martin. Last verified: ${ship.lastVerified}.`,
-  alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-ship/keari-sindbad' },
-  openGraph: {
-    title: `${ship.name} Saint Martin Ship Tickets`,
+  title: `${ship.name} Saint Martin Ticket`,
+    description: `Compare ${ship.name} ticket prices, classes, capacity and schedule for Cox's Bazar to Saint Martin. Last verified: ${ship.lastVerified}.`,
+    alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-ship/keari-sindbad' },
+    openGraph: {
+      title: `${ship.name} Saint Martin Ticket`,
     description: `Compare ${ship.name} ticket prices, classes, capacity and schedule for Cox's Bazar to Saint Martin. Last verified: ${ship.lastVerified}.`,
     images: ship.image ? [`https://www.shiptickets.bd${ship.image}`] : undefined,
   },
@@ -28,7 +28,7 @@ export default function KeariSindbadPage() {
     >
       {ship.image && (
         <div className="relative mb-8 h-64 w-full overflow-hidden rounded-2xl">
-          <Image src={ship.image} alt={`${ship.name} passenger ship at jetty`} fill className="object-cover" />
+          <Image src={ship.image} alt={`${ship.name} passenger ship at jetty`} fill sizes="100vw" className="object-cover" />
         </div>
       )}
 
@@ -118,6 +118,15 @@ export default function KeariSindbadPage() {
           <Bullet>A Travel Pass and QR-coded ticket are required for Saint Martin entry during the tourist season.</Bullet>
           <Bullet>Share your date and passenger count on WhatsApp to verify the latest schedule and fare.</Bullet>
         </ul>
+      </Section>
+
+      <Section title="Related pages">
+        <div className="grid gap-4 md:grid-cols-2">
+          <LinkCard href="/saint-martin-ship-ticket-price" title="Ship ticket price" text="Reference fares for all Saint Martin ships." />
+          <LinkCard href="/saint-martin-ship-schedule" title="Ship schedule" text="Departure times and seasonal operating status." />
+          <LinkCard href="/saint-martin-travel-pass" title="Travel Pass" text="QR ticket and visitor authorization requirements." />
+          <LinkCard href="/routes/coxs-bazar-to-saint-martin" title="Route guide" text="Cox's Bazar to Saint Martin jetty and check-in info." />
+        </div>
       </Section>
 
       <Section title="Need current availability?">

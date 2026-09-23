@@ -5,9 +5,9 @@ import { getShipBySlug } from '@/lib/ships'
 const ship = getShipBySlug('karnafuly-express')
 
 export const metadata: Metadata = {
-  title: 'MV Karnafuly Express Ship Ticket | Fare, Cabin & Route Guide',
+  title: 'MV Karnafuly Express Ticket Guide',
   description: 'Read the MV Karnafuly Express Saint Martin ship ticket guide: route, one-way and return fare guidance, seat classes, cabins, facilities and booking support.',
-  alternates: { canonical: 'https://www.shiptickets.bd/mv-karnafuly-express' },
+  alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-ship/karnafuly-express' },
 }
 
 export default function MVKarnafulyExpressPage() {

@@ -4,7 +4,7 @@ import { ArrowRight, BadgeCheck, BedDouble, Check, Clock3, Info, MessageCircle, 
 import { LinkCard, Pill, Schema, Section, SeoPage, faqSchema, siteSchema, websiteSchema, breadcrumbSchema, whatsapp } from '@/components/seo-page'
 
 export const metadata: Metadata = {
-  title: 'Saint Martin Ship Ticket Price 2026 | One Way & Round Trip Fare',
+  title: 'Saint Martin Ship Ticket Price',
   description: 'Compare Saint Martin ship ticket prices from Cox\'s Bazar, including one-way, round-trip, seat, lounge and cabin fares for Karnafuly Express and Baro Awlia.',
   keywords: ['saint martin ship ticket price', 'সেন্টমার্টিন জাহাজের টিকিটের দাম', 'saint martin ship cabin price', 'cox\'s bazar to saint martin ship ticket'],
   alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-ship-ticket-price' },
