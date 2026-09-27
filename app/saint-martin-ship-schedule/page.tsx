@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { SeoPage, Section, Bullet, Status, Schema, siteSchema, websiteSchema, faqSchema, breadcrumbSchema } from '@/components/seo-page'
-export const metadata: Metadata = { title: 'Saint Martin Ship Schedule', description: 'Check how to verify Saint Martin ship departure times, return schedules, check-in points and seasonal operating status.', alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-ship-schedule' } }
+export const metadata: Metadata = { title: 'Saint Martin Ship Schedule', description: 'Check how to verify Saint Martin ship departure times, return schedules, check-in points and seasonal operating status.', openGraph: { title: 'Saint Martin Ship Schedule & Departure Times', description: 'Check seasonal ship departure times, return schedules, jetty check-in points and operating status for Cox\'s Bazar to Saint Martin.' }, alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-ship-schedule' } }
 const faqs: [string, string][] = [
   ['What time do ships depart to Saint Martin?', 'Departure times are seasonal and operator-specific. Confirm the latest departure time and check-in point for your travel date before leaving.'],
   ['How early should I arrive at the jetty?', 'Arrive at least 30 minutes before departure for check-in and boarding. Reporting time may vary by operator and season.'],

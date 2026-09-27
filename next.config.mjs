@@ -20,7 +20,7 @@ const nextConfig = {
     }]
   },
   typescript: {
-    ignoreBuildErrors: true,
+    // ignoreBuildErrors: true, // Removed — enables strict type checking
   },
   images: {
     unoptimized: false,

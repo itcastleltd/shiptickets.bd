@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { MessageCircle } from 'lucide-react'
-import { SeoPage, Section, Bullet, Pill, Schema, siteSchema, websiteSchema, breadcrumbSchema } from '@/components/seo-page'
+import { SeoPage, Section, Bullet, Pill, Schema, siteSchema, websiteSchema, breadcrumbSchema, productSchema } from '@/components/seo-page'
 import { getShipBySlug, WHATSAPP_NUMBER } from '@/lib/ships'
 
 const ship = getShipBySlug('karnafuly-express')
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function MVKarnafulyExpressPage() {
   const faqs: [string, string][] = [
-    ['What route does MV Karnafuly Express serve?', 'MV Karnafuly Express is listed for the Cox’s Bazar to Saint Martin passenger route. Confirm the current departure port and sailing date before booking because seasonal operations can change.'],
+    ['What route does MV Karnafuly Express serve?', 'MV Karnafuly Express is listed for the Cox\'s Bazar to Saint Martin passenger route. Confirm the current departure port and sailing date before booking because seasonal operations can change.'],
     ['How much is an MV Karnafuly Express ticket?', 'The current one-way and return fare depends on the season, class and operator release. Share your travel date and passenger count on WhatsApp to verify the latest price.'],
     ['Does MV Karnafuly Express have cabins?', 'Cabin availability can include single, twin and VIP categories, subject to the sailing and operator inventory. Confirm cabin type, occupancy and included facilities before payment.'],
   ]
@@ -23,37 +23,25 @@ export default function MVKarnafulyExpressPage() {
     siteSchema,
     websiteSchema,
     breadcrumbSchema([{ name: 'Home', url: '/' }, { name: ship?.name || 'MV Karnafuly Express' }]),
-    {
-      '@type': 'Product',
-      name: 'MV Karnafuly Express Saint Martin ship ticket',
-      description: 'Passenger ship ticket information for MV Karnafuly Express between Cox\'s Bazar and Saint Martin.',
-      brand: { '@type': 'Brand', name: 'MV Karnafuly Express' },
-      offers: {
-        '@type': 'Offer',
-        priceCurrency: 'BDT',
-        availability: 'https://schema.org/LimitedAvailability',
-        url: 'https://www.shiptickets.bd/mv-karnafuly-express',
-        seller: { '@id': 'https://www.shiptickets.bd/#organization' },
-      },
-    },
+    ship ? productSchema(ship) : {},
     { '@type': 'FAQPage', mainEntity: faqs.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })) },
   ]
 
   return <SeoPage eyebrow="Ship detail · MV Karnafuly Express" title="MV Karnafuly Express ship ticket, fare & cabin guide" intro="Everything to compare before booking MV Karnafuly Express for a Saint Martin trip: route, ticket types, seating, cabins, facilities and seasonal booking checks.">
     <Section title="MV Karnafuly Express at a glance">
       <div className="grid gap-3 sm:grid-cols-2">
-        <div><p className="text-xs font-extrabold uppercase text-[#888780]">Route</p><p className="font-extrabold">Cox&apos;s Bazar → Saint Martin</p></div>
+        <div><p className="text-xs font-extrabold uppercase text-[#888780]">Route</p><p className="font-extrabold">{ship?.route || "Cox's Bazar → Saint Martin"}</p></div>
         <div><p className="text-xs font-extrabold uppercase text-[#888780]">Booking status</p><Pill>Check current availability</Pill></div>
-        <div><p className="text-xs font-extrabold uppercase text-[#888780]">Ticket types</p><p className="font-extrabold">One-way and return tickets</p></div>
-        <div><p className="text-xs font-extrabold uppercase text-[#888780]">Accommodation</p><p className="font-extrabold">Seat, lounge and cabin categories</p></div>
+        <div><p className="text-xs font-extrabold uppercase text-[#888780]">One-way fare</p><p className="font-extrabold text-[#1d9e75]">{ship?.oneWay || 'To be confirmed'}</p></div>
+        <div><p className="text-xs font-extrabold uppercase text-[#888780]">Round-trip fare</p><p className="font-extrabold text-[#0d1b2a]">{ship?.roundTrip || 'To be confirmed'}</p></div>
       </div>
     </Section>
 
     <Section title="Ticket price and booking information">
       <p>MV Karnafuly Express fares are seasonal and may vary by seat class, cabin category, passenger type and travel date. We do not publish an outdated fare as a booking promise.</p>
       <div className="grid gap-4 md:grid-cols-2">
-        <div className="rounded-2xl bg-[#e1f5ee] p-5"><p className="text-xs font-extrabold uppercase tracking-wide text-[#0f6e56]">One-way ticket</p><p className="mt-2 text-2xl font-extrabold text-[#0d1b2a]">Starting fare to be confirmed</p><p className="mt-2 text-sm text-[#5f5e5a]">Ask with your travel date and class preference.</p></div>
-        <div className="rounded-2xl bg-[#fff3d6] p-5"><p className="text-xs font-extrabold uppercase tracking-wide text-[#9b6400]">Return ticket</p><p className="mt-2 text-2xl font-extrabold text-[#0d1b2a]">Round-trip fare to be confirmed</p><p className="mt-2 text-sm text-[#5f5e5a]">Return sailing and validity must be checked together.</p></div>
+        <div className="rounded-2xl bg-[#e1f5ee] p-5"><p className="text-xs font-extrabold uppercase tracking-wide text-[#0f6e56]">One-way ticket</p><p className="mt-2 text-2xl font-extrabold text-[#0d1b2a]">{ship?.oneWay || 'Starting fare to be confirmed'}</p><p className="mt-2 text-sm text-[#5f5e5a]">Ask with your travel date and class preference.</p></div>
+        <div className="rounded-2xl bg-[#fff3d6] p-5"><p className="text-xs font-extrabold uppercase tracking-wide text-[#9b6400]">Return ticket</p><p className="mt-2 text-2xl font-extrabold text-[#0d1b2a]">{ship?.roundTrip || 'Round-trip fare to be confirmed'}</p><p className="mt-2 text-sm text-[#5f5e5a]">Return sailing and validity must be checked together.</p></div>
       </div>
     </Section>
 

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { SeoPage, Section, Bullet, Schema, siteSchema, websiteSchema, faqSchema, breadcrumbSchema } from '@/components/seo-page'
-export const metadata: Metadata = { title: 'Saint Martin Travel Pass & QR Ticket', description: 'Learn what the Saint Martin Travel Pass and QR-coded ship ticket mean, why they matter and what to verify before travel.', alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-travel-pass' } }
+export const metadata: Metadata = { title: 'Saint Martin Travel Pass & QR Ticket', description: 'Learn what the Saint Martin Travel Pass and QR-coded ship ticket mean, why they matter and what to verify before travel.', openGraph: { title: 'Saint Martin Travel Pass & QR Ticket Guide', description: 'Understand the Travel Pass, QR-coded ticket requirements and what to verify before your Saint Martin journey.' }, alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-travel-pass' } }
 const faqs: [string,string][] = [
   ['What is the Saint Martin Travel Pass?', 'It is the travel authorization or pass used under the applicable government rules for visitors to Saint Martin Island. Requirements can change by season.'],
   ['Do I need a QR-coded ticket?', 'If current rules require a QR-coded ticket or Travel Pass, use only a valid ticket issued through an authorized process and verify the details before departure.'],

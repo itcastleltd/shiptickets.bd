@@ -4,7 +4,7 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { GTMPageTracker } from '@/components/GTMPageTracker'
 
-const gtmId = process.env.NEXT_PUBLIC_GTM_ID
+const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-NXTPXRQK'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.shiptickets.bd'),
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   keywords: ['Saint Martin ship ticket', 'Saint Martin ship ticket price', 'Cox’s Bazar to Saint Martin ship', 'সেন্টমার্টিন জাহাজের টিকিট'],
   alternates: { canonical: '/', languages: { 'en': 'https://www.shiptickets.bd/', 'bn': 'https://www.shiptickets.bd/' } },
   icons: {
-    icon: [{ url: '/Icon.svg', type: 'image/svg+xml' }, { url: '/favicon.ico' }],
-    apple: '/apple-icon.png',
+    icon: [{ url: '/Icon.svg', type: 'image/svg+xml' }],
+    apple: '/Icon.svg',
     shortcut: '/Icon.svg',
   },
   openGraph: { type: 'website', url: 'https://www.shiptickets.bd/', siteName: 'ShipTickets.bd', title: 'Saint Martin ship tickets, made simple.', description: 'Compare ships, check fares and book your Saint Martin journey with confidence. shiptickets.bd is an authorized ship ticket reseller.', images: [{ url: '/saint-martin-hero.jpg', width: 1100, height: 730, alt: "Passenger ship near Saint Martin's Island in Bangladesh" }] },
@@ -30,6 +30,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://wa.me" />
+        <link rel="dns-prefetch" href="https://facebook.com" />
+        <link rel="dns-prefetch" href="https://instagram.com" />
+        <link rel="preload" as="image" href="/saint-martin-hero.jpg" />
+        <meta name="google-site-verification" content="pending-verification" />
         {gtmId && (
           <Script
             id="gtm-base"

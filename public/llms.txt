@@ -212,7 +212,7 @@ The exact jetty and check-in counter vary by operator and season. Confirm the ap
 
 ### Core pages
 - Home: https://www.shiptickets.bd/
-- Saint Martin Ship Ticket: https://www.shiptickets.bd/mv-karnafuly-express
+- Saint Martin Ship Ticket: https://www.shiptickets.bd/saint-martin-ship/karnafuly-express
 - Ship ticket price: https://www.shiptickets.bd/saint-martin-ship-ticket-price
 - Ship schedule: https://www.shiptickets.bd/saint-martin-ship-schedule
 - Travel Pass: https://www.shiptickets.bd/saint-martin-travel-pass

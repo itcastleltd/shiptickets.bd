@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { SeoPage, Section, LinkCard, Schema, siteSchema, websiteSchema, faqSchema, breadcrumbSchema } from '@/components/seo-page'
-export const metadata: Metadata = { title: 'Saint Martin Travel Guide', description: 'A practical Saint Martin Island Bangladesh travel guide covering ships, tickets, schedule, Travel Pass, jetty and trip preparation.', alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-guide' } }
+export const metadata: Metadata = { title: 'Saint Martin Travel Guide', description: 'A practical Saint Martin Island Bangladesh travel guide covering ships, tickets, schedule, Travel Pass, jetty and trip preparation.', openGraph: { title: 'Saint Martin Travel Guide for Ship Passengers', description: 'Practical guide covering ships, tickets, schedule, Travel Pass, jetty and trip preparation for Saint Martin Island.' }, alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-guide' } }
 const faqs: [string, string][] = [
   ['How do I plan a Saint Martin ship trip?', 'Check island open status, choose an approved ship, compare ticket class and fare, verify Travel Pass requirements, confirm the jetty and reporting time, then keep ticket details accessible for check-in.'],
   ['Which jetty departs to Saint Martin from Cox\'s Bazar?', 'Passenger vessels depart from the BIWTA Nuniachhara Jetty in Cox\'s Bazar. Verify the approved departure jetty and boarding time for your sailing date.'],

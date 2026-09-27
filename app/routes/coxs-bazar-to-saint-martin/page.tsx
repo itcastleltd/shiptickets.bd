@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { SeoPage, Section, Bullet, LinkCard, Schema, siteSchema, websiteSchema, faqSchema, breadcrumbSchema } from '@/components/seo-page'
-export const metadata: Metadata = { title: "Cox's Bazar to Saint Martin Ship", description: "Understand the Cox's Bazar to Saint Martin ship route, jetty, check-in, ticket and Travel Pass information.", alternates: { canonical: 'https://www.shiptickets.bd/routes/coxs-bazar-to-saint-martin' } }
+export const metadata: Metadata = { title: "Cox's Bazar to Saint Martin Ship", description: "Understand the Cox's Bazar to Saint Martin ship route, jetty, check-in, ticket and Travel Pass information.", openGraph: { title: "Cox's Bazar to Saint Martin Ship Route Guide", description: "Understand the route, jetty, check-in, ticket types and Travel Pass requirements for Cox's Bazar to Saint Martin." }, alternates: { canonical: 'https://www.shiptickets.bd/routes/coxs-bazar-to-saint-martin' } }
 const faqs: [string, string][] = [
   ["How do I get to Saint Martin from Cox's Bazar?", 'Passenger vessels depart from the BIWTA Nuniachhara Jetty in Cox\'s Bazar during the approved tourist season. Confirm the latest departure jetty and sailing date before travel.'],
   ['How long is the journey from Cox\'s Bazar to Saint Martin?', 'The sea crossing takes approximately 2 hours. Sailing time varies with weather, tide and the specific vessel operating on your date.'],
