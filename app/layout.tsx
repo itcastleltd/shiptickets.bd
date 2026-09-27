@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   openGraph: { type: 'website', url: 'https://www.shiptickets.bd/', siteName: 'ShipTickets.bd', title: 'Saint Martin ship tickets, made simple.', description: 'Compare ships, check fares and book your Saint Martin journey with confidence. shiptickets.bd is an authorized ship ticket reseller.', images: [{ url: '/og_image.png', width: 1200, height: 630, alt: "ShipTickets.bd - Saint Martin ship tickets" }] },
   twitter: { card: 'summary_large_image', title: 'Saint Martin ship tickets, made simple.', description: 'Compare ships, check fares and book with confidence. shiptickets.bd is an authorized ship ticket reseller.', images: ['/og_image.png'] },
   category: 'Travel information',
-  authors: [{ name: 'ShipTickets.bd editorial team', url: 'https://www.shiptickets.bd' }],
-  creator: 'ShipTickets.bd',
+  authors: [{ name: 'Al Amin Hosain', url: 'https://www.shiptickets.bd' }],
+  creator: 'Al Amin Hosain',
 }
 
 export const viewport: Viewport = { colorScheme: 'light', themeColor: '#f7fbfb', width: 'device-width', initialScale: 1 }
@@ -36,6 +36,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="dns-prefetch" href="https://instagram.com" />
         <link rel="preload" as="image" href="/og_image.png" />
         <link rel="alternate" type="application/rss+xml" title="ShipTickets.bd RSS" href="/rss.xml" />
+        <meta name="geo.region" content="BD" />
+        <meta name="geo.placename" content="Dhaka" />
+        <meta name="author" content="Al Amin Hosain" />
+        <meta name="google-site-verification" content="GSC-VERIFICATION-CODE-PLACEHOLDER" />
+        <meta name="bingbot-verification" content="BING-VERIFICATION-CODE-PLACEHOLDER" />
         {gtmId && (
           <Script
             id="gtm-base"
