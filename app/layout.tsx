@@ -34,8 +34,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="preconnect" href="https://wa.me" />
         <link rel="dns-prefetch" href="https://facebook.com" />
         <link rel="dns-prefetch" href="https://instagram.com" />
-        <link rel="preload" as="image" href="/saint-martin-hero.jpg" />
-        <meta name="google-site-verification" content="pending-verification" />
+        <link rel="preload" as="image" href="/og_image.png" />
+        <link rel="alternate" type="application/rss+xml" title="ShipTickets.bd RSS" href="/rss.xml" />
         {gtmId && (
           <Script
             id="gtm-base"
