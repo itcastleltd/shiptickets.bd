@@ -12,6 +12,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/saint-martin-ship`, lastModified, changeFrequency: 'weekly', priority: .8 },
     { url: `${base}/saint-martin-guide`, lastModified, changeFrequency: 'monthly', priority: .8 },
     { url: `${base}/routes/coxs-bazar-to-saint-martin`, lastModified, changeFrequency: 'monthly', priority: .8 },
+    { url: `${base}/about`, lastModified, changeFrequency: 'monthly', priority: .7 },
+    { url: `${base}/contact`, lastModified, changeFrequency: 'monthly', priority: .7 },
     { url: `${base}/saint-martin-ship/keari-sindbad`, lastModified, changeFrequency: 'weekly', priority: .75 },
     { url: `${base}/saint-martin-ship/keari-cruise-dine`, lastModified, changeFrequency: 'weekly', priority: .75 },
     { url: `${base}/saint-martin-ship/bay-cruiser-1`, lastModified, changeFrequency: 'weekly', priority: .75 },
