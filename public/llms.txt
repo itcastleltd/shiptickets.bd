@@ -1,19 +1,18 @@
 # ShipTickets.bd
+
 > Saint Martin ship tickets, made simple.
 
 ShipTickets.bd is a Bangladesh-focused information and human-assisted booking website for Saint Martin ship tickets from Cox's Bazar. Compare ships, check fares, verify schedules and contact our support team on WhatsApp or phone before you travel.
 
-## How to use ShipTickets.bd
+## Overview
+
 This site does **not** run a live booking engine or inventory system. It provides verified reference information about Saint Martin passenger ships, ticket classes, fares, schedules and government rules. Use it to research, then confirm the latest availability, fare and Travel Pass requirements with a real support agent on WhatsApp or phone before payment.
 
 All information is seasonal. Every page shows a **Last verified** date and a clear status.
 
----
-
 ## Quick Facts
-Saint Martin Island, Bangladesh · Seasonal tourist destination · Accessible by passenger ship from Cox's Bazar · Travel Pass and QR ticket required during tourist season · Daily visitor cap applies · Island typically closed February–October · Reopening usually around November · 2,000 daily visitor limit · Environmental restrictions in place
 
----
+Saint Martin Island, Bangladesh · Seasonal tourist destination · Accessible by passenger ship from Cox's Bazar · Travel Pass and QR ticket required during tourist season · Daily visitor cap applies · Island typically closed February–October · Reopening usually around November · 2,000 daily visitor limit · Environmental restrictions in place
 
 ## Ships operating Cox's Bazar to Saint Martin
 
@@ -230,3 +229,22 @@ The exact jetty and check-in counter vary by operator and season. Confirm the ap
 - MV Karnafuly Express: https://www.shiptickets.bd/saint-martin-ship/karnafuly-express
 - MV Baro Awlia: https://www.shiptickets.bd/saint-martin-ship/baro-awlia
 - MV Bay One: https://www.shiptickets.bd/saint-martin-ship/bay-one
+
+## Optional
+
+### City coverage
+ShipTickets.bd provides ticket and tour support from all major cities in Bangladesh — Dhaka, Chittagong, Sylhet, Khulna, Rajshahi, Barisal, Rangpur and Mymensingh. Contact us on WhatsApp or phone for booking assistance from your city.
+
+### Contact
+- Website: https://www.shiptickets.bd/
+- WhatsApp: Use the WhatsApp CTA on any page (number in site header and footer)
+- Phone: Use the Call CTA on the website
+- Email: support@tripzic.com
+- Office: 33, Hafiz Manson, (1st Floor) Kawran Bazar, Dhaka, Bangladesh, 1215
+- Support hours: Sun – Thu, 9:00 AM – 6:00 PM
+
+### Sister concern
+ShipTickets.bd is a sister concern of Tripzic (https://www.tripzic.com/), a Bangladesh-based travel technology platform.
+
+---
+_Last updated: 27 September 2026_

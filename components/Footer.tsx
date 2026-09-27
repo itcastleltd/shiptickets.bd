@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { MessageCircle, PhoneCall, Mail } from 'lucide-react'
+import { MessageCircle, PhoneCall, Mail, MapPin, Clock } from 'lucide-react'
 import { PHONE_NUMBER, WHATSAPP_NUMBER } from '@/lib/ships'
 
 const phoneHref = `tel:${PHONE_NUMBER.replace(/[^+\d]/g, '')}`
@@ -38,6 +38,12 @@ export function Footer() {
           >
             Call {PHONE_NUMBER}
           </a>
+
+          <div className="mt-4 space-y-2 text-xs text-[#507279]">
+            <div className="flex items-start gap-2"><MapPin size={14} className="mt-0.5 shrink-0 text-[#1d9e75]" /><span>33, Hafiz Manson, (1st Floor) Kawran Bazar, Dhaka, Bangladesh, 1215</span></div>
+            <div className="flex items-center gap-2"><Clock size={14} className="shrink-0 text-[#1d9e75]" />Sun – Thu: 9:00 AM – 6:00 PM</div>
+            <div className="flex items-center gap-2"><Mail size={14} className="shrink-0 text-[#1d9e75]" />support@tripzic.com</div>
+          </div>
 
           <div className="mt-6 flex items-center gap-3">
             {socialLinks.map((social) => (

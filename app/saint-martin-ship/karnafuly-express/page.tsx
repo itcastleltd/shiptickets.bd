@@ -40,8 +40,8 @@ export default function KarnafulyPage() {
         <p className="mt-3"><strong>Can I cancel my ticket?</strong> Cancellation and reschedule policies depend on the operator and season. Confirm the cancellation policy before payment, as rules may differ by class and travel date.</p>
       </Section>
 
-      <Section title="Quick facts">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <Section title="Quick facts"><div className="mb-6 rounded-2xl border border-[#d4e6e2] bg-white p-5 shadow-[0_4px_20px_rgba(18,60,69,.06)]"><p className="text-xs font-extrabold uppercase tracking-[.16em] text-[#1d9e75]">Quick Answer</p><p className="mt-2 text-sm leading-6 text-[#5f5e5a]">MV Karnafuly Express operates the Cox&apos;s Bazar to Saint Martin route with four ticket classes: Open Deck (৳2,000), Lavender (৳2,200), Marigold (৳2,500) and Lilac Lounge (৳2,800) one-way. Cabins include Single, Twin and VIP. The ship has indoor and open-deck seating, premium lounge categories, restaurant/food service, prayer room and washrooms. Operating status is seasonal — confirm availability and fare for your travel date on WhatsApp before booking.</p></div>
+<div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           <div className="flex items-start gap-3"><MapPin className="mt-0.5 shrink-0 text-[#1d9e75]" size={18} /><div><p className="text-xs font-extrabold uppercase text-[#888780]">Route</p><p className="font-extrabold">{ship.route}</p></div></div>
           <div className="flex items-start gap-3"><Users className="mt-0.5 shrink-0 text-[#1d9e75]" size={18} /><div><p className="text-xs font-extrabold uppercase text-[#888780]">Capacity</p><p className="font-extrabold">{ship.capacity || 'Confirm with operator'}</p></div></div>
           <div className="flex items-start gap-3"><Clock className="mt-0.5 shrink-0 text-[#1d9e75]" size={18} /><div><p className="text-xs font-extrabold uppercase text-[#888780]">Journey</p><p className="font-extrabold">{ship.journeyDuration || 'Confirm latest'}</p></div></div>
