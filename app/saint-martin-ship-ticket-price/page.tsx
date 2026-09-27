@@ -11,11 +11,10 @@ export const metadata: Metadata = {
 }
 
 const fares = [
-  ['Lavender / Marigold', 'Standard seat', '৳1,800', '৳3,500'],
-  ['Open Deck', 'Open deck seat', '৳2,100', '৳4,000'],
-  ['Gladiolus', 'Business seat', '৳2,600', '৳5,000'],
-  ['Lilac Lounge', 'Lounge seating', '৳2,700', '৳5,300'],
-  ['Chrysanthemum Lounge', 'Premium lounge', '৳2,900', '৳5,600'],
+  ['Open Deck', 'Open deck seat', '৳2,000', '৳4,000'],
+  ['Lavender', 'Premium seat', '৳2,200', '৳4,200'],
+  ['Marigold', 'Comfortable seating', '৳2,500', '৳4,800'],
+  ['Lilac Lounge', 'Lounge seating', '৳2,800', '৳5,400'],
   ['Single Cabin', '1 passenger', '৳3,300', '৳6,500'],
   ['Twin Cabin', '2 passengers', '৳7,000', '৳13,000'],
   ['VIP Cabin', 'Premium cabin', '৳8,500', '৳16,000'],
@@ -23,9 +22,9 @@ const fares = [
 ]
 
 const baroFares = [
-  ['Sun Deck / Main Deck', '৳1,800', '৳3,500'],
-  ['Panorama / Riviera Chair', '৳2,100', '৳4,000'],
-  ['Mozarat Chair', '৳2,200', '৳4,300'],
+  ['Sun Deck', '৳1,800', '৳3,500'],
+  ['Main Deck', '৳2,100', '৳4,000'],
+  ['Panorama Chair', '৳2,200', '৳4,200'],
   ['Bunker Bed', '৳4,100', '৳8,000'],
   ['Deluxe Cabin', '৳7,000', '৳13,000'],
   ['Family Bunker / VIP Cabin', '৳8,500', '৳16,000'],
@@ -48,7 +47,7 @@ function FareTable({ rows, title }: { rows: string[][]; title: string }) {
 }
 
 export default function PricePage() {
-  const productSchema = ['Karnafuly Express', 'MV Baro Awlia'].map((name, index) => ({ '@type': 'Product', name: `${name} Saint Martin ship ticket`, description: `Reference fares and booking information for ${name} from Cox's Bazar to Saint Martin.`, brand: { '@type': 'Brand', name }, category: 'Saint Martin ship ticket', areaServed: 'Bangladesh', offers: { '@type': 'AggregateOffer', priceCurrency: 'BDT', lowPrice: index === 0 ? '1800' : '1800', highPrice: index === 0 ? '10500' : '10500', offerCount: index === 0 ? '9' : '7', availability: 'https://schema.org/LimitedAvailability', url: 'https://www.shiptickets.bd/saint-martin-ship-ticket-price' } }))
+  const productSchema = ['Karnafuly Express', 'MV Baro Awlia'].map((name, index) => ({ '@type': 'Product', name: `${name} Saint Martin ship ticket`, description: `Reference fares and booking information for ${name} from Cox's Bazar to Saint Martin.`, brand: { '@type': 'Brand', name }, category: 'Saint Martin ship ticket', areaServed: 'Bangladesh', offers: { '@type': 'AggregateOffer', priceCurrency: 'BDT', lowPrice: index === 0 ? '2000' : '1800', highPrice: index === 0 ? '10500' : '10500', offerCount: index === 0 ? '8' : '7', availability: 'https://schema.org/LimitedAvailability', url: 'https://www.shiptickets.bd/saint-martin-ship-ticket-price' } }))
 
   return <SeoPage eyebrow="Price guide · ভাড়ার তথ্য" title="Saint Martin ship ticket price" intro="Compare current reference fares from Cox's Bazar to Saint Martin by ship, seat class, cabin and journey type. See one-way and round-trip prices, then confirm availability before payment.">
     <div className="mb-8 rounded-2xl border border-[#d4e6e2] bg-white p-5 shadow-[0_4px_20px_rgba(18,60,69,.06)]"><p className="text-xs font-extrabold uppercase tracking-[.16em] text-[#1d9e75]">Quick Answer</p><p className="mt-2 text-sm leading-6 text-[#5f5e5a]">Saint Martin ship ticket prices range from ৳1,800 one-way for open deck seating to ৳10,500 for VVIP cabins. Five ships operate this route — MV Karnafuly Express, MV Baro Awlia, Keari Sindbad, Keari Cruise & Dine and MV Bay Cruiser 1. Fares depend on ship, class, cabin type, one-way vs round-trip and current season. All prices are operator-published references — confirm the latest fare on WhatsApp before payment.</p></div>
@@ -60,7 +59,7 @@ export default function PricePage() {
 
     <Section title="সেন্টমার্টিন জাহাজের টিকিটের দাম এক নজরে"><p>There is no single fixed Saint Martin ship ticket price. Fare depends on the ship, ticket category, season, travel date and whether you need a one-way or round-trip ticket. The tables below are useful planning references—not a promise of availability.</p><div className="mt-5 flex flex-wrap gap-2"><Pill>One-way fare</Pill><Pill>Round-trip fare</Pill><Pill>Seat & cabin options</Pill><Pill>Confirm before payment</Pill></div></Section>
 
-    <Section title="Karnafuly Express ticket price"><FareTable rows={fares.map(([name, type, one, round]) => [name, type, one, round])} title="Karnafuly Express · Cox's Bazar to Saint Martin" /><p className="mt-4 text-sm">Karnafuly Express publishes multiple seating, lounge and cabin categories. Fare may be quoted per passenger or per cabin depending on the category, so ask the booking team to clarify the basis of the price.</p><Link href="/mv-karnafuly-express" className="mt-4 inline-flex items-center gap-2 font-extrabold text-[#1d9e75]">Read MV Karnafuly Express details <ArrowRight size={16} /></Link></Section>
+    <Section title="Karnafuly Express ticket price"><FareTable rows={fares.map(([name, type, one, round]) => [name, type, one, round])} title="Karnafuly Express · Cox's Bazar to Saint Martin" /><p className="mt-4 text-sm">Karnafuly Express publishes multiple seating, lounge and cabin categories. Fare may be quoted per passenger or per cabin depending on the category, so ask the booking team to clarify the basis of the price.</p><Link href="/saint-martin-ship/karnafuly-express" className="mt-4 inline-flex items-center gap-2 font-extrabold text-[#1d9e75]">Read MV Karnafuly Express details <ArrowRight size={16} /></Link></Section>
 
     <Section title="MV Baro Awlia ticket price"><FareTable rows={baroFares.map(([name, one, round]) => [name, 'Seat or cabin category', one, round])} title="MV Baro Awlia · reference fare" /><Link href="/saint-martin-ship/baro-awlia" className="mt-4 inline-flex items-center gap-2 font-extrabold text-[#1d9e75]">View MV Baro Awlia ship page <ArrowRight size={16} /></Link></Section>
 

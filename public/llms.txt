@@ -228,7 +228,7 @@ The exact jetty and check-in counter vary by operator and season. Confirm the ap
 - MV Bay Cruiser 1: https://www.shiptickets.bd/saint-martin-ship/bay-cruiser-1
 - MV Karnafuly Express: https://www.shiptickets.bd/saint-martin-ship/karnafuly-express
 - MV Baro Awlia: https://www.shiptickets.bd/saint-martin-ship/baro-awlia
-- MV Bay One: https://www.shiptickets.bd/saint-martin-ship/bay-one
+- MV Bay One: https://www.shiptickets.bd/saint-martin-ship/karnafuly-express
 
 ## Optional
 
