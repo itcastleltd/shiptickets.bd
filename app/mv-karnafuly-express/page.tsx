@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
+import { MessageCircle } from 'lucide-react'
 import { SeoPage, Section, Bullet, Pill, Schema, siteSchema, websiteSchema, breadcrumbSchema } from '@/components/seo-page'
-import { getShipBySlug } from '@/lib/ships'
+import { getShipBySlug, WHATSAPP_NUMBER } from '@/lib/ships'
 
 const ship = getShipBySlug('karnafuly-express')
 
@@ -61,6 +63,7 @@ export default function MVKarnafulyExpressPage() {
 
     <Section title="How to check availability and book">
       <ol className="grid gap-3 text-[#5f5e5a] md:grid-cols-3"><li className="rounded-2xl bg-[#f7f6f2] p-4"><strong className="block text-[#0d1b2a]">1. Share your date</strong>Tell us your travel date, passengers and preferred ticket type.</li><li className="rounded-2xl bg-[#f7f6f2] p-4"><strong className="block text-[#0d1b2a]">2. Compare options</strong>We help you check the latest fare, class, cabin and sailing details.</li><li className="rounded-2xl bg-[#f7f6f2] p-4"><strong className="block text-[#0d1b2a]">3. Book on WhatsApp</strong>Confirm the final details before making payment.</li></ol>
+      <a href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello ShipTickets.bd, I want to check MV Karnafuly Express ticket availability for my travel date.')}`} className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#1d9e75] px-5 py-3 text-sm font-extrabold text-white"><MessageCircle size={17} /> Check on WhatsApp</a>
     </Section>
 
     <Section title="Frequently asked questions">

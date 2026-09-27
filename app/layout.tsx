@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/next'
+import Script from 'next/script'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { GTMPageTracker } from '@/components/GTMPageTracker'
@@ -30,8 +31,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <head>
         {gtmId && (
-          <script
+          <Script
             id="gtm-base"
+            strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
                 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
