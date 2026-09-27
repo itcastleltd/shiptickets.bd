@@ -14,15 +14,13 @@ const socialLinks = [
 ]
 
 const footerLinks = [
-  { href: '/saint-martin-ship', label: 'All ships' },
-  { href: '/saint-martin-ship-ticket-price', label: 'Ticket price' },
-  { href: '/saint-martin-ship-schedule', label: 'Ship schedule' },
   { href: '/saint-martin-travel-pass', label: 'Travel Pass' },
   { href: '/saint-martin-travel-rules', label: 'Travel rules' },
   { href: '/routes/coxs-bazar-to-saint-martin', label: 'Route guide' },
   { href: '/saint-martin-guide', label: 'Travel guide' },
   { href: '/about', label: 'About us' },
   { href: '/contact', label: 'Contact' },
+  { href: '/privacy-policy', label: 'Privacy Policy' },
 ]
 
 export function Footer() {
@@ -76,22 +74,6 @@ export function Footer() {
 
       <div className="mx-auto mt-8 max-w-7xl border-t border-[#ecf0ee] pt-5 text-xs text-[#8ba3a6]">
         © 2026 ShipTickets.bd · Prices and schedules are subject to confirmation and current government rules.
-      </div>
-
-      <div className="mx-auto mt-6 max-w-7xl">
-        <div className="overflow-hidden rounded-2xl border border-[#d4e6e2] bg-white shadow-[0_4px_20px_rgba(18,60,69,.04)]">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.897587746245!2d90.39001387511516!3d23.75103117866998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b9c5182ad5f1%3A0x2192fb66214a585e!2sSaint%20Martin%20Ship%20Tickets!5e0!3m2!1sen!2sbd!4v1790530440820!5m2!1sen!2sbd"
-            width="600"
-            height="300"
-            style={{ border: 0 }}
-            allowFullScreen={true}
-            loading="lazy"
-            referrerPolicy="strict-origin-when-cross-origin"
-            title="ShipTickets.bd on Google Maps"
-            className="w-full min-h-[200px] md:min-h-[300px]"
-          />
-        </div>
       </div>
     </footer>
   )

@@ -16,12 +16,6 @@ const navLinks = [
     { href: '/saint-martin-ship', label: 'Ships' },
     { href: '/saint-martin-ship-ticket-price', label: 'Ticket price' },
     { href: '/saint-martin-ship-schedule', label: 'Schedule' },
-    { href: '/saint-martin-travel-pass', label: 'Travel Pass' },
-    { href: '/saint-martin-travel-rules', label: 'Travel rules' },
-    { href: '/saint-martin-guide', label: 'Guide' },
-    { href: '/routes/coxs-bazar-to-saint-martin', label: 'Route' },
-    { href: '/about', label: 'About' },
-    { href: '/contact', label: 'Contact' },
   ]
 
 export function Header() {
