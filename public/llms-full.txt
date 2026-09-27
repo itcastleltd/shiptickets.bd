@@ -74,22 +74,21 @@ Ships operating Cox's Bazar to Saint Martin:
 **Fare reference table (Cox's Bazar to Saint Martin):**
 
 | Category | Type | One Way | Round Trip |
-|---|---|---|---|
-| Lavender / Marigold | Standard seat | ৳1,800 | ৳3,500 |
-| Open Deck | Open deck seat | ৳2,100 | ৳4,000 |
-| Gladiolus | Business seat | ৳2,600 | ৳5,000 |
-| Lilac Lounge | Lounge seating | ৳2,700 | ৳5,300 |
-| Chrysanthemum Lounge | Premium lounge | ৳2,900 | ৳5,600 |
+| |---|---|---|---|
+| Open Deck | Open deck seat | ৳2,000 | ৳4,000 |
+| Lavender | Premium seat | ৳2,200 | ৳4,200 |
+| Marigold | Comfortable seating | ৳2,500 | ৳4,800 |
+| Lilac Lounge | Lounge seating | ৳2,800 | ৳5,400 |
 | Single Cabin | 1 passenger | ৳3,300 | ৳6,500 |
 | Twin Cabin | 2 passengers | ৳7,000 | ৳13,000 |
 | VIP Cabin | Premium cabin | ৳8,500 | ৳16,000 |
 | VVIP Cabin | Top-tier cabin | ৳10,500 | ৳20,000 |
 
 | Category | One Way | Round Trip |
-|---|---|---|
-| Sun Deck / Main Deck (Baro Awlia) | ৳1,800 | ৳3,500 |
-| Panorama / Riviera Chair | ৳2,100 | ৳4,000 |
-| Mozarat Chair | ৳2,200 | ৳4,300 |
+| |---|---|---|
+| Sun Deck (Baro Awlia) | ৳1,800 | ৳3,500 |
+| Main Deck (Baro Awlia) | ৳2,100 | ৳4,000 |
+| Panorama Chair (Baro Awlia) | ৳2,200 | ৳4,200 |
 | Bunker Bed | ৳4,100 | ৳8,000 |
 | Deluxe Cabin | ৳7,000 | ৳13,000 |
 | Family Bunker / VIP Cabin | ৳8,500 | ৳16,000 |
