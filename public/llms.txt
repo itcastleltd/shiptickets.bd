@@ -10,10 +10,6 @@ This site does **not** run a live booking engine or inventory system. It provide
 
 All information is seasonal. Every page shows a **Last verified** date and a clear status.
 
-## Quick Facts
-
-Saint Martin Island, Bangladesh · Seasonal tourist destination · Accessible by passenger ship from Cox's Bazar · Travel Pass and QR ticket required during tourist season · Daily visitor cap applies · Island typically closed February–October · Reopening usually around November · 2,000 daily visitor limit · Environmental restrictions in place
-
 ## Ships operating Cox's Bazar to Saint Martin
 
 ### 1. MV Karnafuly Express (কর্ণফুলী এক্সপ্রেস)
@@ -193,58 +189,40 @@ The exact jetty and check-in counter vary by operator and season. Confirm the ap
 
 ---
 
-## Accuracy policy
+## Optional
 
-- Fares, schedules, operating status and government rules are seasonal.
-- Last verified: 21 September 2026.
-- We do **not** publish fake live availability, reviews, ratings or booking counts.
-- We do **not** invent schedules or prices.
-- Always confirm current availability and fare before payment.
+- City coverage: ShipTickets.bd provides ticket and tour support from all major cities in Bangladesh — Dhaka, Chittagong, Sylhet, Khulna, Rajshahi, Barisal, Rangpur and Mymensingh. Contact us on WhatsApp or phone for booking assistance from your city.
+- Sister concern: ShipTickets.bd is a sister concern of Tripzic (https://www.tripzic.com/), a Bangladesh-based travel technology platform.
+- Office: 33, Hafiz Manson, (1st Floor) Kawran Bazar, Dhaka, Bangladesh, 1215
+- Support hours: Sun – Thu, 9:00 AM – 6:00 PM
+- Email: support@tripzic.com
+- WhatsApp: +880 1718-116799
+- Phone: +880 1718-116799
+- Website: https://www.shiptickets.bd/
+- Facebook: https://www.facebook.com/shipticketsbd
+- Instagram: https://www.instagram.com/shipticketsbd
 
-## Contact
+### Pages
 
-- **Website:** https://www.shiptickets.bd/
-- **WhatsApp:** Use the WhatsApp CTA on any page (number in site header and footer)
-- **Phone:** Use the Call CTA on the website
-
-## Navigation
-
-### Core pages
 - Home: https://www.shiptickets.bd/
 - About: https://www.shiptickets.bd/about
 - Contact: https://www.shiptickets.bd/contact
-- Saint Martin Ship Ticket: https://www.shiptickets.bd/saint-martin-ship/karnafuly-express
+- Privacy Policy: https://www.shiptickets.bd/privacy-policy
 - Ship ticket price: https://www.shiptickets.bd/saint-martin-ship-ticket-price
 - Ship schedule: https://www.shiptickets.bd/saint-martin-ship-schedule
 - Travel Pass: https://www.shiptickets.bd/saint-martin-travel-pass
 - Travel rules: https://www.shiptickets.bd/saint-martin-travel-rules
 - Travel guide: https://www.shiptickets.bd/saint-martin-guide
 - Route guide: https://www.shiptickets.bd/routes/coxs-bazar-to-saint-martin
-
-### Ship pages
 - All ships: https://www.shiptickets.bd/saint-martin-ship
+- MV Karnafuly Express: https://www.shiptickets.bd/saint-martin-ship/karnafuly-express
+- MV Baro Awlia: https://www.shiptickets.bd/saint-martin-ship/baro-awlia
 - Keari Sindbad: https://www.shiptickets.bd/saint-martin-ship/keari-sindbad
 - Keari Cruise & Dine: https://www.shiptickets.bd/saint-martin-ship/keari-cruise-dine
 - MV Bay Cruiser 1: https://www.shiptickets.bd/saint-martin-ship/bay-cruiser-1
-- MV Karnafuly Express: https://www.shiptickets.bd/saint-martin-ship/karnafuly-express
-- MV Baro Awlia: https://www.shiptickets.bd/saint-martin-ship/baro-awlia
-- MV Bay One: https://www.shiptickets.bd/saint-martin-ship/karnafuly-express
-
-## Optional
-
-### City coverage
-ShipTickets.bd provides ticket and tour support from all major cities in Bangladesh — Dhaka, Chittagong, Sylhet, Khulna, Rajshahi, Barisal, Rangpur and Mymensingh. Contact us on WhatsApp or phone for booking assistance from your city.
-
-### Contact
-- Website: https://www.shiptickets.bd/
-- WhatsApp: Use the WhatsApp CTA on any page (number in site header and footer)
-- Phone: Use the Call CTA on the website
-- Email: support@tripzic.com
-- Office: 33, Hafiz Manson, (1st Floor) Kawran Bazar, Dhaka, Bangladesh, 1215
-- Support hours: Sun – Thu, 9:00 AM – 6:00 PM
-
-### Sister concern
-ShipTickets.bd is a sister concern of Tripzic (https://www.tripzic.com/), a Bangladesh-based travel technology platform.
+- MV Bay One: redirects to https://www.shiptickets.bd/saint-martin-ship/karnafuly-express
+- RSS feed: https://www.shiptickets.bd/rss.xml
 
 ---
+
 _Last updated: 27 September 2026_
