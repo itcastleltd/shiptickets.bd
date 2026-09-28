@@ -9,9 +9,9 @@ const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-NXTPXRQK'
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.shiptickets.bd'),
   title: { default: 'Saint Martin Ship Tickets Bangladesh', template: '%s | ShipTickets.bd' },
-  description: "Compare Saint Martin ship tickets, prices, schedules, cabins and facilities from Cox's Bazar. shiptickets.bd is an authorized ship ticket reseller. Check the latest verified information before booking.",
+  description: "Compare Saint Martin ship tickets, prices, schedules, cabins and facilities from Cox's Bazar. Check verified information and book your Saint Martin trip with ShipTickets.bd.",
   keywords: ['Saint Martin ship ticket', 'Saint Martin ship ticket price', 'Cox’s Bazar to Saint Martin ship', 'সেন্টমার্টিন জাহাজের টিকিট'],
-  alternates: { canonical: '/', languages: { 'en': 'https://www.shiptickets.bd/', 'bn': 'https://www.shiptickets.bd/' } },
+  alternates: { canonical: '/' },
   icons: {
     icon: [{ url: '/Icon.svg', type: 'image/svg+xml' }],
     apple: '/Icon.svg',
