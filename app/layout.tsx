@@ -38,8 +38,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <meta name="geo.region" content="BD" />
         <meta name="geo.placename" content="Dhaka" />
         <meta name="author" content="Al Amin Hosain" />
-        <meta name="google-site-verification" content="GSC-VERIFICATION-CODE-PLACEHOLDER" />
-        <meta name="bingbot-verification" content="BING-VERIFICATION-CODE-PLACEHOLDER" />
         {gtmId && (
           <Script
             id="gtm-base"
