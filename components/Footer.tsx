@@ -29,7 +29,7 @@ export function Footer() {
       <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row">
         <div>
           <div className="flex items-center">
-            <Image src="/Logo.svg" alt="ShipTickets.bd — Saint Martin ship tickets" width={150} height={43} className="h-10 w-auto" />
+            <Image src="/Logo.png" alt="ShipTickets.bd — Saint Martin ship tickets" width={134} height={40} className="h-10 w-auto" />
           </div>
 
           <a

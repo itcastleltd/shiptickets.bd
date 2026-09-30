@@ -27,7 +27,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-[#ecf0ee] bg-white/95 backdrop-blur">
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 lg:px-8">
         <Link href="/" className="flex items-center" aria-label="ShipTickets.bd home">
-          <Image src="/Logo.svg" alt="ShipTickets.bd — Saint Martin ship tickets" width={150} height={43} className="h-10 w-auto" />
+          <Image src="/Logo.png" alt="ShipTickets.bd — Saint Martin ship tickets" width={134} height={40} className="h-10 w-auto" />
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm font-semibold text-[#507279] lg:flex">

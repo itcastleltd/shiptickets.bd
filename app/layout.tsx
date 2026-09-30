@@ -12,11 +12,9 @@ export const metadata: Metadata = {
   description: "Compare Saint Martin ship tickets, prices, schedules, cabins and facilities from Cox's Bazar. Check verified information and book your Saint Martin trip with ShipTickets.bd.",
   keywords: ['Saint Martin ship ticket', 'Saint Martin ship ticket price', 'Cox’s Bazar to Saint Martin ship', 'সেন্টমার্টিন জাহাজের টিকিট'],
   alternates: { canonical: '/' },
-  icons: {
-    icon: [{ url: '/Icon.svg', type: 'image/svg+xml' }],
-    apple: '/Icon.svg',
-    shortcut: '/Icon.svg',
-  },
+  manifest: '/manifest.webmanifest',
+  appleWebApp: { capable: true, title: 'ShipTickets.bd', statusBarStyle: 'default' },
+  formatDetection: { telephone: false },
   openGraph: { type: 'website', url: 'https://www.shiptickets.bd/', siteName: 'ShipTickets.bd', title: 'Saint Martin ship tickets, made simple.', description: 'Compare ships, check fares and book your Saint Martin journey with confidence. shiptickets.bd is an authorized ship ticket reseller.', images: [{ url: '/og_image.png', width: 1200, height: 630, alt: "ShipTickets.bd - Saint Martin ship tickets" }] },
   twitter: { card: 'summary_large_image', title: 'Saint Martin ship tickets, made simple.', description: 'Compare ships, check fares and book with confidence. shiptickets.bd is an authorized ship ticket reseller.', images: ['/og_image.png'] },
   category: 'Travel information',
@@ -36,6 +34,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="dns-prefetch" href="https://instagram.com" />
         <link rel="preload" as="image" href="/og_image.png" />
         <link rel="alternate" type="application/rss+xml" title="ShipTickets.bd RSS" href="/rss.xml" />
+        <link rel="mask-icon" href="/Icon.svg" color="#1d9e75" />
         <meta name="geo.region" content="BD" />
         <meta name="geo.placename" content="Dhaka" />
         <meta name="author" content="Al Amin Hosain" />
