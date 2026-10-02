@@ -171,6 +171,70 @@
   color: #123c45;
 }
 
+/*
+ * Editorial type scale.
+ *
+ * Every size here is fluid: a clamp() with a rem floor and a rem ceiling, so
+ * text grows on wide screens and stays readable on a 360px phone without a
+ * separate mobile rule. Components use these classes instead of hand-picked
+ * text-[13px] values, which is what made the old pages render inconsistently
+ * between sections.
+ */
+@layer components {
+  /* Page title. One per page, the largest text a visitor sees. */
+  .t-display {
+    font-size: clamp(2.1rem, 1.35rem + 3.4vw, 3.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+  }
+
+  /* Section heading. Steps down from the page title but stays clearly ranked. */
+  .t-title {
+    font-size: clamp(1.4rem, 1.15rem + 1.1vw, 1.95rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+  }
+
+  /* Sub-heading inside a section, such as a ship name on a card. */
+  .t-subtitle {
+    font-size: clamp(1.075rem, 1rem + 0.35vw, 1.25rem);
+    line-height: 1.35;
+    font-weight: 800;
+  }
+
+  /* Opening paragraph under a title. Set larger than body copy on purpose. */
+  .t-lede {
+    font-size: clamp(1.05rem, 0.98rem + 0.35vw, 1.2rem);
+    line-height: 1.7;
+  }
+
+  /*
+   * Running text. 1.05rem floor keeps body copy readable on small phones,
+   * which 0.875rem was not.
+   */
+  .t-body {
+    font-size: clamp(1rem, 0.96rem + 0.2vw, 1.075rem);
+    line-height: 1.75;
+  }
+
+  /* Captions, table cells and legal text. */
+  .t-small {
+    font-size: clamp(0.875rem, 0.85rem + 0.12vw, 0.95rem);
+    line-height: 1.65;
+  }
+
+  /* Labels, eyebrows and other all-caps micro text. */
+  .t-label {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+}
+
 button, a, input {
   -webkit-tap-highlight-color: transparent;
 }

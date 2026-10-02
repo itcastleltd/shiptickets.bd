@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { Menu, MessageCircle, Phone, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { WHATSAPP_NUMBER, PHONE_NUMBER } from '@/lib/ships'
+import { ContactLink } from '@/components/contact-link'
 
 const waLink = (message: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
@@ -53,13 +54,9 @@ export function Header() {
           >
             <MessageCircle size={16} /> WhatsApp
           </a>
-          <a
-            href={phoneHref}
-            className="grid size-10 place-items-center rounded-full border border-[#cfe1df] bg-white text-[#0d1b2a] sm:hidden"
-            aria-label="Call for ticket"
-          >
+          <ContactLink href={phoneHref} kind="phone" eventLabel="header_call" className="grid size-10 place-items-center rounded-full border border-[#cfe1df] bg-white text-[#0d1b2a] sm:hidden">
             <Phone size={17} />
-          </a>
+          </ContactLink>
           <button
             type="button"
             className="grid size-10 place-items-center rounded-full text-[#0d1b2a] hover:bg-[#f0f4f3] lg:hidden"

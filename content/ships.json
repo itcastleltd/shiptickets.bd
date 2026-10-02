@@ -1,0 +1,1018 @@
+[
+  {
+    "slug": "karnafuly-express",
+    "name": "MV Karnafuly Express",
+    "nameBn": "কর্ণফুলী এক্সপ্রেস",
+    "operator": "Karnafuly Shipbuilding & Engineering",
+    "route": "Cox's Bazar → Saint Martin",
+    "status": "seasonal_confirmation",
+    "lastVerified": "5 October 2026",
+    "source": "Operator-published reference; confirm for your travel date",
+    "ticketClasses": [
+      {
+        "name": "Lavender Economy Seat",
+        "nameBn": "ল্যাভেন্ডার ইকোনমি সিট",
+        "description": "Economy seating for travellers looking for a lower-cost ticket",
+        "oneWayFare": "৳1,800",
+        "roundTripFare": "৳3,500"
+      },
+      {
+        "name": "Marigold Economy Seat",
+        "nameBn": "ম্যারিগোল্ড ইকোনমি সিট",
+        "description": "Economy category priced close to Lavender",
+        "oneWayFare": "৳1,800",
+        "roundTripFare": "৳3,500"
+      },
+      {
+        "name": "Open Deck",
+        "nameBn": "ওপেন ডেক",
+        "description": "Outdoor deck seating with open sea views",
+        "oneWayFare": "৳2,100",
+        "roundTripFare": "৳4,000"
+      },
+      {
+        "name": "Gladiolus Business Seat",
+        "nameBn": "গ্ল্যাডিওলাস বিজনেস সিট",
+        "description": "Higher-category seating above the economy decks",
+        "oneWayFare": "৳2,600",
+        "roundTripFare": "৳5,000"
+      },
+      {
+        "name": "Lilac Lounge",
+        "nameBn": "লাইল্যাক লাউঞ্জ",
+        "description": "Premium lounge-style seating",
+        "oneWayFare": "৳2,700",
+        "roundTripFare": "৳5,300"
+      },
+      {
+        "name": "Chrysanthemum Lounge",
+        "nameBn": "ক্রিসেনথেমাম লাউঞ্জ",
+        "description": "Highest listed lounge category",
+        "oneWayFare": "৳2,900",
+        "roundTripFare": "৳5,600"
+      }
+    ],
+    "cabins": [
+      {
+        "name": "Single Cabin",
+        "nameBn": "সিঙ্গেল কেবিন",
+        "description": "Designed for individual occupancy",
+        "capacity": "1 passenger",
+        "oneWayFare": "৳3,300",
+        "roundTripFare": "৳6,500"
+      },
+      {
+        "name": "Twin Cabin",
+        "nameBn": "টুইন কেবিন",
+        "description": "Designed for two passengers travelling together",
+        "capacity": "2 passengers",
+        "oneWayFare": "৳7,000",
+        "roundTripFare": "৳13,000"
+      },
+      {
+        "name": "VIP Cabin",
+        "nameBn": "ভিআইপি কেবিন",
+        "description": "Premium private cabin, subject to availability",
+        "capacity": "Private cabin",
+        "oneWayFare": "৳8,500",
+        "roundTripFare": "৳16,000"
+      },
+      {
+        "name": "VVIP Cabin",
+        "nameBn": "ভিভিআইপি কেবিন",
+        "description": "Highest listed cabin category, selected cabins with attached facilities",
+        "capacity": "Private cabin",
+        "oneWayFare": "৳10,500",
+        "roundTripFare": "৳20,000"
+      }
+    ],
+    "facilities": [
+      {
+        "name": "Indoor seating",
+        "available": true
+      },
+      {
+        "name": "Open deck",
+        "available": true
+      },
+      {
+        "name": "Premium lounge seating",
+        "available": true
+      },
+      {
+        "name": "Restaurant / food service",
+        "available": true
+      },
+      {
+        "name": "Washrooms",
+        "available": true
+      },
+      {
+        "name": "Prayer room",
+        "available": true
+      },
+      {
+        "name": "Cabin accommodation",
+        "available": true
+      },
+      {
+        "name": "Passenger service areas",
+        "available": true
+      }
+    ],
+    "image": "/ship/mv-karnafuly-express.jpg",
+    "capacity": "Approx. 600 passengers",
+    "journeyDuration": "Approx. 5 hours (seasonal, confirm for your sailing)",
+    "departure": "Morning departure (seasonal, confirm the exact time)",
+    "jetty": "BIWTA Nuniachhara Jetty, Cox's Bazar",
+    "checkIn": "Arrive before the published departure time; final check-in is confirmed on your ticket",
+    "cancellation": "Subject to operator and season rules; confirm before payment",
+    "gallery": [
+      "/ship/mv-karnafuly-express.jpg"
+    ],
+    "detail": "Large passenger ship with multiple seating categories and cabin guidance.",
+    "faq": [
+      [
+        "How much is a Karnafuly Express ticket?",
+        "Published reference fares start from around ৳1,800 one way for selected economy categories, with premium seating and cabins costing more. Exact fares depend on the sailing date and ticket category."
+      ],
+      [
+        "How much is a round-trip Karnafuly Express ticket?",
+        "Published round-trip reference fares start from around ৳3,500 for selected economy categories. Premium lounge and cabin fares are higher."
+      ],
+      [
+        "কর্ণফুলী এক্সপ্রেস টিকিটের দাম কত?",
+        "প্রকাশিত রেফারেন্স ভাড়া অনুযায়ী কর্ণফুলী এক্সপ্রেসের ইকোনমি ক্যাটাগরি থেকে একমুখী টিকিট প্রায় ৳১,৮০০ থেকে শুরু। লাউঞ্জ ও কেবিনের ভাড়া বেশি। আপনার ভ্রমণের তারিখ অনুযায়ী বর্তমান ভাড়া নিশ্চিত করুন।"
+      ],
+      [
+        "Is Karnafuly Express available every day?",
+        "Not necessarily. Saint Martin ship operations are seasonal and depend on current government rules, weather, sea conditions, tides and operator schedules. The 2026-2027 season opens on 1 November 2026."
+      ],
+      [
+        "Where is Karnafuly Express boarding in Cox’s Bazar?",
+        "Published information identifies the Nuniachhara / BIWTA jetty area as the Cox’s Bazar boarding point. Confirm the exact boarding location for your sailing."
+      ],
+      [
+        "How long is the Karnafuly Express journey?",
+        "The journey is generally around 5 hours, but actual sailing time can vary according to weather, sea conditions and tide."
+      ],
+      [
+        "Does Karnafuly Express have a cabin?",
+        "Yes. Published fare structures include Single, Twin, VIP and VVIP cabin categories. Availability is limited and should be confirmed before payment."
+      ],
+      [
+        "Can I buy a one-way ticket?",
+        "Yes. One-way fares are available for selected sailing and ticket categories, subject to current operator availability."
+      ],
+      [
+        "Can I book a round-trip ticket?",
+        "Yes. Round-trip ticket options are available for the applicable sailing dates."
+      ],
+      [
+        "Is food available on Karnafuly Express?",
+        "Food or restaurant service may be available, with facilities depending on the ship and ticket category. Confirm what is included in your selected ticket before payment."
+      ],
+      [
+        "Does Karnafuly Express have a prayer room?",
+        "Published ship information lists a prayer room among the available facilities. Facility availability can vary by vessel configuration."
+      ],
+      [
+        "Can the Karnafuly Express schedule change?",
+        "Yes. Sailing times can change because of tide, weather, sea conditions, operational decisions and government instructions."
+      ],
+      [
+        "How can I check the latest Karnafuly Express fare?",
+        "Send your travel date and passenger count on WhatsApp. We can check the current sailing information and applicable fare before booking."
+      ]
+    ],
+    "imageAlt": "MV Karnafuly Express passenger ship on the Cox's Bazar to Saint Martin route",
+    "specs": [
+      {
+        "label": "Route",
+        "value": "Cox's Bazar ↔ Saint Martin"
+      },
+      {
+        "label": "Boarding area",
+        "value": "Nuniachhara / BIWTA Jetty, Cox’s Bazar"
+      },
+      {
+        "label": "Journey time",
+        "value": "Approximately 5 hours (seasonal)"
+      },
+      {
+        "label": "Ticket types",
+        "value": "One-way & round trip"
+      },
+      {
+        "label": "Seating",
+        "value": "Economy, business and lounge categories"
+      },
+      {
+        "label": "Cabins",
+        "value": "Single, Twin, VIP & VVIP"
+      },
+      {
+        "label": "Food service",
+        "value": "Available on selected classes"
+      },
+      {
+        "label": "Washroom",
+        "value": "Available"
+      },
+      {
+        "label": "Prayer room",
+        "value": "Available"
+      },
+      {
+        "label": "Operating period",
+        "value": "Seasonal"
+      },
+      {
+        "label": "Schedule",
+        "value": "Subject to sailing conditions and tide"
+      }
+    ],
+    "categoryGuidance": [
+      {
+        "category": "Economy (Lavender / Marigold)",
+        "bestFor": "Budget travellers",
+        "privacy": "Low",
+        "outdoor": "Limited",
+        "priceLevel": "৳"
+      },
+      {
+        "category": "Open Deck",
+        "bestFor": "Sea views",
+        "privacy": "Low",
+        "outdoor": "Yes",
+        "priceLevel": "৳৳"
+      },
+      {
+        "category": "Business (Gladiolus)",
+        "bestFor": "Comfortable seating",
+        "privacy": "Medium",
+        "outdoor": "Depends on seat",
+        "priceLevel": "৳৳"
+      },
+      {
+        "category": "Lounge (Lilac / Chrysanthemum)",
+        "bestFor": "Premium comfort",
+        "privacy": "Medium",
+        "outdoor": "Depends on lounge",
+        "priceLevel": "৳৳৳"
+      },
+      {
+        "category": "Single Cabin",
+        "bestFor": "Solo traveller",
+        "privacy": "High",
+        "outdoor": "Not listed",
+        "priceLevel": "৳৳৳"
+      },
+      {
+        "category": "Twin Cabin",
+        "bestFor": "Couples or friends",
+        "privacy": "High",
+        "outdoor": "Not listed",
+        "priceLevel": "৳৳৳"
+      },
+      {
+        "category": "VIP / VVIP Cabin",
+        "bestFor": "Private premium travel",
+        "privacy": "Very high",
+        "outdoor": "Not listed",
+        "priceLevel": "৳৳৳৳"
+      }
+    ]
+  },
+  {
+    "slug": "baro-awlia",
+    "name": "MV Baro Awlia",
+    "nameBn": "বারো আওলিয়া",
+    "operator": "Baro Awlia Shipping",
+    "route": "Cox's Bazar → Saint Martin",
+    "status": "seasonal_confirmation",
+    "lastVerified": "5 October 2026",
+    "source": "Operator-published reference; confirm for your travel date",
+    "ticketClasses": [
+      {
+        "name": "Main Deck Seat",
+        "nameBn": "মেইন ডেক সিট",
+        "description": "Lower-priced open-view deck seating, approx. 66 published seats",
+        "oneWayFare": "৳1,800",
+        "roundTripFare": "৳3,500",
+        "seatCount": "Approx. 66 seats"
+      },
+      {
+        "name": "Sun Deck Seat",
+        "nameBn": "সান ডেক সিট",
+        "description": "Open-view seating category, approx. 160 published seats",
+        "oneWayFare": "৳1,800",
+        "roundTripFare": "৳3,500",
+        "seatCount": "Approx. 160 seats"
+      },
+      {
+        "name": "Panorama Business Chair",
+        "nameBn": "প্যানোরামা বিজনেস চেয়ার",
+        "description": "Air-conditioned business seating",
+        "oneWayFare": "৳2,100",
+        "roundTripFare": "৳4,000"
+      },
+      {
+        "name": "Riviera Business Chair",
+        "nameBn": "রিভিয়েরা বিজনেস চেয়ার",
+        "description": "Air-conditioned business category",
+        "oneWayFare": "৳2,100",
+        "roundTripFare": "৳4,000"
+      },
+      {
+        "name": "Mozarat Chair",
+        "nameBn": "মোজারাত চেয়ার",
+        "description": "Premium air-conditioned chair seating, approx. 54 published seats",
+        "oneWayFare": "৳2,200",
+        "roundTripFare": "৳4,300",
+        "seatCount": "Approx. 54 seats"
+      }
+    ],
+    "cabins": [
+      {
+        "name": "Bunker Bed",
+        "nameBn": "বাঙ্কার বেড",
+        "description": "Small shared berth category with common washroom access",
+        "capacity": "2-person category",
+        "oneWayFare": "৳4,100",
+        "roundTripFare": "৳8,000"
+      },
+      {
+        "name": "Deluxe Cabin",
+        "nameBn": "ডিলাক্স কেবিন",
+        "description": "Air-conditioned private cabin",
+        "capacity": "2 persons",
+        "oneWayFare": "৳7,000",
+        "roundTripFare": "৳13,000"
+      },
+      {
+        "name": "Family Bunker Cabin",
+        "nameBn": "ফ্যামিলি বাঙ্কার কেবিন",
+        "description": "Built around four-person occupancy",
+        "capacity": "4 persons",
+        "oneWayFare": "৳8,500",
+        "roundTripFare": "৳16,000"
+      },
+      {
+        "name": "VIP Cabin",
+        "nameBn": "ভিআইপি কেবিন",
+        "description": "Air-conditioned cabin with common washroom access",
+        "capacity": "2 persons",
+        "oneWayFare": "৳8,500",
+        "roundTripFare": "৳16,000"
+      },
+      {
+        "name": "VVIP Cabin",
+        "nameBn": "ভিভিআইপি কেবিন",
+        "description": "Highest listed cabin category with AC and attached washroom",
+        "capacity": "2 persons",
+        "oneWayFare": "৳10,500",
+        "roundTripFare": "৳20,000"
+      }
+    ],
+    "facilities": [
+      {
+        "name": "AC seating (selected categories)",
+        "available": true
+      },
+      {
+        "name": "Open-view deck seating",
+        "available": true
+      },
+      {
+        "name": "Indoor seating",
+        "available": true
+      },
+      {
+        "name": "Common washrooms",
+        "available": true
+      },
+      {
+        "name": "Attached washroom (selected cabins)",
+        "available": true
+      },
+      {
+        "name": "Cabin accommodation",
+        "available": true
+      },
+      {
+        "name": "Food / restaurant service",
+        "available": true
+      },
+      {
+        "name": "Passenger service areas",
+        "available": true
+      }
+    ],
+    "image": "/ship/mv-baroawlia.jpg",
+    "capacity": "Approx. 400 passengers (confirm with operator)",
+    "journeyDuration": "Approx. 2 hours",
+    "departure": "Date and tide dependent, so published schedules vary by sailing date",
+    "jetty": "Nuniachhara BIWTA Jetty, Cox’s Bazar, so confirm the boarding point printed on your ticket",
+    "checkIn": "Approx. 1 hour before departure (follow the time printed on your ticket)",
+    "cancellation": "Subject to operator and season rules; confirm before payment",
+    "gallery": [
+      "/ship/mv-baroawlia.jpg"
+    ],
+    "detail": "Passenger ship offering deck, lounge and selected cabin options for the route.",
+    "faq": [
+      [
+        "How much is a Baro Awlia ticket?",
+        "Published reference fares start from around ৳1,800 one way and ৳3,500 round trip for selected Main Deck and Sun Deck categories."
+      ],
+      [
+        "How much is a Baro Awlia cabin?",
+        "Published one-way cabin fares range from around ৳4,100 for Bunker Bed to ৳10,500 for VVIP Cabin. The price depends on cabin type and occupancy."
+      ],
+      [
+        "বারো আওলিয়া টিকিটের দাম কত?",
+        "প্রকাশিত রেফারেন্স ভাড়া অনুযায়ী মেইন ডেক ও সান ডেক ক্যাটাগরি থেকে একমুখী ৳১,৮০০ এবং রাউন্ড ট্রিপ ৳৩,৫০০ থেকে শুরু। বিজনেস ক্লাস চেয়ার ও কেবিনের ভাড়া বেশি।"
+      ],
+      [
+        "Does Baro Awlia have AC seats?",
+        "Yes. Published categories such as Panorama Business Chair, Riviera Business Chair and Mozarat Chair are listed as AC seating categories."
+      ],
+      [
+        "Does Baro Awlia have a cabin?",
+        "Yes. Published categories include Bunker Bed, Deluxe Cabin, Family Bunker Cabin, VIP Cabin and VVIP Cabin."
+      ],
+      [
+        "Where does Baro Awlia depart from?",
+        "Published information identifies the Nuniachhara BIWTA Jetty area in Cox’s Bazar. Some sources also use Inani in the route description. Confirm the exact boarding point on your ticket."
+      ],
+      [
+        "What time does Baro Awlia leave Cox’s Bazar?",
+        "There is no single year-round departure time. Published schedules show different departure times on different dates, and schedules may change according to tide and operating conditions."
+      ],
+      [
+        "How early should I arrive?",
+        "Published Baro Awlia booking information recommends checking in approximately one hour before departure. Follow the final check-in instructions on your confirmed ticket."
+      ],
+      [
+        "Can I book a one-way Baro Awlia ticket?",
+        "Yes. One-way fares are published for the major seating and cabin categories, subject to sailing availability."
+      ],
+      [
+        "Can I book a round-trip Baro Awlia ticket?",
+        "Yes. Round-trip fares are available for applicable categories."
+      ],
+      [
+        "Is Baro Awlia available every day?",
+        "Not necessarily. Saint Martin ship operations are seasonal and subject to government regulations, weather, sea conditions, tides and operator schedules. The 2026-2027 season opens on 1 November 2026."
+      ],
+      [
+        "Does Baro Awlia have a VVIP cabin?",
+        "Yes. The published VVIP category is listed for two passengers, with a reference fare of ৳10,500 one way / ৳20,000 round trip. Published specifications include AC and an attached washroom."
+      ],
+      [
+        "How can I check the latest Baro Awlia ticket price?",
+        "Send your travel date, passenger count and preferred ticket category through WhatsApp. The applicable fare and availability should be confirmed before payment."
+      ]
+    ],
+    "imageAlt": "MV Baro Awlia passenger ship at the Cox's Bazar jetty",
+    "specs": [
+      {
+        "label": "Ship",
+        "value": "MV Baro Awlia"
+      },
+      {
+        "label": "Route",
+        "value": "Cox's Bazar ↔ Saint Martin"
+      },
+      {
+        "label": "Boarding",
+        "value": "Nuniachhara BIWTA Jetty, confirm on your ticket"
+      },
+      {
+        "label": "Destination",
+        "value": "Saint Martin Island"
+      },
+      {
+        "label": "Ticket type",
+        "value": "One-way & round trip"
+      },
+      {
+        "label": "Economy seating",
+        "value": "Main Deck, Sun Deck"
+      },
+      {
+        "label": "Business seating",
+        "value": "Panorama Business, Riviera Business"
+      },
+      {
+        "label": "Premium seating",
+        "value": "Mozarat Chair"
+      },
+      {
+        "label": "Cabins",
+        "value": "Bunker, Deluxe, Family Bunker, VIP, VVIP"
+      },
+      {
+        "label": "AC options",
+        "value": "Available in selected categories"
+      },
+      {
+        "label": "Availability",
+        "value": "Seasonal"
+      },
+      {
+        "label": "Schedule",
+        "value": "Date and tide dependent"
+      }
+    ],
+    "categoryGuidance": [
+      {
+        "category": "Main Deck / Sun Deck",
+        "bestFor": "Budget travellers and open views",
+        "privacy": "Low",
+        "outdoor": "Yes",
+        "priceLevel": "৳"
+      },
+      {
+        "category": "Panorama / Riviera Business",
+        "bestFor": "Air-conditioned comfort",
+        "privacy": "Medium",
+        "outdoor": "Varies by seat",
+        "priceLevel": "৳৳"
+      },
+      {
+        "category": "Mozarat Chair",
+        "bestFor": "Premium chair seating",
+        "privacy": "Medium",
+        "outdoor": "Varies by seat",
+        "priceLevel": "৳৳"
+      },
+      {
+        "category": "Bunker Bed",
+        "bestFor": "Budget travellers wanting a berth",
+        "privacy": "Low",
+        "outdoor": "No",
+        "priceLevel": "৳৳"
+      },
+      {
+        "category": "Deluxe Cabin",
+        "bestFor": "Couples or small groups",
+        "privacy": "High",
+        "outdoor": "Not listed",
+        "priceLevel": "৳৳৳"
+      },
+      {
+        "category": "Family Bunker Cabin",
+        "bestFor": "Families of four",
+        "privacy": "High",
+        "outdoor": "Not listed",
+        "priceLevel": "৳৳৳"
+      },
+      {
+        "category": "VIP / VVIP Cabin",
+        "bestFor": "Premium private travel",
+        "privacy": "Very high",
+        "outdoor": "Not listed",
+        "priceLevel": "৳৳৳৳"
+      }
+    ]
+  },
+  {
+    "slug": "keari-sindbad",
+    "name": "Keari Sindbad",
+    "nameBn": "কেয়ারী সিন্দবাদ",
+    "operator": "KEARI Tours & Services Ltd.",
+    "route": "Cox's Bazar → Saint Martin",
+    "status": "seasonal_confirmation",
+    "lastVerified": "5 October 2026",
+    "source": "KEARI published vessel and fare information; confirm the schedule for your travel date",
+    "ticketClasses": [
+      {
+        "name": "Main Deck",
+        "nameBn": "মেইন ডেক",
+        "description": "Standard indoor and outdoor seating on the first floor. The largest and lowest-priced category on this vessel.",
+        "oneWayFare": "৳1,825",
+        "roundTripFare": "৳3,500",
+        "downFare": "৳1,675",
+        "deck": "1st Floor",
+        "seatCount": "Approx. 160 seats"
+      },
+      {
+        "name": "Open Deck",
+        "nameBn": "ওপেন ডেক",
+        "description": "Upper deck seating with access to open-air viewing areas on the second floor.",
+        "oneWayFare": "৳2,075",
+        "roundTripFare": "৳4,000",
+        "downFare": "৳1,925",
+        "deck": "2nd Floor",
+        "seatCount": "Approx. 144 seats"
+      },
+      {
+        "name": "Bridge Deck",
+        "nameBn": "ব্রিজ ডেক",
+        "description": "Second floor seating positioned closest to the bridge. The highest-priced published category on this vessel.",
+        "oneWayFare": "৳2,325",
+        "roundTripFare": "৳4,500",
+        "downFare": "৳2,175",
+        "deck": "2nd Floor",
+        "seatCount": "Approx. 42 seats"
+      }
+    ],
+    "cabins": [],
+    "cabinNote": "KEARI Sindbad publishes three deck seating categories and does not list private cabin inventory for this vessel. If you need private accommodation, confirm current availability with the operator before booking.",
+    "facilities": [
+      {
+        "name": "Passenger seating",
+        "available": true
+      },
+      {
+        "name": "Open viewing areas",
+        "available": true
+      },
+      {
+        "name": "Canteen / food service",
+        "available": true
+      },
+      {
+        "name": "Audio facilities",
+        "available": true
+      },
+      {
+        "name": "Passenger security arrangements",
+        "available": true
+      },
+      {
+        "name": "Life rafts",
+        "available": true
+      },
+      {
+        "name": "Life jackets",
+        "available": true
+      },
+      {
+        "name": "Life buoys",
+        "available": true
+      },
+      {
+        "name": "Rescue boat",
+        "available": true
+      }
+    ],
+    "oneWay": "৳1,825",
+    "roundTrip": "৳3,500",
+    "image": "/ship/Keari-Sindbad.jpg",
+    "imageAlt": "KEARI Sindbad passenger tourist vessel",
+    "capacity": "346 passengers (160 Main Deck, 144 Open Deck, 42 Bridge Deck)",
+    "journeyDuration": "Varies by date, route, weather, sea conditions and tide. No fixed duration is published.",
+    "departure": "Previously published 7:00 AM departure with 6:45 AM reporting. Reference only, confirm for your travel date.",
+    "jetty": "Nuniachhara BIWTA Jetty, Cox's Bazar",
+    "checkIn": "Confirm the reporting time shown on your ticket for your sailing date",
+    "cancellation": "Subject to operator and season rules. Confirm the cancellation policy before payment.",
+    "gallery": [
+      "/ship/Keari-Sindbad.jpg"
+    ],
+    "specs": [
+      {
+        "label": "Vessel",
+        "value": "KEARI Sindbad"
+      },
+      {
+        "label": "Owner",
+        "value": "KEARI Tours & Services Ltd."
+      },
+      {
+        "label": "Builder",
+        "value": "Western Marine Shipyard"
+      },
+      {
+        "label": "Launch date",
+        "value": "22 January 2004"
+      },
+      {
+        "label": "Length",
+        "value": "34.10 m"
+      },
+      {
+        "label": "Beam",
+        "value": "7.62 m"
+      },
+      {
+        "label": "Depth",
+        "value": "2.77 m"
+      },
+      {
+        "label": "Total published seating",
+        "value": "346 passengers"
+      },
+      {
+        "label": "Bridge Deck",
+        "value": "42 passengers"
+      },
+      {
+        "label": "Open Deck",
+        "value": "144 passengers"
+      },
+      {
+        "label": "Main Deck",
+        "value": "160 passengers"
+      }
+    ],
+    "categoryGuidance": [
+      {
+        "category": "Main Deck",
+        "bestFor": "Travellers looking for the lowest published fare, and families or groups travelling together.",
+        "privacy": "Standard open seating",
+        "outdoor": "Partial",
+        "priceLevel": "Lowest"
+      },
+      {
+        "category": "Open Deck",
+        "bestFor": "Travellers who want open-air views and an upper-deck position.",
+        "privacy": "Standard open seating",
+        "outdoor": "Yes",
+        "priceLevel": "Middle"
+      },
+      {
+        "category": "Bridge Deck",
+        "bestFor": "Travellers who want the closest position to the bridge.",
+        "privacy": "Standard open seating",
+        "outdoor": "Yes",
+        "priceLevel": "Highest"
+      }
+    ],
+    "detail": "Passenger tourist vessel built by Western Marine Shipyard with 346 published seats across Main Deck, Open Deck and Bridge Deck.",
+    "faq": [
+      [
+        "How much is a Keari Sindbad ticket?",
+        "Published reference fares list Main Deck at ৳1,825 one way, Open Deck at ৳2,075 and Bridge Deck at ৳2,325. Confirm the applicable fare for your travel date before payment."
+      ],
+      [
+        "How much is a Keari Sindbad round-trip ticket?",
+        "Published return fares are ৳3,500 for Main Deck, ৳4,000 for Open Deck and ৳4,500 for Bridge Deck. These are reference values rather than a quoted price for your date."
+      ],
+      [
+        "Where does Keari Sindbad depart from?",
+        "Published information identifies the Nuniachhara BIWTA Jetty area in Cox's Bazar. Boarding arrangements can change between seasons, so confirm the jetty and reporting time printed on your ticket."
+      ],
+      [
+        "Does Keari Sindbad have an Open Deck?",
+        "Yes. Open Deck is one of the three published seating categories and is located on the second floor, with approximately 144 seats."
+      ],
+      [
+        "Does Keari Sindbad have a Bridge Deck?",
+        "Yes. Bridge Deck is a published second-floor seating category with approximately 42 seats."
+      ],
+      [
+        "Does Keari Sindbad have cabins?",
+        "No private cabin inventory is published for this vessel. KEARI Sindbad publishes Main Deck, Open Deck and Bridge Deck seating. If you need private accommodation, confirm availability with the operator before booking."
+      ],
+      [
+        "Does Keari Sindbad have food?",
+        "Published vessel information lists a canteen and food service facility. Food service may be available onboard, but dining inclusion depends on the current ticket and operator terms, so confirm before payment."
+      ],
+      [
+        "What time does Keari Sindbad leave Cox’s Bazar?",
+        "A previously published schedule listed 7:00 AM departure with reporting at 6:45 AM. Treat that as reference information rather than a guaranteed current-season schedule, and confirm the times for your sailing date."
+      ],
+      [
+        "How long does Keari Sindbad take?",
+        "Sailing time varies by date, route, weather, sea conditions and tide. We do not publish a fixed duration for this vessel, so use the schedule issued for your sailing date."
+      ],
+      [
+        "Is Keari Sindbad available every day?",
+        "Saint Martin ship services are seasonal. Availability depends on the applicable tourist season, government rules, weather and the operator schedule."
+      ],
+      [
+        "Can I book a one-way Keari Sindbad ticket?",
+        "Yes. Published fares include one-way pricing for Main Deck, Open Deck and Bridge Deck, subject to availability."
+      ],
+      [
+        "Can I book a round-trip Keari Sindbad ticket?",
+        "Yes. Published round-trip fares are available for all three seating categories, subject to availability."
+      ],
+      [
+        "How can I check the latest Keari Sindbad fare?",
+        "Send your travel date, passenger count and preferred deck on WhatsApp. We will check the latest applicable fare and availability for your sailing date."
+      ]
+    ]
+  },
+  {
+    "slug": "keari-cruise-dine",
+    "name": "Keari Cruise & Dine",
+    "nameBn": "কেয়ারী ক্রুজ অ্যান্ড ডাইন",
+    "operator": "Keari Tours & Services Ltd.",
+    "route": "Cox's Bazar → Saint Martin",
+    "status": "needs_confirmation",
+    "lastVerified": "5 October 2026",
+    "source": "Operator-published reference; confirm for your travel date",
+    "ticketClasses": [
+      {
+        "name": "Exclusive Lounge",
+        "nameBn": "এক্সক্লুসিভ লাউঞ্জ",
+        "description": "Basement lounge, air-conditioned, published capacity 44",
+        "oneWayFare": "৳2,075",
+        "roundTripFare": "৳4,000",
+        "downFare": "৳1,925",
+        "deck": "Basement"
+      },
+      {
+        "name": "Coral Lounge",
+        "nameBn": "করাল লাউঞ্জ",
+        "description": "1st floor lounge, air-conditioned, published capacity 156",
+        "oneWayFare": "৳2,325",
+        "roundTripFare": "৳4,500",
+        "downFare": "৳2,175",
+        "deck": "1st Floor"
+      },
+      {
+        "name": "Pearl Lounge",
+        "nameBn": "পার্ল লাউঞ্জ",
+        "description": "2nd floor lounge, air-conditioned, premium category, published capacity 110",
+        "oneWayFare": "৳2,575",
+        "roundTripFare": "৳5,000",
+        "downFare": "৳2,425",
+        "deck": "2nd Floor"
+      }
+    ],
+    "cabins": [],
+    "facilities": [
+      {
+        "name": "Air-conditioned lounges",
+        "available": true
+      },
+      {
+        "name": "Floating restaurant",
+        "available": true
+      },
+      {
+        "name": "Buffet facilities",
+        "available": true
+      },
+      {
+        "name": "Sky deck",
+        "available": true
+      },
+      {
+        "name": "Grand lobby",
+        "available": true
+      },
+      {
+        "name": "Conference / event facilities",
+        "available": true
+      },
+      {
+        "name": "Safety equipment (life rafts, life jackets, life buoys)",
+        "available": true
+      }
+    ],
+    "image": "/ship/keari-cruise-dine.jpg",
+    "capacity": "Published capacity 310 passengers",
+    "journeyDuration": "Varies by route, tide and sea conditions, so use your date-specific schedule",
+    "departure": "Seasonal. Reporting and departure time are confirmed for your date",
+    "jetty": "BIWTA Nuniachhara Jetty, Cox's Bazar",
+    "checkIn": "Reporting time confirmed on your ticket or booking confirmation",
+    "cancellation": "Subject to operator and season rules; confirm before payment",
+    "gallery": [
+      "/ship/keari-cruise-dine.jpg"
+    ],
+    "detail": "Cruise-style travel with lounge seating and dining options on selected classes.",
+    "faq": [
+      [
+        "How much is a Keari Cruise & Dine ticket?",
+        "Published reference fares list approximately ৳2,075 for Exclusive Lounge one way, ৳2,325 for Coral Lounge and ৳2,575 for Pearl Lounge. Round-trip reference fares start from ৳4,000. Confirm current fares before booking."
+      ],
+      [
+        "কেয়ারি ক্রুজের টিকিট কত টাকা?",
+        "প্রকাশিত রেফারেন্স ভাড়া অনুযায়ী Exclusive Lounge একমুখী প্রায় ৳২,০৭৫, Coral Lounge ৳২,৩২৫ এবং Pearl Lounge ৳২,৫৭৫। বর্তমান মূল্য ভ্রমণের তারিখ অনুযায়ী নিশ্চিত করতে হবে।"
+      ],
+      [
+        "Does Keari Cruise & Dine include food?",
+        "The vessel has a floating restaurant and dining facilities, but food inclusion depends on the selected ticket/package and current operator terms. Never assume every ticket includes a meal."
+      ],
+      [
+        "কেয়ারি ক্রুজ অ্যান্ড ডাইনে কি খাবার আছে?",
+        "জাহাজে floating restaurant ও dining facilities রয়েছে। তবে আপনার টিকিটের সঙ্গে খাবার অন্তর্ভুক্ত কিনা তা বুকিংয়ের আগে নিশ্চিত করুন।"
+      ],
+      [
+        "Does Keari Cruise & Dine have AC?",
+        "Yes. Published information describes the Pearl, Coral and Exclusive lounges as centrally air-conditioned."
+      ],
+      [
+        "Does Keari Cruise & Dine have cabins?",
+        "Published Keari information focuses on Pearl, Coral and Exclusive lounge seating. If private cabin accommodation is required, confirm the current inventory before booking."
+      ],
+      [
+        "Where does Keari Cruise & Dine depart from?",
+        "Published Keari information identifies the Cox’s Bazar / Nuniachhara BIWTA jetty area. Confirm the exact boarding location for your travel date."
+      ],
+      [
+        "What time does Keari Cruise & Dine depart?",
+        "Departure times are seasonal and date-specific. Do not assume a fixed daily departure time."
+      ],
+      [
+        "কেয়ারি ক্রুজ কোথা থেকে ছাড়ে?",
+        "প্রকাশিত তথ্য অনুযায়ী কেয়ারি ক্রুজের Cox’s Bazar passenger service Nuniachhara BIWTA Jetty এলাকার সঙ্গে যুক্ত। নির্দিষ্ট যাত্রার boarding point অবশ্যই টিকিটে নিশ্চিত করুন।"
+      ],
+      [
+        "How long does Keari Cruise & Dine take?",
+        "Sailing time varies by route, weather, tide and operating conditions. Use the date-specific schedule provided with your ticket rather than relying on a fixed duration."
+      ],
+      [
+        "Can I book a round-trip Keari Cruise ticket?",
+        "Yes. Published round-trip reference fares start from ৳4,000 for Exclusive Lounge, ৳4,500 for Coral Lounge and ৳5,000 for Pearl Lounge."
+      ]
+    ],
+    "imageAlt": "Keari Cruise & Dine passenger ship on the Cox’s Bazar to Saint Martin route",
+    "photoPending": true,
+    "cabinNote": "Published Keari information focuses on Pearl, Coral and Exclusive lounge seating. No private cabin inventory is published for this vessel, so confirm current availability before booking.",
+    "specs": [
+      {
+        "label": "Ship",
+        "value": "KEARI Cruise & Dine"
+      },
+      {
+        "label": "Owner / operator",
+        "value": "Keari Tours & Services Ltd."
+      },
+      {
+        "label": "Builder",
+        "value": "Western Marine Shipyard"
+      },
+      {
+        "label": "Launch date",
+        "value": "13 February 2010"
+      },
+      {
+        "label": "Length",
+        "value": "40 metres / 131.23 feet"
+      },
+      {
+        "label": "Beam",
+        "value": "8.02 metres / 26.30 feet"
+      },
+      {
+        "label": "Depth",
+        "value": "3 metres / 9.84 feet"
+      },
+      {
+        "label": "Published capacity",
+        "value": "310 passengers"
+      },
+      {
+        "label": "Pearl Lounge",
+        "value": "110 passengers"
+      },
+      {
+        "label": "Coral Lounge",
+        "value": "156 passengers"
+      },
+      {
+        "label": "Exclusive Lounge",
+        "value": "44 passengers"
+      },
+      {
+        "label": "Route",
+        "value": "Cox's Bazar → Saint Martin, return by sea"
+      },
+      {
+        "label": "Boarding",
+        "value": "Cox’s Bazar / Nuniachhara BIWTA Jetty area"
+      },
+      {
+        "label": "Dining",
+        "value": "Floating restaurant / dining facilities"
+      },
+      {
+        "label": "Air conditioning",
+        "value": "Available in lounge categories"
+      },
+      {
+        "label": "Operation",
+        "value": "Seasonal"
+      }
+    ],
+    "categoryGuidance": [
+      {
+        "category": "Exclusive Lounge",
+        "bestFor": "Budget-conscious travellers who still want lounge seating",
+        "privacy": "Medium",
+        "outdoor": "No, basement deck",
+        "priceLevel": "৳৳"
+      },
+      {
+        "category": "Coral Lounge",
+        "bestFor": "Families and groups wanting a mid-priced lounge",
+        "privacy": "Medium",
+        "outdoor": "Partial",
+        "priceLevel": "৳৳"
+      },
+      {
+        "category": "Pearl Lounge",
+        "bestFor": "Travellers preferring the upper lounge and premium seating",
+        "privacy": "Medium",
+        "outdoor": "Best outlook",
+        "priceLevel": "৳৳৳"
+      }
+    ]
+  }
+]

@@ -1,10 +1,247 @@
 import type { Metadata } from 'next'
-import { SeoPage, Section, Bullet, Status, Schema, siteSchema, websiteSchema, faqSchema, breadcrumbSchema } from '@/components/seo-page'
-export const metadata: Metadata = { title: 'Saint Martin Ship Schedule', description: 'Check how to verify Saint Martin ship departure times, return schedules, check-in points and seasonal operating status.', openGraph: { title: 'Saint Martin Ship Schedule & Departure Times', description: 'Check seasonal ship departure times, return schedules, jetty check-in points and operating status for Cox\'s Bazar to Saint Martin.', images: [{ url: '/og_image.png', width: 1200, height: 630 }] }, alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-ship-schedule' } }
+import Link from 'next/link'
+import {
+  SeoPage,
+  Section,
+  Bullet,
+  Status,
+  LinkCard,
+  Schema,
+  siteSchema,
+  websiteSchema,
+  faqSchema,
+  breadcrumbSchema,
+  whatsapp,
+} from '@/components/seo-page'
+import { RelatedGuides } from '@/components/related-guides'
+import { LAST_REVIEWED, STATUS_LABELS, season, ships } from '@/lib/ships'
+import { ContactLink } from '@/components/contact-link'
+
+const title = 'Saint Martin ship schedule from Cox’s Bazar'
+const description =
+  'Check how to verify Saint Martin ship departure times, reporting times, return schedules, jetty check-in points and seasonal operating status for your travel date.'
+
+export const metadata: Metadata = {
+  title: 'Saint Martin Ship Schedule & Departure Times',
+  description,
+  alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-ship-schedule' },
+  openGraph: {
+    title: 'Saint Martin Ship Schedule & Departure Times',
+    description,
+    url: 'https://www.shiptickets.bd/saint-martin-ship-schedule',
+    images: [{ url: '/og_image.png', width: 1200, height: 630 }],
+  },
+}
+
 const faqs: [string, string][] = [
-  ['What time do ships depart to Saint Martin?', 'Departure times are seasonal and operator-specific. Confirm the latest departure time and check-in point for your travel date before leaving.'],
-  ['How early should I arrive at the jetty?', 'Arrive at least 30 minutes before departure for check-in and boarding. Reporting time may vary by operator and season.'],
-  ['Can ship schedules change due to weather?', 'Yes. Weather, tide and government permission can affect departure and return times. Confirm any changes on the day of travel.'],
-  ['Is there a return sailing schedule?', 'Return sailing depends on the current season and operator. Confirm the return date, time and boarding point before booking.'],
+  [
+    'What time do ships depart to Saint Martin?',
+    'Departure times are seasonal and operator-specific, and there is no single fixed schedule across the four vessels. Confirm the reporting and departure times for your travel date.',
+  ],
+  [
+    'How long does it take to reach Saint Martin by ship?',
+    'It depends on the vessel. MV Karnafuly Express is generally quoted at around 5 hours, while MV Baro Awlia is listed at around 2 hours. Keari Sindbad and Keari Cruise & Dine publish no fixed duration. Sailing time changes with weather, sea conditions and tide.',
+  ],
+  [
+    'How early should I arrive at the jetty?',
+    'Arrive at least 30 minutes before departure for check-in and boarding. Some operators list their own reporting time, which may be earlier, so follow the time printed on your ticket.',
+  ],
+  [
+    'Can ship schedules change due to weather?',
+    'Yes. Weather, tide, sea conditions and government permission can affect both departure and return times. Confirm any change on the day of travel.',
+  ],
+  [
+    'Is there a return sailing schedule?',
+    'Return sailings depend on the current season and the operator. Confirm the return date, time and boarding point before you book a round trip.',
+  ],
+  [
+    'Where do Saint Martin ships depart from?',
+    'Most published information points to the BIWTA Nuniachhara Jetty area in Cox’s Bazar, though boarding points can vary by season. The jetty printed on your ticket is the authority.',
+  ],
 ]
-export default function SchedulePage() { return <SeoPage eyebrow="Schedule · সময়সূচি" title="Saint Martin ship schedule from Cox&apos;s Bazar" intro="Ship departure and return times are seasonal and operator-specific. Here is the practical information to verify before you travel."><Section title="Current schedule status"><div className="mb-6 rounded-2xl border border-[#d4e6e2] bg-white p-5 shadow-[0_4px_20px_rgba(18,60,69,.06)]"><p className="text-xs font-extrabold uppercase tracking-[.16em] text-[#1d9e75]">Quick Answer</p><p className="mt-2 text-sm leading-6 text-[#5f5e5a]">Saint Martin ship departure times are seasonal and operator-specific — there is no single fixed schedule. Five ships operate the Cox&apos;s Bazar to Saint Martin route: MV Karnafuly Express, MV Baro Awlia, Keari Sindbad, Keari Cruise & Dine and MV Bay Cruiser 1. Journey takes approximately 2 hours from BIWTA Nuniachhara Jetty. Confirm your operator, date, jetty and reporting time before travel — do not rely on an old departure time.</p></div><div className="flex flex-wrap items-center gap-3"><Status>Seasonal confirmation required</Status><span>Schedule last verified: 21 September 2026</span></div><p>Do not rely on an old departure time copied from a previous season. Confirm your operator, date, jetty and reporting time before leaving for Cox&apos;s Bazar.</p></Section><Section title="What to confirm"><ul className="grid gap-3 md:grid-cols-2"><Bullet>Departure date and reporting time</Bullet><Bullet>Designated jetty and check-in counter</Bullet><Bullet>Estimated journey duration</Bullet><Bullet>Return sailing date and time</Bullet><Bullet>Weather or tide-related changes</Bullet><Bullet>Travel Pass and QR ticket requirements</Bullet></ul></Section><Section title="Why times can change"><p>Passenger vessel operations depend on government permission, seasonal access, weather, tide and operator readiness. A responsible ticket guide shows the status clearly rather than presenting an unverified time as a promise.</p></Section><Section title="Frequently asked questions"><div className="flex flex-col gap-5">{faqs.map(([question, answer]) => <div key={question}><h3 className="font-extrabold text-[#0d1b2a]">{question}</h3><p className="text-sm leading-7 text-[#5f5e5a] mt-2">{answer}</p></div>)}</div></Section><Schema data={{ '@context':'https://schema.org', '@graph':[siteSchema, websiteSchema, { '@type':'WebPage', name:'Saint Martin Ship Schedule', isPartOf:{ '@id':'https://www.shiptickets.bd/#website' }, about:'Passenger vessel schedules to Saint Martin Island, Bangladesh' }, faqSchema(faqs), breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Saint Martin Ship Schedule' }])] }} /></SeoPage> }
+
+export default function SchedulePage() {
+  return (
+    <SeoPage
+      eyebrow="Schedule · সময়সূচি"
+      title={title}
+      intro={description}
+      updated={LAST_REVIEWED}
+      crumbs={[
+        { name: 'Home', href: '/' },
+        { name: 'Saint Martin ships', href: '/saint-martin-ship' },
+        { name: 'Schedule' },
+      ]}
+    >
+      <Section title="Quick Answer">
+        <div className="flex flex-wrap items-center gap-3">
+          <Status>Seasonal confirmation required</Status>
+          <span className="t-small text-[#67878c]">Last reviewed {LAST_REVIEWED}</span>
+        </div>
+        <p>
+          Saint Martin ship departure times are seasonal and operator-specific, so there is no single fixed
+          schedule. Four vessels serve the Cox’s Bazar to Saint Martin route: MV Karnafuly Express, MV Baro Awlia,
+          Keari Sindbad and Keari Cruise &amp; Dine.
+        </p>
+        <p>
+          Crossing times differ by vessel rather than sharing one figure. MV Karnafuly Express is generally quoted at
+          around 5 hours, MV Baro Awlia at around 2 hours, and two vessels publish no fixed
+          duration at all. Confirm your operator, date, jetty and reporting time before you travel.
+        </p>
+        <p>
+          The {season.label} season opens {season.startDate}. Until you have confirmed a sailing for your specific
+          date, treat every time on this page as reference information rather than a booking guarantee.
+        </p>
+      </Section>
+
+      <Section title="Published schedule information by vessel">
+        <p>
+          These are the schedule details each operator has published. They are reference values, not confirmed
+          sailings for your date.
+        </p>
+        <div className="mt-4 overflow-x-auto rounded-xl border border-[#d4e6e2]">
+          <table className="w-full min-w-[640px] text-left text-sm">
+            <thead className="bg-[#0d1b2a]/[4%]">
+              <tr>
+                <th className="px-4 py-3 font-bold">Ship</th>
+                <th className="px-4 py-3 font-bold">Departure</th>
+                <th className="px-4 py-3 font-bold">Journey</th>
+                <th className="px-4 py-3 font-bold">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ships.map((ship) => (
+                <tr key={ship.slug} className="border-t border-[#e7f0ee]">
+                  <td className="px-4 py-3 font-extrabold">
+                    <Link href={`/saint-martin-ship/${ship.slug}`} className="hover:text-[#1d9e75] hover:underline">
+                      {ship.name}
+                    </Link>
+                  </td>
+                  <td className="px-4 py-3 text-[#4a5a5c]">{ship.departure ?? 'Confirm for your date'}</td>
+                  <td className="px-4 py-3 text-[#4a5a5c]">{ship.journeyDuration ?? 'Confirm for your date'}</td>
+                  <td className="px-4 py-3 text-[#4a5a5c]">
+                    {STATUS_LABELS[ship.status]}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="t-small mt-3 text-[#67878c]">
+          Do not rely on a departure time copied from a previous season. Confirm your operator, date, jetty and
+          reporting time before leaving for Cox’s Bazar.
+        </p>
+      </Section>
+
+      <Section title="What to confirm before you travel">
+        <ul className="grid gap-3 md:grid-cols-2">
+          <Bullet>Departure date and reporting time</Bullet>
+          <Bullet>Designated jetty and check-in counter</Bullet>
+          <Bullet>Estimated journey duration for your vessel</Bullet>
+          <Bullet>Return sailing date and time</Bullet>
+          <Bullet>Weather or tide-related changes</Bullet>
+          <Bullet>Travel Pass and QR ticket requirements</Bullet>
+        </ul>
+      </Section>
+
+      <Section title="Why departure times change">
+        <p>
+          Passenger vessel operations depend on government permission, seasonal access, weather, tide and operator
+          readiness. A departure time published for one season may not hold for the next. That is why every ship
+          page on this site carries both an operating status and the date we last reviewed it, rather than a bare
+          timetable that looks authoritative but is not.
+        </p>
+        <p>
+          If a vessel is marked as needing confirmation, that is deliberate. It means we have not verified current
+          operation for your season, and we would rather say so than present an unverified schedule as fact.
+        </p>
+      </Section>
+
+      <Section title="Boarding point">
+        <p>
+          Most published information points to the <strong>BIWTA Nuniachhara Jetty</strong> area in Cox’s Bazar.
+          Boarding arrangements can change between seasons, and some operators have referred to other points on the
+          coast. The jetty and reporting time printed on your own ticket are the authority, so check them before you
+          travel.
+        </p>
+      </Section>
+
+      <Section title="Related information">
+        <div className="grid gap-4 md:grid-cols-2">
+          <LinkCard
+            href="/saint-martin-ship"
+            title="Compare Saint Martin ships"
+            text="All four vessels with fares, seating classes and cabins."
+          />
+          <LinkCard
+            href="/saint-martin-ship-ticket-price"
+            title="Ticket price guide"
+            text="Reference fares for every ship, class and cabin type."
+          />
+          <LinkCard
+            href="/routes/coxs-bazar-to-saint-martin"
+            title="Cox’s Bazar to Saint Martin route"
+            text="What the crossing involves and what to expect."
+          />
+          <LinkCard
+            href="/saint-martin-travel-pass"
+            title="Travel Pass and QR ticket"
+            text="Seasonal entry requirements to check before you travel."
+          />
+          <LinkCard
+            href="/saint-martin-travel-rules"
+            title="Travel rules and restrictions"
+            text="Current rules that can affect your sailing."
+          />
+          <LinkCard
+            href="/saint-martin-guide"
+            title="Saint Martin travel guide"
+            text="Planning advice and what to do once you arrive."
+          />
+        </div>
+      </Section>
+
+      <RelatedGuides
+        title="Before you travel"
+        intro="Planning guides from our sister brand, useful once your sailing is confirmed."
+      />
+
+      <Section title="FAQ">
+        <div className="flex flex-col gap-4">
+          {faqs.map(([question, answer]) => (
+            <div key={question}>
+              <p className="font-extrabold text-[#0d1b2a]">{question}</p>
+              <p className="mt-1">{answer}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section title="Confirm the schedule for your date">
+        <p className="mb-4">
+          Send your travel date and preferred vessel. We will confirm the current sailing, reporting time and
+          boarding point before you pay.
+        </p>
+        <ContactLink href={`${whatsapp}Hello ShipTickets.bd, please confirm the current schedule for my travel date.`} kind="whatsapp" eventLabel="schedule_whatsapp" className="inline-flex items-center gap-2 rounded-full bg-[#1d9e75] px-5 py-3 text-sm font-extrabold text-white">
+          Confirm on WhatsApp
+        </ContactLink>
+      </Section>
+
+      <Schema
+        data={{
+          '@context': 'https://schema.org',
+          '@graph': [
+            siteSchema,
+            websiteSchema,
+            breadcrumbSchema([
+              { name: 'Home', url: '/' },
+              { name: 'Saint Martin ships', url: '/saint-martin-ship' },
+              { name: 'Schedule', url: '/saint-martin-ship-schedule' },
+            ]),
+            faqSchema(faqs),
+          ],
+        }}
+      />
+    </SeoPage>
+  )
+}

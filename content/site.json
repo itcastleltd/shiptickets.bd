@@ -1,0 +1,31 @@
+{
+  "whatsapp": "8801718116799",
+  "phone": "+880 1718-116799",
+  "email": "support@tripzic.com",
+  "office": "33, Hafiz Manson, (1st Floor) Kawran Bazar, Dhaka, Bangladesh, 1215",
+  "supportHours": "Sun - Thu, 9:00 AM - 6:00 PM",
+  "lastVerified": "5 October 2026",
+  "lastReviewed": "5 October 2026",
+  "updatedAt": "2026-10-05",
+  "travellersAssisted": {
+    "count": 1451,
+    "label": "1,451+",
+    "period": "2025",
+    "sources": [
+      "WhatsApp",
+      "Facebook",
+      "Email",
+      "Google Business Profile"
+    ]
+  },
+  "businessRating": {
+    "ratingValue": null,
+    "reviewCount": null
+  },
+  "season": {
+    "label": "2026-2027",
+    "startDate": "1 November 2026",
+    "startISO": "2026-11-01",
+    "note": "Saint Martin island access and ship operations are seasonal. The 2026-2027 tourist season opens on 1 November 2026. Sailing dates, departure times and fares are confirmed by the operator for each date."
+  }
+}

@@ -1,9 +1,16 @@
+import shipsData from '@/content/ships.json'
+import siteData from '@/content/site.json'
+import reviewsData from '@/content/reviews.json'
+
 export type TicketClass = {
   name: string
   nameBn?: string
   description: string
   oneWayFare: string
   roundTripFare: string
+  downFare?: string
+  deck?: string
+  seatCount?: string
 }
 
 export type Cabin = {
@@ -11,11 +18,25 @@ export type Cabin = {
   nameBn?: string
   description: string
   capacity: string
+  oneWayFare?: string
+  roundTripFare?: string
 }
 
 export type Facility = {
   name: string
   available?: boolean
+}
+
+export type ShipStatus = 'verified' | 'needs_confirmation' | 'seasonal_confirmation'
+
+export type ShipSpec = { label: string; value: string }
+
+export type CategoryGuidance = {
+  category: string
+  bestFor: string
+  privacy: string
+  outdoor: string
+  priceLevel: string
 }
 
 export type Ship = {
@@ -24,16 +45,19 @@ export type Ship = {
   nameBn: string
   route: string
   operator: string
-  status: 'verified' | 'needs_confirmation' | 'seasonal_confirmation'
+  status: ShipStatus
   lastVerified: string
   source: string
   ticketClasses: TicketClass[]
   cabins: Cabin[]
+  cabinNote?: string
   facilities: Facility[]
   oneWay: string
   roundTrip: string
   detail: string
   image?: string
+  imageAlt?: string
+  photoPending?: boolean
   capacity?: string
   journeyDuration?: string
   departure?: string
@@ -41,243 +65,163 @@ export type Ship = {
   checkIn?: string
   cancellation?: string
   gallery?: string[]
+  specs?: ShipSpec[]
+  categoryGuidance?: CategoryGuidance[]
   faq: [string, string][]
 }
 
-export const ships: Ship[] = [
-  {
-    slug: 'karnafuly-express',
-    name: 'MV Karnafuly Express',
-    nameBn: 'কর্ণফুলী এক্সপ্রেস',
-    operator: 'Karnafuly Shipbuilding & Engineering',
-    route: "Cox's Bazar → Saint Martin",
-    status: 'seasonal_confirmation',
-    lastVerified: '21 September 2026',
-    source: 'Operator-published reference; confirm for your travel date',
-    ticketClasses: [
-      { name: 'Open Deck', nameBn: 'ওপেন ডেক', description: 'Simple outdoor seating', oneWayFare: '৳2,000', roundTripFare: '৳4,000' },
-      { name: 'Lavender', nameBn: 'লেভেন্ডার', description: 'Premium seat category', oneWayFare: '৳2,200', roundTripFare: '৳4,200' },
-      { name: 'Marigold', nameBn: 'ম্যারিগোল্ড', description: 'Comfortable seating', oneWayFare: '৳2,500', roundTripFare: '৳4,800' },
-      { name: 'Lilac Lounge', nameBn: 'লাইল্যাক লাউঞ্জ', description: 'Lounge seating', oneWayFare: '৳2,800', roundTripFare: '৳5,400' },
-    ],
-    cabins: [
-      { name: 'Single Cabin', nameBn: 'সিঙ্গেল কেবিন', description: 'Single occupancy private cabin', capacity: '1 passenger' },
-      { name: 'Twin Cabin', nameBn: 'টুইন কেবিন', description: 'Two passenger private cabin', capacity: '2 passengers' },
-      { name: 'VIP Cabin', nameBn: 'ভিআইপি কেবিন', description: 'Premium private cabin', capacity: 'Per cabin' },
-    ],
-    facilities: [
-      { name: 'Indoor and open-deck seating', available: true },
-      { name: 'Premium lounge categories', available: true },
-      { name: 'Restaurant/food service', available: true },
-      { name: 'Prayer room', available: true },
-      { name: 'Washrooms', available: true },
-    ],
-    oneWay: '৳2,000',
-    roundTrip: '৳4,000',
-    image: '/ship/mv-karnafuly-express.jpg',
-    capacity: 'Approx. 600 passengers',
-    journeyDuration: 'Approx. 2 hours',
-    departure: '05:00 (seasonal — confirm latest schedule)',
-    jetty: 'BIWTA Nuniachhara Jetty, Cox\'s Bazar',
-    checkIn: '30 minutes before departure',
-    cancellation: 'Subject to operator and season rules; confirm before payment',
-    gallery: ['/ship/mv-karnafuly-express.jpg'],
-    detail: 'Large passenger ship with multiple seating categories and cabin guidance.',
-    faq: [
-      ['What route does MV Karnafuly Express serve?', 'MV Karnafuly Express is listed for the Cox\'s Bazar to Saint Martin passenger route. Confirm the current departure port and sailing date before booking.' ],
-      ['How much is an MV Karnafuly Express ticket?', 'The current one-way and return fare depends on the season, class and operator release. Share your travel date and passenger count on WhatsApp to verify the latest price.' ],
-      ['Does MV Karnafuly Express have cabins?', 'Cabin availability can include single, twin and VIP categories, subject to the sailing and operator inventory. Confirm cabin type, occupancy and included facilities before payment.' ],
-    ],
-  },
-  {
-    slug: 'baro-awlia',
-    name: 'MV Baro Awlia',
-    nameBn: 'বারো আওলিয়া',
-    operator: 'Baro Awlia Shipping',
-    route: "Cox's Bazar → Saint Martin",
-    status: 'seasonal_confirmation',
-    lastVerified: '21 September 2026',
-    source: 'Operator-published reference; confirm for your travel date',
-    ticketClasses: [
-      { name: 'Sun Deck', nameBn: 'সান ডেক', description: 'Open deck seating', oneWayFare: '৳1,800', roundTripFare: '৳3,500' },
-      { name: 'Main Deck', nameBn: 'মেইন ডেক', description: 'Standard deck seating', oneWayFare: '৳2,100', roundTripFare: '৳4,000' },
-      { name: 'Panorama Chair', nameBn: 'প্যানোরামা চেয়ার', description: 'Seaside chair seating', oneWayFare: '৳2,200', roundTripFare: '৳4,200' },
-    ],
-    cabins: [
-      { name: 'Bunker Bed', description: 'Shared berth accommodation', capacity: 'Per person' },
-      { name: 'Deluxe Cabin', nameBn: 'ডিলাক্স কেবিন', description: 'Premium cabin space', capacity: 'Per person or per cabin' },
-      { name: 'Family Bunker / VIP Cabin', nameBn: 'ফ্যামিলি বাঙ্কার / ভিআইপি কেবিন', description: 'Family or premium private cabin', capacity: 'Up to 4 passengers' },
-    ],
-    facilities: [
-      { name: 'Open deck', available: true },
-      { name: 'Washroom', available: true },
-      { name: 'Indoor seating', available: true },
-      { name: 'Food service', available: false },
-    ],
-    oneWay: '৳1,800',
-    roundTrip: '৳3,600',
-    image: '/ship/mv-baroawlia.jpg',
-    capacity: 'Approx. 400 passengers',
-    journeyDuration: 'Approx. 2 hours',
-    departure: '06:00 (seasonal — confirm latest schedule)',
-    jetty: 'BIWTA Nuniachhara Jetty, Cox\'s Bazar',
-    checkIn: '30 minutes before departure',
-    cancellation: 'Subject to operator and season rules; confirm before payment',
-    gallery: ['/ship/mv-baroawlia.jpg'],
-    detail: 'Passenger ship offering deck, lounge and selected cabin options for the route.',
-    faq: [
-      ['How much is an MV Baro Awlia ticket?', 'The fare varies by season, class and cabin type. Share your travel date on WhatsApp to confirm the latest price.' ],
-      ['Does MV Baro Awlia have AC options?', 'Some classes include air-conditioned seating and selected premium options. Confirm availability for your date.' ],
-      ['Where does MV Baro Awlia depart from?', 'Departs from the BIWTA Nuniachhara jetty in Cox\'s Bazar. Verify the latest departure jetty and check-in time before travel.' ],
-      ['Does MV Baro Awlia have cabins?', 'MV Baro Awlia offers Bunker Bed, Deluxe Cabin and Family Bunker/VIP Cabin options. Confirm cabin type and occupancy before payment.' ],
-      ['Do I need a Travel Pass for MV Baro Awlia?', 'A Travel Pass and QR-coded ticket are required for Saint Martin entry during the tourist season. Check the latest government rules before travel.' ],
-      ['What is the cancellation policy for MV Baro Awlia?', 'Cancellation depends on the operator and season. Confirm the policy before payment.' ],
-      ['How long is the journey on MV Baro Awlia?', 'The Cox\'s Bazar to Saint Martin crossing takes approximately 2 hours. Sailing time varies with weather and sea conditions.' ],
-    ],
-  },
-  {
-    slug: 'keari-sindbad',
-    name: 'Keari Sindbad',
-    nameBn: 'কেয়ারী সিন্দবাদ',
-    operator: 'Keari Group',
-    route: "Cox's Bazar → Saint Martin",
-    status: 'seasonal_confirmation',
-    lastVerified: '21 September 2026',
-    source: 'Operator-published reference; confirm for your travel date',
-    ticketClasses: [
-      { name: 'Open Deck', nameBn: 'ওপেন ডেক', description: 'Outdoor deck seating', oneWayFare: '৳1,500', roundTripFare: '৳3,000' },
-      { name: 'Lounge', nameBn: 'লাউঞ্জ', description: 'Indoor comfort seating', oneWayFare: '৳1,800', roundTripFare: '৳3,600' },
-    ],
-    cabins: [
-      { name: 'AC Lounge', description: 'Air-conditioned lounge seating', capacity: 'Per person' },
-      { name: 'Family Cabin', nameBn: 'ফ্যামিলি কেবিন', description: 'Private family accommodation', capacity: 'Up to 4 passengers' },
-    ],
-    facilities: [
-      { name: 'Washroom', available: true },
-      { name: 'Open deck', available: true },
-      { name: 'Reserved seating', available: true },
-      { name: 'Food service', available: false },
-    ],
-    oneWay: '৳1,500',
-    roundTrip: '৳3,000',
-    image: '/ship/Keari-Sindbad.jpg',
-    capacity: 'Approx. 400 passengers',
-    journeyDuration: 'Approx. 2 hours',
-    departure: '05:00 (seasonal — confirm latest schedule)',
-    jetty: 'BIWTA Nuniachhara Jetty, Cox\'s Bazar',
-    checkIn: '30 minutes before departure',
-    cancellation: 'Subject to operator and season rules; confirm before payment',
-    gallery: ['/ship/Keari-Sindbad.jpg'],
-    detail: 'Popular passenger vessel with open deck, AC lounge and family-friendly seating.',
-    faq: [
-      ['Is Keari Sindbad operating today?', 'Operating status is seasonal and should be confirmed for your travel date before booking.'],
-      ['What classes does Keari Sindbad offer?', 'Typical classes include open deck and AC lounge. Cabin options may also be available subject to the sailing.'],
-      ['How much is a Keari Sindbad ticket?', 'Indicative one-way fare starts at ৳1,500 and round-trip from ৳3,000. Confirm the latest price for your date on WhatsApp.'],
-      ['Where does Keari Sindbad depart from?', 'Departs from the BIWTA Nuniachhara jetty in Cox\'s Bazar. Verify the latest departure jetty and check-in time before travel.'],
-      ['Does Keari Sindbad have AC seating?', 'Keari Sindbad offers AC lounge seating. Confirm AC availability for your specific sailing date.'],
-      ['Can I book a cabin on Keari Sindbad?', 'Family cabins may be available subject to operator inventory. Confirm cabin type, occupancy and included facilities before payment.'],
-      ['Do I need a Travel Pass for Keari Sindbad?', 'A Travel Pass and QR-coded ticket are required for Saint Martin entry during the tourist season. Check the latest government rules before travel.'],
-      ['What is the cancellation policy for Keari Sindbad?', 'Cancellation depends on the operator and season. Confirm the policy before payment.'],
-      ['How long is the journey on Keari Sindbad?', 'The Cox\'s Bazar to Saint Martin crossing takes approximately 2 hours. Sailing time varies with weather and sea conditions.'],
-    ],
-  },
-  {
-    slug: 'keari-cruise-dine',
-    name: 'Keari Cruise & Dine',
-    nameBn: 'কেয়ারী ক্রুজ অ্যান্ড ডাইন',
-    operator: 'Keari Group',
-    route: "Cox's Bazar → Saint Martin",
-    status: 'needs_confirmation',
-    lastVerified: '21 September 2026',
-    source: 'Operator-published reference; confirm for your travel date',
-    ticketClasses: [
-      { name: 'Open Deck', nameBn: 'ওপেন ডেক', description: 'Outdoor deck seating', oneWayFare: '৳1,800', roundTripFare: '৳3,600' },
-      { name: 'Lounge', nameBn: 'লাউঞ্জ', description: 'Indoor comfort seating', oneWayFare: '৳2,100', roundTripFare: '৳4,000' },
-    ],
-    cabins: [
-      { name: 'Lounge', description: 'Indoor seated accommodation', capacity: 'Per person' },
-      { name: 'Cabin', description: 'Private cabin space', capacity: 'Per person or per cabin' },
-      { name: 'Dining area', description: 'Meal service area', capacity: 'Per person' },
-    ],
-    facilities: [
-      { name: 'Restaurant/dining', available: true },
-      { name: 'Washroom', available: true },
-      { name: 'Indoor lounge', available: true },
-      { name: 'Open deck', available: true },
-    ],
-    oneWay: '৳1,800',
-    roundTrip: '৳3,600',
-    image: '/ship/keari-cruise-dine.jpg',
-    capacity: 'Approx. 200 passengers',
-    journeyDuration: 'Approx. 2 hours',
-    departure: '06:00 (seasonal — confirm latest schedule)',
-    jetty: 'BIWTA Nuniachhara Jetty, Cox\'s Bazar',
-    checkIn: '30 minutes before departure',
-    cancellation: 'Subject to operator and season rules; confirm before payment',
-    gallery: ['/ship/keari-cruise-dine.jpg'],
-    detail: 'Cruise-style travel with lounge seating and dining options on selected classes.',
-    faq: [
-      ['Does Keari Cruise & Dine include dining?', 'Dining and inclusions depend on the selected package and current operator terms. Confirm them before booking.'],
-      ['What is the route for Keari Cruise & Dine?', 'It operates on the Cox\'s Bazar to Saint Martin passenger route. Confirm the current departure port for your date.'],
-      ['How much is a Keari Cruise & Dine ticket?', 'Indicative one-way fare starts at ৳1,800 and round-trip from ৳3,600. Confirm the latest price for your date on WhatsApp.'],
-      ['Where does Keari Cruise & Dine depart from?', 'Departs from the BIWTA Nuniachhara jetty in Cox\'s Bazar. Verify the latest departure jetty and check-in time before travel.'],
-      ['Does Keari Cruise & Dine have AC seating?', 'Keari Cruise & Dine offers indoor lounge seating with AC. Confirm AC availability for your specific sailing date.'],
-      ['Do I need a Travel Pass for Keari Cruise & Dine?', 'A Travel Pass and QR-coded ticket are required for Saint Martin entry during the tourist season. Check the latest government rules before travel.'],
-      ['What is the cancellation policy for Keari Cruise & Dine?', 'Cancellation depends on the operator and season. Confirm the policy before payment.'],
-      ['How long is the journey on Keari Cruise & Dine?', 'The Cox\'s Bazar to Saint Martin crossing takes approximately 2 hours. Sailing time varies with weather and sea conditions.'],
-    ],
-  },
-  {
-    slug: 'bay-cruiser-1',
-    name: 'MV Bay Cruiser 1',
-    nameBn: 'এমভি বে ক্রুজার ১',
-    operator: 'Bay Cruiser Shipping',
-    route: "Cox's Bazar → Saint Martin",
-    status: 'needs_confirmation',
-    lastVerified: '21 September 2026',
-    source: 'Operator-published reference; confirm for your travel date',
-    ticketClasses: [
-      { name: 'Open Deck', nameBn: 'ওপেন ডেক', description: 'Outdoor deck seating', oneWayFare: '৳1,500', roundTripFare: '৳3,000' },
-      { name: 'AC Seating', nameBn: 'এসিসিটিং', description: 'Air-conditioned indoor seating', oneWayFare: '৳1,800', roundTripFare: '৳3,600' },
-    ],
-    cabins: [
-      { name: 'Deck', description: 'Open deck seating', capacity: 'Per person' },
-      { name: 'AC seating', description: 'Air-conditioned indoor seating', capacity: 'Per person' },
-    ],
-    facilities: [
-      { name: 'Open deck', available: true },
-      { name: 'Washroom', available: true },
-      { name: 'AC seats', available: true },
-      { name: 'Food service', available: false },
-    ],
-    oneWay: '৳1,500',
-    roundTrip: '৳3,000',
-    image: '/ship/mv-bay-1.jpg',
-    capacity: 'Approx. 300 passengers',
-    journeyDuration: 'Approx. 2 hours',
-    departure: '06:00 (seasonal — confirm latest schedule)',
-    jetty: 'BIWTA Nuniachhara Jetty, Cox\'s Bazar',
-    checkIn: '30 minutes before departure',
-    cancellation: 'Subject to operator and season rules; confirm before payment',
-    gallery: ['/ship/mv-bay-1.jpg'],
-    detail: 'Comfortable coastal vessel with practical deck and air-conditioned seating.',
-    faq: [
-      ['How can I check MV Bay Cruiser 1 tickets?', 'Share your travel date and passenger count with ShipTickets.bd to confirm current service and ticket guidance.'],
-      ['What facilities are on MV Bay Cruiser 1?', 'Open deck, washroom and AC seating are typical. Confirm specific facilities for your sailing date.'],
-      ['How much is an MV Bay Cruiser 1 ticket?', 'Indicative one-way fare starts at ৳1,500 and round-trip from ৳3,000. Confirm the latest price for your date on WhatsApp.'],
-      ['Where does MV Bay Cruiser 1 depart from?', 'Departs from the BIWTA Nuniachhara jetty in Cox\'s Bazar. Verify the latest departure jetty and check-in time before travel.'],
-      ['Does MV Bay Cruiser 1 have AC options?', 'MV Bay Cruiser 1 offers air-conditioned indoor seating. Confirm AC availability for your specific sailing date.'],
-      ['Do I need a Travel Pass for MV Bay Cruiser 1?', 'A Travel Pass and QR-coded ticket are required for Saint Martin entry during the tourist season. Check the latest government rules before travel.'],
-      ['What is the cancellation policy for MV Bay Cruiser 1?', 'Cancellation depends on the operator and season. Confirm the policy before payment.'],
-      ['How long is the journey on MV Bay Cruiser 1?', 'The Cox\'s Bazar to Saint Martin crossing takes approximately 2 hours. Sailing time varies with weather and sea conditions.'],
-    ],
-  },
-]
-
-export function getShipBySlug(slug: string): Ship | undefined {
-  return ships.find((ship) => ship.slug === slug)
+export type SeasonConfig = {
+  label: string
+  startDate: string
+  startISO: string
+  note: string
 }
 
-export const WHATSAPP_NUMBER = '8801718116799'
-export const PHONE_NUMBER = '+880 1718-116799'
-export const LAST_VERIFIED = '21 September 2026'
+/**
+ * A genuine, collected customer review.
+ *
+ * Only publish reviews that were really collected from a real customer through a
+ * real channel (Google, Facebook, post-trip feedback call, WhatsApp survey).
+ * Never invent a review, a rating or a review count — Google treats fabricated
+ * review markup as structured-data spam, and in Bangladesh publishing invented
+ * customer ratings is also a consumer-protection problem.
+ *
+ * Add entries here as real feedback arrives; the rating UI and Review schema
+ * appear automatically once a ship has at least one entry.
+ */
+export type Review = {
+  shipSlug: string
+  author: string
+  rating: number
+  date: string
+  text: string
+  source: 'google' | 'facebook' | 'post-trip' | 'whatsapp-survey'
+}
+
+export type SiteConfig = {
+  whatsapp: string
+  phone: string
+  email: string
+  office: string
+  supportHours: string
+  lastVerified: string
+  lastReviewed: string
+  updatedAt: string
+  travellersAssisted: {
+    count: number
+    label: string
+    period: string
+    sources: string[]
+  }
+  businessRating: {
+    ratingValue: number | null
+    reviewCount: number | null
+  }
+  season: SeasonConfig
+}
+
+export const STATUS_LABELS: Record<ShipStatus, string> = {
+  verified: 'Verified',
+  needs_confirmation: 'Check latest schedule',
+  seasonal_confirmation: 'Seasonal confirmation',
+}
+
+export const CONFIDENCE_LABELS = {
+  verified: 'Operator-published',
+  reference: 'Reference fare',
+  seasonal: 'Seasonal confirmation',
+  confirm: 'Confirm before booking',
+} as const
+
+const SHIP_STATUSES: ShipStatus[] = ['verified', 'needs_confirmation', 'seasonal_confirmation']
+const REQUIRED_SHIP_FIELDS: (keyof Ship)[] = ['slug', 'name', 'nameBn', 'route', 'operator', 'status', 'lastVerified', 'source', 'detail', 'ticketClasses', 'facilities', 'faq']
+
+const toAmount = (fare: string) => Number(fare.replace(/[^0-9]/g, ''))
+const formatFare = (amount: number) => `৳${amount.toLocaleString('en-US')}`
+
+function parseShip(entry: Record<string, unknown>, index: number): Ship {
+  const slug = String(entry.slug ?? `entry-${index}`)
+  const missing = REQUIRED_SHIP_FIELDS.filter((field) => {
+    const value = entry[field]
+    return value === undefined || value === null || value === ''
+  })
+  if (missing.length > 0) {
+    throw new Error(`content/ships.json: ship "${slug}" is missing required field(s): ${missing.join(', ')}`)
+  }
+  if (!SHIP_STATUSES.includes(entry.status as ShipStatus)) {
+    throw new Error(`content/ships.json: ship "${slug}" has invalid status "${String(entry.status)}". Use one of: ${SHIP_STATUSES.join(', ')}`)
+  }
+  if (!Array.isArray(entry.ticketClasses) || entry.ticketClasses.length === 0) {
+    throw new Error(`content/ships.json: ship "${slug}" needs at least one ticket class with oneWayFare and roundTripFare`)
+  }
+
+  const ticketClasses = entry.ticketClasses as TicketClass[]
+  ticketClasses.forEach((ticketClass, classIndex) => {
+    if (!ticketClass?.name || !ticketClass?.oneWayFare || !ticketClass?.roundTripFare) {
+      throw new Error(`content/ships.json: ship "${slug}" ticket class #${classIndex + 1} needs name, oneWayFare and roundTripFare`)
+    }
+  })
+
+  const oneWayAmounts = ticketClasses.map((ticketClass) => toAmount(ticketClass.oneWayFare))
+  const roundTripAmounts = ticketClasses.map((ticketClass) => toAmount(ticketClass.roundTripFare))
+
+  return {
+    ...(entry as unknown as Omit<Ship, 'oneWay' | 'roundTrip'>),
+    cabins: Array.isArray(entry.cabins) ? (entry.cabins as Cabin[]) : [],
+    oneWay: formatFare(Math.min(...oneWayAmounts)),
+    roundTrip: formatFare(Math.min(...roundTripAmounts)),
+  } as Ship
+}
+
+export const site: SiteConfig = siteData as SiteConfig
+
+export const season: SeasonConfig = site.season
+
+export const ships: Ship[] = (shipsData as unknown as Record<string, unknown>[]).map(parseShip)
+
+const shipsBySlug = new Map(ships.map((ship) => [ship.slug, ship]))
+
+if (shipsBySlug.size !== ships.length) {
+  const duplicates = ships.filter((ship, index) => ships.findIndex((other) => other.slug === ship.slug) !== index)
+  throw new Error(`content/ships.json: duplicate ship slug(s): ${duplicates.map((ship) => ship.slug).join(', ')}`)
+}
+
+export function getShipBySlug(slug: string): Ship | undefined {
+  return shipsBySlug.get(slug)
+}
+
+const reviews = reviewsData as Review[]
+
+reviews.forEach((review, index) => {
+  if (!shipsBySlug.has(review.shipSlug)) {
+    throw new Error(`content/reviews.json: entry #${index + 1} references unknown ship slug "${review.shipSlug}"`)
+  }
+  if (review.rating < 1 || review.rating > 5) {
+    throw new Error(`content/reviews.json: entry #${index + 1} has rating ${review.rating}, expected 1-5`)
+  }
+})
+
+export function getReviewsForShip(slug: string): Review[] {
+  return reviews.filter((review) => review.shipSlug === slug)
+}
+
+export function getTravellersAssisted() {
+  return site.travellersAssisted
+}
+
+/**
+ * Business-level rating, taken from the real Google Business Profile.
+ * Returns null while no verified rating is on file, so no rating is ever
+ * asserted without a source behind it.
+ */
+export function getBusinessRating(): { ratingValue: number; reviewCount: number } | null {
+  const { ratingValue, reviewCount } = site.businessRating
+  if (typeof ratingValue !== 'number' || typeof reviewCount !== 'number') return null
+  if (ratingValue < 1 || ratingValue > 5 || reviewCount < 1) return null
+  return { ratingValue, reviewCount }
+}
+
+export const WHATSAPP_NUMBER = site.whatsapp
+export const PHONE_NUMBER = site.phone
+export const LAST_VERIFIED = site.lastVerified
+export const LAST_REVIEWED = site.lastReviewed

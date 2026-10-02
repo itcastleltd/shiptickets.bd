@@ -3,7 +3,7 @@ import { SeoPage, Section, Bullet, Schema, siteSchema, websiteSchema, breadcrumb
 import { MessageCircle, PhoneCall, MapPin, ShieldCheck, Users, Clock, Heart } from 'lucide-react'
 
 export const metadata: Metadata = {
-  title: 'About ShipTickets.bd',
+  title: 'About',
   description: 'Learn about ShipTickets.bd — a Bangladesh-focused travel information and ticketing platform for Saint Martin ship tickets, a sister concern of Tripzic.',
   openGraph: { title: 'About ShipTickets.bd', description: 'Learn who we are, what we do and how we help with Saint Martin ship tickets.', images: [{ url: '/og_image.png', width: 1200, height: 630 }] },
   alternates: { canonical: 'https://www.shiptickets.bd/about' },
