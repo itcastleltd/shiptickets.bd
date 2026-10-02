@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { SeoPage, Section, Bullet, LinkCard, Schema, siteSchema, websiteSchema, breadcrumbSchema, faqSchema, whatsapp, ProseSection } from '@/components/seo-page'
 import { LAST_VERIFIED, ships } from '@/lib/ships'
 import { ContactLink } from '@/components/contact-link'
-import { FaqAccordion } from '@/components/content-blocks'
+import { FaqAccordion } from '@/components/faq-accordion'
 
 const title = 'Saint Martin Ship Cabin & Seat Class Fares'
 const description = `Compare Saint Martin ship seat classes and cabins (open deck, lounge, AC seating, single, twin, VIP and VVIP cabin) with reference fares for the current season.`

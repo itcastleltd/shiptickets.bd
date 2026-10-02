@@ -5,7 +5,7 @@ import { SeoPage, Section, Bullet, Status, LinkCard, Schema, siteSchema, website
 import { RelatedGuides } from '@/components/related-guides'
 import { LAST_REVIEWED, STATUS_LABELS, season, ships } from '@/lib/ships'
 import { ContactLink } from '@/components/contact-link'
-import { FaqAccordion } from '@/components/content-blocks'
+import { FaqAccordion } from '@/components/faq-accordion'
 
 const title = 'Saint Martin ship schedule from Cox’s Bazar'
 const description =

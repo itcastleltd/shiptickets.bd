@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { SeoPage, Schema, siteSchema, websiteSchema, breadcrumbSchema, faqSchema, vehicleSchema, productSchema } from '@/components/seo-page'
+import { ShipViewTracker } from '@/components/ship-view-tracker'
 import {
   BeforeYouPay,
   BookingCta,
@@ -111,6 +112,7 @@ export function ShipPage({
       updated={LAST_REVIEWED}
       crumbs={crumbs}
     >
+      <ShipViewTracker ship={ship} />
       <div className="mb-8 flex flex-wrap items-center gap-2">
         <ConfidenceBadge kind="seasonal">Season {season.label}</ConfidenceBadge>
         <ConfidenceBadge kind="reference">Reference fares</ConfidenceBadge>

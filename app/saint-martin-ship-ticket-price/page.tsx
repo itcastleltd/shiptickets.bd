@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { BadgeCheck, MessageCircle } from 'lucide-react'
 import { LinkCard, Pill, Schema, Section, SeoPage, faqSchema, siteSchema, websiteSchema, breadcrumbSchema, whatsapp, ProseSection } from '@/components/seo-page'
 import { RelatedGuides } from '@/components/related-guides'
-import { FaqAccordion } from '@/components/content-blocks'
+import { FaqAccordion } from '@/components/faq-accordion'
 import { LAST_REVIEWED, season, ships, type Ship, type TicketClass } from '@/lib/ships'
 import { ContactLink } from '@/components/contact-link'
 

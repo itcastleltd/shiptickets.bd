@@ -5,7 +5,7 @@ import { RelatedGuides } from '@/components/related-guides'
 import { ShipDirectoryCard } from '@/components/ship-directory-card'
 import { season, ships, type Ship } from '@/lib/ships'
 import { ContactLink } from '@/components/contact-link'
-import { FaqAccordion } from '@/components/content-blocks'
+import { FaqAccordion } from '@/components/faq-accordion'
 
 const title = 'Saint Martin Ship Ticket Price, Schedule & Booking'
 const description =

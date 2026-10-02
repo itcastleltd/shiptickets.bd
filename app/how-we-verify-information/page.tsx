@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { BanglaSummary } from '@/components/bangla-summary'
 import { SeoPage, Section, Bullet, LinkCard, Schema, siteSchema, websiteSchema, breadcrumbSchema, faqSchema, whatsapp, ProseSection } from '@/components/seo-page'
 import { LAST_VERIFIED, STATUS_LABELS, ships } from '@/lib/ships'
-import { FaqAccordion } from '@/components/content-blocks'
+import { FaqAccordion } from '@/components/faq-accordion'
 import { ContactLink } from '@/components/contact-link'
 
 const title = 'How We Verify Saint Martin Ship Information'

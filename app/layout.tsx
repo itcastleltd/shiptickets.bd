@@ -3,6 +3,7 @@ import Script from 'next/script'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import { GTMPageTracker } from '@/components/GTMPageTracker'
+import { FaqTracker } from '@/components/faq-tracker'
 
 const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-NXTPXRQK'
 
@@ -75,6 +76,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           />
         )}
         <GTMPageTracker />
+        <FaqTracker />
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
