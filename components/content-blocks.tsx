@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { CalendarClock, Check, CircleAlert, Info, MapPin, ShieldCheck, Sparkles } from 'lucide-react'
+import { Check, CircleAlert, Info, MapPin, Plus, ShieldCheck, Sparkles } from 'lucide-react'
 import { CONFIDENCE_LABELS, LAST_REVIEWED, STATUS_LABELS, WHATSAPP_NUMBER, getReviewsForShip, season, type Cabin, type CategoryGuidance, type Ship, type ShipSpec, type TicketClass } from '@/lib/ships'
 import { ContactLink } from '@/components/contact-link'
 
@@ -10,48 +10,29 @@ type Confidence = keyof typeof CONFIDENCE_LABELS
 const CONFIDENCE_STYLES: Record<Confidence, string> = {
   verified: 'bg-[#e1f5ee] text-[#0f6e56]',
   reference: 'bg-[#eaf5f3] text-[#1d6b57]',
-  seasonal: 'bg-[#fff5e7] text-[#a5683f]',
+  seasonal: 'bg-[#fff5e7] text-warm-strong',
   confirm: 'bg-[#f1f0ec] text-[#6b6a63]',
 }
 
 export function ConfidenceBadge({ kind, children }: { kind: Confidence; children?: React.ReactNode }) {
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-black uppercase tracking-wider ${CONFIDENCE_STYLES[kind]}`}>
+    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 t-label ${CONFIDENCE_STYLES[kind]}`}>
       {children ?? CONFIDENCE_LABELS[kind]}
     </span>
   )
 }
 
 /**
- * Ship-page season reminder.
+ * Anchor offset for the in-page navigation on ship pages.
  *
- * `compact` drops the heading and the `season.note` paragraph, because the top
- * SeasonBar on every page already states when the season opens, and the note
- * restates the same sentence. What is left is only what this block uniquely
- * adds: that sailing details are confirmed per date, plus a way to ask.
+ * The sticky site header is 72px and the sticky "On this page" bar sits directly
+ * under it, so a target needs roughly 120px of clearance. Without it, following
+ * a jump link parks the section heading underneath both bars.
  */
-export function SeasonNotice({ compact = false }: { compact?: boolean }) {
-  return (
-    <div className={`rounded-2xl border border-[#f3d9bf] bg-[#fff8ee] ${compact ? 'p-4' : 'p-5 md:p-6'}`}>
-      <div className="flex items-start gap-3">
-        <CalendarClock className="mt-0.5 shrink-0 text-[#af6a3c]" size={compact ? 18 : 20} />
-        <div>
-          {!compact && <p className="t-label text-[#af6a3c]">Saint Martin season {season.label}</p>}
-          <p className="t-body mt-2 font-bold leading-6 text-[#0d1b2a]">
-            The {season.label} tourist season opens on <strong>{season.startDate}</strong>. Ship sailing dates,
-            departure times and fares are confirmed by the operator for each date.
-          </p>
-          {!compact && <p className="mt-2 text-xs leading-5 text-[#6f5d5a]">{season.note}</p>}
-          <ContactLink href={`${whatsapp}Hello ShipTickets.bd, please share the ${season.label} schedule and confirm sailing dates.`} kind="whatsapp" eventLabel="season_schedule" className="mt-3 inline-flex items-center gap-1.5 text-sm font-extrabold text-[#1d9e75] hover:underline">
-            Ask about the {season.label} schedule <span aria-hidden="true">→</span>
-          </ContactLink>
-        </div>
-      </div>
-    </div>
-  )
-}
+const ANCHOR_CLEARANCE = 'scroll-mt-32'
 
-export function QuickFacts({ ship, title = 'At a glance' }: { ship: Ship; title?: string }) {
+
+export function QuickFacts({ ship, title = 'At a glance', id }: { ship: Ship; title?: string; id?: string }) {
   // Operator-published specifications come first, then the operational facts we
   // need on every ship. Both are kept: replacing rather than merging would drop
   // the status and last-reviewed rows whenever a vessel publishes specs.
@@ -65,7 +46,6 @@ export function QuickFacts({ ship, title = 'At a glance' }: { ship: Ship; title?
     { label: 'Boarding jetty', value: ship.jetty ?? "BIWTA Nuniachhara Jetty, Cox's Bazar" },
     { label: 'Check-in', value: ship.checkIn ?? 'Confirm on your ticket' },
     { label: 'Status', value: STATUS_LABELS[ship.status] },
-    { label: 'Last reviewed', value: ship.lastVerified },
   ].filter((fact, index, all) => all.findIndex((other) => other.label === fact.label) === index)
 
   /**
@@ -77,16 +57,16 @@ export function QuickFacts({ ship, title = 'At a glance' }: { ship: Ship; title?
     ship.status === 'verified' ? 'verified' : ship.status === 'seasonal_confirmation' ? 'seasonal' : 'confirm'
 
   return (
-    <section className="mb-10 rounded-3xl border border-[#dedcd3] bg-white p-6 md:p-8">
+    <section id={id} className={`mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8 ${ANCHOR_CLEARANCE}`}>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="t-title">{title}</h2>
         <ConfidenceBadge kind={statusConfidence} />
       </div>
       <dl className="mt-5 grid gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
         {facts.map((fact) => (
-          <div key={fact.label} className="border-b border-[#f0efea] pb-3">
-            <dt className="text-[11px] font-black uppercase tracking-wider text-[#888780]">{fact.label}</dt>
-            <dd className="mt-1 text-sm font-extrabold text-[#0d1b2a]">{fact.value}</dd>
+          <div key={fact.label} className="border-b border-line-soft pb-3">
+            <dt className="t-label text-faint">{fact.label}</dt>
+            <dd className="mt-1 text-sm font-extrabold text-ink">{fact.value}</dd>
           </div>
         ))}
       </dl>
@@ -97,15 +77,15 @@ export function QuickFacts({ ship, title = 'At a glance' }: { ship: Ship; title?
 function FareTag({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-[10px] font-black uppercase tracking-wider text-[#729298]">{label}</p>
-      <p className="mt-0.5 text-lg font-black text-[#0d1b2a]">{value}</p>
+      <p className="t-label text-quiet">{label}</p>
+      <p className="mt-0.5 text-lg font-black text-ink">{value}</p>
     </div>
   )
 }
 
-export function TicketCards({ ship }: { ship: Ship }) {
+export function TicketCards({ ship, id }: { ship: Ship; id?: string }) {
   return (
-    <section className="mb-10">
+    <section id={id} className={`mb-10 ${ANCHOR_CLEARANCE}`}>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <h2 className="t-title">Choose your ticket</h2>
         <ConfidenceBadge kind="reference" />
@@ -115,7 +95,7 @@ export function TicketCards({ ship }: { ship: Ship }) {
           <TicketCard key={ticketClass.name} ship={ship} ticketClass={ticketClass} />
         ))}
       </div>
-      <p className="mt-4 t-small text-[#67878c]">
+      <p className="mt-4 t-small t-measure text-quiet">
         Prices may vary by travel date, season, ticket class and operator policy. These are reference fares rather than live inventory, so confirm before you pay.
       </p>
     </section>
@@ -124,38 +104,38 @@ export function TicketCards({ ship }: { ship: Ship }) {
 
 function TicketCard({ ship, ticketClass }: { ship: Ship; ticketClass: TicketClass }) {
   return (
-    <article className="flex flex-col rounded-2xl border border-[#dedcd3] bg-white p-5 transition hover:border-[#1d9e75] hover:shadow-lg">
+    <article className="flex flex-col rounded-2xl border border-line-soft bg-white p-5 transition hover:border-brand-ink hover:shadow-raised">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h3 className="text-lg font-black text-[#0d1b2a]">{ticketClass.name}</h3>
-          {ticketClass.nameBn && <p className="text-sm font-semibold text-[#1d9e75]">{ticketClass.nameBn}</p>}
+          <h3 className="text-lg font-black text-ink">{ticketClass.name}</h3>
+          {ticketClass.nameBn && <p className="text-sm font-semibold text-brand-ink">{ticketClass.nameBn}</p>}
         </div>
-        {ticketClass.deck && <span className="shrink-0 rounded-full bg-[#eaf5f3] px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-[#1d6b57]">{ticketClass.deck}</span>}
+        {ticketClass.deck && <span className="shrink-0 rounded-full bg-[#eaf5f3] px-2.5 py-1 t-label text-[#1d6b57]">{ticketClass.deck}</span>}
       </div>
-      <p className="mt-3 t-body text-[#4a5a5c]">{ticketClass.description}</p>
-      {ticketClass.seatCount && <p className="mt-2 text-xs font-semibold text-[#729298]">{ticketClass.seatCount}</p>}
+      <p className="mt-3 t-body text-prose">{ticketClass.description}</p>
+      {ticketClass.seatCount && <p className="mt-2 text-xs font-semibold text-quiet">{ticketClass.seatCount}</p>}
       <div className="mt-5 grid grid-cols-2 gap-3 rounded-xl bg-[#f7fbfa] p-3">
         <FareTag label="One way" value={ticketClass.oneWayFare} />
         <FareTag label="Round trip" value={ticketClass.roundTripFare} />
       </div>
-      <ContactLink href={`${whatsapp}Hello ShipTickets.bd, I want to check ${ship.name} ${ticketClass.name} availability for my travel date.`} kind="whatsapp" eventLabel="ticket_class" className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full bg-[#0d1b2a] px-4 py-2.5 text-xs font-extrabold text-white transition hover:bg-[#1d9e75]">
+      <ContactLink href={`${whatsapp}Hello ShipTickets.bd, I want to check ${ship.name} ${ticketClass.name} availability for my travel date.`} kind="whatsapp" eventLabel="ticket_class" className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full bg-[#0d1b2a] px-4 py-2.5 text-xs font-extrabold text-white transition hover:bg-brand-ink">
         Check availability <span aria-hidden="true">→</span>
       </ContactLink>
     </article>
   )
 }
 
-export function FareTable({ ship }: { ship: Ship }) {
+export function FareTable({ ship, id }: { ship: Ship; id?: string }) {
   const hasReturnLeg = ship.ticketClasses.some((ticketClass) => ticketClass.downFare)
   return (
-    <section className="mb-10 rounded-3xl border border-[#dedcd3] bg-white p-6 md:p-8">
+    <section id={id} className={`mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8 ${ANCHOR_CLEARANCE}`}>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <h2 className="t-title">Fare table</h2>
         <ConfidenceBadge kind="reference">Reference fare</ConfidenceBadge>
       </div>
-      <div className="overflow-x-auto rounded-xl border border-[#e7f0ee]">
+      <div className="overflow-x-auto rounded-xl border border-line-soft">
         <table className="w-full min-w-[520px] text-left text-sm">
-          <thead className="bg-[#0d1b2a]/[4%]">
+          <thead className="bg-[#e3ecea] text-ink">
             <tr>
               <th className="px-4 py-3 font-bold">Category</th>
               <th className="px-4 py-3 text-right font-bold">Cox’s Bazar → Saint Martin</th>
@@ -165,31 +145,31 @@ export function FareTable({ ship }: { ship: Ship }) {
           </thead>
           <tbody>
             {ship.ticketClasses.map((ticketClass) => (
-              <tr key={ticketClass.name} className="border-t border-[#e7f0ee]">
+              <tr key={ticketClass.name} className="border-t border-line-soft">
                 <td className="px-4 py-3">
                   <strong>{ticketClass.name}</strong>
-                  {ticketClass.deck && <span className="block text-xs text-[#729298]">{ticketClass.deck}</span>}
+                  {ticketClass.deck && <span className="block text-xs text-quiet">{ticketClass.deck}</span>}
                 </td>
                 <td className="px-4 py-3 text-right font-extrabold">{ticketClass.oneWayFare}</td>
-                {hasReturnLeg && <td className="px-4 py-3 text-right font-extrabold text-[#628187]">{ticketClass.downFare ?? 'Not published'}</td>}
+                {hasReturnLeg && <td className="px-4 py-3 text-right font-extrabold text-quiet">{ticketClass.downFare ?? 'Not published'}</td>}
                 <td className="px-4 py-3 text-right font-extrabold">{ticketClass.roundTripFare}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <p className="mt-3 t-small text-[#67878c]"><strong>Last reviewed:</strong> {ship.lastVerified} · {ship.source}</p>
+      <p className="mt-3 t-small t-measure text-quiet">Fare source: {ship.source}</p>
     </section>
   )
 }
 
-export function CabinBlock({ ship }: { ship: Ship }) {
+export function CabinBlock({ ship, id }: { ship: Ship; id?: string }) {
   if (ship.cabins.length === 0) {
     return (
-      <section className="mb-10 rounded-3xl border border-[#dedcd3] bg-white p-6 md:p-8">
+      <section id={id} className={`mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8 ${ANCHOR_CLEARANCE}`}>
         <h2 className="t-title">Cabins</h2>
-        <p className="mt-3 flex gap-2 t-body text-[#4a5a5c]">
-          <Info className="mt-1 shrink-0 text-[#1d9e75]" size={17} />
+        <p className="mt-3 flex gap-2 t-body text-prose">
+          <Info className="mt-1 shrink-0 text-brand-ink" size={17} />
           {ship.cabinNote ?? 'No cabin inventory is published for this vessel. Confirm current availability before booking.'}
         </p>
       </section>
@@ -197,53 +177,53 @@ export function CabinBlock({ ship }: { ship: Ship }) {
   }
 
   return (
-    <section className="mb-10">
-      <h2 className="mb-4 text-2xl font-extrabold tracking-tight">Cabins</h2>
+    <section id={id} className={`mb-10 ${ANCHOR_CLEARANCE}`}>
+      <h2 className="t-title mb-4">Cabins</h2>
       <div className="grid gap-4 md:grid-cols-2">
         {ship.cabins.map((cabin) => (
           <CabinCard key={cabin.name} ship={ship} cabin={cabin} />
         ))}
       </div>
-      <p className="mt-4 t-small text-[#67878c]">Cabin inventory is limited. Confirm availability, occupancy and included facilities before payment.</p>
+      <p className="mt-4 t-small t-measure text-quiet">Cabin inventory is limited. Confirm availability, occupancy and included facilities before payment.</p>
     </section>
   )
 }
 
 function CabinCard({ ship, cabin }: { ship: Ship; cabin: Cabin }) {
   return (
-    <article className="flex flex-col rounded-2xl border border-[#dedcd3] bg-white p-5">
+    <article className="flex flex-col rounded-2xl border border-line-soft bg-white p-5">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <h3 className="text-lg font-black text-[#0d1b2a]">{cabin.name}</h3>
-          {cabin.nameBn && <p className="text-sm font-semibold text-[#1d9e75]">{cabin.nameBn}</p>}
+          <h3 className="text-lg font-black text-ink">{cabin.name}</h3>
+          {cabin.nameBn && <p className="text-sm font-semibold text-brand-ink">{cabin.nameBn}</p>}
         </div>
-        <span className="shrink-0 rounded-full bg-[#f1f0ec] px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-[#6b6a63]">{cabin.capacity}</span>
+        <span className="shrink-0 rounded-full bg-[#f1f0ec] px-2.5 py-1 t-label text-[#6b6a63]">{cabin.capacity}</span>
       </div>
-      <p className="mt-3 t-body text-[#4a5a5c]">{cabin.description}</p>
+      <p className="mt-3 t-body text-prose">{cabin.description}</p>
       {cabin.oneWayFare && (
         <div className="mt-4 grid grid-cols-2 gap-3 rounded-xl bg-[#fdf8f3] p-3">
           <FareTag label="One way" value={cabin.oneWayFare} />
           <FareTag label="Round trip" value={cabin.roundTripFare ?? 'Not published'} />
         </div>
       )}
-      <ContactLink href={`${whatsapp}Hello ShipTickets.bd, I want to check ${ship.name} ${cabin.name} availability and price for my travel date.`} kind="whatsapp" eventLabel="cabin_block" className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full border border-[#cfe1df] px-4 py-2.5 text-xs font-extrabold text-[#0d1b2a] transition hover:border-[#1d9e75] hover:text-[#1d9e75]">
+      <ContactLink href={`${whatsapp}Hello ShipTickets.bd, I want to check ${ship.name} ${cabin.name} availability and price for my travel date.`} kind="whatsapp" eventLabel="cabin_block" className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full border border-line px-4 py-2.5 text-xs font-extrabold text-ink transition hover:border-brand-ink hover:text-brand-ink">
         Check cabin availability
       </ContactLink>
     </article>
   )
 }
 
-export function CategoryCompare({ ship }: { ship: Ship }) {
+export function CategoryCompare({ ship, id }: { ship: Ship; id?: string }) {
   const guidance: CategoryGuidance[] = ship.categoryGuidance ?? []
   if (guidance.length === 0) return null
 
   return (
-    <section className="mb-10 rounded-3xl border border-[#dedcd3] bg-white p-6 md:p-8">
+    <section id={id} className={`mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8 ${ANCHOR_CLEARANCE}`}>
       <h2 className="t-title">Which category should you choose?</h2>
-      <p className="mt-2 t-body text-[#4a5a5c]">Choose by seating preference, privacy and budget rather than assuming one category is better.</p>
-      <div className="mt-4 overflow-x-auto rounded-xl border border-[#e7f0ee]">
+      <p className="mt-2 t-body t-measure text-prose">Choose by seating preference, privacy and budget rather than assuming one category is better.</p>
+      <div className="mt-4 overflow-x-auto rounded-xl border border-line-soft">
         <table className="w-full min-w-[560px] text-left text-sm">
-          <thead className="bg-[#0d1b2a]/[4%]">
+          <thead className="bg-[#e3ecea] text-ink">
             <tr>
               <th className="px-4 py-3 font-bold">Category</th>
               <th className="px-4 py-3 font-bold">Best for</th>
@@ -254,12 +234,12 @@ export function CategoryCompare({ ship }: { ship: Ship }) {
           </thead>
           <tbody>
             {guidance.map((row) => (
-              <tr key={row.category} className="border-t border-[#e7f0ee]">
+              <tr key={row.category} className="border-t border-line-soft">
                 <td className="px-4 py-3 font-extrabold">{row.category}</td>
-                <td className="px-4 py-3 text-[#5f5e5a]">{row.bestFor}</td>
-                <td className="px-4 py-3 text-[#5f5e5a]">{row.privacy}</td>
-                <td className="px-4 py-3 text-[#5f5e5a]">{row.outdoor}</td>
-                <td className="px-4 py-3 font-extrabold text-[#1d9e75]">{row.priceLevel}</td>
+                <td className="px-4 py-3 text-prose">{row.bestFor}</td>
+                <td className="px-4 py-3 text-prose">{row.privacy}</td>
+                <td className="px-4 py-3 text-prose">{row.outdoor}</td>
+                <td className="px-4 py-3 font-extrabold text-brand-ink">{row.priceLevel}</td>
               </tr>
             ))}
           </tbody>
@@ -269,27 +249,27 @@ export function CategoryCompare({ ship }: { ship: Ship }) {
   )
 }
 
-export function FacilitiesGrid({ ship }: { ship: Ship }) {
+export function FacilitiesGrid({ ship, id }: { ship: Ship; id?: string }) {
   return (
-    <section className="mb-10 rounded-3xl border border-[#dedcd3] bg-white p-6 md:p-8">
+    <section id={id} className={`mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8 ${ANCHOR_CLEARANCE}`}>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <h2 className="t-title">Onboard facilities</h2>
         <ConfidenceBadge kind="confirm">Confirm before booking</ConfidenceBadge>
       </div>
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {ship.facilities.map((facility) => (
-          <li key={facility.name} className="flex items-start gap-2 rounded-xl border border-[#f0efea] p-3 text-sm">
+          <li key={facility.name} className="flex items-start gap-2 rounded-xl border border-line-soft p-3 text-sm">
             <span className={`mt-1 h-2 w-2 shrink-0 rounded-full ${facility.available ? 'bg-[#1d9e75]' : 'bg-[#cbd5d2]'}`} />
-            <span className="text-[#0d1b2a]">{facility.name}</span>
+            <span className="text-ink">{facility.name}</span>
           </li>
         ))}
       </ul>
-      <p className="mt-4 t-small text-[#67878c]">Facilities can vary by class and sailing. If a particular facility matters to your trip, confirm it before payment.</p>
+      <p className="mt-4 t-small t-measure text-quiet">Facilities can vary by class and sailing. If a particular facility matters to your trip, confirm it before payment.</p>
     </section>
   )
 }
 
-export function ScheduleBlock({ ship }: { ship: Ship }) {
+export function ScheduleBlock({ ship, id }: { ship: Ship; id?: string }) {
   const rows: ShipSpec[] = [
     { label: 'Operating period', value: `Seasonal. ${season.label} opens ${season.startDate}` },
     { label: 'Departure', value: ship.departure ?? 'Confirm for your sailing date' },
@@ -301,26 +281,26 @@ export function ScheduleBlock({ ship }: { ship: Ship }) {
   ]
 
   return (
-    <section className="mb-10 rounded-3xl border border-[#dedcd3] bg-white p-6 md:p-8">
+    <section id={id} className={`mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8 ${ANCHOR_CLEARANCE}`}>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <h2 className="t-title">Schedule &amp; boarding</h2>
         <ConfidenceBadge kind="seasonal">Seasonal confirmation</ConfidenceBadge>
       </div>
       <div className="rounded-xl border border-[#f3d9bf] bg-[#fff8ee] p-4 text-sm text-[#6f5d5a]">
         <p className="flex items-start gap-2">
-          <CircleAlert className="mt-0.5 shrink-0 text-[#af6a3c]" size={17} />
+          <CircleAlert className="mt-0.5 shrink-0 text-warm" size={17} />
           <span>Do not rely on a departure time copied from a previous season. Schedules change with tide, weather, sea conditions, operator decisions and government instructions.</span>
         </p>
       </div>
       <dl className="mt-5 grid gap-x-6 gap-y-4 sm:grid-cols-2">
         {rows.map((row) => (
-          <div key={row.label} className="border-b border-[#f0efea] pb-3">
-            <dt className="text-[11px] font-black uppercase tracking-wider text-[#888780]">{row.label}</dt>
-            <dd className="mt-1 text-sm font-bold text-[#0d1b2a]">{row.value}</dd>
+          <div key={row.label} className="border-b border-line-soft pb-3">
+            <dt className="t-label text-faint">{row.label}</dt>
+            <dd className="mt-1 text-sm font-bold text-ink">{row.value}</dd>
           </div>
         ))}
       </dl>
-      <ContactLink href={`${whatsapp}Hello ShipTickets.bd, please confirm the ${ship.name} schedule for my travel date.`} kind="whatsapp" eventLabel="ship_schedule" className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-[#1d9e75] px-5 py-3 text-sm font-extrabold text-white transition hover:bg-[#167d5d]">
+      <ContactLink href={`${whatsapp}Hello ShipTickets.bd, please confirm the ${ship.name} schedule for my travel date.`} kind="whatsapp" eventLabel="ship_schedule" className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-brand-ink px-5 py-3 text-sm font-extrabold text-white transition hover:bg-[#13734f]">
         Check the schedule for my date
       </ContactLink>
     </section>
@@ -336,30 +316,30 @@ export function BookingSteps({ ship }: { ship: Ship }) {
   ]
 
   return (
-    <section className="mb-10 rounded-3xl border border-[#dedcd3] bg-white p-6 md:p-8">
+    <section className="mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8">
       <h2 className="t-title">How booking works</h2>
       <ol className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {steps.map((step, index) => (
-          <li key={step.title} className="rounded-2xl border border-[#f0efea] p-4">
-            <span className="grid size-8 place-items-center rounded-full bg-[#1d9e75] text-xs font-black text-white">{index + 1}</span>
-            <h3 className="mt-3 font-extrabold text-[#0d1b2a]">{step.title}</h3>
-            <p className="mt-1 t-body text-[#4a5a5c]">{step.text}</p>
+          <li key={step.title} className="rounded-2xl border border-line-soft p-4">
+            <span className="grid size-8 place-items-center rounded-full bg-brand-ink text-xs font-black text-white">{index + 1}</span>
+            <h3 className="mt-3 font-extrabold text-ink">{step.title}</h3>
+            <p className="mt-1 t-body text-prose">{step.text}</p>
           </li>
         ))}
       </ol>
-      <p className="mt-4 t-small text-[#67878c]">ShipTickets.bd does not process payment on this website. A support agent confirms the booking before you pay.</p>
+      <p className="mt-4 t-small t-measure text-quiet">ShipTickets.bd does not process payment on this website. A support agent confirms the booking before you pay.</p>
     </section>
   )
 }
 
 export function BeforeYouPay({ items }: { items: string[] }) {
   return (
-    <section className="mb-10 rounded-3xl border border-[#dedcd3] bg-white p-6 md:p-8">
+    <section className="mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8">
       <h2 className="t-title">Check before you pay</h2>
       <ul className="mt-4 grid gap-2 sm:grid-cols-2">
         {items.map((item) => (
-          <li key={item} className="flex items-start gap-2 t-body text-[#4a5a5c]">
-            <Check className="mt-1 shrink-0 text-[#1d9e75]" size={16} />
+          <li key={item} className="flex items-start gap-2 t-body text-prose">
+            <Check className="mt-1 shrink-0 text-brand-ink" size={16} />
             {item}
           </li>
         ))}
@@ -368,16 +348,16 @@ export function BeforeYouPay({ items }: { items: string[] }) {
   )
 }
 
-export function FaqList({ items, heading = 'FAQ', headingBn }: { items: [string, string][]; heading?: string; headingBn?: string }) {
+export function FaqList({ items, heading = 'FAQ', headingBn, id }: { items: [string, string][]; heading?: string; headingBn?: string; id?: string }) {
   return (
-    <section className="mb-10 rounded-3xl border border-[#dedcd3] bg-white p-6 md:p-8">
+    <section id={id} className={`mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8 ${ANCHOR_CLEARANCE}`}>
       <h2 className="t-title">{heading}</h2>
-      {headingBn && <p className="mt-1 text-sm font-semibold text-[#1d9e75]">{headingBn}</p>}
+      {headingBn && <p className="mt-1 text-sm font-semibold text-brand-ink">{headingBn}</p>}
       <div className="mt-5 flex flex-col divide-y divide-[#f0efea]">
         {items.map(([question, answer]) => (
           <div key={question} className="py-4 first:pt-0 last:pb-0">
-            <h3 className="font-extrabold text-[#0d1b2a]">{question}</h3>
-            <p className="mt-1.5 t-body text-[#4a5a5c]">{answer}</p>
+            <h3 className="font-extrabold text-ink">{question}</h3>
+            <p className="mt-1.5 t-body t-measure text-prose">{answer}</p>
           </div>
         ))}
       </div>
@@ -391,12 +371,12 @@ export function BookingCta({ ship, heading = 'Ready to check availability?' }: {
       <div className="flex items-start gap-3">
         <Sparkles className="mt-1 shrink-0 text-[#f8bf74]" size={20} />
         <div>
-          <h2 className="text-2xl font-black tracking-tight">{heading}</h2>
-      <p className="t-body mt-2 text-[#4a5a5c]">
+          <h2 className="t-title">{heading}</h2>
+      <p className="t-body mt-2 t-measure text-on-dark">
         Send your <strong className="text-white">travel date, passenger count and preferred category</strong>. We will confirm the current fare, availability, boarding information and Travel Pass requirements before you book.
       </p>
           <div className="mt-5 flex flex-wrap gap-3">
-            <ContactLink href={`${whatsapp}Hello ShipTickets.bd, please share my travel date, passenger count and preferred category on ${ship.name}.`} kind="whatsapp" eventLabel="booking_cta" className="inline-flex items-center gap-2 rounded-full bg-[#1d9e75] px-5 py-3 text-sm font-extrabold text-white transition hover:bg-[#167d5d]">
+            <ContactLink href={`${whatsapp}Hello ShipTickets.bd, please share my travel date, passenger count and preferred category on ${ship.name}.`} kind="whatsapp" eventLabel="booking_cta" className="inline-flex items-center gap-2 rounded-full bg-brand-ink px-5 py-3 text-sm font-extrabold text-white transition hover:bg-[#13734f]">
               Check availability on WhatsApp
             </ContactLink>
             <Link href="/saint-martin-ship-ticket-price" className="inline-flex items-center gap-2 rounded-full border border-white/25 px-5 py-3 text-sm font-extrabold text-white transition hover:bg-white/10">
@@ -411,29 +391,115 @@ export function BookingCta({ ship, heading = 'Ready to check availability?' }: {
 
 export function ProvenanceNote({ ship }: { ship: Ship }) {
   return (
-    <div className="mb-10 rounded-2xl border border-[#d4e6e2] bg-[#f7fbfa] p-5">
-      <h2 className="flex items-center gap-2 text-sm font-black uppercase tracking-wider text-[#0f6e56]">
+    <div className="mb-10 rounded-2xl border border-line-soft bg-[#f7fbfa] p-5">
+      <h2 className="flex items-center gap-2 t-label text-[#0f6e56]">
         <ShieldCheck size={16} /> Information source
       </h2>
-      <ul className="mt-3 flex flex-col gap-1.5 t-body text-[#4a5a5c]">
+      <ul className="mt-3 flex flex-col gap-1.5 t-body t-measure text-prose">
         <li>Fare and class information: {ship.source}</li>
         <li>Schedule last checked: {ship.lastVerified}.</li>
         <li>Government travel rules checked against official notices. The {season.label} season opens {season.startDate}.</li>
-        <li>Information last reviewed: {LAST_REVIEWED}.</li>
       </ul>
-      <Link href="/how-we-verify-information" className="mt-3 inline-block text-sm font-extrabold text-[#1d9e75] hover:underline">How we verify ship information →</Link>
+      <Link href="/how-we-verify-information" className="mt-3 inline-block text-sm font-extrabold text-brand-ink hover:underline">How we verify ship information →</Link>
     </div>
   )
 }
 
 export function JettyNote({ ship }: { ship: Ship }) {
   return (
-    <div className="mb-10 flex items-start gap-3 rounded-2xl border border-[#dedcd3] bg-white p-5">
-      <MapPin className="mt-0.5 shrink-0 text-[#1d9e75]" size={18} />
-      <p className="t-body text-[#4a5a5c]">
-        <strong className="text-[#0d1b2a]">Boarding point:</strong> {ship.jetty ?? "BIWTA Nuniachhara Jetty, Cox's Bazar"}. Boarding arrangements can change between seasons, so confirm the jetty printed on your ticket.
+    <div className="mb-10 flex items-start gap-3 rounded-2xl border border-line-soft bg-white p-5">
+      <MapPin className="mt-0.5 shrink-0 text-brand-ink" size={18} />
+      <p className="t-body t-measure text-prose">
+        <strong className="text-ink">Boarding point:</strong> {ship.jetty ?? "BIWTA Nuniachhara Jetty, Cox's Bazar"}. Boarding arrangements can change between seasons, so confirm the jetty printed on your ticket.
       </p>
     </div>
+  )
+}
+
+/**
+ * Frequently asked questions, as a native disclosure list.
+ *
+ * This existed six times on the site in five different shapes: a tracked
+ * client-side accordion on the homepage, native `<details>` on the ticket price
+ * page, an always-open divided stack on the four ship pages, and bare
+ * `<p>question</p><p>answer</p>` pairs on four more pages. The bare pairs were
+ * the worst of them: no affordance, no divider, nothing to scan, and they sat
+ * inside the two-column prose flow where a question can land at the foot of one
+ * column and its answer at the head of the next. Identical content, four
+ * different appearances.
+ *
+ * `<details>` is used rather than a button so it works with no JavaScript, is
+ * keyboard operable for free, and needs no ARIA. The answer stays in the DOM, so
+ * the `FAQPage` schema these pages already emit still matches visible content.
+ *
+ * Full width with the answer held to 78ch: the row is a discrete unit, so the
+ * slack to the right of a short answer reads as margin rather than as a box
+ * that failed to fill.
+ */
+export function FaqAccordion({
+  items,
+  heading = 'FAQ',
+  headingBn,
+  id,
+}: {
+  items: [string, string][]
+  heading?: string
+  headingBn?: string
+  id?: string
+}) {
+  if (items.length === 0) return null
+
+  return (
+    <section id={id} className="mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8">
+      <h2 className="t-title">{heading}</h2>
+      {headingBn && <p className="mt-1 text-sm font-semibold text-brand-ink">{headingBn}</p>}
+      <div className="mt-4 flex flex-col divide-y divide-line-soft">
+        {items.map(([question, answer]) => (
+          <details key={question} className="group">
+            <summary className="flex cursor-pointer list-none items-start justify-between gap-4 py-4 font-extrabold text-ink marker:content-none">
+              <span className="t-body">{question}</span>
+              <span
+                className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-[#eaf5f3] text-brand-ink transition group-open:rotate-45"
+                aria-hidden="true"
+              >
+                <Plus size={15} />
+              </span>
+            </summary>
+            <p className="t-body t-measure pb-5 text-prose">{answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+/**
+ * Ship quick answer: the questions a visitor has before choosing a vessel.
+ *
+ * Rendered as labelled question-and-answer rows separated by rules, because the
+ * previous version was two loose paragraphs per question inside a tinted panel,
+ * which gave no indication that the text was a Q&A at all.
+ *
+ * The panel is a left rule with a background rather than a full bordered box, so
+ * the 78ch answer column does not sit inside a frame that is visibly wider than
+ * its contents. This is the one full-width treatment that does not read as a
+ * half-empty box.
+ */
+export function QuickAnswer({ items, id }: { items: [string, string][]; id?: string }) {
+  if (items.length === 0) return null
+
+  return (
+    <section id={id} className="mb-10 border-l-4 border-brand bg-[#f7fbfa] p-6 md:p-7">
+      <h2 className="t-label text-brand-ink">Quick Answer</h2>
+      <div className="mt-4 flex flex-col divide-y divide-[#dcece9]">
+        {items.map(([question, answer]) => (
+          <div key={question} className="py-4 first:pt-0 last:pb-0">
+            <p className="font-extrabold text-ink">{question}</p>
+            <p className="t-body mt-1.5 t-measure text-prose">{answer}</p>
+          </div>
+        ))}
+      </div>
+    </section>
   )
 }
 
@@ -471,37 +537,37 @@ function Stars({ rating }: { rating: number }) {
  * content/reviews.json this block renders null, so the site never implies a
  * rating or review count it cannot substantiate.
  */
-export function CustomerReviews({ ship }: { ship: Ship }) {
+export function CustomerReviews({ ship, id }: { ship: Ship; id?: string }) {
   const shipReviews = getReviewsForShip(ship.slug)
   if (shipReviews.length === 0) return null
 
   const average = Math.round((shipReviews.reduce((sum, review) => sum + review.rating, 0) / shipReviews.length) * 10) / 10
 
   return (
-    <section className="mb-10 rounded-3xl border border-[#dedcd3] bg-white p-6 md:p-8">
+    <section id={id} className={`mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8 ${ANCHOR_CLEARANCE}`}>
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 className="t-title">What passengers say</h2>
-          <p className="mt-1 t-body text-[#4a5a5c]">Collected from real post-trip feedback and public reviews.</p>
+          <p className="mt-1 t-body t-measure text-prose">Collected from real post-trip feedback and public reviews.</p>
         </div>
-        <div className="flex items-center gap-3 rounded-2xl border border-[#dedcd3] bg-[#f7f6f2] px-4 py-3">
-          <span className="text-3xl font-black text-[#0d1b2a]">{average.toFixed(1)}</span>
+        <div className="flex items-center gap-3 rounded-2xl border border-line-soft bg-[#f7f6f2] px-4 py-3">
+          <span className="text-3xl font-black text-ink">{average.toFixed(1)}</span>
           <div>
             <Stars rating={average} />
-            <p className="mt-0.5 text-xs font-semibold text-[#729298]">Based on {shipReviews.length} review{shipReviews.length === 1 ? '' : 's'}</p>
+            <p className="mt-0.5 text-xs font-semibold text-quiet">Based on {shipReviews.length} review{shipReviews.length === 1 ? '' : 's'}</p>
           </div>
         </div>
       </div>
 
       <ul className="mt-6 grid gap-4 md:grid-cols-2">
         {shipReviews.map((review, index) => (
-          <li key={`${review.author}-${index}`} className="rounded-2xl border border-[#f0efea] p-5">
+          <li key={`${review.author}-${index}`} className="rounded-2xl border border-line-soft p-5">
             <div className="flex items-center justify-between gap-3">
-              <p className="font-extrabold text-[#0d1b2a]">{review.author}</p>
+              <p className="font-extrabold text-ink">{review.author}</p>
               <Stars rating={review.rating} />
             </div>
-            <p className="mt-3 t-body text-[#4a5a5c]">{review.text}</p>
-            <p className="mt-3 text-xs text-[#888780]">
+            <p className="mt-3 t-body text-prose">{review.text}</p>
+            <p className="mt-3 text-xs text-faint">
               <time dateTime={review.date}>{new Date(review.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</time>
               {' · '}{REVIEW_SOURCE_LABEL[review.source] ?? review.source}
             </p>

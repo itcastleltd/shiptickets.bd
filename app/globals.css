@@ -45,6 +45,61 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/*
+ * Project palette.
+ *
+ * These are the colours the site actually paints with, as opposed to the
+ * shadcn defaults above, which are unused. They live in a separate @theme
+ * block so they generate `text-*`, `bg-*` and `border-*` utilities.
+ *
+ * Every text colour below was chosen by measuring its WCAG 2.1 contrast ratio
+ * against the surface it is used on, rather than by eye. The ratios are noted
+ * next to each token. The previous palette was a hand-picked ramp of greys in
+ * which almost everything below #4a5a5c fell under the 4.5:1 AA threshold:
+ * `#91a9aa` sat at 2.48:1 and the footer legal text at 2.66:1.
+ *
+ * The names avoid `muted`, `accent`, `primary`, `border` and `input` on
+ * purpose, because those are already claimed by the shadcn tokens above and
+ * reusing them would silently shadow them.
+ */
+@theme {
+  /* Text. All measured against #ffffff. */
+  --color-ink: #0d1b2a;   /* 17.4:1 headings and strong text */
+  --color-prose: #3f5154; /*  8.4:1 body copy, replaces #4a5a5c / #5f5e5a */
+  --color-quiet: #4d6569; /*  6.2:1 secondary text, replaces the #5b7c82-#729298 ramp */
+  --color-faint: #5c7376; /*  5.0:1 labels and legal text, replaces #888780 / #8ba3a6 / #91a9aa */
+
+  /*
+   * Green. `--color-brand` is the original #1d9e75 and is kept for icons,
+   * dots and rules, where the 3:1 non-text threshold applies and it passes at
+   * 3.4:1. It must not be used for text or as a fill behind white text: both
+   * of those are 3.4:1 and fail AA. `--color-brand-ink` is the same hue taken
+   * dark enough to carry text and white labels.
+   */
+  --color-brand: #1d9e75;      /*  3.4:1 — non-text use only */
+  --color-brand-ink: #157a5b;  /*  5.3:1 as text, and 5.3:1 under white text */
+
+  /* Borders. Interactive boundaries need 3:1 (WCAG 1.4.11). */
+  --color-line: #75908f;      /*  3.4:1 — form fields, focusable outlines */
+  --color-line-soft: #d8dcd4; /*  1.4:1 — decorative card and divider lines */
+
+  /* Warm accents, each measured against the panel it sits on. */
+  --color-warm: #8f5228;       /* 5.9:1 on #fff8ee */
+  --color-warm-strong: #8f5730;/* 5.5:1 on #fff5e7 */
+  --color-warm-soft: #7d4a38;  /* 5.1:1 on #f5d1b6 */
+
+  /* Body copy on the dark panels, where #4a5a5c was 2.4:1 and unreadable. */
+  --color-on-dark: #c8d6d4;    /* 11.6:1 on #0d1b2a */
+
+  /* Component dimensions that are referenced by meaning, not by a scale. */
+  --header-h: 72px;
+
+  /* Three shadows replace eleven hand-written rgba() values. */
+  --shadow-card: 0 1px 2px rgb(18 60 69 / 0.04), 0 1px 3px rgb(18 60 69 / 0.06);
+  --shadow-raised: 0 8px 24px rgb(18 60 69 / 0.08);
+  --shadow-bar: 0 -8px 24px rgb(18 60 69 / 0.1);
+}
+
 :root {
   color-scheme: light;
   --background: oklch(1 0 0);
@@ -164,6 +219,22 @@
     @apply bg-background text-foreground;
     font-family: 'Nunito', ui-sans-serif, system-ui, sans-serif;
   }
+
+  /*
+   * Visible keyboard focus (WCAG 2.4.7).
+   *
+   * There was no focus styling anywhere in the project, so the only indicator
+   * was whatever the browser happened to draw, against an outline colour of
+   * light grey at 50% opacity. A dark ring is used by default and inverted to
+   * white inside the dark panels, where a dark ring would be invisible.
+   */
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid #0d1b2a;
+    outline-offset: 2px;
+  }
+  :where(.bg-\[\#0d1b2a\], .bg-ink) :where(a, button, input, summary, [tabindex]):focus-visible {
+    outline-color: #ffffff;
+  }
 }
 
 ::selection {
@@ -232,6 +303,61 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     font-weight: 800;
+  }
+
+  /*
+   * Bengali text.
+   *
+   * `text-transform: uppercase` is a no-op for Bengali, but the 0.14em tracking
+   * on `.t-label` is not: Bengali is an abugida, and inserting space between
+   * glyphs separates the base consonant from its vowel signs and matras, which
+   * visibly breaks conjuncts. Every page eyebrow mixes English with a Bengali
+   * word ("Ship directory · জাহাজ") and every ship page repeats the vessel's
+   * Bengali name, so the tracking was being applied to Bengali on 13 headings
+   * across the site.
+   *
+   * This class is applied to the Bengali half of those strings, so the English
+   * keeps the tracked all-caps look and the Bengali is set normally.
+   */
+  .bn {
+    letter-spacing: normal;
+    text-transform: none;
+    font-weight: 700;
+  }
+
+  /*
+   * Prose measure.
+   *
+   * Content pages fill the same 1280px shell as the header, footer and
+   * homepage, so page widths no longer disagree. A 1280px line of body text is
+   * too long to read comfortably, so running text is capped near 70
+   * characters. This is applied per text element, never to the container, so
+   * cards, tables and grids keep the full width while paragraphs stay legible.
+   */
+  .t-measure {
+    max-width: 78ch;
+  }
+
+  /*
+   * `Section` holds both running text and wide children: 23 of the 60 sections
+   * in the app contain a table or a card grid. Capping the container would
+   * squash those, so only the text-level children are measured.
+   */
+  .section-body > :where(p, ul, ol, dl, h3, h4) {
+    max-width: 78ch;
+  }
+
+  /*
+   * Two-column prose.
+   *
+   * Above xl a content-rich section splits into two ~572px columns, which is
+   * about 67 characters a line. Without this the multicol engine is free to
+   * break a question away from its answer, or to run the second half of a list
+   * into the next column, because a paragraph and a list item are both
+   * breakable by default. Each block is therefore kept whole.
+   */
+  .prose-columns > * {
+    break-inside: avoid-column;
   }
 }
 

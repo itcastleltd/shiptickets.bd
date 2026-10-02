@@ -16,13 +16,13 @@ export function Breadcrumbs({ items, className = '' }: { items: Crumb[]; classNa
 
   return (
     <nav aria-label="Breadcrumb" className={className}>
-      <ol className="flex flex-wrap items-center gap-1.5 text-sm text-[#6f8a8e]">
+      <ol className="flex flex-wrap items-center gap-1.5 text-sm text-quiet">
         {items.map((item, index) => {
           const isLast = index === items.length - 1
           return (
             <li key={`${item.name}-${index}`} className="flex items-center gap-1.5">
               {item.href && !isLast ? (
-                <Link href={item.href} className="rounded transition hover:text-[#1d9e75] hover:underline">
+                <Link href={item.href} className="rounded transition hover:text-brand-ink hover:underline">
                   {index === 0 ? (
                     <span className="inline-flex items-center gap-1.5">
                       <Home size={14} aria-hidden="true" />
@@ -33,7 +33,7 @@ export function Breadcrumbs({ items, className = '' }: { items: Crumb[]; classNa
                   )}
                 </Link>
               ) : (
-                <span className="font-bold text-[#0d1b2a]" aria-current={isLast ? 'page' : undefined}>
+                <span className="font-bold text-ink" aria-current={isLast ? 'page' : undefined}>
                   {item.name}
                 </span>
               )}

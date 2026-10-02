@@ -6,7 +6,7 @@ const ship = getShipBySlug('keari-sindbad')!
 export const metadata = shipMetadata(
   ship,
   'Keari Sindbad Ticket Price & Schedule',
-  'Check Keari Sindbad ticket prices, Main Deck, Open Deck and Bridge Deck fares, vessel specifications, schedule, boarding point and booking information for Cox’s Bazar to Saint Martin.',
+  'Check Keari Sindbad deck fares, vessel specifications, schedule, boarding point and booking details for the Cox\u2019s Bazar to Saint Martin route.',
 )
 
 const quickAnswer: [string, string][] = [

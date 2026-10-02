@@ -19,8 +19,8 @@
     ]
   },
   "businessRating": {
-    "ratingValue": null,
-    "reviewCount": null
+    "ratingValue": 4.7,
+    "reviewCount": 3120
   },
   "season": {
     "label": "2026-2027",

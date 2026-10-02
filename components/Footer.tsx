@@ -70,7 +70,7 @@ const footerGroups = [
  */
 export function Footer() {
   return (
-    <footer className="border-t border-[#ecf0ee] bg-white px-5 pb-24 pt-16 lg:px-8 lg:pb-12 lg:pt-12">
+    <footer className="border-t border-line-soft bg-white px-5 pb-24 pt-16 lg:px-8 lg:pb-12 lg:pt-12">
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.15fr_2fr]">
         {/* Brand + contact */}
         <div>
@@ -82,29 +82,29 @@ export function Footer() {
             className="h-10 w-auto"
           />
 
-          <p className="mt-4 max-w-xs text-sm leading-6 text-[#507279]">
+          <p className="mt-4 max-w-xs text-sm leading-6 text-quiet">
             Saint Martin ship ticket information and human-assisted booking support from Cox&rsquo;s Bazar.
           </p>
 
-          <address className="mt-6 space-y-2.5 text-sm not-italic text-[#507279]">
-            <ContactLink href={phoneHref} kind="phone" eventLabel="footer_call" className="flex items-center gap-2.5 hover:text-[#1d9e75]">
-              <PhoneCall size={15} className="shrink-0 text-[#1d9e75]" aria-hidden="true" />
+          <address className="mt-6 space-y-2.5 text-sm not-italic text-quiet">
+            <ContactLink href={phoneHref} kind="phone" eventLabel="footer_call" className="flex items-center gap-2.5 hover:text-brand-ink">
+              <PhoneCall size={15} className="shrink-0 text-brand-ink" aria-hidden="true" />
               {PHONE_NUMBER}
             </ContactLink>
-            <ContactLink href={whatsappHref} kind="whatsapp" eventLabel="footer_whatsapp" className="flex items-center gap-2.5 hover:text-[#1d9e75]">
-              <MessageCircle size={15} className="shrink-0 text-[#1d9e75]" aria-hidden="true" />
+            <ContactLink href={whatsappHref} kind="whatsapp" eventLabel="footer_whatsapp" className="flex items-center gap-2.5 hover:text-brand-ink">
+              <MessageCircle size={15} className="shrink-0 text-brand-ink" aria-hidden="true" />
               WhatsApp support
             </ContactLink>
-            <a href={emailHref} className="flex items-center gap-2.5 hover:text-[#1d9e75]">
-              <Mail size={15} className="shrink-0 text-[#1d9e75]" aria-hidden="true" />
+            <a href={emailHref} className="flex items-center gap-2.5 hover:text-brand-ink">
+              <Mail size={15} className="shrink-0 text-brand-ink" aria-hidden="true" />
               {site.email}
             </a>
             <div className="flex items-start gap-2.5">
-              <MapPin size={15} className="mt-0.5 shrink-0 text-[#1d9e75]" aria-hidden="true" />
+              <MapPin size={15} className="mt-0.5 shrink-0 text-brand-ink" aria-hidden="true" />
               <span>{site.office}</span>
             </div>
             <div className="flex items-center gap-2.5">
-              <Clock size={15} className="shrink-0 text-[#1d9e75]" aria-hidden="true" />
+              <Clock size={15} className="shrink-0 text-brand-ink" aria-hidden="true" />
               {site.supportHours}
             </div>
           </address>
@@ -122,7 +122,7 @@ export function Footer() {
                 target={social.icon === 'phone' ? undefined : '_blank'}
                 rel={social.icon === 'phone' ? undefined : 'noopener noreferrer'}
                 aria-label={social.name}
-                className="flex size-10 items-center justify-center rounded-full border border-[#cfe1df] bg-white text-[#0d1b2a] transition-all hover:border-[#1d9e75] hover:bg-[#1d9e75] hover:text-white"
+                className="flex size-10 items-center justify-center rounded-full border border-line bg-white text-ink transition-all hover:border-brand-ink hover:bg-brand-ink hover:text-white"
               >
                 {social.icon === 'whatsapp' && <MessageCircle size={18} aria-hidden="true" />}
                 {social.icon === 'facebook' && <BrandIcon name="facebook" />}
@@ -137,13 +137,13 @@ export function Footer() {
         <nav aria-label="Footer navigation" className="grid gap-10 sm:grid-cols-3">
           {footerGroups.map((group) => (
             <div key={group.heading}>
-              <h2 className="text-xs font-extrabold uppercase tracking-[.14em] text-[#0d1b2a]">
+              <h2 className="t-label text-ink">
                 {group.heading}
               </h2>
               <ul className="mt-4 space-y-2.5">
                 {group.links.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-[#507279] hover:text-[#1d9e75]">
+                    <Link href={link.href} className="text-sm text-quiet hover:text-brand-ink">
                       {link.label}
                     </Link>
                   </li>
@@ -154,10 +154,16 @@ export function Footer() {
         </nav>
       </div>
 
-      <div className="mx-auto mt-12 max-w-7xl border-t border-[#ecf0ee] pt-6 text-xs text-[#8ba3a6]">
+      {/*
+        The review date is deliberately not repeated here. Every page already
+        states it once at the top, where a reader meets it before the fares
+        rather than after them. The footer keeps the guidance without the date
+        so nothing reads twice.
+      */}
+      <div className="mx-auto mt-12 max-w-7xl border-t border-line-soft pt-6 text-xs text-faint">
         <p>&copy; 2026 ShipTickets.bd · Prices and schedules are subject to confirmation and current government rules.</p>
         <p className="mt-2">
-          Information last reviewed: {site.lastReviewed}. Confirm your fare, sailing and Travel Pass requirements before you travel.
+          Confirm your fare, sailing and Travel Pass requirements before you travel.
         </p>
       </div>
     </footer>

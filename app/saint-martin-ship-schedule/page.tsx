@@ -1,28 +1,18 @@
 import type { Metadata } from 'next'
+import { BanglaSummary } from '@/components/bangla-summary'
 import Link from 'next/link'
-import {
-  SeoPage,
-  Section,
-  Bullet,
-  Status,
-  LinkCard,
-  Schema,
-  siteSchema,
-  websiteSchema,
-  faqSchema,
-  breadcrumbSchema,
-  whatsapp,
-} from '@/components/seo-page'
+import { SeoPage, Section, Bullet, Status, LinkCard, Schema, siteSchema, websiteSchema, faqSchema, breadcrumbSchema, whatsapp, ProseSection } from '@/components/seo-page'
 import { RelatedGuides } from '@/components/related-guides'
 import { LAST_REVIEWED, STATUS_LABELS, season, ships } from '@/lib/ships'
 import { ContactLink } from '@/components/contact-link'
+import { FaqAccordion } from '@/components/content-blocks'
 
 const title = 'Saint Martin ship schedule from Cox’s Bazar'
 const description =
   'Check how to verify Saint Martin ship departure times, reporting times, return schedules, jetty check-in points and seasonal operating status for your travel date.'
 
 export const metadata: Metadata = {
-  title: 'Saint Martin Ship Schedule & Departure Times',
+  title: 'Saint Martin Ship Schedule & Times',
   description,
   alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-ship-schedule' },
   openGraph: {
@@ -73,10 +63,10 @@ export default function SchedulePage() {
         { name: 'Schedule' },
       ]}
     >
+      <BanglaSummary path="/saint-martin-ship-schedule" />
       <Section title="Quick Answer">
         <div className="flex flex-wrap items-center gap-3">
           <Status>Seasonal confirmation required</Status>
-          <span className="t-small text-[#67878c]">Last reviewed {LAST_REVIEWED}</span>
         </div>
         <p>
           Saint Martin ship departure times are seasonal and operator-specific, so there is no single fixed
@@ -99,9 +89,9 @@ export default function SchedulePage() {
           These are the schedule details each operator has published. They are reference values, not confirmed
           sailings for your date.
         </p>
-        <div className="mt-4 overflow-x-auto rounded-xl border border-[#d4e6e2]">
+        <div className="mt-4 overflow-x-auto rounded-xl border border-line-soft">
           <table className="w-full min-w-[640px] text-left text-sm">
-            <thead className="bg-[#0d1b2a]/[4%]">
+            <thead className="bg-[#e3ecea] text-ink">
               <tr>
                 <th className="px-4 py-3 font-bold">Ship</th>
                 <th className="px-4 py-3 font-bold">Departure</th>
@@ -111,15 +101,15 @@ export default function SchedulePage() {
             </thead>
             <tbody>
               {ships.map((ship) => (
-                <tr key={ship.slug} className="border-t border-[#e7f0ee]">
+                <tr key={ship.slug} className="border-t border-line-soft">
                   <td className="px-4 py-3 font-extrabold">
-                    <Link href={`/saint-martin-ship/${ship.slug}`} className="hover:text-[#1d9e75] hover:underline">
+                    <Link href={`/saint-martin-ship/${ship.slug}`} className="hover:text-brand-ink hover:underline">
                       {ship.name}
                     </Link>
                   </td>
-                  <td className="px-4 py-3 text-[#4a5a5c]">{ship.departure ?? 'Confirm for your date'}</td>
-                  <td className="px-4 py-3 text-[#4a5a5c]">{ship.journeyDuration ?? 'Confirm for your date'}</td>
-                  <td className="px-4 py-3 text-[#4a5a5c]">
+                  <td className="px-4 py-3 text-prose">{ship.departure ?? 'Confirm for your date'}</td>
+                  <td className="px-4 py-3 text-prose">{ship.journeyDuration ?? 'Confirm for your date'}</td>
+                  <td className="px-4 py-3 text-prose">
                     {STATUS_LABELS[ship.status]}
                   </td>
                 </tr>
@@ -127,7 +117,7 @@ export default function SchedulePage() {
             </tbody>
           </table>
         </div>
-        <p className="t-small mt-3 text-[#67878c]">
+        <p className="t-small mt-3 text-quiet">
           Do not rely on a departure time copied from a previous season. Confirm your operator, date, jetty and
           reporting time before leaving for Cox’s Bazar.
         </p>
@@ -144,7 +134,7 @@ export default function SchedulePage() {
         </ul>
       </Section>
 
-      <Section title="Why departure times change">
+      <ProseSection title="Why departure times change">
         <p>
           Passenger vessel operations depend on government permission, seasonal access, weather, tide and operator
           readiness. A departure time published for one season may not hold for the next. That is why every ship
@@ -155,16 +145,16 @@ export default function SchedulePage() {
           If a vessel is marked as needing confirmation, that is deliberate. It means we have not verified current
           operation for your season, and we would rather say so than present an unverified schedule as fact.
         </p>
-      </Section>
+      </ProseSection>
 
-      <Section title="Boarding point">
+      <ProseSection title="Boarding point">
         <p>
           Most published information points to the <strong>BIWTA Nuniachhara Jetty</strong> area in Cox’s Bazar.
           Boarding arrangements can change between seasons, and some operators have referred to other points on the
           coast. The jetty and reporting time printed on your own ticket are the authority, so check them before you
           travel.
         </p>
-      </Section>
+      </ProseSection>
 
       <Section title="Related information">
         <div className="grid gap-4 md:grid-cols-2">
@@ -206,26 +196,17 @@ export default function SchedulePage() {
         intro="Planning guides from our sister brand, useful once your sailing is confirmed."
       />
 
-      <Section title="FAQ">
-        <div className="flex flex-col gap-4">
-          {faqs.map(([question, answer]) => (
-            <div key={question}>
-              <p className="font-extrabold text-[#0d1b2a]">{question}</p>
-              <p className="mt-1">{answer}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
+      <FaqAccordion items={faqs} />
 
-      <Section title="Confirm the schedule for your date">
+      <ProseSection title="Confirm the schedule for your date">
         <p className="mb-4">
           Send your travel date and preferred vessel. We will confirm the current sailing, reporting time and
           boarding point before you pay.
         </p>
-        <ContactLink href={`${whatsapp}Hello ShipTickets.bd, please confirm the current schedule for my travel date.`} kind="whatsapp" eventLabel="schedule_whatsapp" className="inline-flex items-center gap-2 rounded-full bg-[#1d9e75] px-5 py-3 text-sm font-extrabold text-white">
+        <ContactLink href={`${whatsapp}Hello ShipTickets.bd, please confirm the current schedule for my travel date.`} kind="whatsapp" eventLabel="schedule_whatsapp" className="inline-flex items-center gap-2 rounded-full bg-brand-ink px-5 py-3 text-sm font-extrabold text-white">
           Confirm on WhatsApp
         </ContactLink>
-      </Section>
+      </ProseSection>
 
       <Schema
         data={{

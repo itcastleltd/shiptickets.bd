@@ -1,19 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { BadgeCheck, MessageCircle } from 'lucide-react'
-import {
-  LinkCard,
-  Pill,
-  Schema,
-  Section,
-  SeoPage,
-  faqSchema,
-  siteSchema,
-  websiteSchema,
-  breadcrumbSchema,
-  whatsapp,
-} from '@/components/seo-page'
+import { LinkCard, Pill, Schema, Section, SeoPage, faqSchema, siteSchema, websiteSchema, breadcrumbSchema, whatsapp, ProseSection } from '@/components/seo-page'
 import { RelatedGuides } from '@/components/related-guides'
+import { FaqAccordion } from '@/components/content-blocks'
 import { LAST_REVIEWED, season, ships, type Ship, type TicketClass } from '@/lib/ships'
 import { ContactLink } from '@/components/contact-link'
 
@@ -55,6 +45,14 @@ const cheapest = ships.reduce((lowest, ship) =>
 const lowestCabin = cabinFares.length
   ? cabinFares.reduce((lowest, row) => (toAmount(row[2]) < toAmount(lowest[2]) ? row : lowest))
   : null
+
+/**
+ * The lowest round trip can sit on a different vessel from the lowest one way,
+ * so it is reduced independently rather than read off `cheapest`.
+ */
+const cheapestRoundTrip = ships.reduce((lowest, ship) =>
+  toAmount(ship.roundTrip) < toAmount(lowest.roundTrip) ? ship : lowest,
+)
 
 const faqs: [string, string][] = [
   [
@@ -101,8 +99,8 @@ function FareTable({
 }) {
   if (rows.length === 0) {
     return (
-      <div className="rounded-2xl border border-[#dedcd3] bg-[#f7f6f2] p-5">
-        <p className="t-body text-[#4a5a5c]">
+      <div className="rounded-2xl border border-line-soft bg-[#f7f6f2] p-5">
+        <p className="t-body text-prose">
           No private cabin inventory is published for any vessel on this page. Check the cabin and seat class guide
           for the current picture.
         </p>
@@ -111,14 +109,14 @@ function FareTable({
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-[#dedcd3]">
-      <div className="flex items-center justify-between gap-3 border-b border-[#dedcd3] bg-[#f7f6f2] px-4 py-4">
+    <div className="overflow-hidden rounded-2xl border border-line-soft">
+      <div className="flex items-center justify-between gap-3 border-b border-line-soft bg-[#f7f6f2] px-4 py-4">
         <h3 className="font-extrabold">{title}</h3>
         <Pill>Reference fare</Pill>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full min-w-[620px] text-left text-sm">
-          <thead className="bg-[#0d1b2a] text-white">
+          <thead className="bg-[#e3ecea] text-ink">
             <tr>
               <th className="px-4 py-3 font-bold">Category</th>
               {includeType && <th className="px-4 py-3 font-bold">Ship</th>}
@@ -129,12 +127,12 @@ function FareTable({
           <tbody>
             {rows.map((row) => (
               <tr key={`${row[0]}-${row[1]}`} className="border-b border-[#eceae3] last:border-0">
-                <td className="px-4 py-3 font-bold text-[#0d1b2a]">{row[0]}</td>
-                {includeType && <td className="px-4 py-3 text-[#5f5e5a]">{row[1]}</td>}
-                <td className="px-4 py-3 text-right font-extrabold text-[#1d9e75]">
+                <td className="px-4 py-3 font-bold text-ink">{row[0]}</td>
+                {includeType && <td className="px-4 py-3 text-prose">{row[1]}</td>}
+                <td className="px-4 py-3 text-right font-extrabold text-brand-ink">
                   {includeType ? row[2] : row[1]}
                 </td>
-                <td className="px-4 py-3 text-right font-extrabold text-[#0d1b2a]">
+                <td className="px-4 py-3 text-right font-extrabold text-ink">
                   {includeType ? row[3] : row[2]}
                 </td>
               </tr>
@@ -209,12 +207,12 @@ export default function PricePage() {
             value: lowestCabin ? `${lowestCabin[2]}+` : 'Not published',
             note: 'subject to availability',
           },
-          { label: 'Last reviewed', value: LAST_REVIEWED, note: 'confirm before payment' },
+          { label: 'Lowest round trip', value: cheapestRoundTrip.roundTrip, note: `return leg on ${cheapestRoundTrip.name}` },
         ].map((stat) => (
-          <div key={stat.label} className="rounded-2xl border border-[#dedcd3] bg-white p-5">
-            <p className="t-label text-[#888780]">{stat.label}</p>
-            <p className="t-subtitle mt-2 text-[#0d1b2a]">{stat.value}</p>
-            <p className="t-small mt-1 text-[#5f5e5a]">{stat.note}</p>
+          <div key={stat.label} className="rounded-2xl border border-line-soft bg-white p-5">
+            <p className="t-label text-faint">{stat.label}</p>
+            <p className="t-subtitle mt-2 text-ink">{stat.value}</p>
+            <p className="t-small mt-1 text-prose">{stat.note}</p>
           </div>
         ))}
       </div>
@@ -230,15 +228,15 @@ export default function PricePage() {
             availability before you pay.
           </p>
         </div>
-        <ContactLink href={`${whatsapp}Hello ShipTickets.bd, please confirm the latest Saint Martin ship ticket price for my travel date.`} kind="whatsapp" eventLabel="price_page_whatsapp" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#ef9f27] px-5 py-3 text-sm font-extrabold text-[#0d1b2a]">
+        <ContactLink href={`${whatsapp}Hello ShipTickets.bd, please confirm the latest Saint Martin ship ticket price for my travel date.`} kind="whatsapp" eventLabel="price_page_whatsapp" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#ef9f27] px-5 py-3 text-sm font-extrabold text-ink">
           <MessageCircle size={17} /> WhatsApp for latest fare
         </ContactLink>
       </div>
 
       <Section title="Saint Martin ship ticket price at a glance">
-        <div className="overflow-x-auto rounded-xl border border-[#d4e6e2]">
+        <div className="overflow-x-auto rounded-xl border border-line-soft">
           <table className="w-full min-w-[520px] text-left text-sm">
-            <thead className="bg-[#0d1b2a]/[4%]">
+            <thead className="bg-[#e3ecea] text-ink">
               <tr>
                 <th className="px-4 py-3 font-bold">Ship</th>
                 <th className="px-4 py-3 text-right font-bold">One way from</th>
@@ -248,15 +246,15 @@ export default function PricePage() {
             </thead>
             <tbody>
               {ships.map((ship) => (
-                <tr key={ship.slug} className="border-t border-[#e7f0ee]">
+                <tr key={ship.slug} className="border-t border-line-soft">
                   <td className="px-4 py-3 font-extrabold">
-                    <Link href={`/saint-martin-ship/${ship.slug}`} className="hover:text-[#1d9e75] hover:underline">
+                    <Link href={`/saint-martin-ship/${ship.slug}`} className="hover:text-brand-ink hover:underline">
                       {ship.name}
                     </Link>
                   </td>
-                  <td className="px-4 py-3 text-right font-extrabold text-[#1d9e75]">{ship.oneWay}</td>
-                  <td className="px-4 py-3 text-right font-extrabold text-[#1d9e75]">{ship.roundTrip}</td>
-                  <td className="px-4 py-3 text-[#628187]">
+                  <td className="px-4 py-3 text-right font-extrabold text-brand-ink">{ship.oneWay}</td>
+                  <td className="px-4 py-3 text-right font-extrabold text-brand-ink">{ship.roundTrip}</td>
+                  <td className="px-4 py-3 text-quiet">
                     {ship.cabins.length > 0 ? `${ship.cabins.length} categories` : 'None published'}
                   </td>
                 </tr>
@@ -282,10 +280,10 @@ export default function PricePage() {
         <div className="mt-4 flex flex-col gap-4">
           <FareTable rows={cabinFares} title="Private cabin reference fares" includeType />
         </div>
-        <p className="t-small mt-3 text-[#67878c]">
+        <p className="t-small mt-3 text-quiet">
           Cabins are quoted either per person or for the whole cabin depending on the operator. Always confirm the
           basis before payment. See the{' '}
-          <Link href="/saint-martin-cabin-price" className="font-extrabold text-[#1d9e75] hover:underline">
+          <Link href="/saint-martin-cabin-price" className="font-extrabold text-brand-ink hover:underline">
             cabin and seat class price guide
           </Link>{' '}
           for a fuller breakdown.
@@ -352,21 +350,7 @@ export default function PricePage() {
         intro="Fare and schedule pages cover the ticket itself. These guides cover the trip around it."
       />
 
-      <Section title="Frequently asked questions">
-        <div className="divide-y divide-[#eceae3]">
-          {faqs.map(([question, answer]) => (
-            <details key={question} className="group py-4 first:pt-0 last:pb-0">
-              <summary className="flex cursor-pointer items-center justify-between gap-4 font-extrabold text-[#0d1b2a]">
-                {question}
-                <span className="text-[#1d9e75] transition group-open:rotate-45" aria-hidden="true">
-                  +
-                </span>
-              </summary>
-              <p className="mt-3 text-[#4a5a5c]">{answer}</p>
-            </details>
-          ))}
-        </div>
-      </Section>
+      <FaqAccordion items={faqs} heading="Frequently asked questions" />
 
       <Schema
         data={{

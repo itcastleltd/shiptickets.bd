@@ -43,6 +43,12 @@ export type Ship = {
   slug: string
   name: string
   nameBn: string
+  /**
+   * Short Bengali summary of the vessel, rendered on the ship page beneath the
+   * English Quick Answer. Required rather than optional so a ship can never
+   * ship without it and quietly lose its Bangla-language content.
+   */
+  summaryBn: string
   route: string
   operator: string
   status: ShipStatus
@@ -134,7 +140,7 @@ export const CONFIDENCE_LABELS = {
 } as const
 
 const SHIP_STATUSES: ShipStatus[] = ['verified', 'needs_confirmation', 'seasonal_confirmation']
-const REQUIRED_SHIP_FIELDS: (keyof Ship)[] = ['slug', 'name', 'nameBn', 'route', 'operator', 'status', 'lastVerified', 'source', 'detail', 'ticketClasses', 'facilities', 'faq']
+const REQUIRED_SHIP_FIELDS: (keyof Ship)[] = ['slug', 'name', 'nameBn', 'summaryBn', 'route', 'operator', 'status', 'lastVerified', 'source', 'detail', 'ticketClasses', 'facilities', 'faq']
 
 const toAmount = (fare: string) => Number(fare.replace(/[^0-9]/g, ''))
 const formatFare = (amount: number) => `৳${amount.toLocaleString('en-US')}`

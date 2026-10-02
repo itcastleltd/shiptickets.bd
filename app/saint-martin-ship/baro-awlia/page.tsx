@@ -6,7 +6,7 @@ const ship = getShipBySlug('baro-awlia')!
 export const metadata = shipMetadata(
   ship,
   'MV Baro Awlia Ticket Price & Schedule',
-  'Check MV Baro Awlia ticket prices, seating classes, cabins, one-way and round-trip fares, schedule, boarding point and booking information for Cox’s Bazar to Saint Martin.',
+  'Check MV Baro Awlia fares by seating class and cabin, schedule, boarding point and booking details for the Cox\u2019s Bazar to Saint Martin route.',
 )
 
 const quickAnswer: [string, string][] = [

@@ -1,16 +1,23 @@
 import type { Metadata } from 'next'
-import { SeoPage, Section, Bullet, LinkCard, Schema, siteSchema, websiteSchema, breadcrumbSchema, faqSchema, whatsapp } from '@/components/seo-page'
+import { BanglaSummary } from '@/components/bangla-summary'
+import { SeoPage, Section, Bullet, LinkCard, Schema, siteSchema, websiteSchema, breadcrumbSchema, faqSchema, whatsapp, ProseSection } from '@/components/seo-page'
 import { LAST_VERIFIED, STATUS_LABELS, ships } from '@/lib/ships'
+import { FaqAccordion } from '@/components/content-blocks'
 import { ContactLink } from '@/components/contact-link'
 
 const title = 'How We Verify Saint Martin Ship Information'
-const description = `How ShipTickets.bd verifies Saint Martin ship fares, schedules, operating status and ticket categories before publishing them. Last verified: ${LAST_VERIFIED}.`
+const description = `How ShipTickets.bd verifies Saint Martin ship fares, schedules, operating status and ticket categories before publishing them, and what each confidence status means.`
 
 export const metadata: Metadata = {
   title: 'How We Verify Saint Martin Ship Information',
   description,
   alternates: { canonical: 'https://www.shiptickets.bd/how-we-verify-information' },
-  openGraph: { title, description, url: 'https://www.shiptickets.bd/how-we-verify-information' },
+  openGraph: {
+    title,
+    description,
+    url: 'https://www.shiptickets.bd/how-we-verify-information',
+    images: [{ url: '/og_image.png', width: 1200, height: 630 }],
+  },
 }
 
 const steps = [
@@ -31,6 +38,7 @@ const faqs: [string, string][] = [
 export default function HowWeVerifyPage() {
   return (
     <SeoPage eyebrow="Trust & verification" title={title} intro={description}>
+      <BanglaSummary path="/how-we-verify-information" />
       <Section title="Quick Answer">
         <p><strong>How does ShipTickets.bd verify ship information?</strong> We check operating status, fares per ticket class, operator and route, then confirm live availability with a human agent before any payment. Every page carries a <strong>Last verified: {LAST_VERIFIED}</strong> date, and every ship shows a clear seasonal status.</p>
         <p className="mt-3"><strong>Do you publish live availability?</strong> No. We do not run a live booking engine or hold inventory, so we never present unconfirmed availability or fares as current. Confirmation happens on WhatsApp or phone.</p>
@@ -40,14 +48,14 @@ export default function HowWeVerifyPage() {
         <ol className="flex flex-col gap-3">
           {steps.map((step, index) => (
             <li key={step.title} className="flex gap-3">
-              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-[#1d9e75] text-xs font-extrabold text-white">{index + 1}</span>
-              <span><strong className="block text-[#0d1b2a]">{step.title}</strong>{step.text}</span>
+              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-brand-ink text-xs font-extrabold text-white">{index + 1}</span>
+              <span><strong className="block text-ink">{step.title}</strong>{step.text}</span>
             </li>
           ))}
         </ol>
       </Section>
 
-      <Section title="What we will not publish">
+      <ProseSection title="What we will not publish">
         <ul className="flex flex-col gap-3">
           <Bullet>Invented fares, schedules, availability, ratings or review counts.</Bullet>
           <Bullet>A departure time copied from a previous season presented as current.</Bullet>
@@ -55,17 +63,17 @@ export default function HowWeVerifyPage() {
           <Bullet>Claims of live booking or online payment that the site does not support.</Bullet>
           <Bullet>A ship marked as confirmed when its seasonal status is still unverified.</Bullet>
         </ul>
-      </Section>
+      </ProseSection>
 
       <Section title="Information source for each ship">
-        <div className="overflow-x-auto rounded-xl border border-[#d4e6e2]">
+        <div className="overflow-x-auto rounded-xl border border-line-soft">
           <table className="w-full text-left text-sm">
-            <thead className="bg-[#0d1b2a]/[4%]">
+            <thead className="bg-[#e3ecea] text-ink">
               <tr><th className="px-4 py-3 font-bold">Ship</th><th className="px-4 py-3 font-bold">Operator</th><th className="px-4 py-3 font-bold">Status</th><th className="px-4 py-3 font-bold">Last verified</th></tr>
             </thead>
             <tbody>
               {ships.map((ship) => (
-                <tr key={ship.slug} className="border-t border-[#e7f0ee]">
+                <tr key={ship.slug} className="border-t border-line-soft">
                   <td className="px-4 py-3 font-extrabold">{ship.name}</td>
                   <td className="px-4 py-3">{ship.operator}</td>
                   <td className="px-4 py-3">{STATUS_LABELS[ship.status]}</td>
@@ -75,7 +83,7 @@ export default function HowWeVerifyPage() {
             </tbody>
           </table>
         </div>
-        <p className="mt-3 text-xs text-[#67878c]">Government travel rules are checked against official notices. Seasonal access, Travel Pass and QR ticket requirements can change between seasons.</p>
+        <p className="mt-3 text-xs text-quiet">Government travel rules are checked against official notices. Seasonal access, Travel Pass and QR ticket requirements can change between seasons.</p>
       </Section>
 
       <Section title="See the verification date on each page">
@@ -87,21 +95,12 @@ export default function HowWeVerifyPage() {
         </div>
       </Section>
 
-      <Section title="FAQ">
-        <div className="flex flex-col gap-4">
-          {faqs.map(([question, answer]) => (
-            <div key={question}>
-              <p className="font-extrabold text-[#0d1b2a]">{question}</p>
-              <p className="mt-1">{answer}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
+      <FaqAccordion items={faqs} />
 
-      <Section title="Confirm before you book">
+      <ProseSection title="Confirm before you book">
         <p className="mb-4">Share your travel date and passenger count. A support agent will confirm the current sailing, fare, cabin basis and Travel Pass requirement with you.</p>
-        <ContactLink href={`${whatsapp}Hello ShipTickets.bd, please confirm the current schedule and fare for my travel date.`} kind="whatsapp" eventLabel="verify_page_whatsapp" className="inline-flex items-center gap-2 rounded-full bg-[#1d9e75] px-5 py-3 text-sm font-extrabold text-white">Confirm on WhatsApp</ContactLink>
-      </Section>
+        <ContactLink href={`${whatsapp}Hello ShipTickets.bd, please confirm the current schedule and fare for my travel date.`} kind="whatsapp" eventLabel="verify_page_whatsapp" className="inline-flex items-center gap-2 rounded-full bg-brand-ink px-5 py-3 text-sm font-extrabold text-white">Confirm on WhatsApp</ContactLink>
+      </ProseSection>
 
       <Schema data={{
         '@context': 'https://schema.org',

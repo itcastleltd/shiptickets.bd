@@ -1,6 +1,7 @@
 import Link from 'next/link'
+import { Children, isValidElement } from 'react'
 import { ArrowRight, Check, Star } from 'lucide-react'
-import { WHATSAPP_NUMBER, LAST_REVIEWED, getBusinessRating, getReviewsForShip, type Ship } from '@/lib/ships'
+import { site, WHATSAPP_NUMBER, LAST_REVIEWED, getBusinessRating, getReviewsForShip, type Ship } from '@/lib/ships'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { BackToTop } from '@/components/BackToTop'
@@ -23,36 +24,155 @@ function RatingChip({ updated }: { updated: string }) {
 
   return (
     <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
-      <p className="t-small font-semibold text-[#6f8a8e]">Information last reviewed: {updated}</p>
+      <p className="t-small font-semibold text-quiet">Information last reviewed: {updated}</p>
       {rating && (
         <p className="inline-flex items-center gap-1.5 rounded-full border border-[#f3d9bf] bg-[#fff8ee] px-3 py-1.5 text-sm font-bold text-[#8a5a2f]">
           <Star size={15} className="fill-[#ef9f27] text-[#ef9f27]" aria-hidden="true" />
           <span className="sr-only">Customer rating </span>
           {rating.ratingValue.toFixed(1)} out of 5
-          <span className="font-semibold text-[#a5794f]">from {rating.reviewCount.toLocaleString('en-US')} Google reviews</span>
+          <span className="font-semibold text-warm">from {rating.reviewCount.toLocaleString('en-US')} Google reviews</span>
         </p>
       )}
     </div>
   )
 }
 
+const BENGALI = /[\u0980-\u09FF]/
+
+/**
+ * Page eyebrow, with the Bengali half marked up separately.
+ *
+ * Every eyebrow mixes English with a Bengali word ("Ship directory · জাহাজ").
+ * Rendered as one string, both halves inherited `.t-label`'s 0.14em tracking,
+ * which is fine for the English but visibly breaks the Bengali conjuncts. The
+ * Bengali segment is wrapped in a `lang="bn"` span with tracking neutralised, so
+ * screen readers switch voice and the script is set correctly.
+ */
+function Eyebrow({ text }: { text: string }) {
+  const separator = text.indexOf('·')
+  if (separator === -1) {
+    return BENGALI.test(text)
+      ? <span lang="bn" className="bn">{text}</span>
+      : <>{text}</>
+  }
+  const english = text.slice(0, separator)
+  const bengali = text.slice(separator + 1).trim()
+  return (
+    <>
+      {english}
+      {' · '}
+      <span lang="bn" className="bn">{bengali}</span>
+    </>
+  )
+}
+
 export function SeoPage({ eyebrow, title, intro, updated = LAST_REVIEWED, crumbs, children }: { eyebrow: string; title: string; intro: string; updated?: string; crumbs?: Crumb[]; children: React.ReactNode }) {
-  const pageSchema = { '@context': 'https://schema.org', '@type': 'WebPage', name: title, description: intro, isPartOf: { '@id': 'https://www.shiptickets.bd/#website' }, publisher: { '@id': 'https://www.shiptickets.bd/#organization' }, about: { '@type': 'Place', name: "Saint Martin's Island, Bangladesh" } }
-  return <main className="min-h-screen bg-white text-[#0d1b2a]">
+  /*
+   * `dateModified` and `datePublished` are read from content/site.json rather
+   * than hardcoded, because a stale freshness claim is worse than none. The same
+   * value already drives the visible "last reviewed" line, so the markup can
+   * never claim a date the page does not show. Generative engines weight
+   * freshness heavily when deciding whether to cite a page.
+   */
+  const pageSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: title,
+    description: intro,
+    datePublished: site.updatedAt,
+    dateModified: site.updatedAt,
+    inLanguage: 'en',
+    isPartOf: { '@id': 'https://www.shiptickets.bd/#website' },
+    publisher: { '@id': 'https://www.shiptickets.bd/#organization' },
+    about: { '@type': 'Place', name: "Saint Martin's Island, Bangladesh" },
+  }
+  return <main className="min-h-screen bg-white text-ink">
     <Schema data={pageSchema} />
     <SeasonBar />
     <Header />
     {crumbs && crumbs.length > 0 && <div className="mx-auto max-w-7xl px-5 pt-6"><Breadcrumbs items={crumbs} /></div>}
-    <section className="mx-auto max-w-7xl px-5 pb-12 pt-8 md:pb-16 md:pt-10"><p className="t-label mb-4 text-[#1d9e75]">{eyebrow}</p><h1 className="t-display max-w-4xl text-[#0d1b2a]">{title}</h1><p className="t-lede mt-5 max-w-2xl text-[#4a5a5c]">{intro}</p><RatingChip updated={updated} /></section>
-    <div className="mx-auto max-w-7xl px-5 pb-20"><article className="min-w-0 max-w-5xl">{children}</article></div>
+    <section className="mx-auto max-w-7xl px-5 pb-12 pt-8 md:pb-16 md:pt-10"><p className="t-label mb-4 text-brand-ink"><Eyebrow text={eyebrow} /></p><h1 className="t-display max-w-4xl text-ink">{title}</h1><p className="t-lede mt-5 max-w-2xl text-prose">{intro}</p><RatingChip updated={updated} /></section>
+    <div className="mx-auto max-w-7xl px-5 pb-20"><article className="min-w-0">{children}</article></div>
     <Footer />
     <BackToTop />
     <MobileCallBar />
   </main>
 }
 
-export function Section({ title, children }: { title: string; children: React.ReactNode }) { return <section className="mb-10 rounded-3xl border border-[#dedcd3] bg-white p-6 md:p-8"><h2 className="t-title">{title}</h2><div className="t-body mt-4 space-y-4 text-[#4a5a5c]">{children}</div></section> }
-export function Bullet({ children }: { children: React.ReactNode }) { return <li className="flex gap-3"><Check className="mt-1 shrink-0 text-[#1d9e75]" size={17}/><span>{children}</span></li> }
+/**
+ * Count the readable blocks a section actually contains.
+ *
+ * Counting direct children does not work: almost every list is wrapped in a
+ * single `<div>` or `<ul>`, so a six-item FAQ arrives as one child. This walks
+ * the tree instead, treating a host element that only wraps other blocks as
+ * transparent and a leaf as one block.
+ *
+ * A custom component counts as one block, because its internals are not visible
+ * from here, and table parts count as one so a data table is never mistaken for
+ * a run of short paragraphs.
+ */
+const TABLE_PARTS = new Set(['table', 'thead', 'tbody', 'tfoot', 'tr', 'td', 'th', 'caption'])
+
+function countBlocks(node: React.ReactNode): number {
+  return Children.toArray(node).reduce((total: number, child) => {
+    if (!isValidElement(child)) return total
+    if (typeof child.type !== 'string') return total + 1
+    if (TABLE_PARTS.has(child.type)) return total + 1
+    const inner = (child.props as { children?: React.ReactNode }).children
+    const nested = countBlocks(inner)
+    return total + (nested > 0 ? nested : 1)
+  }, 0)
+}
+
+/**
+ * Section for running text.
+ *
+ * The box is always full width. A 46rem box with the text in the left half was
+ * tried in both alignments and rejected: centred, the page had two different
+ * left edges, and left-aligned, the framed box was visibly half empty. So the
+ * frame spans the shell like every other section, and the reading problem is
+ * solved inside it.
+ *
+ * Two ways, chosen per section by how much text there is:
+ *
+ * - Two or more blocks (a Quick Answer list, "What we will not publish", an
+ *   FAQ) run in two columns from `xl` up. At 1280px each column is ~572px,
+ *   about 67 characters, so the section fills the width and every line stays
+ *   comfortable. This is why the page no longer looks half used.
+ * - A single-block section would leave one of two columns empty, so its heading
+ *   moves beside the text instead: the h2 sits in a 17rem column and the body
+ *   runs to its right, which fills the frame the way a term-and-description row
+ *   does rather than leaving a half-empty box.
+ *
+ * Between `md` and `xl` the available width is 664-920px, so a single column is
+ * still capped at 78ch and there is modest slack; above `xl` the two-column
+ * layout takes over and the slack disappears.
+ */
+export function ProseSection({ title, children }: { title: string; children: React.ReactNode }) {
+  const twoColumn = countBlocks(children) >= 2
+
+  if (!twoColumn) {
+    return (
+      <section className="mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8">
+        <div className="md:grid md:grid-cols-[17rem_minmax(0,1fr)] md:items-baseline md:gap-8">
+          <h2 className="t-title">{title}</h2>
+          <div className="section-body t-body mt-4 space-y-4 text-prose md:mt-0">{children}</div>
+        </div>
+      </section>
+    )
+  }
+
+  return (
+    <section className="mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8">
+      <h2 className="t-title">{title}</h2>
+      <div className="section-body t-body prose-columns mt-4 space-y-4 text-prose columns-1 gap-8 xl:columns-2">
+        {children}
+      </div>
+    </section>
+  )
+}
+export function Section({ title, children }: { title: string; children: React.ReactNode }) { return <section className="mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8"><h2 className="t-title">{title}</h2><div className="section-body t-body mt-4 space-y-4 text-prose">{children}</div></section> }
+export function Bullet({ children }: { children: React.ReactNode }) { return <li className="flex gap-3"><Check className="mt-1 shrink-0 text-brand-ink" size={17}/><span>{children}</span></li> }
 export function Pill({ children }: { children: React.ReactNode }) { return <span className="inline-flex rounded-full bg-[#e1f5ee] px-3 py-1 text-xs font-extrabold text-[#0f6e56]">{children}</span> }
 export function Schema({ data }: { data: object }) { return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} /> }
 
@@ -158,4 +278,4 @@ export { whatsapp }
 
 export function Status({ children }: { children: React.ReactNode }) { return <Pill>{children}</Pill> }
 
-export function LinkCard({ href, title, text }: { href: string; title: string; text: string }) { return <Link href={href} className="group rounded-2xl border border-[#dedcd3] bg-white p-5 transition hover:-translate-y-1 hover:border-[#1d9e75]"><h3 className="font-extrabold">{title}</h3><p className="mt-2 text-sm leading-6 text-[#5f5e5a]">{text}</p><ArrowRight className="mt-4 text-[#1d9e75] transition group-hover:translate-x-1" size={17}/></Link> }
+export function LinkCard({ href, title, text }: { href: string; title: string; text: string }) { return <Link href={href} className="group rounded-2xl border border-line-soft bg-white p-5 transition hover:-translate-y-1 hover:border-brand-ink"><h3 className="font-extrabold">{title}</h3><p className="mt-2 text-sm leading-6 text-prose">{text}</p><ArrowRight className="mt-4 text-brand-ink transition group-hover:translate-x-1" size={17}/></Link> }

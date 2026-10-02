@@ -9,7 +9,7 @@ const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-NXTPXRQK'
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.shiptickets.bd'),
   title: { default: 'Saint Martin Ship Tickets Bangladesh', template: '%s | ShipTickets.bd' },
-  description: "Compare Saint Martin ship tickets, prices, schedules, cabins and facilities from Cox's Bazar. Check verified information and book your Saint Martin trip with ShipTickets.bd.",
+  description: "Compare Saint Martin ship ticket prices, schedules, cabins and facilities from Cox's Bazar, then confirm your travel date with our support team.",
   keywords: ['Saint Martin ship ticket', 'Saint Martin ship ticket price', 'Cox’s Bazar to Saint Martin ship', 'সেন্টমার্টিন জাহাজের টিকিট'],
   alternates: { canonical: '/' },
   manifest: '/manifest.webmanifest',
@@ -34,7 +34,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="dns-prefetch" href="https://instagram.com" />
         <link rel="preload" as="image" href="/og_image.png" />
         <link rel="alternate" type="application/rss+xml" title="ShipTickets.bd RSS" href="/rss.xml" />
-        <link rel="mask-icon" href="/Icon.svg" color="#1d9e75" />
+        {/*
+         * The file on disk is public/icon.svg, and the deployment filesystem is
+         * case sensitive, so the mask icon has to be requested with the same case
+         * the file actually has. Requesting /Icon.svg returned 404.
+         */}
+        <link rel="mask-icon" href="/icon.svg" color="#1d9e75" />
         <meta name="geo.region" content="BD" />
         <meta name="geo.placename" content="Dhaka" />
         <meta name="author" content="Al Amin Hosain" />
@@ -43,6 +48,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             id="gtm-base"
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
+              /*
+               * Official Next.js GTM snippet. The anchor element is looked up with
+               * `s`, the same tag name that is then created for the container
+               * script, so the container is inserted directly after the loader.
+               * Looking up a different tag returned undefined and threw before
+               * gtm.js was ever requested.
+               */
               __html: `
                 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

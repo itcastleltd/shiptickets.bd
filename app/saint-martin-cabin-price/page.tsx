@@ -1,17 +1,23 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { SeoPage, Section, Bullet, LinkCard, Schema, siteSchema, websiteSchema, breadcrumbSchema, faqSchema, whatsapp } from '@/components/seo-page'
+import { SeoPage, Section, Bullet, LinkCard, Schema, siteSchema, websiteSchema, breadcrumbSchema, faqSchema, whatsapp, ProseSection } from '@/components/seo-page'
 import { LAST_VERIFIED, ships } from '@/lib/ships'
 import { ContactLink } from '@/components/contact-link'
+import { FaqAccordion } from '@/components/content-blocks'
 
 const title = 'Saint Martin Ship Cabin & Seat Class Fares'
-const description = `Compare Saint Martin ship seat classes and cabins (open deck, lounge, AC seating, single, twin, VIP and VVIP cabin) with reference fares. Last verified: ${LAST_VERIFIED}.`
+const description = `Compare Saint Martin ship seat classes and cabins (open deck, lounge, AC seating, single, twin, VIP and VVIP cabin) with reference fares for the current season.`
 
 export const metadata: Metadata = {
-  title: 'Saint Martin Ship Cabin & Seat Class Fares',
+  title: 'Saint Martin Cabin & Seat Fares',
   description,
   alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-cabin-price' },
-  openGraph: { title, description, url: 'https://www.shiptickets.bd/saint-martin-cabin-price' },
+  openGraph: {
+    title,
+    description,
+    url: 'https://www.shiptickets.bd/saint-martin-cabin-price',
+    images: [{ url: '/og_image.png', width: 1200, height: 630 }],
+  },
 }
 
 const cabinReference: { name: string; price: string; note: string }[] = [
@@ -47,23 +53,23 @@ export default function CabinPricePage() {
       </Section>
 
       <Section title="Cabin price reference (one-way)">
-        <div className="overflow-x-auto rounded-xl border border-[#d4e6e2]">
+        <div className="overflow-x-auto rounded-xl border border-line-soft">
           <table className="w-full text-left text-sm">
-            <thead className="bg-[#0d1b2a]/[4%]">
+            <thead className="bg-[#e3ecea] text-ink">
               <tr><th className="px-4 py-3 font-bold">Cabin</th><th className="px-4 py-3 font-bold">Reference fare</th><th className="px-4 py-3 font-bold">Notes</th></tr>
             </thead>
             <tbody>
               {cabinReference.map((cabin) => (
-                <tr key={cabin.name} className="border-t border-[#e7f0ee]">
+                <tr key={cabin.name} className="border-t border-line-soft">
                   <td className="px-4 py-3 font-extrabold">{cabin.name}</td>
-                  <td className="px-4 py-3 font-extrabold text-[#1d9e75]">{cabin.price}</td>
-                  <td className="px-4 py-3 text-[#628187]">{cabin.note}</td>
+                  <td className="px-4 py-3 font-extrabold text-brand-ink">{cabin.price}</td>
+                  <td className="px-4 py-3 text-quiet">{cabin.note}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="mt-3 text-xs text-[#67878a]"><strong>Last verified:</strong> {LAST_VERIFIED}. Reference values, not live prices. Confirm the exact fare and pricing basis for your travel date.</p>
+        <p className="mt-3 text-xs text-quiet">Reference values, not live prices. Confirm the exact fare and pricing basis for your travel date.</p>
       </Section>
 
       <Section title="Seat class and cabin glossary">
@@ -71,7 +77,7 @@ export default function CabinPricePage() {
         <dl className="mt-4 grid gap-4 sm:grid-cols-2">
           {categoryGlossary.map((item) => (
             <div key={item.term} className="rounded-2xl border border-[#dedad3] p-4">
-              <dt className="font-extrabold text-[#0d1b2a]">{item.term}</dt>
+              <dt className="font-extrabold text-ink">{item.term}</dt>
               <dd className="mt-1 text-sm">{item.text}</dd>
             </div>
           ))}
@@ -79,22 +85,38 @@ export default function CabinPricePage() {
       </Section>
 
       <Section title="Classes and cabins by ship">
-        <div className="flex flex-col gap-3">
+        <div className="grid gap-4 md:grid-cols-2">
           {ships.map((ship) => (
-            <div key={ship.slug} className="rounded-2xl border border-[#dedad3] p-5">
+            <div key={ship.slug} className="flex flex-col rounded-2xl border border-line-soft bg-white p-5">
               <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="font-extrabold text-[#0d1b2a]">{ship.name}</h3>
-                <p className="text-sm font-extrabold text-[#1d9e75]">From {ship.oneWay} one way, {ship.roundTrip} round trip</p>
+                <h3 className="t-subtitle text-ink">{ship.name}</h3>
+                <p className="text-sm font-extrabold text-brand-ink">
+                  From {ship.oneWay} one way, {ship.roundTrip} round trip
+                </p>
               </div>
-              <p className="mt-2 text-sm"><strong>Classes:</strong> {ship.ticketClasses.map((ticketClass) => `${ticketClass.name} (${ticketClass.oneWayFare})`).join(', ')}</p>
-              <p className="mt-1 text-sm"><strong>Cabins:</strong> {ship.cabins.length > 0 ? ship.cabins.map((cabin) => `${cabin.name}, ${cabin.capacity}`).join('; ') : 'None published for this vessel'}</p>
-              <Link href={`/saint-martin-ship/${ship.slug}`} className="mt-3 inline-block text-sm font-extrabold text-[#1d9e75]">See the full {ship.name} page</Link>
+              <p className="mt-3 t-body text-prose">
+                <strong className="text-ink">Classes:</strong>{' '}
+                {ship.ticketClasses.map((ticketClass) => `${ticketClass.name} (${ticketClass.oneWayFare})`).join(', ')}
+              </p>
+              <p className="mt-2 t-body text-prose">
+                <strong className="text-ink">Cabins:</strong>{' '}
+                {ship.cabins.length > 0
+                  ? ship.cabins.map((cabin) => `${cabin.name}, ${cabin.capacity}`).join('; ')
+                  : 'None published for this vessel'}
+              </p>
+              <Link
+                href={`/saint-martin-ship/${ship.slug}`}
+                className="mt-4 inline-flex items-center gap-1.5 self-start border-b border-transparent pb-0.5 text-sm font-extrabold text-brand-ink transition hover:border-brand-ink"
+              >
+                See the full {ship.name} page
+                <span aria-hidden="true">→</span>
+              </Link>
             </div>
           ))}
         </div>
       </Section>
 
-      <Section title="Before you pay for a cabin">
+      <ProseSection title="Before you pay for a cabin">
         <ul className="flex flex-col gap-3">
           <Bullet>Ask whether the cabin price is per person or for the whole cabin.</Bullet>
           <Bullet>Confirm occupancy. A twin cabin usually takes two passengers.</Bullet>
@@ -102,7 +124,7 @@ export default function CabinPricePage() {
           <Bullet>Confirm cancellation terms before payment.</Bullet>
           <Bullet>Keep the passenger name on the ticket identical to your ID.</Bullet>
         </ul>
-      </Section>
+      </ProseSection>
 
       <Section title="Related pages">
         <div className="grid gap-4 md:grid-cols-2">
@@ -113,21 +135,12 @@ export default function CabinPricePage() {
         </div>
       </Section>
 
-      <Section title="FAQ">
-        <div className="flex flex-col gap-4">
-          {faqs.map(([question, answer]) => (
-            <div key={question}>
-              <p className="font-extrabold text-[#0d1b2a]">{question}</p>
-              <p className="mt-1">{answer}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
+      <FaqAccordion items={faqs} />
 
-      <Section title="Confirm the current cabin fare">
+      <ProseSection title="Confirm the current cabin fare">
         <p className="mb-4">Send us your travel date, passenger count and preferred cabin. We will confirm availability, the pricing basis and the exact fare before you pay.</p>
-        <ContactLink href={`${whatsapp}Hello ShipTickets.bd, I want to check cabin availability and price for my travel date.`} kind="whatsapp" eventLabel="cabin_price_whatsapp" className="inline-flex items-center gap-2 rounded-full bg-[#1d9e75] px-5 py-3 text-sm font-extrabold text-white">Check cabin price on WhatsApp</ContactLink>
-      </Section>
+        <ContactLink href={`${whatsapp}Hello ShipTickets.bd, I want to check cabin availability and price for my travel date.`} kind="whatsapp" eventLabel="cabin_price_whatsapp" className="inline-flex items-center gap-2 rounded-full bg-brand-ink px-5 py-3 text-sm font-extrabold text-white">Check cabin price on WhatsApp</ContactLink>
+      </ProseSection>
 
       <Schema data={{
         '@context': 'https://schema.org',

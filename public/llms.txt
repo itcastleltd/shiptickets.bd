@@ -146,7 +146,6 @@ Cabin and class detail: [Saint Martin ship cabin and seat class prices](https://
 - **Open Deck / Sun Deck / Main Deck** — outdoor or deck-level seating. On some vessels this is the cheapest fare, while on others a named Economy seat is cheaper, so compare the fare table
 - **Business seat / chair** — air-conditioned seating above the economy decks
 - **Economy seat** — lower-cost indoor or outdoor seating
-- **Business seat / chair** — air-conditioned seating above the economy decks
 - **Lounge** — premium indoor comfort seating
 - **Bunker bed** — shared berth accommodation, usually per person
 - **VIP / VVIP cabin** — premium private accommodation

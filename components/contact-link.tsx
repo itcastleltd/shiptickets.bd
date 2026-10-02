@@ -21,6 +21,7 @@ export function ContactLink({
   className,
   target,
   rel,
+  ariaLabel,
   children,
 }: {
   href: string
@@ -29,6 +30,13 @@ export function ContactLink({
   className?: string
   target?: string
   rel?: string
+  /**
+   * Required when the link renders an icon and nothing else. The header's
+   * phone button is a bare <Phone> glyph below the `sm` breakpoint, which left
+   * it with no accessible name at all — a WCAG 2.4.4 / 4.1.2 failure on every
+   * page in the site, since the header is shared.
+   */
+  ariaLabel?: string
   children: React.ReactNode
 }) {
   return (
@@ -37,6 +45,7 @@ export function ContactLink({
       className={className}
       target={target}
       rel={rel}
+      aria-label={ariaLabel}
       onClick={() => (kind === 'whatsapp' ? trackWhatsApp(eventLabel) : trackPhoneClick(eventLabel))}
     >
       {children}

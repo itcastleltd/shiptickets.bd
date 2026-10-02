@@ -16,7 +16,7 @@ const nextConfig = {
         headers: [{ key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=604800' }],
       },
       {
-        source: '/:file(Logo|og_image|saint-martin-hero|placeholder|Icon).:ext(jpg|jpeg|png|svg|webp)',
+        source: '/:file(Logo|og_image|saint-martin-hero|placeholder|icon).:ext(jpg|jpeg|png|svg|webp)',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=2592000, stale-while-revalidate=604800' }],
       },
       {

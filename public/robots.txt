@@ -5,6 +5,11 @@ Disallow: /api/
 
 Sitemap: https://www.shiptickets.bd/sitemap.xml
 
+# Plain-text entry points for language models and AI agents.
+# llms.txt is a short index; llms-full.txt carries the same content in full.
+LLMs: https://www.shiptickets.bd/llms.txt
+LLMs-Full: https://www.shiptickets.bd/llms-full.txt
+
 User-agent: Googlebot
 Allow: /
 Disallow: /_not-found

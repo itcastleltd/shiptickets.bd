@@ -5,8 +5,8 @@ const ship = getShipBySlug('karnafuly-express')!
 
 export const metadata = shipMetadata(
   ship,
-  'MV Karnafuly Express Ticket Price & Schedule',
-  'Check MV Karnafuly Express ticket prices, one-way and round-trip fares, cabins, seating classes, schedule, boarding point and booking information for Cox’s Bazar to Saint Martin.',
+  'MV Karnafuly Express Fares & Schedule',
+  'Check MV Karnafuly Express fares by class and cabin, schedule, boarding point and booking details for the Cox\u2019s Bazar to Saint Martin route.',
 )
 
 const quickAnswer: [string, string][] = [

@@ -25,20 +25,20 @@ export function Header() {
   const isActive = (href: string) => href === '/' ? pathname === '/' : pathname.startsWith(href)
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[#ecf0ee] bg-white/95 backdrop-blur">
-      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 lg:px-8">
+    <header className="sticky top-0 z-40 border-b border-line-soft bg-white/95 backdrop-blur">
+      <div className="mx-auto flex h-(--header-h) max-w-7xl items-center justify-between px-5 lg:px-8">
         <Link href="/" className="flex items-center" aria-label="ShipTickets.bd home">
           <Image src="/Logo.png" alt="ShipTickets.bd — Saint Martin ship tickets" width={134} height={40} className="h-10 w-auto" />
         </Link>
 
-        <nav className="hidden items-center gap-6 text-sm font-semibold text-[#507279] lg:flex">
+        <nav className="hidden items-center gap-6 text-sm font-semibold text-quiet lg:flex">
           {navLinks.map((link) => {
             const active = isActive(link.href)
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`transition-colors ${active ? 'text-[#1d9e75]' : 'text-[#507279] hover:text-[#1d9e75]'}`}
+                className={`transition-colors ${active ? 'text-brand-ink' : 'text-quiet hover:text-brand-ink'}`}
               >
                 {link.label}
               </Link>
@@ -54,12 +54,12 @@ export function Header() {
           >
             <MessageCircle size={16} /> WhatsApp
           </a>
-          <ContactLink href={phoneHref} kind="phone" eventLabel="header_call" className="grid size-10 place-items-center rounded-full border border-[#cfe1df] bg-white text-[#0d1b2a] sm:hidden">
-            <Phone size={17} />
+          <ContactLink href={phoneHref} kind="phone" eventLabel="header_call" ariaLabel="Call ShipTickets.bd for a ticket" className="grid size-10 place-items-center rounded-full border border-line bg-white text-ink sm:hidden">
+            <Phone size={17} aria-hidden="true" />
           </ContactLink>
           <button
             type="button"
-            className="grid size-10 place-items-center rounded-full text-[#0d1b2a] hover:bg-[#f0f4f3] lg:hidden"
+            className="grid size-10 place-items-center rounded-full text-ink hover:bg-[#f0f4f3] lg:hidden"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen(!menuOpen)}
@@ -71,14 +71,14 @@ export function Header() {
 
       {menuOpen && (
         <div className="lg:hidden">
-          <nav className="flex flex-col gap-1 border-t border-[#ecf0ee] bg-white px-5 py-3">
+          <nav className="flex flex-col gap-1 border-t border-line-soft bg-white px-5 py-3">
             {navLinks.map((link) => {
               const active = isActive(link.href)
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`flex items-center justify-between py-3 text-sm font-semibold ${active ? 'text-[#1d9e75]' : 'text-[#507279] hover:text-[#1d9e75]'}`}
+                  className={`flex items-center justify-between py-3 text-sm font-semibold ${active ? 'text-brand-ink' : 'text-quiet hover:text-brand-ink'}`}
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}

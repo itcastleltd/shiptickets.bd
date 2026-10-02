@@ -5,8 +5,8 @@ const ship = getShipBySlug('keari-cruise-dine')!
 
 export const metadata = shipMetadata(
   ship,
-  'Keari Cruise & Dine Ticket Price & Schedule',
-  'Check Keari Cruise & Dine ticket prices, Exclusive, Coral and Pearl lounge categories, dining options, schedule, boarding point and booking information for Cox’s Bazar to Saint Martin.',
+  'Keari Cruise & Dine Fares & Schedule',
+  'Check Keari Cruise & Dine lounge fares, dining options, schedule, boarding point and booking details for the Cox\u2019s Bazar to Saint Martin route.',
 )
 
 const quickAnswer: [string, string][] = [
