@@ -96,12 +96,13 @@ export type SeasonConfig = {
  * appear automatically once a ship has at least one entry.
  */
 export type Review = {
-  shipSlug: string
-  author: string
+  id: number
+  name: string
+  location?: string
   rating: number
+  review_text: string
   date: string
-  text: string
-  source: 'google' | 'facebook' | 'post-trip' | 'whatsapp-survey'
+  shipSlug?: string
 }
 
 export type SiteConfig = {
@@ -199,16 +200,23 @@ export function getShipBySlug(slug: string): Ship | undefined {
 const reviews = reviewsData as Review[]
 
 reviews.forEach((review, index) => {
-  if (!shipsBySlug.has(review.shipSlug)) {
-    throw new Error(`content/reviews.json: entry #${index + 1} references unknown ship slug "${review.shipSlug}"`)
+  if (typeof review.name !== 'string') {
+    throw new Error(`content/reviews.json: entry #${index + 1} missing name`)
   }
-  if (review.rating < 1 || review.rating > 5) {
+  if (typeof review.review_text !== 'string') {
+    throw new Error(`content/reviews.json: entry #${index + 1} missing review_text`)
+  }
+  if (typeof review.rating !== 'number' || review.rating < 1 || review.rating > 5) {
     throw new Error(`content/reviews.json: entry #${index + 1} has rating ${review.rating}, expected 1-5`)
   }
 })
 
 export function getReviewsForShip(slug: string): Review[] {
-  return reviews.filter((review) => review.shipSlug === slug)
+  return reviews.filter((review) => !review.shipSlug || review.shipSlug === slug)
+}
+
+export function getAllReviews(): Review[] {
+  return reviews
 }
 
 export function getTravellersAssisted() {

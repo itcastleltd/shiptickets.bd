@@ -137,10 +137,10 @@ export function FareTable({ ship, id }: { ship: Ship; id?: string }) {
         <table className="w-full min-w-[520px] text-left text-sm">
           <thead className="bg-[#e3ecea] text-ink">
             <tr>
-              <th className="px-4 py-3 font-bold">Category</th>
-              <th className="px-4 py-3 text-right font-bold">Cox’s Bazar → Saint Martin</th>
-              {hasReturnLeg && <th className="px-4 py-3 text-right font-bold">Saint Martin → Cox’s Bazar</th>}
-              <th className="px-4 py-3 text-right font-bold">Round trip</th>
+              <th scope="col" className="px-4 py-3 font-bold">Category</th>
+              <th scope="col" className="px-4 py-3 text-right font-bold">Cox’s Bazar → Saint Martin</th>
+              {hasReturnLeg && <th scope="col" className="px-4 py-3 text-right font-bold">Saint Martin → Cox’s Bazar</th>}
+              <th scope="col" className="px-4 py-3 text-right font-bold">Round trip</th>
             </tr>
           </thead>
           <tbody>
@@ -225,11 +225,11 @@ export function CategoryCompare({ ship, id }: { ship: Ship; id?: string }) {
         <table className="w-full min-w-[560px] text-left text-sm">
           <thead className="bg-[#e3ecea] text-ink">
             <tr>
-              <th className="px-4 py-3 font-bold">Category</th>
-              <th className="px-4 py-3 font-bold">Best for</th>
-              <th className="px-4 py-3 font-bold">Privacy</th>
-              <th className="px-4 py-3 font-bold">Outdoor access</th>
-              <th className="px-4 py-3 font-bold">Price level</th>
+              <th scope="col" className="px-4 py-3 font-bold">Category</th>
+              <th scope="col" className="px-4 py-3 font-bold">Best for</th>
+              <th scope="col" className="px-4 py-3 font-bold">Privacy</th>
+              <th scope="col" className="px-4 py-3 font-bold">Outdoor access</th>
+              <th scope="col" className="px-4 py-3 font-bold">Price level</th>
             </tr>
           </thead>
           <tbody>
@@ -513,13 +513,6 @@ export function QuickAnswer({ items, id }: { items: [string, string][]; id?: str
  * paired with the review count it comes from.
  */
 
-const REVIEW_SOURCE_LABEL: Record<string, string> = {
-  google: 'Google review',
-  facebook: 'Facebook review',
-  'post-trip': 'Post-trip feedback',
-  'whatsapp-survey': 'WhatsApp survey',
-}
-
 function Stars({ rating }: { rating: number }) {
   return (
     <span className="inline-flex items-center gap-0.5" aria-label={`${rating} out of 5`}>
@@ -561,15 +554,17 @@ export function CustomerReviews({ ship, id }: { ship: Ship; id?: string }) {
 
       <ul className="mt-6 grid gap-4 md:grid-cols-2">
         {shipReviews.map((review, index) => (
-          <li key={`${review.author}-${index}`} className="rounded-2xl border border-line-soft p-5">
+          <li key={`${review.id}-${index}`} className="rounded-2xl border border-line-soft p-5">
             <div className="flex items-center justify-between gap-3">
-              <p className="font-extrabold text-ink">{review.author}</p>
+              <div>
+                <p className="font-extrabold text-ink">{review.name}</p>
+                {review.location && <p className="text-xs text-quiet">{review.location}</p>}
+              </div>
               <Stars rating={review.rating} />
             </div>
-            <p className="mt-3 t-body text-prose">{review.text}</p>
+            <p className="mt-3 t-body text-prose">{review.review_text}</p>
             <p className="mt-3 text-xs text-faint">
               <time dateTime={review.date}>{new Date(review.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</time>
-              {' · '}{REVIEW_SOURCE_LABEL[review.source] ?? review.source}
             </p>
           </li>
         ))}

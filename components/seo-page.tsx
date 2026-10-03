@@ -12,13 +12,13 @@ import { SeasonBar } from '@/components/season-bar'
 const whatsapp = `https://wa.me/${WHATSAPP_NUMBER}?text=`
 
 /**
- * Business rating chip.
- *
- * Renders nothing until `businessRating` in content/site.json holds a real
- * rating and review count taken from the Google Business Profile. An
- * aggregateRating in the markup is only legitimate if the same number is
- * visible to the visitor, so the chip and the schema read the same value.
- */
+  * Business rating chip.
+  *
+  * Renders nothing until `businessRating` in content/site.json holds a real
+  * rating and review count. An aggregateRating in the markup is only legitimate
+  * if the same number is visible to the visitor, so the chip and the schema
+  * read the same value.
+  */
 function RatingChip({ updated }: { updated: string }) {
   const rating = getBusinessRating()
 
@@ -30,7 +30,7 @@ function RatingChip({ updated }: { updated: string }) {
           <Star size={15} className="fill-[#ef9f27] text-[#ef9f27]" aria-hidden="true" />
           <span className="sr-only">Customer rating </span>
           {rating.ratingValue.toFixed(1)} out of 5
-          <span className="font-semibold text-warm">from {rating.reviewCount.toLocaleString('en-US')} Google reviews</span>
+          <span className="font-semibold text-warm">from {rating.reviewCount.toLocaleString('en-US')} reviews</span>
         </p>
       )}
     </div>
@@ -86,7 +86,7 @@ export function SeoPage({ eyebrow, title, intro, updated = LAST_REVIEWED, crumbs
     publisher: { '@id': 'https://www.shiptickets.bd/#organization' },
     about: { '@type': 'Place', name: "Saint Martin's Island, Bangladesh" },
   }
-  return <main className="min-h-screen bg-white text-ink">
+  return <main id="main" className="min-h-screen bg-white text-ink">
     <Schema data={pageSchema} />
     <SeasonBar />
     <Header />
@@ -263,9 +263,9 @@ export const productSchema = (ship: Ship) => {
       ? {
           review: reviews.map((review) => ({
             '@type': 'Review',
-            author: { '@type': 'Person', name: review.author },
+            author: { '@type': 'Person', name: review.name },
             datePublished: review.date,
-            reviewBody: review.text,
+            reviewBody: review.review_text,
             reviewRating: { '@type': 'Rating', ratingValue: review.rating, bestRating: '5', worstRating: '1' },
             itemReviewed: { '@id': productId },
           })),
