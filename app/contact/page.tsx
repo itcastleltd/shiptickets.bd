@@ -6,7 +6,7 @@ import { PHONE_NUMBER, WHATSAPP_NUMBER, site } from '@/lib/ships'
 import { ContactLink } from '@/components/contact-link'
 
 export const metadata: Metadata = {
-  title: 'Contact',
+  title: 'Contact ShipTickets.bd',
   description: 'Contact ShipTickets.bd on WhatsApp or phone for Saint Martin ship ticket information, fare confirmation and booking support.',
   openGraph: { title: 'Contact ShipTickets.bd', description: 'Reach our support team on WhatsApp or phone for Saint Martin ship tickets.', images: [{ url: '/og_image.png', width: 1200, height: 630 }] },
   alternates: { canonical: 'https://www.shiptickets.bd/contact' },

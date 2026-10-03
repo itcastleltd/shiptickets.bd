@@ -31,16 +31,6 @@ export function shipMetadata(ship: Ship, title: string, description: string): Me
   return {
     title,
     description,
-    /*
-     * Bengali is served inline on this same page, through `summaryBn` and the
-     * Bengali quick-answer row, rather than from a parallel /bn tree. There is
-     * therefore no second URL to declare and no `hreflang` pair to keep
-     * reciprocal, and `x-default` is unnecessary for a single URL.
-     *
-     * If a full Bengali translation is ever built, it should cover the whole site
-     * rather than four ship pages, and it should arrive with both sides annotated:
-     *        languages: { en: canonical, bn: `https://www.shiptickets.bd/bn/saint-martin-ship/${ship.slug}`, 'x-default': canonical }
-     */
     alternates: { canonical },
     openGraph: {
       title,

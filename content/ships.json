@@ -887,7 +887,7 @@
       ],
       [
         "কেয়ারি ক্রুজের টিকিট কত টাকা?",
-        "প্রকাশিত রেফারেন্স ভাড়া অনুযায়ী Exclusive Lounge একমুখী প্রায় ৳২,০৭৫, Coral Lounge ৳২,৩২৫ এবং Pearl Lounge ৳২,৫৭৫। বর্তমান মূল্য ভ্রমণের তারিখ অনুযায়ী নিশ্চিত করতে হবে।"
+        "প্রেফারেন্স ভাড়া অনুযায়ী Exclusive Lounge একমুখী প্রায় ৳২,০৭৫, Coral Lounge ৳২,৩২৫ এবং Pearl Lounge ৳২,৫৭৫। বর্তমান মূল্য ভ্রমণের তারিখ অনুযায়ী নিশ্চিত করতে হবে।"
       ],
       [
         "Does Keari Cruise & Dine include food?",
@@ -915,7 +915,7 @@
       ],
       [
         "কেয়ারি ক্রুজ কোথা থেকে ছাড়ে?",
-        "প্রকাশিত তথ্য অনুযায়ী কেয়ারি ক্রুজের Cox’s Bazar passenger service Nuniachhara BIWTA Jetty এলাকার সঙ্গে যুক্ত। নির্দিষ্ট যাত্রার boarding point অবশ্যই টিকিটে নিশ্চিত করুন।"
+        "কেয়ারি ক্রুজের Cox’s Bazar passenger service Nuniachhara BIWTA Jetty এলাকার সঙ্গে যুক্ত। নির্দিষ্ট যাত্রার boarding point অবশ্যই টিকিটে নিশ্চিত করুন।"
       ],
       [
         "How long does Keari Cruise & Dine take?",
@@ -959,7 +959,7 @@
         "value": "3 metres / 9.84 feet"
       },
       {
-        "label": "Published capacity",
+        "label": "Capacity",
         "value": "310 passengers"
       },
       {

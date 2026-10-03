@@ -212,7 +212,7 @@ reviews.forEach((review, index) => {
 })
 
 export function getReviewsForShip(slug: string): Review[] {
-  return reviews.filter((review) => !review.shipSlug || review.shipSlug === slug)
+  return reviews.filter((review) => review.shipSlug === slug)
 }
 
 export function getAllReviews(): Review[] {

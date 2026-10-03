@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Menu, MessageCircle, Phone, X } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { WHATSAPP_NUMBER, PHONE_NUMBER } from '@/lib/ships'
@@ -28,7 +27,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-line-soft bg-white/95 backdrop-blur">
       <div className="mx-auto flex h-(--header-h) max-w-7xl items-center justify-between px-5 lg:px-8">
         <Link href="/" className="flex items-center" aria-label="ShipTickets.bd home">
-          <Image src="/Logo.png" alt="ShipTickets.bd — Saint Martin ship tickets" width={134} height={40} className="h-10 w-auto" />
+          <img src="/Logo.png" alt="ShipTickets.bd — Saint Martin ship tickets" width={134} height={40} className="h-10 w-auto" />
         </Link>
 
         <nav className="hidden items-center gap-6 text-sm font-semibold text-quiet lg:flex">

@@ -1,9 +1,12 @@
 import { Analytics } from '@vercel/analytics/next'
 import Script from 'next/script'
 import type { Metadata, Viewport } from 'next'
+import { Nunito } from 'next/font/google'
 import './globals.css'
 import { GTMPageTracker } from '@/components/GTMPageTracker'
 import { FaqTracker } from '@/components/faq-tracker'
+
+const nunito = Nunito({ subsets: ['latin'], display: 'swap', variable: '--font-nunito' })
 
 const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-NXTPXRQK'
 
@@ -67,7 +70,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           />
         )}
       </head>
-      <body className="antialiased">
+      <body className={`antialiased ${nunito.variable} font-sans`}>
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-extrabold focus:text-brand-ink focus:shadow-raised">Skip to main content</a>
         {gtmId && (
           <noscript

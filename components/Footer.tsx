@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { MessageCircle, PhoneCall, Mail, MapPin, Clock } from 'lucide-react'
 import { site, PHONE_NUMBER, WHATSAPP_NUMBER } from '@/lib/ships'
 import { ContactLink } from '@/components/contact-link'
@@ -74,7 +73,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.15fr_2fr]">
         {/* Brand + contact */}
         <div>
-          <Image
+          <img
             src="/Logo.png"
             alt="ShipTickets.bd — Saint Martin ship tickets"
             width={134}
@@ -83,7 +82,7 @@ export function Footer() {
           />
 
           <p className="mt-4 max-w-xs text-sm leading-6 text-quiet">
-            Saint Martin ship ticket information and human-assisted booking support from Cox&rsquo;s Bazar.
+            ShipTickets Your trusted platform for Saint Martin ship tickets, tour packages, cabins and travel information.
           </p>
 
           <address className="mt-6 space-y-2.5 text-sm not-italic text-quiet">
