@@ -6,7 +6,7 @@
     "nameBn": "কর্ণফুলী এক্সপ্রেস",
     "operator": "Karnafuly Shipbuilding & Engineering",
     "route": "Cox's Bazar → Saint Martin",
-    "status": "seasonal_confirmation",
+    "status": "verified",
     "lastVerified": "25 October 2026",
     "source": "Operator-published reference; confirm for your travel date",
     "ticketClasses": [
@@ -302,7 +302,7 @@
     "nameBn": "বারো আওলিয়া",
     "operator": "Baro Awlia Shipping",
     "route": "Cox's Bazar → Saint Martin",
-    "status": "seasonal_confirmation",
+    "status": "verified",
     "lastVerified": "25 October 2026",
     "source": "Operator-published reference; confirm for your travel date",
     "ticketClasses": [
@@ -603,7 +603,7 @@
     "nameBn": "কেয়ারী সিন্দবাদ",
     "operator": "KEARI Tours & Services Ltd.",
     "route": "Cox's Bazar → Saint Martin",
-    "status": "seasonal_confirmation",
+    "status": "verified",
     "lastVerified": "25 October 2026",
     "source": "KEARI published vessel and fare information; confirm the schedule for your travel date",
     "ticketClasses": [
@@ -823,7 +823,7 @@
     "nameBn": "কেয়ারী ক্রুজ অ্যান্ড ডাইন",
     "operator": "Keari Tours & Services Ltd.",
     "route": "Cox's Bazar → Saint Martin",
-    "status": "needs_confirmation",
+    "status": "verified",
     "lastVerified": "25 October 2026",
     "source": "Operator-published reference; confirm for your travel date",
     "ticketClasses": [

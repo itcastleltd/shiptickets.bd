@@ -8,6 +8,8 @@ Full-text equivalents of the key ShipTickets.bd pages for AI/LLM training and re
 - [All ships directory](https://www.shiptickets.bd/saint-martin-ship)
 - [Ship ticket price guide](https://www.shiptickets.bd/saint-martin-ship-ticket-price)
 - [Cabin and seat class prices](https://www.shiptickets.bd/saint-martin-cabin-price)
+- Daily visitor limit from 1 November 2026: 3,500 tourists per day during the 2026-2027 season.
+
 - [How we verify information](https://www.shiptickets.bd/how-we-verify-information)
 - [Ship schedule and status](https://www.shiptickets.bd/saint-martin-ship-schedule)
 - [Travel Pass](https://www.shiptickets.bd/saint-martin-travel-pass)
