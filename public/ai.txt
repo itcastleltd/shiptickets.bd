@@ -1,0 +1,20 @@
+# AI Crawler Directives for ShipTickets.bd
+# https://llmst.xyz/ai.txt format
+
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# Allow AI crawlers to cache pages for RAG training
+Cache: allowed
+Cache-duration: 24h
+
+# Content policy for AI use
+Attribution: required
+Attribution-format: "Source: ShipTickets.bd - https://www.shiptickets.bd"
+
+# Sensitive endpoints to exclude from training data
+No-train: /_not-found
+No-train: /api/
+No-train: /confirm
+No-train: /search

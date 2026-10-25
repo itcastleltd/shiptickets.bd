@@ -1,0 +1,382 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/*
+ * Project palette.
+ *
+ * These are the colours the site actually paints with, as opposed to the
+ * shadcn defaults above, which are unused. They live in a separate @theme
+ * block so they generate `text-*`, `bg-*` and `border-*` utilities.
+ *
+ * Every text colour below was chosen by measuring its WCAG 2.1 contrast ratio
+ * against the surface it is used on, rather than by eye. The ratios are noted
+ * next to each token. The previous palette was a hand-picked ramp of greys in
+ * which almost everything below #4a5a5c fell under the 4.5:1 AA threshold:
+ * `#91a9aa` sat at 2.48:1 and the footer legal text at 2.66:1.
+ *
+ * The names avoid `muted`, `accent`, `primary`, `border` and `input` on
+ * purpose, because those are already claimed by the shadcn tokens above and
+ * reusing them would silently shadow them.
+ */
+@theme {
+  /* Text. All measured against #ffffff. */
+  --color-ink: #0d1b2a;   /* 17.4:1 headings and strong text */
+  --color-prose: #3f5154; /*  8.4:1 body copy, replaces #4a5a5c / #5f5e5a */
+  --color-quiet: #4d6569; /*  6.2:1 secondary text, replaces the #5b7c82-#729298 ramp */
+  --color-faint: #5c7376; /*  5.0:1 labels and legal text, replaces #888780 / #8ba3a6 / #91a9aa */
+
+  /*
+   * Green. `--color-brand` is the original #1d9e75 and is kept for icons,
+   * dots and rules, where the 3:1 non-text threshold applies and it passes at
+   * 3.4:1. It must not be used for text or as a fill behind white text: both
+   * of those are 3.4:1 and fail AA. `--color-brand-ink` is the same hue taken
+   * dark enough to carry text and white labels.
+   */
+  --color-brand: #1d9e75;      /*  3.4:1 — non-text use only */
+  --color-brand-ink: #157a5b;  /*  5.3:1 as text, and 5.3:1 under white text */
+
+  /* Borders. Interactive boundaries need 3:1 (WCAG 1.4.11). */
+  --color-line: #75908f;      /*  3.4:1 — form fields, focusable outlines */
+  --color-line-soft: #d8dcd4; /*  1.4:1 — decorative card and divider lines */
+
+  /* Warm accents, each measured against the panel it sits on. */
+  --color-warm: #8f5228;       /* 5.9:1 on #fff8ee */
+  --color-warm-strong: #8f5730;/* 5.5:1 on #fff5e7 */
+  --color-warm-soft: #7d4a38;  /* 5.1:1 on #f5d1b6 */
+
+  /* Body copy on the dark panels, where #4a5a5c was 2.4:1 and unreadable. */
+  --color-on-dark: #c8d6d4;    /* 11.6:1 on #0d1b2a */
+
+  /* Component dimensions that are referenced by meaning, not by a scale. */
+  --header-h: 72px;
+
+  /* Three shadows replace eleven hand-written rgba() values. */
+  --shadow-card: 0 1px 2px rgb(18 60 69 / 0.04), 0 1px 3px rgb(18 60 69 / 0.06);
+  --shadow-raised: 0 8px 24px rgb(18 60 69 / 0.08);
+  --shadow-bar: 0 -8px 24px rgb(18 60 69 / 0.1);
+}
+
+:root {
+  color-scheme: light;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  color-scheme: dark;
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    color-scheme: dark;
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /*
+   * Visible keyboard focus (WCAG 2.4.7).
+   *
+   * There was no focus styling anywhere in the project, so the only indicator
+   * was whatever the browser happened to draw, against an outline colour of
+   * light grey at 50% opacity. A dark ring is used by default and inverted to
+   * white inside the dark panels, where a dark ring would be invisible.
+   */
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid #0d1b2a;
+    outline-offset: 2px;
+  }
+  :where(.bg-\[\#0d1b2a\], .bg-ink) :where(a, button, input, summary, [tabindex]):focus-visible {
+    outline-color: #ffffff;
+  }
+}
+
+::selection {
+  background: #f5d1b6;
+  color: #123c45;
+}
+
+/*
+ * Editorial type scale.
+ *
+ * Every size here is fluid: a clamp() with a rem floor and a rem ceiling, so
+ * text grows on wide screens and stays readable on a 360px phone without a
+ * separate mobile rule. Components use these classes instead of hand-picked
+ * text-[13px] values, which is what made the old pages render inconsistently
+ * between sections.
+ */
+@layer components {
+  /* Page title. One per page, the largest text a visitor sees. */
+  .t-display {
+    font-size: clamp(2.1rem, 1.35rem + 3.4vw, 3.5rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+  }
+
+  /* Section heading. Steps down from the page title but stays clearly ranked. */
+  .t-title {
+    font-size: clamp(1.4rem, 1.15rem + 1.1vw, 1.95rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 800;
+  }
+
+  /* Sub-heading inside a section, such as a ship name on a card. */
+  .t-subtitle {
+    font-size: clamp(1.075rem, 1rem + 0.35vw, 1.25rem);
+    line-height: 1.35;
+    font-weight: 800;
+  }
+
+  /* Opening paragraph under a title. Set larger than body copy on purpose. */
+  .t-lede {
+    font-size: clamp(1.05rem, 0.98rem + 0.35vw, 1.2rem);
+    line-height: 1.7;
+  }
+
+  /*
+   * Running text. 1.05rem floor keeps body copy readable on small phones,
+   * which 0.875rem was not.
+   */
+  .t-body {
+    font-size: clamp(1rem, 0.96rem + 0.2vw, 1.075rem);
+    line-height: 1.75;
+  }
+
+  /* Captions, table cells and legal text. */
+  .t-small {
+    font-size: clamp(0.875rem, 0.85rem + 0.12vw, 0.95rem);
+    line-height: 1.65;
+  }
+
+  /* Labels, eyebrows and other all-caps micro text. */
+  .t-label {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 800;
+  }
+
+  /*
+   * Bengali text.
+   *
+   * `text-transform: uppercase` is a no-op for Bengali, but the 0.14em tracking
+   * on `.t-label` is not: Bengali is an abugida, and inserting space between
+   * glyphs separates the base consonant from its vowel signs and matras, which
+   * visibly breaks conjuncts. Every page eyebrow mixes English with a Bengali
+   * word ("Ship directory · জাহাজ") and every ship page repeats the vessel's
+   * Bengali name, so the tracking was being applied to Bengali on 13 headings
+   * across the site.
+   *
+   * This class is applied to the Bengali half of those strings, so the English
+   * keeps the tracked all-caps look and the Bengali is set normally.
+   */
+  .bn {
+    letter-spacing: normal;
+    text-transform: none;
+    font-weight: 700;
+  }
+
+  /*
+   * Prose measure.
+   *
+   * Content pages fill the same 1280px shell as the header, footer and
+   * homepage, so page widths no longer disagree. A 1280px line of body text is
+   * too long to read comfortably, so running text is capped near 70
+   * characters. This is applied per text element, never to the container, so
+   * cards, tables and grids keep the full width while paragraphs stay legible.
+   */
+  .t-measure {
+    max-width: 78ch;
+  }
+
+  /*
+   * `Section` holds both running text and wide children: 23 of the 60 sections
+   * in the app contain a table or a card grid. Capping the container would
+   * squash those, so only the text-level children are measured.
+   */
+  .section-body > :where(p, ul, ol, dl, h3, h4) {
+    max-width: 78ch;
+  }
+
+  /*
+   * Two-column prose.
+   *
+   * Above xl a content-rich section splits into two ~572px columns, which is
+   * about 67 characters a line. Without this the multicol engine is free to
+   * break a question away from its answer, or to run the second half of a list
+   * into the next column, because a paragraph and a list item are both
+   * breakable by default. Each block is therefore kept whole.
+   */
+  .prose-columns > * {
+    break-inside: avoid-column;
+  }
+}
+
+button, a, input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: light; }
+}
+
+body { padding-bottom: env(safe-area-inset-bottom); }
+
+@media (min-width: 640px) {
+  body { padding-bottom: 0; }
+}
+

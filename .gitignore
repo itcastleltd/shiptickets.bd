@@ -1,0 +1,28 @@
+# v0 sandbox internal files
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+.snowflake/
+.v0-trash/
+.vercel/
+
+# Environment variables
+.env*.local
+
+# Common ignores
+node_modules
+.next/
+.DS_Store
+tsconfig.tsbuildinfo
+GTMCode.txt
+
+# Local-only working documents
+# These are draft/reference specs used while building the site. They are kept
+# out of the repo because they carry stale fares and incorrect routes that
+# contradict the canonical data in content/. Patterns avoid the em dash.
+\# AIO-AEO-SEO-GEO-Schema-Implements.md
+Keari-Cruise-Dine.md
+MV Karnafuly Express SEO-AEO-AIO Page.md
+MV Baro Awlia Ticket Price*.md
+Keari Sindbad *Complete SEO, AEO, AIO & GEO Markdown Content.md
+Ship List Page, Schedule*.md
