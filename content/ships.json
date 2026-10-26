@@ -135,7 +135,7 @@
     "capacity": "Approx. 600 passengers",
     "journeyDuration": "Approx. 5 hours (seasonal, confirm for your sailing)",
     "departure": "Morning departure (seasonal, confirm the exact time)",
-    "jetty": "BIWTA Nuniachhara Jetty, Cox's Bazar",
+    "jetty": "BIWTA Nuniarchhara Jetty, Cox's Bazar",
     "checkIn": "Arrive before the published departure time; final check-in is confirmed on your ticket",
     "cancellation": "Subject to operator and season rules; confirm before payment",
     "gallery": [
@@ -161,7 +161,7 @@
       ],
       [
         "Where is Karnafuly Express boarding in Cox’s Bazar?",
-        "Published information identifies the Nuniachhara / BIWTA jetty area as the Cox’s Bazar boarding point. Confirm the exact boarding location for your sailing."
+        "Published information identifies the Nuniarchhara / BIWTA jetty area as the Cox’s Bazar boarding point. Confirm the exact boarding location for your sailing."
       ],
       [
         "How long is the Karnafuly Express journey?",
@@ -204,7 +204,7 @@
       },
       {
         "label": "Boarding area",
-        "value": "Nuniachhara / BIWTA Jetty, Cox’s Bazar"
+        "value": "Nuniarchhara / BIWTA Jetty, Cox’s Bazar"
       },
       {
         "label": "Journey time",
@@ -434,7 +434,7 @@
     "capacity": "Approx. 400 passengers (confirm with operator)",
     "journeyDuration": "Approx. 2 hours",
     "departure": "Date and tide dependent, so published schedules vary by sailing date",
-    "jetty": "Nuniachhara BIWTA Jetty, Cox’s Bazar, so confirm the boarding point printed on your ticket",
+    "jetty": "Nuniarchhara BIWTA Jetty, Cox’s Bazar, so confirm the boarding point printed on your ticket",
     "checkIn": "Approx. 1 hour before departure (follow the time printed on your ticket)",
     "cancellation": "Subject to operator and season rules; confirm before payment",
     "gallery": [
@@ -464,7 +464,7 @@
       ],
       [
         "Where does Baro Awlia depart from?",
-        "Published information identifies the Nuniachhara BIWTA Jetty area in Cox’s Bazar. Some sources also use Inani in the route description. Confirm the exact boarding point on your ticket."
+        "Published information identifies the Nuniarchhara BIWTA Jetty area in Cox’s Bazar. Some sources also use Inani in the route description. Confirm the exact boarding point on your ticket."
       ],
       [
         "What time does Baro Awlia leave Cox’s Bazar?",
@@ -507,7 +507,7 @@
       },
       {
         "label": "Boarding",
-        "value": "Nuniachhara BIWTA Jetty, confirm on your ticket"
+        "value": "Nuniarchhara BIWTA Jetty, confirm on your ticket"
       },
       {
         "label": "Destination",
@@ -689,7 +689,7 @@
     "capacity": "346 passengers (160 Main Deck, 144 Open Deck, 42 Bridge Deck)",
     "journeyDuration": "Varies by date, route, weather, sea conditions and tide. No fixed duration is published.",
     "departure": "Previously published 7:00 AM departure with 6:45 AM reporting. Reference only, confirm for your travel date.",
-    "jetty": "Nuniachhara BIWTA Jetty, Cox's Bazar",
+    "jetty": "Nuniarchhara BIWTA Jetty, Cox's Bazar",
     "checkIn": "Confirm the reporting time shown on your ticket for your sailing date",
     "cancellation": "Subject to operator and season rules. Confirm the cancellation policy before payment.",
     "gallery": [
@@ -776,7 +776,7 @@
       ],
       [
         "Where does Keari Sindbad depart from?",
-        "Published information identifies the Nuniachhara BIWTA Jetty area in Cox's Bazar. Boarding arrangements can change between seasons, so confirm the jetty and reporting time printed on your ticket."
+        "Published information identifies the Nuniarchhara BIWTA Jetty area in Cox's Bazar. Boarding arrangements can change between seasons, so confirm the jetty and reporting time printed on your ticket."
       ],
       [
         "Does Keari Sindbad have an Open Deck?",
@@ -894,7 +894,7 @@
     "capacity": "Published capacity 310 passengers",
     "journeyDuration": "Varies by route, tide and sea conditions, so use your date-specific schedule",
     "departure": "Seasonal. Reporting and departure time are confirmed for your date",
-    "jetty": "BIWTA Nuniachhara Jetty, Cox's Bazar",
+    "jetty": "BIWTA Nuniarchhara Jetty, Cox's Bazar",
     "checkIn": "Reporting time confirmed on your ticket or booking confirmation",
     "cancellation": "Subject to operator and season rules; confirm before payment",
     "gallery": [
@@ -928,7 +928,7 @@
       ],
       [
         "Where does Keari Cruise & Dine depart from?",
-        "Published Keari information identifies the Cox’s Bazar / Nuniachhara BIWTA jetty area. Confirm the exact boarding location for your travel date."
+        "Published Keari information identifies the Cox’s Bazar / Nuniarchhara BIWTA jetty area. Confirm the exact boarding location for your travel date."
       ],
       [
         "What time does Keari Cruise & Dine depart?",
@@ -936,7 +936,7 @@
       ],
       [
         "কেয়ারি ক্রুজ কোথা থেকে ছাড়ে?",
-        "কেয়ারি ক্রুজের Cox’s Bazar passenger service Nuniachhara BIWTA Jetty এলাকার সঙ্গে যুক্ত। নির্দিষ্ট যাত্রার boarding point অবশ্যই টিকিটে নিশ্চিত করুন।"
+        "কেয়ারি ক্রুজের Cox’s Bazar passenger service Nuniarchhara BIWTA Jetty এলাকার সঙ্গে যুক্ত। নির্দিষ্ট যাত্রার boarding point অবশ্যই টিকিটে নিশ্চিত করুন।"
       ],
       [
         "How long does Keari Cruise & Dine take?",
@@ -1001,7 +1001,7 @@
       },
       {
         "label": "Boarding",
-        "value": "Cox’s Bazar / Nuniachhara BIWTA Jetty area"
+        "value": "Cox’s Bazar / Nuniarchhara BIWTA Jetty area"
       },
       {
         "label": "Dining",

@@ -865,7 +865,7 @@ For example:
 
 > **Where do Saint Martin ships depart from?**
 
-> During the applicable tourist season, passenger vessels operate from the designated jetty approved by the authorities. For the 2025–26 season, tourist vessels operated from BIWTA's Nuniachhara jetty in Cox's Bazar. Always check the latest seasonal notice before departure. ([BSS][9])
+> During the applicable tourist season, passenger vessels operate from the designated jetty approved by the authorities. For the 2025–26 season, tourist vessels operated from BIWTA's Nuniarchhara jetty in Cox's Bazar. Always check the latest seasonal notice before departure. ([BSS][9])
 
 This format is excellent for:
 
@@ -2389,7 +2389,7 @@ Cox's Bazar → Saint Martin Island
 
 Latest confirmed information should be displayed only when verified.
 
-During the 2025–26 season, government reporting identified the BIWTA Nuniachhara jetty in Cox's Bazar as the departure point for tourist vessels. ([BSS][7])
+During the 2025–26 season, government reporting identified the BIWTA Nuniarchhara jetty in Cox's Bazar as the departure point for tourist vessels. ([BSS][7])
 
 ### Ships
 
@@ -2585,7 +2585,7 @@ This is where your site can beat generic AI content.
 
 Publish genuine first-hand material:
 
-> "We visited Nuniachhara Jetty on [date]..."
+> "We visited Nuniarchhara Jetty on [date]..."
 
 > "Our team checked in at [time]..."
 

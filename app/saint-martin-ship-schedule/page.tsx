@@ -46,7 +46,7 @@ const faqs: [string, string][] = [
   ],
   [
     'Where do Saint Martin ships depart from?',
-    'Most published information points to the BIWTA Nuniachhara Jetty area in Cox’s Bazar, though boarding points can vary by season. The jetty printed on your ticket is the authority.',
+    'Most published information points to the BIWTA Nuniarchhara Jetty area in Cox’s Bazar, though boarding points can vary by season. The jetty printed on your ticket is the authority.',
   ],
 ]
 
@@ -149,7 +149,7 @@ export default function SchedulePage() {
 
       <ProseSection title="Boarding point">
         <p>
-          Most published information points to the <strong>BIWTA Nuniachhara Jetty</strong> area in Cox’s Bazar.
+          Most published information points to the <strong>BIWTA Nuniarchhara Jetty</strong> area in Cox’s Bazar.
           Boarding arrangements can change between seasons, and some operators have referred to other points on the
           coast. The jetty and reporting time printed on your own ticket are the authority, so check them before you
           travel.

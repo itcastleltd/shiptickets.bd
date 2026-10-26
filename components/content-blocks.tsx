@@ -43,7 +43,7 @@ export function QuickFacts({ ship, title = 'At a glance', id }: { ship: Ship; ti
     { label: 'Operator', value: ship.operator },
     { label: 'Capacity', value: ship.capacity ?? 'Confirm with operator' },
     { label: 'Journey', value: ship.journeyDuration ?? 'Confirm for your sailing' },
-    { label: 'Boarding jetty', value: ship.jetty ?? "BIWTA Nuniachhara Jetty, Cox's Bazar" },
+    { label: 'Boarding jetty', value: ship.jetty ?? "BIWTA Nuniarchhara Jetty, Cox's Bazar" },
     { label: 'Check-in', value: ship.checkIn ?? 'Confirm on your ticket' },
     { label: 'Status', value: STATUS_LABELS[ship.status] },
   ].filter((fact, index, all) => all.findIndex((other) => other.label === fact.label) === index)
@@ -276,7 +276,7 @@ export function ScheduleBlock({ ship, id }: { ship: Ship; id?: string }) {
     { label: 'Departure', value: ship.departure ?? 'Confirm for your sailing date' },
     { label: 'Check-in / reporting', value: ship.checkIn ?? 'Confirm on your ticket' },
     { label: 'Journey duration', value: ship.journeyDuration ?? 'Confirm for your sailing date' },
-    { label: 'Boarding point', value: ship.jetty ?? "BIWTA Nuniachhara Jetty, Cox's Bazar" },
+    { label: 'Boarding point', value: ship.jetty ?? "BIWTA Nuniarchhara Jetty, Cox's Bazar" },
     { label: 'Return sailing', value: 'Confirm the return date and time with your ticket' },
     { label: 'Cancellation', value: ship.cancellation ?? 'Subject to operator and season rules; confirm before payment' },
   ]
@@ -411,7 +411,7 @@ export function JettyNote({ ship }: { ship: Ship }) {
     <div className="mb-10 flex items-start gap-3 rounded-2xl border border-line-soft bg-white p-5">
       <MapPin className="mt-0.5 shrink-0 text-brand-ink" size={18} />
       <p className="t-body t-measure text-prose">
-        <strong className="text-ink">Boarding point:</strong> {ship.jetty ?? "BIWTA Nuniachhara Jetty, Cox's Bazar"}. Boarding arrangements can change between seasons, so confirm the jetty printed on your ticket.
+        <strong className="text-ink">Boarding point:</strong> {ship.jetty ?? "BIWTA Nuniarchhara Jetty, Cox's Bazar"}. Boarding arrangements can change between seasons, so confirm the jetty printed on your ticket.
       </p>
     </div>
   )
