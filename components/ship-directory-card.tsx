@@ -112,7 +112,7 @@ export function ShipDirectoryCard({ ship }: { ship: Ship }) {
             <p className="t-label text-quiet">Round trip from</p>
             <p className="mt-0.5 text-2xl font-black tracking-tight text-ink">{ship.roundTrip}</p>
           </div>
-          <p className="col-span-2 text-xs text-faint">Reference fares per person, not live inventory. Confirm your date before you pay.</p>
+          <p className="col-span-2 text-xs text-faint">Operator fares per person, not live inventory. Confirm your date before you pay.</p>
         </div>
 
         <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:items-center md:mt-6">

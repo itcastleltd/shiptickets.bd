@@ -131,7 +131,7 @@ export function FareTable({ ship, id }: { ship: Ship; id?: string }) {
     <section id={id} className={`mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8 ${ANCHOR_CLEARANCE}`}>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <h2 className="t-title">Fare table</h2>
-        <ConfidenceBadge kind="reference">Reference fare</ConfidenceBadge>
+        <ConfidenceBadge kind="reference">Operator fare</ConfidenceBadge>
       </div>
       <div className="overflow-x-auto rounded-xl border border-line-soft">
         <table className="w-full min-w-[520px] text-left text-sm">

@@ -105,7 +105,7 @@ export function ShipPage({
       <ShipViewTracker ship={ship} />
       <div className="mb-8 flex flex-wrap items-center gap-2">
         <ConfidenceBadge kind="seasonal">Season {season.label}</ConfidenceBadge>
-        <ConfidenceBadge kind="reference">Reference fares</ConfidenceBadge>
+        <ConfidenceBadge kind="reference">Operator fares</ConfidenceBadge>
         <ConfidenceBadge kind="confirm">Confirm before booking</ConfidenceBadge>
       </div>
 
