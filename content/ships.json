@@ -14,24 +14,24 @@
         "name": "Lavender Economy Seat",
         "nameBn": "ল্যাভেন্ডার ইকোনমি সিট",
         "description": "Economy seating for travellers looking for a lower-cost ticket",
-        "oneWayFare": "৳1,800",
-        "roundTripFare": "৳3,500",
+        "oneWayFare": "৳2,200",
+        "roundTripFare": "৳4,200",
         "seatCount": "70"
       },
       {
         "name": "Marigold Economy Seat",
         "nameBn": "ম্যারিগোল্ড ইকোনমি সিট",
         "description": "Economy category priced close to Lavender",
-        "oneWayFare": "৳1,800",
-        "roundTripFare": "৳3,500",
+        "oneWayFare": "৳2,200",
+        "roundTripFare": "৳4,200",
         "seatCount": "294"
       },
       {
         "name": "Open Deck",
         "nameBn": "ওপেন ডেক",
         "description": "Outdoor deck seating with open sea views",
-        "oneWayFare": "৳2,100",
-        "roundTripFare": "৳4,000",
+        "oneWayFare": "৳2,300",
+        "roundTripFare": "৳4,400",
         "seatCount": "84"
       },
       {
@@ -46,16 +46,16 @@
         "name": "Lilac Lounge",
         "nameBn": "লাইল্যাক লাউঞ্জ",
         "description": "Premium lounge-style seating",
-        "oneWayFare": "৳2,700",
-        "roundTripFare": "৳5,300",
+        "oneWayFare": "৳2,800",
+        "roundTripFare": "৳5,500",
         "seatCount": "24"
       },
       {
         "name": "Chrysanthemum Lounge",
         "nameBn": "ক্রিসেনথেমাম লাউঞ্জ",
         "description": "Highest listed lounge category",
-        "oneWayFare": "৳2,900",
-        "roundTripFare": "৳5,600",
+        "oneWayFare": "৳3,000",
+        "roundTripFare": "৳5,800",
         "seatCount": "24"
       }
     ],
@@ -65,8 +65,8 @@
         "nameBn": "সিঙ্গেল কেবিন",
         "description": "Designed for individual occupancy",
         "capacity": "1 passenger",
-        "oneWayFare": "৳3,300",
-        "roundTripFare": "৳6,500",
+        "oneWayFare": "৳3,600",
+        "roundTripFare": "৳7,000",
         "seatCount": "1"
       },
       {
@@ -83,7 +83,7 @@
         "nameBn": "ভিআইপি কেবিন",
         "description": "Premium private cabin, subject to availability",
         "capacity": "Private cabin",
-        "oneWayFare": "৳8,500",
+        "oneWayFare": "৳9,000",
         "roundTripFare": "৳16,000",
         "seatCount": "4"
       },
@@ -92,8 +92,8 @@
         "nameBn": "ভিভিআইপি কেবিন",
         "description": "Highest listed cabin category, selected cabins with attached facilities",
         "capacity": "Private cabin",
-        "oneWayFare": "৳10,500",
-        "roundTripFare": "৳20,000",
+        "oneWayFare": "৳10,000",
+        "roundTripFare": "৳19,000",
         "seatCount": "3"
       }
     ],
@@ -293,7 +293,9 @@
         "outdoor": "Not listed",
         "priceLevel": "৳৳৳৳"
       }
-    ]
+    ],
+    "oneWay": "৳2,200",
+    "roundTrip": "৳4,200"
   },
   {
     "slug": "baro-awlia",
@@ -310,40 +312,40 @@
         "name": "Main Deck Seat",
         "nameBn": "মেইন ডেক সিট",
         "description": "Lower-priced open-view deck seating, approx. 66 published seats",
-        "oneWayFare": "৳1,800",
-        "roundTripFare": "৳3,500",
+        "oneWayFare": "৳2,200",
+        "roundTripFare": "৳4,200",
         "seatCount": "66"
       },
       {
         "name": "Sun Deck Seat",
         "nameBn": "সান ডেক সিট",
         "description": "Open-view seating category, approx. 160 published seats",
-        "oneWayFare": "৳1,800",
-        "roundTripFare": "৳3,500",
+        "oneWayFare": "৳2,200",
+        "roundTripFare": "৳4,200",
         "seatCount": "160"
       },
       {
         "name": "Panorama Business Chair",
         "nameBn": "প্যানোরামা বিজনেস চেয়ার",
         "description": "Air-conditioned business seating",
-        "oneWayFare": "৳2,100",
-        "roundTripFare": "৳4,000",
+        "oneWayFare": "৳2,300",
+        "roundTripFare": "৳4,500",
         "seatCount": "270"
       },
       {
         "name": "Riviera Business Chair",
         "nameBn": "রিভিয়েরা বিজনেস চেয়ার",
         "description": "Air-conditioned business category",
-        "oneWayFare": "৳2,100",
-        "roundTripFare": "৳4,000",
+        "oneWayFare": "৳2,300",
+        "roundTripFare": "৳4,500",
         "seatCount": "114"
       },
       {
         "name": "Mozarat Chair",
         "nameBn": "মোজারাত চেয়ার",
         "description": "Premium air-conditioned chair seating, approx. 54 published seats",
-        "oneWayFare": "৳2,200",
-        "roundTripFare": "৳4,300",
+        "oneWayFare": "৳2,500",
+        "roundTripFare": "৳4,800",
         "seatCount": "54"
       }
     ],
@@ -353,8 +355,8 @@
         "nameBn": "বাঙ্কার বেড",
         "description": "Small shared berth category with common washroom access",
         "capacity": "2-person category",
-        "oneWayFare": "৳4,100",
-        "roundTripFare": "৳8,000",
+        "oneWayFare": "৳6,000",
+        "roundTripFare": "৳10,000",
         "seatCount": "2"
       },
       {
@@ -371,8 +373,8 @@
         "nameBn": "ফ্যামিলি বাঙ্কার কেবিন",
         "description": "Built around four-person occupancy",
         "capacity": "4 persons",
-        "oneWayFare": "৳8,500",
-        "roundTripFare": "৳16,000",
+        "oneWayFare": "৳11,000",
+        "roundTripFare": "৳20,000",
         "seatCount": "8"
       },
       {
@@ -380,8 +382,8 @@
         "nameBn": "ভিআইপি কেবিন",
         "description": "Air-conditioned cabin with common washroom access",
         "capacity": "2 persons",
-        "oneWayFare": "৳8,500",
-        "roundTripFare": "৳16,000",
+        "oneWayFare": "৳8,000",
+        "roundTripFare": "৳15,000",
         "seatCount": "3"
       },
       {
@@ -389,8 +391,8 @@
         "nameBn": "ভিভিআইপি কেবিন",
         "description": "Highest listed cabin category with AC and attached washroom",
         "capacity": "2 persons",
-        "oneWayFare": "৳10,500",
-        "roundTripFare": "৳20,000",
+        "oneWayFare": "৳10,000",
+        "roundTripFare": "৳18,000",
         "seatCount": "2"
       }
     ],
@@ -594,7 +596,9 @@
         "outdoor": "Not listed",
         "priceLevel": "৳৳৳৳"
       }
-    ]
+    ],
+    "oneWay": "৳2,200",
+    "roundTrip": "৳4,200"
   },
   {
     "slug": "keari-sindbad",
