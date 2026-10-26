@@ -42,12 +42,12 @@ All information is seasonal. **Saint Martin island access and ship operations ar
 - **Operator:** Karnafuly Shipbuilding & Engineering
 - **Status:** Seasonal confirmation required — 2026-2027 season opens 1 November 2026
 - **Last reviewed:** 5 October 2026
-- **One-way fare (reference):** From ৳1,800
-- **Round-trip fare (reference):** From ৳3,500
-- **Ticket classes:** Lavender Economy Seat (৳1,800 / ৳3,500, 70 seats), Marigold Economy Seat (৳1,800 / ৳3,500, 294 seats), Open Deck (৳2,100 / ৳4,000, 84 seats), Gladiolus Business Seat (৳2,600 / ৳5,000, 108 seats), Lilac Lounge (৳2,700 / ৳5,300, 24 seats), Chrysanthemum Lounge (৳2,900 / ৳5,600, 24 seats)
-- **Cabins:** Single Cabin — 1 passenger, from ৳3,300 one way; Twin Cabin — 2 passengers, from ৳7,000 one way; VIP Cabin — Private cabin, from ৳8,500 one way; VVIP Cabin — Private cabin, from ৳10,500 one way
+- **One-way fare (operator):** From ৳2,200
+- **Round-trip fare (operator):** From ৳4,200
+- **Ticket classes:** Lavender Economy Seat (৳2,200 / ৳4,200, 70 seats), Marigold Economy Seat (৳2,200 / ৳4,200, 294 seats), Open Deck (৳2,300 / ৳4,400, 84 seats), Gladiolus Business Seat (৳2,600 / ৳5,000, 108 seats), Lilac Lounge (৳2,800 / ৳5,500, 24 seats), Chrysanthemum Lounge (৳3,000 / ৳5,800, 24 seats)
+- **Cabins:** Single Cabin — 1 passenger, from ৳3,600 one way; Twin Cabin — 2 passengers, from ৳7,000 one way; VIP Cabin — Private cabin, from ৳9,000 one way; VVIP Cabin — Private cabin, from ৳10,000 one way
 - **Facilities:** Indoor seating, Open deck, Premium lounge seating, Restaurant / food service, Washrooms, Prayer room, Cabin accommodation, Passenger service areas
-- **Journey:** Approx. 5 hours (seasonal — confirm for your sailing)
+- **Journey:** Approx. 5 to 7 hours (seasonal — confirm for your sailing)
 - **Departure:** Morning departure (seasonal — confirm exact time)
 - **Check-in:** Arrive before the published departure time; final check-in is confirmed on your ticket
 
@@ -58,12 +58,12 @@ All information is seasonal. **Saint Martin island access and ship operations ar
 - **Operator:** Baro Awlia Shipping
 - **Status:** Seasonal confirmation required — 2026-2027 season opens 1 November 2026
 - **Last reviewed:** 5 October 2026
-- **One-way fare (reference):** From ৳1,800
-- **Round-trip fare (reference):** From ৳3,500
-- **Ticket classes:** Main Deck Seat (৳1,800 / ৳3,500, 66 seats), Sun Deck Seat (৳1,800 / ৳3,500, 160 seats), Panorama Business Chair (৳2,100 / ৳4,000, 270 seats), Riviera Business Chair (৳2,100 / ৳4,000, 114 seats), Mozarat Chair (৳2,200 / ৳4,300, 54 seats)
-- **Cabins:** Bunker Bed — 2-person category, from ৳4,100 one way; Deluxe Cabin — 2 persons, from ৳7,000 one way; Family Bunker Cabin — 4 persons, from ৳8,500 one way; VIP Cabin — 2 persons, from ৳8,500 one way; VVIP Cabin — 2 persons, from ৳10,500 one way
+- **One-way fare (operator):** From ৳2,200
+- **Round-trip fare (operator):** From ৳4,200
+- **Ticket classes:** Main Deck Seat (৳2,200 / ৳4,200, 66 seats), Sun Deck Seat (৳2,200 / ৳4,200, 160 seats), Panorama Business Chair (৳2,300 / ৳4,500, 270 seats), Riviera Business Chair (৳2,300 / ৳4,500, 114 seats), Mozarat Chair (৳2,500 / ৳4,800, 54 seats)
+- **Cabins:** Bunker Bed — 2-person category, from ৳6,000 one way; Deluxe Cabin — 2 persons, from ৳7,000 one way; Family Bunker Cabin — 4 persons, from ৳11,000 one way; VIP Cabin — 2 persons, from ৳8,000 one way; VVIP Cabin — 2 persons, from ৳10,000 one way
 - **Facilities:** AC seating (selected categories), Open-view deck seating, Indoor seating, Common washrooms, Attached washroom (selected cabins), Cabin accommodation, Food / restaurant service, Passenger service areas
-- **Journey:** Approx. 2 hours
+- **Journey:** Approx. 5 to 7 hours
 - **Departure:** Date and tide dependent — published schedules vary by sailing date
 - **Check-in:** Approx. 1 hour before departure (follow the time printed on your ticket)
 

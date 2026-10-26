@@ -46,26 +46,26 @@ Ships operating Cox's Bazar to Saint Martin:
 1. **MV Karnafuly Express (কর্ণফুলী এক্সপ্রেস)** — [karnafuly-express](https://www.shiptickets.bd/saint-martin-ship/karnafuly-express)
    - Operator: Karnafuly Shipbuilding & Engineering
    - Status: Seasonal confirmation required — 2026-2027 season opens 1 November 2026
-   - One-way fare from: ৳1,800 | Round-trip from: ৳3,500
-   - Classes: Lavender Economy Seat (৳1,800 / ৳3,500, 70 seats), Marigold Economy Seat (৳1,800 / ৳3,500, 294 seats), Open Deck (৳2,100 / ৳4,000, 84 seats), Gladiolus Business Seat (৳2,600 / ৳5,000, 108 seats), Lilac Lounge (৳2,700 / ৳5,300, 24 seats), Chrysanthemum Lounge (৳2,900 / ৳5,600, 24 seats)
+   - One-way fare from: ৳2,200 | Round-trip from: ৳4,200
+   - Classes: Lavender Economy Seat (৳2,200 / ৳4,200, 70 seats), Marigold Economy Seat (৳2,200 / ৳4,200, 294 seats), Open Deck (৳2,300 / ৳4,400, 84 seats), Gladiolus Business Seat (৳2,600 / ৳5,000, 108 seats), Lilac Lounge (৳2,700 / ৳5,300, 24 seats), Chrysanthemum Lounge (৳2,900 / ৳5,600, 24 seats)
    - Cabins: Single Cabin — 1 passenger, ৳3,300 / ৳6,500; Twin Cabin — 2 passengers, ৳7,000 / ৳13,000; VIP Cabin — Private cabin, ৳8,500 / ৳16,000; VVIP Cabin — Private cabin, ৳10,500 / ৳20,000
    - Facilities: Indoor seating, Open deck, Premium lounge seating, Restaurant / food service, Washrooms, Prayer room, Cabin accommodation, Passenger service areas
    - Journey: Approx. 5 hours (seasonal — confirm for your sailing)
    - Departure: Morning departure (seasonal — confirm exact time)
    - Check-in: Arrive before the published departure time; final check-in is confirmed on your ticket
-   - Last reviewed: 5 October 2026
+   - Last reviewed: 25 October 2026
 
 2. **MV Baro Awlia (বারো আওলিয়া)** — [baro-awlia](https://www.shiptickets.bd/saint-martin-ship/baro-awlia)
    - Operator: Baro Awlia Shipping
    - Status: Seasonal confirmation required — 2026-2027 season opens 1 November 2026
-   - One-way fare from: ৳1,800 | Round-trip from: ৳3,500
-   - Classes: Main Deck Seat (৳1,800 / ৳3,500, 66 seats), Sun Deck Seat (৳1,800 / ৳3,500, 160 seats), Panorama Business Chair (৳2,100 / ৳4,000, 270 seats), Riviera Business Chair (৳2,100 / ৳4,000, 114 seats), Mozarat Chair (৳2,200 / ৳4,300, 54 seats)
+   - One-way fare from: ৳2,200 | Round-trip from: ৳4,200
+   - Classes: Main Deck Seat (৳2,200 / ৳4,200, 66 seats), Sun Deck Seat (৳2,200 / ৳4,200, 160 seats), Panorama Business Chair (৳2,100 / ৳4,000, 270 seats), Riviera Business Chair (৳2,100 / ৳4,000, 114 seats), Mozarat Chair (৳2,200 / ৳4,300, 54 seats)
    - Cabins: Bunker Bed — 2-person category, ৳4,100 / ৳8,000; Deluxe Cabin — 2 persons, ৳7,000 / ৳13,000; Family Bunker Cabin — 4 persons, ৳8,500 / ৳16,000; VIP Cabin — 2 persons, ৳8,500 / ৳16,000; VVIP Cabin — 2 persons, ৳10,500 / ৳20,000
    - Facilities: AC seating (selected categories), Open-view deck seating, Indoor seating, Common washrooms, Attached washroom (selected cabins), Cabin accommodation, Food / restaurant service, Passenger service areas
    - Journey: Approx. 2 hours
    - Departure: Date and tide dependent — published schedules vary by sailing date
    - Check-in: Approx. 1 hour before departure (follow the time printed on your ticket)
-   - Last reviewed: 5 October 2026
+   - Last reviewed: 25 October 2026
 
 3. **Keari Sindbad (কেয়ারী সিন্দবাদ)** — [keari-sindbad](https://www.shiptickets.bd/saint-martin-ship/keari-sindbad)
    - Operator: KEARI Tours & Services Ltd.
@@ -78,7 +78,7 @@ Ships operating Cox's Bazar to Saint Martin:
    - Departure: Previously published 7:00 AM with 6:45 AM reporting (reference only, confirm for your travel date)
    - Check-in: Confirm the reporting time shown on your ticket for your sailing date
    - Specifications: Built by Western Marine Shipyard, launched 22 January 2004. Length 34.10 m, beam 7.62 m, depth 2.77 m, total published seating 346 passengers.
-   - Last reviewed: 5 October 2026
+   - Last reviewed: 25 October 2026
 
 4. **Keari Cruise & Dine (কেয়ারী ক্রুজ অ্যান্ড ডাইন)** — [keari-cruise-dine](https://www.shiptickets.bd/saint-martin-ship/keari-cruise-dine)
    - Operator: Keari Tours & Services Ltd.
@@ -90,7 +90,7 @@ Ships operating Cox's Bazar to Saint Martin:
    - Journey: Varies by route, tide and sea conditions — use your date-specific schedule
    - Departure: Seasonal — reporting and departure time confirmed for your date
    - Check-in: Reporting time confirmed on your ticket or booking confirmation
-   - Last reviewed: 5 October 2026
+   - Last reviewed: 25 October 2026
 
 5. **MV Bay Cruiser 1 — retired, not operating this season**
    - Not sailing on the Cox's Bazar to Saint Martin route for the 2026-2027 season.
@@ -146,7 +146,7 @@ Ships operating Cox's Bazar to Saint Martin:
 **Title:** Saint Martin Ship Schedule & Departure Times | ShipTickets.bd
 **Description:** Check how to verify Saint Martin ship departure times, return schedules, check-in points and seasonal operating status.
 
-**Current schedule status:** Seasonal confirmation required. Last reviewed: 5 October 2026
+**Current schedule status:** Seasonal confirmation required. Last reviewed: 25 October 2026
 
 **What to confirm before travel:**
 1. Departure date and reporting time
@@ -268,7 +268,7 @@ BIWTA Nuniarchhara Jetty, Cox's Bazar. Confirm the approved departure point for 
 One-way ৳1,800–৳2,900, round-trip ৳3,000–৳5,600 (reference). WhatsApp-এ বর্তমান ভাড়া নিশ্চিত করুন।
 
 ## Accuracy policy
-- Last reviewed: 5 October 2026
+- Last reviewed: 25 October 2026
 - We do not publish fake live availability, reviews, ratings or booking counts
 - We do not invent schedules or prices
 - Always confirm current availability and fare before payment
