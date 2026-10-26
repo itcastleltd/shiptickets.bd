@@ -6,7 +6,7 @@ import { FaqAccordion } from '@/components/faq-accordion'
 import { ContactLink } from '@/components/contact-link'
 
 const title = 'How We Verify Saint Martin Ship Information'
-const description = `How ShipTickets.bd verifies Saint Martin ship fares, schedules, operating status and ticket categories before publishing them, and what each confidence status means.`
+const description = `How ShipTickets.bd verifies fares, schedules and ship status before publishing.`
 
 export const metadata: Metadata = {
   title: 'How We Verify Saint Martin Ship Information',

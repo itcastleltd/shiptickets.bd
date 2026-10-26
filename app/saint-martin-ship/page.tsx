@@ -9,7 +9,7 @@ import { FaqAccordion } from '@/components/faq-accordion'
 
 const title = 'Saint Martin Ship Ticket Price, Schedule & Booking'
 const description =
-  'Compare the four passenger ships serving Cox’s Bazar to Saint Martin, with reference fares, seating classes, cabins, seasonal schedule information and boarding guidance.'
+  'Compare passenger ships on the Cox Bazar Saint Martin route: fares, classes, cabins.'
 
 export const metadata: Metadata = {
   title: 'Saint Martin Ships: Fares & Schedule',
