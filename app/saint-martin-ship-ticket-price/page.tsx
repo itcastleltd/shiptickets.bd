@@ -57,11 +57,11 @@ const cheapestRoundTrip = ships.reduce((lowest, ship) =>
 const faqs: [string, string][] = [
   [
     'How much does a Saint Martin ship ticket cost?',
-    `Reference fares start from ${cheapest.oneWay} one way on ${cheapest.name}. The highest published one-way figure is for VVIP cabins. Fares depend on ship, seating class, cabin type, one-way versus round trip and the current season, so confirm the fare for your travel date before payment.`,
+    `Operator fares start from ${cheapest.oneWay} one way on ${cheapest.name}. The highest published one-way figure is for VVIP cabins. Fares depend on ship, seating class, cabin type, one-way versus round trip and the current season, so confirm the fare for your travel date before payment.`,
   ],
   [
     'Which ship has the cheapest ticket?',
-    `${cheapest.name} lists the lowest published reference fare at ${cheapest.oneWay} one way and ${cheapest.roundTrip} round trip. Treat that as a reference figure rather than a quoted price.`,
+    `${cheapest.name} lists the lowest published operator fare at ${cheapest.oneWay} one way and ${cheapest.roundTrip} round trip. Treat that as an operator fare rather than a quoted price.`,
   ],
   [
     'How much is a Saint Martin ship cabin?',
@@ -112,7 +112,7 @@ function FareTable({
     <div className="overflow-hidden rounded-2xl border border-line-soft">
       <div className="flex items-center justify-between gap-3 border-b border-line-soft bg-[#f7f6f2] px-4 py-4">
         <h3 className="font-extrabold">{title}</h3>
-        <Pill>Reference fare</Pill>
+        <Pill>Operator fare</Pill>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full min-w-[620px] text-left text-sm">
@@ -178,7 +178,7 @@ export default function PricePage() {
     <SeoPage
       eyebrow="Price guide · ভাড়ার তথ্য"
       title={title}
-      intro="Compare reference fares from Cox’s Bazar to Saint Martin by ship, seating class and cabin. Every figure on this page comes from operator-published information and must be confirmed for your travel date before payment."
+      intro="Compare operator fares from Cox’s Bazar to Saint Martin by ship, seating class and cabin. Every figure on this page comes from operator-published information and must be confirmed for your travel date before payment."
       updated={LAST_REVIEWED}
       crumbs={[
         { name: 'Home', href: '/' },
@@ -194,14 +194,14 @@ export default function PricePage() {
         </p>
         <p>
           Fares depend on ship, class, cabin type, one-way versus round trip and the current season. The{' '}
-          {season.label} season opens {season.startDate}. All prices shown are operator-published references, so
+          {season.label} season opens {season.startDate}. All prices shown are operator-published fares, so
           confirm the latest fare for your date before payment.
         </p>
       </Section>
 
       <div className="mb-8 grid gap-3 sm:grid-cols-3">
         {[
-          { label: 'Lowest reference fare', value: cheapest.oneWay, note: `one way on ${cheapest.name}` },
+          { label: 'Lowest operator fare', value: cheapest.oneWay, note: `one way on ${cheapest.name}` },
           {
             label: 'Cabin fare',
             value: lowestCabin ? `${lowestCabin[2]}+` : 'Not published',
@@ -220,7 +220,7 @@ export default function PricePage() {
       <div className="mb-10 flex flex-col gap-4 rounded-3xl bg-[#0d1b2a] p-6 text-white md:flex-row md:items-center md:justify-between md:p-8">
         <div>
           <div className="flex items-center gap-2 text-sm font-bold text-[#ef9f27]">
-            <BadgeCheck size={17} /> Fare status: operator-published reference
+            <BadgeCheck size={17} /> Fare status: operator-published
           </div>
           <h2 className="t-title mt-3">Need the fare for your date?</h2>
           <p className="t-body mt-2 max-w-xl text-white/70">
@@ -278,7 +278,7 @@ export default function PricePage() {
           &amp; Dine list seating categories only, with no private cabin inventory published.
         </p>
         <div className="mt-4 flex flex-col gap-4">
-          <FareTable rows={cabinFares} title="Private cabin reference fares" includeType />
+          <FareTable rows={cabinFares} title="Private cabin operator fares" includeType />
         </div>
         <p className="t-small mt-3 text-quiet">
           Cabins are quoted either per person or for the whole cabin depending on the operator. Always confirm the
@@ -340,7 +340,7 @@ export default function PricePage() {
           <LinkCard
             href="/how-we-verify-information"
             title="How we verify information"
-            text="Why fares are reference values and how we check them."
+            text="Why fares are operator values and how we check them."
           />
         </div>
       </Section>
