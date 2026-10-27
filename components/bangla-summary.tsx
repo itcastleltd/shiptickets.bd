@@ -37,7 +37,7 @@ export function BanglaSummary({ path }: { path: string }) {
         >
           WhatsApp-এ লিখুন
         </ContactLink>
-        <span className="t-small text-quiet">এই পাতার বাকি অংশ ইংরেজিতে।</span>
+        <span className="t-small text-quiet">এই পেজের বাকি অংশ ইংরেজিতে।</span>
       </div>
     </section>
   )

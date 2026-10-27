@@ -44,7 +44,7 @@ Saint Martin ship tickets, made simple. ShipTickets.bd is a Bangladesh-focused i
 Ships operating Cox's Bazar to Saint Martin:
 
 1. **MV Karnafuly Express (কর্ণফুলী এক্সপ্রেস)** — [karnafuly-express](https://www.shiptickets.bd/saint-martin-ship/karnafuly-express)
-   - Operator: Karnafuly Shipbuilding & Engineering
+   - Operator: Karnafuly Cruise Line
    - Status: Seasonal confirmation required — 2026-2027 season opens 1 November 2026
    - One-way fare from: ৳2,200 | Round-trip from: ৳4,200
    - Classes: Lavender Economy Seat (৳2,200 / ৳4,200, 70 seats), Marigold Economy Seat (৳2,200 / ৳4,200, 294 seats), Open Deck (৳2,300 / ৳4,400, 84 seats), Gladiolus Business Seat (৳2,600 / ৳5,000, 108 seats), Lilac Lounge (৳2,700 / ৳5,300, 24 seats), Chrysanthemum Lounge (৳2,900 / ৳5,600, 24 seats)
@@ -56,7 +56,7 @@ Ships operating Cox's Bazar to Saint Martin:
    - Last reviewed: 25 October 2026
 
 2. **MV Baro Awlia (বারো আওলিয়া)** — [baro-awlia](https://www.shiptickets.bd/saint-martin-ship/baro-awlia)
-   - Operator: Baro Awlia Shipping
+   - Operator: Karnafuly Cruise Line
    - Status: Seasonal confirmation required — 2026-2027 season opens 1 November 2026
    - One-way fare from: ৳2,200 | Round-trip from: ৳4,200
    - Classes: Main Deck Seat (৳2,200 / ৳4,200, 66 seats), Sun Deck Seat (৳2,200 / ৳4,200, 160 seats), Panorama Business Chair (৳2,100 / ৳4,000, 270 seats), Riviera Business Chair (৳2,100 / ৳4,000, 114 seats), Mozarat Chair (৳2,200 / ৳4,300, 54 seats)
