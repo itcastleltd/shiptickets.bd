@@ -69,9 +69,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             }}
           />
         )}
+      <Script id="meta-pixel" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','29740631978871614');fbq('track','PageView');" }} />
       </head>
       <body className={`antialiased ${nunito.variable} font-sans`}>
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-extrabold focus:text-brand-ink focus:shadow-raised">Skip to main content</a>
+        <noscript dangerouslySetInnerHTML={{ __html: '<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=29740631978871614&amp;ev=PageView&amp;noscript=1" />' }} />
         {gtmId && (
           <noscript
             dangerouslySetInnerHTML={{

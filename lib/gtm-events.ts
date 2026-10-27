@@ -3,6 +3,7 @@
 declare global {
   interface Window {
     dataLayer?: any[]
+    fbq?: (...args: unknown[]) => void
   }
 }
 
@@ -10,8 +11,11 @@ export function trackEvent(
   event: string,
   params?: Record<string, string | number | boolean>
 ) {
-  if (typeof window === 'undefined' || !window.dataLayer) return
-  window.dataLayer.push({ event, ...params })
+  if (typeof window === 'undefined') return
+  if (window.dataLayer) window.dataLayer.push({ event, ...params })
+  if (typeof window.fbq === 'function') {
+    window.fbq('trackCustom', event, params)
+  }
 }
 
 export function trackWhatsApp(action: string, shipName?: string) {
