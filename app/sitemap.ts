@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/how-we-verify-information', changeFrequency: 'monthly', priority: .7 },
     { path: '/contact', changeFrequency: 'monthly', priority: .7 },
     { path: '/privacy-policy', changeFrequency: 'monthly', priority: .6 },
+    { path: '/booking-policy', changeFrequency: 'monthly', priority: .6 },
   ]
 
   return [

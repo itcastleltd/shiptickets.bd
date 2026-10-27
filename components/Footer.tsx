@@ -38,6 +38,7 @@ const footerGroups = [
       { href: '/about', label: 'About us' },
       { href: '/contact', label: 'Contact' },
       { href: '/privacy-policy', label: 'Privacy Policy' },
+      { href: '/booking-policy', label: 'Booking Policy' },
     ],
   },
 ]
