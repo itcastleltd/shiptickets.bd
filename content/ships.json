@@ -1039,5 +1039,221 @@
         "priceLevel": "৳৳৳"
       }
     ]
+  },
+  {
+    "slug": "mv-teknaf",
+    "name": "MV Teknaf",
+    "nameBn": "এমভি টেকনাফ",
+    "summaryBn": "এমভি টেকনাফ কক্সবাজার থেকে সেন্টমার্টিন দ্বীপে পর্যটক পরিবহনের জন্য তালিকাভুক্ত একটি যাত্রীবাহী জাহাজ। ভ্রমণের আগে বর্তমান মৌসুমে জাহাজটির চলাচলের অনুমতি ও সময়সূচি নিশ্চিত করুন।",
+    "route": "Cox's Bazar → Saint Martin",
+    "operator": "Parapaar Cruise Line PCL",
+    "status": "seasonal_confirmation",
+    "lastVerified": "27 October 2026",
+    "source": "Operator-published reference; confirm for your travel date",
+    "ticketClasses": [
+      {
+        "name": "Main Deck",
+        "nameBn": "মেইন ডেক",
+        "description": "Main deck seating category",
+        "oneWayFare": "Confirm",
+        "roundTripFare": "৳3,600",
+        "seatCount": "343"
+      },
+      {
+        "name": "Ocean Deck",
+        "nameBn": "ওশান ডেক",
+        "description": "Ocean deck seating category",
+        "oneWayFare": "Confirm",
+        "roundTripFare": "৳4,200",
+        "seatCount": "78"
+      },
+      {
+        "name": "Coral Lounge",
+        "nameBn": "কোরাল লাউঞ্জ",
+        "description": "Coral lounge seating category",
+        "oneWayFare": "Confirm",
+        "roundTripFare": "৳4,500",
+        "seatCount": "23"
+      },
+      {
+        "name": "Coral Deck",
+        "nameBn": "কোরাল ডেক",
+        "description": "Coral deck seating category",
+        "oneWayFare": "Confirm",
+        "roundTripFare": "৳4,500",
+        "seatCount": "186"
+      },
+      {
+        "name": "Sky Dine",
+        "nameBn": "স্কাই ডাইন",
+        "description": "Sky Dine seating category",
+        "oneWayFare": "Confirm",
+        "roundTripFare": "৳5,000",
+        "seatCount": "28"
+      },
+      {
+        "name": "VIP Chair",
+        "nameBn": "ভিআইপি চেয়ার",
+        "description": "VIP Chair seating category",
+        "oneWayFare": "Confirm",
+        "roundTripFare": "৳5,000",
+        "seatCount": "8"
+      }
+    ],
+    "cabins": [
+      {
+        "name": "Deluxe Cabin",
+        "nameBn": "ডিলাক্স কেবিন",
+        "description": "Deluxe cabin category",
+        "capacity": "6 passengers",
+        "oneWayFare": "Confirm",
+        "roundTripFare": "৳12,000",
+        "seatCount": "6"
+      },
+      {
+        "name": "VIP Cabin",
+        "nameBn": "ভিআইপি কেবিন",
+        "description": "VIP cabin category",
+        "capacity": "2 passengers",
+        "oneWayFare": "Confirm",
+        "roundTripFare": "৳15,000",
+        "seatCount": "2"
+      },
+      {
+        "name": "Royal Cabin",
+        "nameBn": "রয়্যাল কেবিন",
+        "description": "Royal cabin category",
+        "capacity": "1 passenger",
+        "oneWayFare": "Confirm",
+        "roundTripFare": "৳25,000",
+        "seatCount": "1"
+      }
+    ],
+    "facilities": [
+      {
+        "name": "Multiple deck seating",
+        "available": true
+      },
+      {
+        "name": "Cabin accommodation",
+        "available": true
+      },
+      {
+        "name": "Passenger service areas",
+        "available": true
+      }
+    ],
+    "oneWay": "Confirm",
+    "roundTrip": "৳3,600",
+    "detail": "Passenger vessel listed for Cox's Bazar to Saint Martin tourist travel, operated by Parapaar Cruise Line PCL. Confirm current operating authorization and sailing schedule before booking.",
+    "image": "/ship/mv-teknaf-saint-martin-ship.jpg",
+    "imageAlt": "MV Teknaf passenger ship operated by Parapaar Cruise Line PCL for the Cox's Bazar to Saint Martin route",
+    "capacity": "Confirm with operator",
+    "journeyDuration": "Not confirmed (seasonal — confirm for your sailing)",
+    "departure": "Morning departure (seasonal — confirm exact time)",
+    "jetty": "BIWTA Jetty, Airport Road, Nunia Chara, Cox's Bazar",
+    "checkIn": "Arrive at least 1 hour before departure; confirm with operator",
+    "cancellation": "Subject to operator policy; confirm before payment",
+    "gallery": [
+      "/ship/mv-teknaf-saint-martin-ship.jpg"
+    ],
+    "faq": [
+      [
+        "What is MV Teknaf?",
+        "MV Teknaf is a passenger vessel listed for tourist travel between Cox’s Bazar and Saint Martin Island. It is associated with Parapaar Cruise Line PCL. Confirm its current operating authorization and sailing schedule before planning a trip."
+      ],
+      [
+        "How much is an MV Teknaf ticket?",
+        "The supplied reference fares range from ৳3,600 for Main Deck seating to ৳5,000 for Sky Dine and VIP Chair. The listed cabin fares range from ৳12,000 to ৳25,000. Confirm whether these prices are one-way or round-trip and whether cabin fares apply per cabin or per passenger."
+      ],
+      [
+        "What seating categories are available on MV Teknaf?",
+        "The supplied fare sheet lists Main Deck, Ocean Deck, Coral Lounge, Coral Deck, Sky Dine and VIP Chair. Actual availability depends on the sailing date."
+      ],
+      [
+        "What cabin types are available on MV Teknaf?",
+        "The supplied fare sheet lists Deluxe Cabin, VIP Cabin and Royal Cabin. Confirm cabin capacity, occupancy rules, amenities and final price before booking."
+      ],
+      [
+        "Where does MV Teknaf depart from?",
+        "The listed Cox’s Bazar boarding location is BIWTA Jetty in Nunia Chara, Airport Road. Confirm the actual boarding point and reporting instructions for your travel date."
+      ],
+      [
+        "How long does MV Teknaf take to reach Saint Martin?",
+        "A verified journey duration has not been established. Sailing time can depend on the vessel, weather, sea conditions and operational instructions. Confirm the expected duration with the operator."
+      ],
+      [
+        "What time does MV Teknaf depart?",
+        "The departure time must be confirmed for the selected travel date. Seasonal schedules and tide conditions can affect sailing arrangements."
+      ],
+      [
+        "How early should passengers check in?",
+        "Arriving at least one hour before departure is a useful planning recommendation, but the operator's reporting time and check-in deadline should be confirmed before travel."
+      ],
+      [
+        "Are MV Teknaf tickets refundable?",
+        "The applicable cancellation and refund policy has not been verified. Ask the operator or ShipTickets.bd support to explain the ticket terms before payment."
+      ],
+      [
+        "Is MV Teknaf currently operating?",
+        "Operation depends on seasonal authorization and the approved sailing schedule. Contact ShipTickets.bd support to verify whether MV Teknaf is authorized and available for your travel date."
+      ],
+      [
+        "Does MV Teknaf offer dining facilities?",
+        "Sky Dine is listed as a seating category. However, dining availability, food service and meal inclusions should be confirmed with the operator."
+      ],
+      [
+        "How can I check MV Teknaf ticket availability?",
+        "Contact ShipTickets.bd with your travel date, passenger count and preferred seat or cabin category. The support team can help you verify the applicable fare, sailing schedule and availability."
+      ],
+      [
+        "এমভি টেকনাফ জাহাজ কী?",
+        "এমভি টেকনাফ কক্সবাজার থেকে সেন্টমার্টিন দ্বীপে পর্যটক পরিবহনের জন্য তালিকাভুক্ত একটি যাত্রীবাহী জাহাজ। জাহাজটি Parapaar Cruise Line PCL-এর সঙ্গে সংশ্লিষ্ট। ভ্রমণের আগে বর্তমান মৌসুমে জাহাজটির চলাচলের অনুমতি ও সময়সূচি নিশ্চিত করুন।"
+      ],
+      [
+        "এমভি টেকনাফ জাহাজের টিকিটের দাম কত?",
+        "প্রদত্ত রেফারেন্স ভাড়া অনুযায়ী, Main Deck-এর টিকিট ৳3,600, Ocean Deck-এর ৳4,200 এবং Coral Lounge ও Coral Deck-এর ৳4,500। Sky Dine ও VIP Chair-এর ভাড়া ৳5,000। কেবিনের তালিকাভুক্ত ভাড়া ৳12,000 থেকে ৳25,000। বুকিংয়ের আগে ভাড়া একমুখী নাকি রাউন্ড ট্রিপ এবং কেবিনের মূল্য জনপ্রতি নাকি সম্পূর্ণ কেবিনের জন্য, তা নিশ্চিত করুন।"
+      ],
+      [
+        "এমভি টেকনাফে কী কী আসন ক্যাটাগরি রয়েছে?",
+        "প্রদত্ত তালিকায় Main Deck, Ocean Deck, Coral Lounge, Coral Deck, Sky Dine এবং VIP Chair—এই ছয়টি আসন ক্যাটাগরি রয়েছে। নির্দিষ্ট তারিখে কোন ক্যাটাগরির টিকিট পাওয়া যাবে, তা নিশ্চিত করতে হবে।"
+      ],
+      [
+        "এমভি টেকনাফে কী কী কেবিন রয়েছে?",
+        "প্রদত্ত তালিকায় Deluxe Cabin, VIP Cabin এবং Royal Cabin রয়েছে। বুকিংয়ের আগে কেবিনের ধারণক্ষমতা, সুবিধা, যাত্রীসংখ্যা ও ভাড়া যাচাই করুন।"
+      ],
+      [
+        "এমভি টেকনাফ জাহাজ কোথা থেকে ছাড়ে?",
+        "কক্সবাজারের সম্ভাব্য বোর্ডিং পয়েন্ট হলো নুনিয়াছড়া, এয়ারপোর্ট রোডের BIWTA Jetty। তবে যাত্রার তারিখ অনুযায়ী নির্ধারিত ঘাট, রিপোর্টিং সময় ও বোর্ডিং নির্দেশনা নিশ্চিত করে নিন।"
+      ],
+      [
+        "এমভি টেকনাফে সেন্টমার্টিন যেতে কত সময় লাগে?",
+        "এমভি টেকনাফের যাত্রার নির্দিষ্ট সময় এই তথ্যপত্রে নিশ্চিত করা যায়নি। জাহাজ, আবহাওয়া, সমুদ্রের অবস্থা ও পরিচালনাসূচি অনুযায়ী সময় পরিবর্তিত হতে পারে। যাত্রার আগে অপারেটরের কাছ থেকে সম্ভাব্য সময় জেনে নিন।"
+      ],
+      [
+        "এমভি টেকনাফ কখন ছাড়ে?",
+        "যাত্রার তারিখ অনুযায়ী ছাড়ার সময় নিশ্চিত করতে হবে। মৌসুমি সময়সূচি, জোয়ার-ভাটা ও পরিচালনাগত নির্দেশনার কারণে সময় পরিবর্তিত হতে পারে।"
+      ],
+      [
+        "যাত্রার কত আগে চেক-ইন করতে হবে?",
+        "পরিকল্পনার সুবিধার্থে যাত্রার অন্তত এক ঘণ্টা আগে পৌঁছানোর পরামর্শ দেওয়া হচ্ছে। তবে নির্দিষ্ট চেক-ইন সময় ও রিপোর্টিং নির্দেশনা অপারেটরের কাছ থেকে নিশ্চিত করুন।"
+      ],
+      [
+        "এমভি টেকনাফের টিকিট বাতিল করলে টাকা ফেরত পাওয়া যাবে কি?",
+        "টিকিট বাতিল, রিফান্ড ও তারিখ পরিবর্তনের নীতি এখনো যাচাই করা হয়নি। পেমেন্টের আগে প্রযোজ্য শর্তাবলি অপারেটর বা ShipTickets.bd সাপোর্ট টিমের কাছ থেকে জেনে নিন।"
+      ],
+      [
+        "এমভি টেকনাফ কি বর্তমানে চলাচল করছে?",
+        "জাহাজটির চলাচল মৌসুমি অনুমোদন ও অনুমোদিত সময়সূচির ওপর নির্ভরশীল। আপনার ভ্রমণের তারিখে জাহাজটি চলাচলের অনুমতি পেয়েছে কি না এবং টিকিট পাওয়া যাচ্ছে কি না, তা আগে নিশ্চিত করুন।"
+      ],
+      [
+        "এমভি টেকনাফে খাবারের ব্যবস্থা আছে কি?",
+        "Sky Dine নামে একটি আসন ক্যাটাগরি তালিকাভুক্ত রয়েছে। তবে খাবার পরিবেশন করা হয় কি না, খাবারের মূল্য টিকিটে অন্তর্ভুক্ত কি না এবং কী ধরনের খাবার পাওয়া যায়, তা অপারেটরের কাছ থেকে নিশ্চিত করতে হবে।"
+      ],
+      [
+        "এমভি টেকনাফের টিকিটের প্রাপ্যতা কীভাবে জানব?",
+        "আপনার ভ্রমণের তারিখ, যাত্রীর সংখ্যা এবং পছন্দের আসন বা কেবিনের তথ্য দিয়ে ShipTickets.bd সাপোর্ট টিমের সঙ্গে যোগাযোগ করুন। তারা প্রযোজ্য ভাড়া, সময়সূচি ও টিকিটের প্রাপ্যতা যাচাই করতে সহায়তা করতে পারবে।"
+      ]
+    ]
   }
 ]
