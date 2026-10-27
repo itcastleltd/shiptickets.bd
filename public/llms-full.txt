@@ -2,6 +2,23 @@
 
 Full-text equivalents of the key ShipTickets.bd pages for AI/LLM training and retrieval. Concise site guidance lives in [llms.txt](https://www.shiptickets.bd/llms.txt). Last updated: 5 October 2026.
 
+
+### 5. MV Teknaf (এমভি টেকনাফ)
+
+- **Page:** [https://www.shiptickets.bd/saint-martin-ship/mv-teknaf](https://www.shiptickets.bd/saint-martin-ship/mv-teknaf)
+- **Route:** Cox's Bazar → Saint Martin
+- **Operator:** Parapaar Cruise Line PCL
+- **Status:** Seasonal confirmation required — 2026-2027 season opens 1 November 2026
+- **Last reviewed:** 27 October 2026
+- **Round-trip fare (operator):** From ৳3,600
+- **Ticket classes:** Main Deck (৳3,600, 343 seats), Ocean Deck (৳4,200, 78 seats), Coral Lounge (৳4,500, 23 seats), Coral Deck (৳4,500, 186 seats), Sky Dine (৳5,000, 28 seats), VIP Chair (৳5,000, 8 seats)
+- **Cabins:** Deluxe Cabin — 6 pax, from ৳12,000; VIP Cabin — 2 pax, from ৳15,000; Royal Cabin — 1 pax, from ৳25,000
+- **Facilities:** Multiple deck seating, Cabin accommodation, Passenger service areas
+- **Capacity:** 675 seats
+- **Journey:** Not confirmed (seasonal — confirm for your sailing)
+- **Departure:** Morning departure (seasonal — confirm exact time)
+- **Check-in:** Arrive at least 1 hour before departure; confirm with operator
+
 ## Key links
 
 - [Homepage](https://www.shiptickets.bd/)
