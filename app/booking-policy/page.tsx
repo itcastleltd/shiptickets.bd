@@ -8,18 +8,18 @@ import { ContactLink } from '@/components/contact-link'
 import { whatsapp } from '@/components/seo-page'
 
 export const metadata: Metadata = {
-  title: 'Booking Policy – Saint Martin Ship Tickets | ShipTickets.bd',
+title: 'Booking Policy – Saint Martin Ship Tickets',
   description: 'Read ShipTickets.bd\'s booking policy for Saint Martin ship tickets, passenger information, NID, Travel Pass, payment, cancellation and rescheduling.',
   keywords: ['Saint Martin ship ticket booking policy', 'ShipTickets.bd booking policy', 'ship ticket cancellation policy Bangladesh', 'Saint Martin ticket booking rules', 'Travel Pass requirements'],
   alternates: { canonical: 'https://www.shiptickets.bd/booking-policy' },
   openGraph: {
-    title: 'Booking Policy – Saint Martin Ship Tickets | ShipTickets.bd',
+title: 'Booking Policy – Saint Martin Ship Tickets',
     description: 'Read ShipTickets.bd\'s booking policy for Saint Martin ship tickets, passenger information, NID, Travel Pass, payment, cancellation and rescheduling.',
     url: 'https://www.shiptickets.bd/booking-policy',
     type: 'website',
     images: [{ url: '/og_image.png', width: 1200, height: 630 }],
   },
-  twitter: { card: 'summary_large_image', title: 'Booking Policy – Saint Martin Ship Tickets | ShipTickets.bd', description: 'Read ShipTickets.bd\'s booking policy for Saint Martin ship tickets.' },
+  twitter: { card: 'summary_large_image', title: 'Booking Policy – Saint Martin Ship Tickets', description: 'Read ShipTickets.bd\'s booking policy for Saint Martin ship tickets.' },
 }
 
 const faqs: [string, string][] = [
