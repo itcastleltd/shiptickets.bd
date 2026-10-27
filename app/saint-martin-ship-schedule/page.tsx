@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 const faqs: [string, string][] = [
   [
     'What time do ships depart to Saint Martin?',
-    'Departure times are seasonal and operator-specific, and there is no single fixed schedule across the four vessels. Confirm the reporting and departure times for your travel date.',
+    'Departure times are seasonal and operator-specific, and there is no single fixed schedule across the five vessels. Confirm the reporting and departure times for your travel date.',
   ],
   [
     'How long does it take to reach Saint Martin by ship?',
@@ -161,7 +161,7 @@ export default function SchedulePage() {
           <LinkCard
             href="/saint-martin-ship"
             title="Compare Saint Martin ships"
-            text="All four vessels with fares, seating classes and cabins."
+            text="All five vessels with fares, seating classes and cabins."
           />
           <LinkCard
             href="/saint-martin-ship-ticket-price"

@@ -9,7 +9,7 @@ import { ContactLink } from '@/components/contact-link'
 
 const title = 'Saint Martin ship ticket price'
 const description =
-  'Compare Saint Martin ship ticket prices from Cox’s Bazar, including one-way, round-trip, seating class and cabin fares for all four vessels on the route.'
+  'Compare Saint Martin ship ticket prices from Cox’s Bazar, including one-way, round-trip, seating class and cabin fares for all five vessels on the route.'
 
 export const metadata: Metadata = {
   title: 'Saint Martin Ship Ticket Price 2026',
@@ -320,7 +320,7 @@ export default function PricePage() {
           <LinkCard
             href="/saint-martin-ship"
             title="Compare Saint Martin ships"
-            text="All four vessels with classes, cabins and facilities."
+            text="All five vessels with classes, cabins and facilities."
           />
           <LinkCard
             href="/saint-martin-ship-schedule"
