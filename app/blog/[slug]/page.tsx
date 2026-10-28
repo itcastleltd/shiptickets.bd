@@ -146,7 +146,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <Link href="/" className="hover:text-brand-ink">Home</Link> / <Link href="/blog" className="hover:text-brand-ink">Blog</Link> / <span className="text-ink">{post.titleBn}</span>
         </nav>
         <div className="relative h-64 rounded-2xl overflow-hidden bg-[#dcefeb] mb-6">
-          <Image src={post.thumbnail} alt={post.imageAlt || post.titleBn} fill className="object-cover" />
+          <Image src={post.thumbnail} alt={post.imageAlt || post.titleBn} fill sizes="100vw" className="object-cover" />
         </div>
         <h1 className="text-3xl font-black text-ink">{post.titleBn}</h1>
         <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-quiet">

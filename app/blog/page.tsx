@@ -25,7 +25,7 @@ export default function BlogIndex() {
           <article key={p.slug} className="overflow-hidden rounded-2xl border border-line-soft bg-white shadow-card">
             <Link href={`/blog/${p.slug}`}>
               <div className="relative h-44 bg-[#dcefeb]">
-                <Image src={p.thumbnail} alt={p.titleBn} fill className="object-cover" />
+                <Image src={p.thumbnail} alt={p.titleBn} fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover" />
               </div>
             </Link>
             <div className="p-5">
