@@ -7,6 +7,7 @@ export type BlogPost = {
   date: string
   author: string
   tags: string[]
+  thumbnail: string
   content: { heading?: string; paragraphs: string[] }[]
 }
 
@@ -20,6 +21,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-10-28',
     author: 'ShipTickets.bd',
     tags: ['travel', 'saint-martin'],
+    thumbnail: '/blog/saint-martin-travel-guide.jpg',
     content: [
       { heading: 'সেরা সময়', paragraphs: ['নভেম্বর থেকে মার্চ—এই সময়টাই সেন্টমার্টিন ভ্রমণের জন্য সবচেয়ে ভালো। সমুদ্র শান্ত, আবহাওয়া পরিষ্কার, ফেরি নিয়মিত চলে।'] },
       { heading: 'কী নিয়ে যাবেন', paragraphs: ['সানস্ক্রিন, টুপি, স্যান্ডেল, হালকা জ্যাকেট, পানির বোতল, পরিচয়পত্র ও নগদ টাকা। কার্ড সুবিধা সীমিত।'] },
@@ -35,6 +37,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-10-28',
     author: 'ShipTickets.bd',
     tags: ['booking', 'tickets'],
+    thumbnail: '/blog/ship-ticket-booking-guide.jpg',
     content: [
       { heading: 'টিকিট বুকিং', paragraphs: ['তারিখ ও যাত্রী সংখ্যা ঠিক করে WhatsApp-এ যোগাযোগ করুন। আমরা অপারেটর ও কেবিন অপশন জানাবো।'] },
       { heading: 'ভাড়া', paragraphs: ['ওয়ান-ওয়ে ৳২,২০০, রাউন্ড-ট্রিপ ৳৪,২০০ (অপারেটর প্রকাশিত)। পরিবেশ সংরক্ষণ ফি ৳১০০।'] },
@@ -50,6 +53,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-10-28',
     author: 'ShipTickets.bd',
     tags: ['route', 'schedule'],
+    thumbnail: '/blog/coxs-bazar-to-saint-martin-route.jpg',
     content: [
       { heading: 'জেটি', paragraphs: ['কক্সবাজারের নুনিয়ারছড়া জেটি থেকে জাহাজ ছাড়ে। সকালে পৌঁছাতে হয়।'] },
       { heading: 'যাত্রার সময়', paragraphs: ['জাহাজে যাত্রা প্রায় ৫–৭ ঘণ্টা। সমুদ্রের অবস্থা অনুযায়ী সময় বদলাতে পারে।'] },
@@ -65,6 +69,7 @@ export const blogPosts: BlogPost[] = [
     date: '2026-10-28',
     author: 'ShipTickets.bd',
     tags: ['rules', 'conservation'],
+    thumbnail: '/blog/saint-martin-travel-rules.jpg',
     content: [
       { heading: 'দৈনিক পর্যটক সীমা', paragraphs: ['প্রতিদিন সর্বোচ্চ ৩,৫০০ পর্যটক সেন্টমার্টিনে যেতে পারেন।'] },
       { heading: 'সংরক্ষণ ফি', paragraphs: ['প্রতি পর্যটকের জন্য ৳১০০ পরিবেশ সংরক্ষণ ফি প্রযোজ্য।'] },

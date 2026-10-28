@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { blogPosts } from '@/content/blog'
 
 export const metadata: Metadata = {
@@ -10,19 +11,32 @@ export const metadata: Metadata = {
 
 export default function BlogIndex() {
   return (
-    <main className="mx-auto max-w-4xl px-5 py-12">
-      <h1 className="text-3xl font-black text-ink mb-6">Blog / ব্লগ</h1>
-      <ul className="space-y-6">
+    <main className="mx-auto max-w-7xl px-5 py-12">
+      <h1 className="text-3xl font-black text-ink mb-2">Blog / ব্লগ</h1>
+      <p className="text-quiet mb-8">সেন্টমার্টিন ভ্রমণ, টিকিট ও নিয়ম নিয়ে বাংলা পোস্ট।</p>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {blogPosts.map((p) => (
-          <li key={p.slug} className="rounded-2xl border border-line-soft bg-white p-5 shadow-card">
-            <h2 className="text-xl font-black text-ink">
-              <Link href={`/blog/${p.slug}`} className="hover:text-brand-ink">{p.titleBn}</Link>
-            </h2>
-            <p className="mt-2 text-sm text-quiet">{p.descriptionBn}</p>
-            <p className="mt-2 text-xs text-quiet">{p.date}</p>
-          </li>
+          <article key={p.slug} className="overflow-hidden rounded-2xl border border-line-soft bg-white shadow-card">
+            <Link href={`/blog/${p.slug}`}>
+              <div className="relative h-44 bg-[#dcefeb]">
+                <Image src={p.thumbnail} alt={p.titleBn} fill className="object-cover" />
+              </div>
+            </Link>
+            <div className="p-5">
+              <div className="flex flex-wrap gap-2 mb-2">
+                {p.tags.map((t) => (
+                  <span key={t} className="rounded-full bg-[#f5faf9] px-2.5 py-0.5 text-xs font-semibold text-brand-ink">{t}</span>
+                ))}
+              </div>
+              <h2 className="text-lg font-black text-ink">
+                <Link href={`/blog/${p.slug}`} className="hover:text-brand-ink">{p.titleBn}</Link>
+              </h2>
+              <p className="mt-2 text-sm text-quiet line-clamp-3">{p.descriptionBn}</p>
+              <p className="mt-3 text-xs text-quiet">{p.date}</p>
+            </div>
+          </article>
         ))}
-      </ul>
+      </div>
     </main>
   )
 }

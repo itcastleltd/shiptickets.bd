@@ -39,6 +39,7 @@ const footerGroups = [
       { href: '/contact', label: 'Contact' },
       { href: '/privacy-policy', label: 'Privacy Policy' },
       { href: '/booking-policy', label: 'Booking Policy' },
+      { href: '/blog', label: 'Blog' },
     ],
   },
 ]
@@ -149,9 +150,10 @@ export function Footer() {
         so nothing reads twice.
       */}
       <div className="mx-auto mt-12 max-w-7xl border-t border-line-soft pt-6 text-xs text-faint">
-        <p>&copy; 2026 ShipTickets.bd · Prices and schedules are subject to confirmation and current government rules.</p>
+        <p>&copy; 2026 ShipTickets.bd . A platform by <a href="https://tripzic.com" target="_blank" rel="noopener noreferrer" className="text-brand-ink hover:text-brand-ink-hover">
+          Tripzic.com
+        </a> Civil Aviation Authority of Bangladesh (CAAB) Approved Travel Agency.</p>
         <p className="mt-2">
-          Confirm your fare, sailing and Travel Pass requirements before you travel.
         </p>
       </div>
     </footer>
