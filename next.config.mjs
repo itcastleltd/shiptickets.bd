@@ -11,7 +11,7 @@ const nextConfig = {
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'Strict-Transport-Security', value: 'max-age=63072000' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-          { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://wa.me https://*.wa.me; img-src 'self' data: https: https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://www.googletagmanager.com https://wa.me https://*.wa.me;" },
+          { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com https://connect.facebook.net; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://wa.me https://*.wa.me https://www.facebook.com https://*.facebook.com; img-src 'self' data: https: https://www.googletagmanager.com https://www.facebook.com https://*.facebook.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://www.googletagmanager.com https://wa.me https://*.wa.me https://www.facebook.com;" },
         ],
       },
       {
