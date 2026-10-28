@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Header } from '@/components/Header'
+import { Footer } from '@/components/Footer'
 import { blogPosts } from '@/content/blog'
 
 export const metadata: Metadata = {
@@ -11,7 +13,9 @@ export const metadata: Metadata = {
 
 export default function BlogIndex() {
   return (
-    <main className="mx-auto max-w-7xl px-5 py-12">
+    <>
+      <Header />
+      <main className="mx-auto max-w-7xl px-5 py-12">
       <h1 className="text-3xl font-black text-ink mb-2">Blog / ব্লগ</h1>
       <p className="text-quiet mb-8">সেন্টমার্টিন ভ্রমণ, টিকিট ও নিয়ম নিয়ে বাংলা পোস্ট।</p>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -38,5 +42,7 @@ export default function BlogIndex() {
         ))}
       </div>
     </main>
+      <Footer />
+    </>
   )
 }
