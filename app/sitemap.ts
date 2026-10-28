@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { ships, site } from '@/lib/ships'
+import { blogPosts } from '@/content/blog'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://www.shiptickets.bd'
@@ -34,6 +35,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: 'weekly' as const,
       priority: .75,
+    })),
+    { url: `${base}/blog`, lastModified, changeFrequency: 'weekly', priority: .8 },
+    ...blogPosts.map((post) => ({
+      url: `${base}/blog/${post.slug}`,
+      lastModified,
+      changeFrequency: 'monthly' as const,
+      priority: .7,
     })),
   ]
 }
