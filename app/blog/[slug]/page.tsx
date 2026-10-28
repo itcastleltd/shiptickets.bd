@@ -146,7 +146,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <Link href="/" className="hover:text-brand-ink">Home</Link> / <Link href="/blog" className="hover:text-brand-ink">Blog</Link> / <span className="text-ink">{post.titleBn}</span>
         </nav>
         <div className="relative h-64 rounded-2xl overflow-hidden bg-[#dcefeb] mb-6">
-          <Image src={post.thumbnail} alt={post.imageAlt || post.titleBn} fill sizes="100vw" className="object-cover" />
+          <Image src={post.thumbnail} alt={post.imageAlt || post.titleBn} fill sizes="(max-width: 768px) 100vw, 768px" className="object-cover" />
         </div>
         <h1 className="text-3xl font-black text-ink">{post.titleBn}</h1>
         <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-quiet">
@@ -182,7 +182,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               {related.map((p) => (
                 <Link key={p.slug} href={`/blog/${p.slug}`} className="flex gap-3 rounded-xl border border-line-soft bg-white p-3 hover:shadow-card">
                   <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-[#dcefeb]">
-                    <Image src={p.thumbnail} alt={p.titleBn} fill className="object-cover" />
+                    <Image src={p.thumbnail} alt={p.titleBn} fill sizes="80px" className="object-cover" />
                   </div>
                   <div>
                     <h3 className="font-bold text-ink text-sm line-clamp-2">{p.titleBn}</h3>
