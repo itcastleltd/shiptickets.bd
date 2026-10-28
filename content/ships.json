@@ -616,7 +616,7 @@
         "nameBn": "মেইন ডেক",
         "description": "Standard indoor and outdoor seating on the first floor. The largest and lowest-priced category on this vessel.",
         "oneWayFare": "Not published",
-        "roundTripFare": "৳3,500",
+        "roundTripFare": "Not published",
         "downFare": "৳1,675",
         "deck": "1st Floor",
         "seatCount": "Approx. 160 seats"
@@ -626,7 +626,7 @@
         "nameBn": "ওপেন ডেক",
         "description": "Upper deck seating with access to open-air viewing areas on the second floor.",
         "oneWayFare": "Not published",
-        "roundTripFare": "৳4,000",
+        "roundTripFare": "Not published",
         "downFare": "৳1,925",
         "deck": "2nd Floor",
         "seatCount": "Approx. 144 seats"
@@ -683,7 +683,7 @@
       }
     ],
     "oneWay": "Not published",
-    "roundTrip": "৳3,500",
+    "roundTrip": "Not published",
     "image": "/ship/Keari-Sindbad.jpg",
     "imageAlt": "KEARI Sindbad passenger tourist vessel",
     "capacity": "346 passengers (160 Main Deck, 144 Open Deck, 42 Bridge Deck)",
@@ -836,7 +836,7 @@
         "nameBn": "এক্সক্লুসিভ লাউঞ্জ",
         "description": "Basement lounge, air-conditioned, published capacity 44",
         "oneWayFare": "Not published",
-        "roundTripFare": "৳4,000",
+        "roundTripFare": "Not published",
         "downFare": "৳1,925",
         "deck": "Basement"
       },
