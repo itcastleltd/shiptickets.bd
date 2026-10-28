@@ -144,8 +144,8 @@ export const CONFIDENCE_LABELS = {
 const SHIP_STATUSES: ShipStatus[] = ['verified', 'needs_confirmation', 'seasonal_confirmation']
 const REQUIRED_SHIP_FIELDS: (keyof Ship)[] = ['slug', 'name', 'nameBn', 'summaryBn', 'route', 'operator', 'status', 'lastVerified', 'source', 'detail', 'ticketClasses', 'facilities', 'faq']
 
-const toAmount = (fare: string) => Number(fare.replace(/[^0-9]/g, ''))
-const formatFare = (amount: number) => `৳${amount.toLocaleString('en-US')}`
+  const toAmount = (fare: string) => { const n = Number(fare.replace(/[^0-9]/g, '')); return Number.isFinite(n) && n > 0 ? n : Infinity }
+  const formatFare = (amount: number) => Number.isFinite(amount) ? `৳${amount.toLocaleString('en-US')}` : 'Not published'
 
 function parseShip(entry: Record<string, unknown>, index: number): Ship {
   const slug = String(entry.slug ?? `entry-${index}`)
