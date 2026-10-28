@@ -2,7 +2,7 @@
 
 > Saint Martin ship tickets, made simple.
 
-ShipTickets.bd is a Bangladesh-focused information and human-assisted booking website for Saint Martin ship tickets from Cox's Bazar. Compare ships, check fares, verify schedules and contact our support team on WhatsApp or phone before you travel.
+ShipTickets.bd is a platform by Tripzic.com, a travel agency described by its operator as approved by the Civil Aviation Authority of Bangladesh (CAAB) and a member of the E-Tourism Association of Bangladesh (ETAB), as applicable. The platform works with participating ship operators where authorization and arrangements are in place.
 
 **Website:** [https://www.shiptickets.bd/](https://www.shiptickets.bd/)
 **Full content for LLMs:** [https://www.shiptickets.bd/llms-full.txt](https://www.shiptickets.bd/llms-full.txt)
@@ -111,7 +111,7 @@ Four vessels operate this route: MV Karnafuly Express, MV Baro Awlia, Keari Sind
 - **Route:** Cox's Bazar → Saint Martin
 - **Operator:** Parapaar Cruise Line PCL
 - **Status:** Seasonal confirmation required — 2026-2027 season opens 1 November 2026
-- **Last reviewed:** 27 October 2026
+- **Last reviewed:** 29 October 2026
 - **Round-trip fare (operator):** From ৳3,600
 - **Ticket classes:** Main Deck (৳3,600, 343 seats), Ocean Deck (৳4,200, 78 seats), Coral Lounge (৳4,500, 23 seats), Coral Deck (৳4,500, 186 seats), Sky Dine (৳5,000, 28 seats), VIP Chair (৳5,000, 8 seats)
 - **Cabins:** Deluxe Cabin — 6 pax, from ৳12,000; VIP Cabin — 2 pax, from ৳15,000; Royal Cabin — 1 pax, from ৳25,000
@@ -260,7 +260,7 @@ Open deck is outdoor seating. Lounge is indoor comfort seating. Cabin is private
 The exact jetty and check-in counter vary by operator and season. Confirm the approved departure point (BIWTA Nuniarchhara Jetty) with our support team before you leave.
 
 **কত টাকায় সেন্টমার্টিন জাহাজ টিকিট পাবো?**
-জাহাজ, seat category, cabin, travel date এবং one-way বা round-trip অনুযায়ী ভাড়া পরিবর্তিত হয়। রেফারেন্স one-way fare ৳১,৮০০ থেকে ৳২,৯০০ পর্যন্ত হতে পারে (seating class অনুযায়ী), আর private cabin-এর ভাড়া আলাদা। ২০২৬-২০২৭ সিজন ১ নভেম্বর ২০২৬ থেকে শুরু। পেমেন্টের আগে WhatsApp-এ বর্তমান ভাড়া নিশ্চিত করুন।
+জাহাজ, seat category, cabin, travel date এবং one-way বা round-trip অনুযায়ী ভাড়া পরিবর্তিত হয়। যাচাইকৃত one-way fare ৳১,৮০০ থেকে ৳২,৯০০ পর্যন্ত হতে পারে (seating class অনুযায়ী), আর private cabin-এর ভাড়া আলাদা। ২০২৬-২০২৭ সিজন ১ নভেম্বর ২০২৬ থেকে শুরু। পেমেন্টের আগে WhatsApp-এ বর্তমান ভাড়া নিশ্চিত করুন।
 
 **সেন্টমার্টিন ট্রাভেল পাস কী?**
 এটি সেন্টমার্টিন আইল্যান্ডে আবেদনকারী সরকারি ভিজিটরদের জন্য প্রয়োজনীয় ভ্রমণ অনুমোদন। টিকিটের সাথে QR কোড থাকতে পারে। সীজন পরিবর্তে প্রয়োজনীয়তা পরিবর্তিত হতে পারে।

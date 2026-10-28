@@ -3,6 +3,18 @@ Allow: /
 Disallow: /_not-found
 Disallow: /api/
 
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
 Sitemap: https://www.shiptickets.bd/sitemap.xml
 
 # Plain-text entry points for language models and AI agents.

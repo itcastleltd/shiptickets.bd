@@ -25,7 +25,7 @@ export default function AboutPage() {
     </ProseSection>
 
     <ProseSection title="A sister concern of Tripzic">
-      <p>ShipTickets.bd is a sister concern of <a href="https://www.tripzic.com/" target="_blank" rel="noopener noreferrer" className="font-extrabold text-brand-ink hover:underline">Tripzic</a>, a Bangladesh-based travel technology platform focused on group trips, travel experiences and destination information.</p>
+      <p>ShipTickets.bd is a sister concern of <a href="https://www.tripzic.com/" target="_blank" rel="noopener noreferrer" className="font-extrabold text-brand-ink hover:underline">Tripzic</a>, a Bangladesh-based travel technology platform focused on group trips, travel experiences and destination information. Tripzic is described by its operator as approved by the Civil Aviation Authority of Bangladesh (CAAB) and a member of the E-Tourism Association of Bangladesh (ETAB), as applicable. ShipTickets.bd works with participating ship operators where authorization and arrangements are in place.</p>
       <p className="mt-4">While Tripzic focuses on group travel and broader travel experiences, ShipTickets.bd has a dedicated focus on Saint Martin ship tickets and related travel information. Together, our goal is simple: make travel planning easier, clearer and more accessible for travelers from Bangladesh.</p>
     </ProseSection>
 

@@ -66,7 +66,7 @@ export function Footer() {
           />
 
           <p className="mt-4 max-w-xs text-sm leading-6 text-quiet">
-            ShipTickets Your trusted platform for Saint Martin ship tickets, tour packages, cabins and travel information.
+            ShipTickets.bd is a dedicated platform for Saint Martin’s ship tickets and travel information in Bangladesh. Operated by Tripzic.com, a CAAB-approved travel agency and ETAB member.
           </p>
 
           <address className="mt-6 space-y-2.5 text-sm not-italic text-quiet">

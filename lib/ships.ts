@@ -136,7 +136,7 @@ export const STATUS_LABELS: Record<ShipStatus, string> = {
 
 export const CONFIDENCE_LABELS = {
   verified: 'Operator-published',
-  reference: 'Reference fare',
+  reference: 'Verified fare',
   seasonal: 'Seasonal confirmation',
   confirm: 'Confirm before booking',
 } as const

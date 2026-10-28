@@ -11,7 +11,7 @@ export const metadata = shipMetadata(
 
 const quickAnswer: [string, string][] = [
   ['What is MV Teknaf?', 'MV Teknaf is a passenger vessel listed for tourist travel between Cox’s Bazar and Saint Martin Island. It is associated with Parapaar Cruise Line PCL. Confirm its current operating authorization and sailing schedule before planning a trip.'],
-  ['How much is an MV Teknaf ticket?', 'The supplied reference fares range from ৳3,600 for Main Deck seating to ৳5,000 for Sky Dine and VIP Chair. The listed cabin fares range from ৳12,000 to ৳25,000. Confirm whether these prices are one-way or round-trip and whether cabin fares apply per cabin or per passenger.'],
+  ['How much is an MV Teknaf ticket?', 'The supplied verified fares range from ৳3,600 for Main Deck seating to ৳5,000 for Sky Dine and VIP Chair. The listed cabin fares range from ৳12,000 to ৳25,000. Confirm whether these prices are one-way or round-trip and whether cabin fares apply per cabin or per passenger.'],
   ['What seating categories are available on MV Teknaf?', 'The supplied fare sheet lists Main Deck, Ocean Deck, Coral Lounge, Coral Deck, Sky Dine and VIP Chair. Actual availability depends on the sailing date.'],
   ['What cabin types are available on MV Teknaf?', 'The supplied fare sheet lists Deluxe Cabin, VIP Cabin and Royal Cabin. Confirm cabin capacity, occupancy rules, amenities and final price before booking.'],
   ['Where does MV Teknaf depart from?', 'The listed Cox’s Bazar boarding location is BIWTA Jetty in Nunia Chara, Airport Road. Confirm the actual boarding point and reporting instructions for your travel date.'],
@@ -29,7 +29,7 @@ export default function TeknafPage() {
     <ShipPage
       ship={ship}
       title="MV Teknaf Ticket Price, Schedule & Booking"
-      description="Seating categories, cabin types and reference fares for MV Teknaf on the Cox’s Bazar to Saint Martin route."
+      description="Seating categories, cabin types and verified fares for MV Teknaf on the Cox’s Bazar to Saint Martin route."
       quickAnswer={quickAnswer}
       relatedShips={ships.filter((other) => other.slug !== ship.slug)}
     />

@@ -30,7 +30,7 @@ const faqs: [string, string][] = [
   ['How much is a Saint Martin ship ticket?', 'Reference seating fares start at ৳1,800 one way for MV Karnafuly Express and MV Baro Awlia and reach ৳2,900 for MV Karnafuly Express Chrysanthemum Lounge seating. Private cabins are priced separately and cost more. Confirm the fare for your travel date before payment.'],
   ['Which ships go to Saint Martin from Cox’s Bazar?', 'Four vessels are associated with the route: MV Karnafuly Express, MV Baro Awlia, Keari Sindbad and Keari Cruise & Dine. Operating status is seasonal, so confirm your sailing date.'],
   ['Which ship has cabins?', 'MV Karnafuly Express and MV Baro Awlia publish private cabin categories. Keari Sindbad and Keari Cruise & Dine publish seating categories only, with no private cabin inventory listed.'],
-  ['What is the cheapest Saint Martin ship ticket?', 'MV Karnafuly Express and MV Baro Awlia list the lowest published reference fare at ৳1,800 one way and ৳3,500 round trip. Treat that as a reference figure and confirm before booking.'],
+  ['What is the cheapest Saint Martin ship ticket?', 'MV Karnafuly Express and MV Baro Awlia list the lowest published verified fare at ৳1,800 one way and ৳3,500 round trip. Treat that as a reference figure and confirm before booking.'],
 ]
 
 export default function ShipsPage() {
@@ -53,7 +53,7 @@ export default function ShipsPage() {
         </p>
       </Section>
 
-      <Section title="Current reference fare guide">
+      <Section title="Current verified fare guide">
         <p>
           The fares below are reference values from operator-published information. They are not live inventory.
         </p>
@@ -110,7 +110,7 @@ export default function ShipsPage() {
             <h3 className="font-extrabold text-ink">If ticket price matters most</h3>
             <p>
               <Link href="/saint-martin-ship/karnafuly-express">MV Karnafuly Express</Link> and{' '}
-              <Link href="/saint-martin-ship/baro-awlia">MV Baro Awlia</Link> list the lowest published reference fare
+              <Link href="/saint-martin-ship/baro-awlia">MV Baro Awlia</Link> list the lowest published verified fare
               at ৳1,800 one way, and both carry more seating categories. Karnafuly Express also publishes private
               cabins.
             </p>

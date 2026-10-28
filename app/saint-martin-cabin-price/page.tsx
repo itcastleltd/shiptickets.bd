@@ -6,7 +6,7 @@ import { ContactLink } from '@/components/contact-link'
 import { FaqAccordion } from '@/components/faq-accordion'
 
 const title = 'Saint Martin Ship Cabin & Seat Class Fares'
-const description = `Compare Saint Martin ship seat classes and cabins (open deck, lounge, AC seating, single, twin, VIP and VVIP cabin) with reference fares for the current season.`
+const description = `Compare Saint Martin ship seat classes and cabins (open deck, lounge, AC seating, single, twin, VIP and VVIP cabin) with verified fares for the current season.`
 
 export const metadata: Metadata = {
   title: 'Saint Martin Cabin & Seat Fares',
@@ -56,7 +56,7 @@ export default function CabinPricePage() {
         <div className="overflow-x-auto rounded-xl border border-line-soft">
           <table className="w-full text-left text-sm">
             <thead className="bg-[#e3ecea] text-ink">
-              <tr><th className="px-4 py-3 font-bold">Cabin</th><th className="px-4 py-3 font-bold">Reference fare</th><th className="px-4 py-3 font-bold">Notes</th></tr>
+              <tr><th className="px-4 py-3 font-bold">Cabin</th><th className="px-4 py-3 font-bold">Verified fare</th><th className="px-4 py-3 font-bold">Notes</th></tr>
             </thead>
             <tbody>
               {cabinReference.map((cabin) => (

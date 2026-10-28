@@ -6,9 +6,11 @@ import { Footer } from '@/components/Footer'
 import { blogPosts } from '@/content/blog'
 
 export const metadata: Metadata = {
-  title: 'Blog | ShipTickets.bd',
+  title: 'Blog',
   description: 'সেন্টমার্টিন ভ্রমণ, জাহাজের টিকিট, রুট ও নিয়ম নিয়ে বাংলা ব্লগ পোস্ট।',
   alternates: { canonical: '/blog' },
+  openGraph: { title: 'Blog | ShipTickets.bd', description: 'সেন্টমার্টিন ভ্রমণ, জাহাজের টিকিট, রুট ও নিয়ম নিয়ে বাংলা ব্লগ পোস্ট।', type: 'website', url: 'https://www.shiptickets.bd/blog', siteName: 'ShipTickets.bd', locale: 'bn_BD', images: [{ url: '/og_image.png', width: 1200, height: 630 }] },
+  twitter: { card: 'summary_large_image', title: 'Blog | ShipTickets.bd', description: 'সেন্টমার্টিন ভ্রমণ, জাহাজের টিকিট, রুট ও নিয়ম নিয়ে বাংলা ব্লগ পোস্ট।', images: ['/og_image.png'] },
 }
 
 export default function BlogIndex() {

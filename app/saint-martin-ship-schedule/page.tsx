@@ -166,7 +166,7 @@ export default function SchedulePage() {
           <LinkCard
             href="/saint-martin-ship-ticket-price"
             title="Ticket price guide"
-            text="Reference fares for every ship, class and cabin type."
+            text="Verified fares for every ship, class and cabin type."
           />
           <LinkCard
             href="/routes/coxs-bazar-to-saint-martin"

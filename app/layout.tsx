@@ -5,6 +5,7 @@ import { Nunito } from 'next/font/google'
 import './globals.css'
 import { GTMPageTracker } from '@/components/GTMPageTracker'
 import { FaqTracker } from '@/components/faq-tracker'
+import { MobileCallBar } from '@/components/mobile-call-bar'
 
 const nunito = Nunito({ subsets: ['latin'], display: 'swap', variable: '--font-nunito' })
 
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <GTMPageTracker />
         <FaqTracker />
         {children}
+        <MobileCallBar />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>

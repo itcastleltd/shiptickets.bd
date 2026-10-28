@@ -96,7 +96,7 @@ export function TicketCards({ ship, id }: { ship: Ship; id?: string }) {
         ))}
       </div>
       <p className="mt-4 t-small t-measure text-quiet">
-        Prices may vary by travel date, season, ticket class and operator policy. These are reference fares rather than live inventory, so confirm before you pay.
+        Prices may vary by travel date, season, ticket class and operator policy. These are verified fares rather than live inventory, so confirm before you pay.
       </p>
     </section>
   )

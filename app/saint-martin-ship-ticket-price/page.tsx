@@ -158,7 +158,7 @@ export default function PricePage() {
     return {
       '@type': 'Product',
       name: `${ship.name} Saint Martin ship ticket`,
-      description: `Reference fares and booking information for ${ship.name} from Cox's Bazar to Saint Martin.`,
+      description: `Verified fares and booking information for ${ship.name} from Cox's Bazar to Saint Martin.`,
       brand: { '@type': 'Brand', name: ship.name },
       category: 'Saint Martin ship ticket',
       areaServed: 'Bangladesh',
