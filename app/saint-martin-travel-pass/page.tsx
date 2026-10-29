@@ -1,13 +1,78 @@
 import type { Metadata } from 'next'
 import { BanglaSummary } from '@/components/bangla-summary'
 import { SeoPage, Section, Bullet, Schema, siteSchema, websiteSchema, faqSchema, breadcrumbSchema, ProseSection } from '@/components/seo-page'
-export const metadata: Metadata = { title: 'Saint Martin Travel Pass & QR Ticket', description: 'Learn what the Saint Martin Travel Pass and QR-coded ship ticket mean, why they matter and what to verify before travel.', openGraph: { title: 'Saint Martin Travel Pass & QR Ticket Guide', description: 'Understand the Travel Pass, QR-coded ticket requirements and what to verify before your Saint Martin journey.', images: [{ url: '/og_image.png', width: 1200, height: 630 }] }, alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-travel-pass' } }
-const faqs: [string,string][] = [
-  ['What is the Saint Martin Travel Pass?', 'It is the travel authorization or pass used under the applicable government rules for visitors to Saint Martin Island. Requirements can change by season.'],
+
+export const metadata: Metadata = {
+  title: 'Saint Martin Travel Pass 2026–27: Rules & Guide',
+  description: 'Learn how to get the Saint Martin travel pass, check ticket requirements, travel rules, fees and official guidance for the 2026–27 season in Bangladesh.',
+  openGraph: { title: 'Saint Martin Travel Pass 2026–27: Rules & Guide', description: 'Learn how to get the Saint Martin travel pass, check ticket requirements, travel rules, fees and official guidance for the 2026–27 season in Bangladesh.', images: [{ url: '/og_image.png', width: 1200, height: 630 }] },
+  alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-travel-pass' },
+}
+
+const faqs: [string, string][] = [
+  ['What is the Saint Martin Travel Pass?', 'It is the travel authorization used under government rules for visitors to Saint Martin Island. Requirements can change by season.'],
   ['Do I need a QR-coded ticket?', 'If current rules require a QR-coded ticket or Travel Pass, use only a valid ticket issued through an authorized process and verify the details before departure.'],
-  ['How do I apply for a Travel Pass?', 'Travel Pass requirements are managed by the applicable authorities. Confirm the latest process with an authorized ticketing channel before your travel date.'],
-  ['Do I need a separate Travel Pass if I have a ship ticket?', 'The Travel Pass and ship ticket rules are separate. Check whether a separate visitor authorization is required alongside your ship ticket before booking.'],
-  ['What if my name is misspelled on the Travel Pass?', 'Request a correction before departure. Some authorities require name changes to be resolved before check-in.'],
+  ['How do I apply for a Travel Pass?', 'Start with the official portal at travelpass.gov.bd and follow its current instructions.'],
+  ['Is the travel pass the same as a ship ticket?', 'No. The pass and ship ticket serve different purposes under the applicable rules. Check that you have all required travel documents.'],
+  ['What is the environmental conservation fee for 2026–27?', 'An environmental conservation fee of ৳100 per tourist has been announced. Confirm the current payment process through official guidance.'],
+  ['Can ShipTickets.bd issue my travel pass?', 'ShipTickets.bd provides ship information and travel guidance; it does not operate a live booking engine. Use the official portal for the current pass process.'],
+  ['Can I stay overnight on Saint Martin’s Island?', 'Overnight-stay rules depend on the current government directives and travel date. Check the latest official guidance before arranging accommodation.'],
 ]
-export default function TravelPassPage() { return <SeoPage eyebrow="Travel Pass · ট্রাভেল পাস" title="Saint Martin Travel Pass and QR ticket guide" intro="A ship ticket is not the only thing to check. Understand the Travel Pass, QR code and current visitor rules before planning your Saint Martin trip."><BanglaSummary path="/saint-martin-travel-pass" />
-<ProseSection title="The short answer"><div className="mb-6 rounded-2xl border border-line-soft bg-white p-5 shadow-card"><p className="text-xs font-extrabold uppercase tracking-[.16em] text-brand-ink">Quick Answer</p><p className="mt-2 text-sm leading-6 text-prose">The Saint Martin Travel Pass is the travel authorization required under government rules for visitors to Saint Martin Island. A QR-coded ticket may also be required alongside the Travel Pass. Requirements change between seasons — always use a valid ticket issued through an authorized process and verify passenger names match your ID before departure.</p></div><p>Travel Pass and QR ticket rules are controlled by the applicable authorities and can change between seasons. Confirm the latest notice and make sure your passenger details match the ticket.</p></ProseSection><Section title="Before departure"><ul className="grid gap-3"><Bullet>Use an authorized ticketing channel.</Bullet><Bullet>Check passenger name, date, ship and route.</Bullet><Bullet>Keep the QR code accessible on your phone and carry a backup where appropriate.</Bullet><Bullet>Ask what happens if the sailing or government access rules change.</Bullet></ul></Section><ProseSection title="Avoid unofficial tickets"><p>Do not pay for a screenshot, incomplete booking reference or ticket that does not identify the operator and passenger. A clear support team should explain the ticket, fare, check-in and cancellation conditions.</p></ProseSection><Schema data={{ '@context':'https://schema.org', '@graph':[siteSchema, websiteSchema, faqSchema(faqs), breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Saint Martin Travel Pass' }])] }} /></SeoPage> }
+
+export default function TravelPassPage() {
+  return (
+    <SeoPage eyebrow="Travel Pass · ট্রাভেল পাস" title="Saint Martin Travel Pass — Plan Your Trip the Right Way" intro="Learn about the travel pass, QR-coded ship tickets, applicable fees and current travel requirements before visiting Saint Martin’s Island. Check the latest official guidance before confirming your journey.">
+      <BanglaSummary path="/saint-martin-travel-pass" />
+      <ProseSection title="What is a Saint Martin travel pass?">
+        <p>A Saint Martin travel pass is part of the travel-control system used to manage tourist visits to the island and support environmental conservation. Under the government’s travel requirements, visitors need to follow the applicable pass and QR-coded ticket process through a recognized official portal. Requirements may change between travel seasons, so check the current instructions before travelling.</p>
+        <p className="mt-4">সেন্টমার্টিন ট্রাভেল পাস হলো দ্বীপে পর্যটকদের যাতায়াত নিয়ন্ত্রণ এবং পরিবেশ সংরক্ষণের জন্য ব্যবহৃত একটি ব্যবস্থা। সরকারি নির্দেশনা অনুযায়ী, পর্যটকদের অনুমোদিত পোর্টালের মাধ্যমে প্রযোজ্য ট্রাভেল পাস ও QR কোডযুক্ত টিকিট সংগ্রহের নিয়ম অনুসরণ করতে হয়। মৌসুমভেদে নিয়ম পরিবর্তিত হতে পারে, তাই যাত্রার আগে সর্বশেষ নির্দেশনা দেখে নিন।</p>
+        <p className="mt-4">Official travel pass portal: <a href="https://travelpass.gov.bd/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" className="font-extrabold text-brand-ink">travelpass.gov.bd</a></p>
+      </ProseSection>
+      <Section title="Travel rules for the 2026–27 season">
+        <p className="text-sm text-quiet">The following details reflect announcements available as of 29 October 2026. Recheck official guidance before travelling.</p>
+        <ul className="mt-4 grid gap-3">
+          <Bullet><strong>Travel season:</strong> 1 November 2026 to 15 March 2027.</Bullet>
+          <Bullet><strong>Environmental conservation fee:</strong> ৳100 per tourist announced.</Bullet>
+          <Bullet><strong>QR-coded ticket and travel pass:</strong> Follow the current official process for obtaining the required travel pass and QR-coded ticket.</Bullet>
+          <Bullet><strong>Approved passenger vessels:</strong> Travel only on vessels authorized to operate on the Saint Martin route.</Bullet>
+        </ul>
+        <p className="mt-4 text-sm text-prose">Important: Earlier rules restrict overnight stays in November and permit them in December and January. As implementation details can be updated, confirm the permitted travel date and overnight-stay conditions through the official portal or relevant authority before booking.</p>
+      </Section>
+      <ProseSection title="How to get your travel pass">
+        <ol className="list-decimal pl-6 space-y-1">
+          <li>Visit the official portal: <a href="https://travelpass.gov.bd/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" className="font-extrabold text-brand-ink">travelpass.gov.bd</a>.</li>
+          <li>Check the available travel dates, vessel information and pass requirements.</li>
+          <li>Follow the official instructions to obtain the required pass and QR-coded ticket.</li>
+          <li>Review your travel details and any applicable fee before completing the process.</li>
+          <li>Keep your ticket and QR code accessible during your journey, and follow the instructions provided by the authorities.</li>
+        </ol>
+        <p className="mt-4 text-sm text-prose">Note: These are general guidance steps, not a guarantee of the portal's current workflow. Follow the instructions actually displayed on the official website.</p>
+      </ProseSection>
+      <Section title="Travel pass vs. ship ticket">
+        <div className="overflow-x-auto rounded-xl border border-line-soft">
+          <table className="min-w-full text-sm">
+            <thead className="bg-[#f5faf9]"><tr><th className="border-b border-line-soft px-3 py-2 text-left font-bold">Travel pass</th><th className="border-b border-line-soft px-3 py-2 text-left font-bold">Ship ticket</th></tr></thead>
+            <tbody>
+              <tr><td className="border-t border-line-soft px-3 py-2">Records or authorizes visitor access under the applicable travel-control rules.</td><td className="border-t border-line-soft px-3 py-2">Relates to your passenger journey on a vessel.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-4 text-sm text-prose">Do not assume that a regular ticket or booking confirmation automatically satisfies every travel-pass requirement. Check that your travel documents comply with the current official rules.</p>
+      </Section>
+      <Section title="Before you travel">
+        <ul className="grid gap-3">
+          <Bullet>Confirm that your travel date falls within the permitted period.</Bullet>
+          <Bullet>Check the official pass and QR-coded ticket requirements.</Bullet>
+          <Bullet>Verify your ship's departure date, time and terminal.</Bullet>
+          <Bullet>Confirm the applicable fare and conservation fee.</Bullet>
+          <Bullet>Check the latest overnight-stay and island-access rules.</Bullet>
+          <Bullet>Avoid prohibited plastics and follow environmental protection guidelines.</Bullet>
+        </ul>
+      </Section>
+      <ProseSection title="How ShipTickets.bd can help">
+        <p>ShipTickets.bd helps travellers explore Saint Martin’s ship information, reference fares, seat and cabin options, and travel guidance. We do not operate a live booking engine or real-time ticket inventory. Please verify ticket availability, current fares and travel-pass requirements through the official portal or our support team before making payment.</p>
+      </ProseSection>
+      <Schema data={{ '@context': 'https://schema.org', '@graph': [siteSchema, websiteSchema, faqSchema(faqs), breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Saint Martin Travel Pass' }])] }} />
+    </SeoPage>
+  )
+}
