@@ -5,7 +5,7 @@ import { SeoPage, Section, Bullet, Schema, siteSchema, websiteSchema, faqSchema,
 export const metadata: Metadata = {
   title: 'Saint Martin Travel Pass 2026–27: Rules & Guide',
   description: 'Learn how to get the Saint Martin travel pass, check ticket requirements, travel rules, fees and official guidance for the 2026–27 season in Bangladesh.',
-  openGraph: { title: 'Saint Martin Travel Pass 2026–27: Rules & Guide', description: 'Learn how to get the Saint Martin travel pass, check ticket requirements, travel rules, fees and official guidance for the 2026–27 season in Bangladesh.', images: [{ url: '/og_image.png', width: 1200, height: 630 }] },
+  openGraph: { title: 'Saint Martin Travel Pass 2026–27: Rules & Guide', description: 'Learn how to get the Saint Martin travel pass, check ticket requirements, travel rules, fees and official guidance for the 2026–27 season in Bangladesh.', type: 'article', url: 'https://www.shiptickets.bd/saint-martin-travel-pass', siteName: 'ShipTickets.bd', locale: 'bn_BD', images: [{ url: '/og_image.png', width: 1200, height: 630 }] },
   alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-travel-pass' },
 }
 
