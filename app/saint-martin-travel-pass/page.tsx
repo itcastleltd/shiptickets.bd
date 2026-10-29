@@ -21,7 +21,7 @@ const faqs: [string, string][] = [
 
 export default function TravelPassPage() {
   return (
-    <SeoPage eyebrow="Travel Pass · ট্রাভেল পাস" title="Saint Martin Travel Pass — Plan Your Trip the Right Way" intro="Learn about the travel pass, QR-coded ship tickets, applicable fees and current travel requirements before visiting Saint Martin’s Island. Check the latest official guidance before confirming your journey.">
+    <SeoPage eyebrow="Travel Pass · ট্রাভেল পাস" title="Saint Martin Travel Pass " intro="Learn about the travel pass, QR-coded ship tickets, applicable fees and current travel requirements before visiting Saint Martin’s Island. Check the latest official guidance before confirming your journey.">
       <BanglaSummary path="/saint-martin-travel-pass" />
       <ProseSection title="What is a Saint Martin travel pass?">
         <p>A Saint Martin travel pass is part of the travel-control system used to manage tourist visits to the island and support environmental conservation. Under the government’s travel requirements, visitors need to follow the applicable pass and QR-coded ticket process through a recognized official portal. Requirements may change between travel seasons, so check the current instructions before travelling.</p>
