@@ -26,21 +26,21 @@ export default function TravelPassPage() {
       <ProseSection title="What is a Saint Martin travel pass?">
         <p>A Saint Martin travel pass is part of the travel-control system used to manage tourist visits to the island and support environmental conservation. Under the government’s travel requirements, visitors need to follow the applicable pass and QR-coded ticket process through a recognized official portal. Requirements may change between travel seasons, so check the current instructions before travelling.</p>
         <p className="mt-4">সেন্টমার্টিন ট্রাভেল পাস হলো দ্বীপে পর্যটকদের যাতায়াত নিয়ন্ত্রণ এবং পরিবেশ সংরক্ষণের জন্য ব্যবহৃত একটি ব্যবস্থা। সরকারি নির্দেশনা অনুযায়ী, পর্যটকদের অনুমোদিত পোর্টালের মাধ্যমে প্রযোজ্য ট্রাভেল পাস ও QR কোডযুক্ত টিকিট সংগ্রহের নিয়ম অনুসরণ করতে হয়। মৌসুমভেদে নিয়ম পরিবর্তিত হতে পারে, তাই যাত্রার আগে সর্বশেষ নির্দেশনা দেখে নিন।</p>
-        <p className="mt-4">Official travel pass portal: <a href="https://travelpass.gov.bd/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" className="font-extrabold text-brand-ink">travelpass.gov.bd</a></p>
+        <p className="mt-4">Official travel pass portal: <a href="https://travelpass.gov.bd/" target="_blank" rel="noopener noreferrer" className="font-extrabold text-brand-ink">travelpass.gov.bd</a></p>
       </ProseSection>
       <Section title="Travel rules for the 2026–27 season">
         <p className="text-sm text-quiet">The following details reflect announcements available as of 29 October 2026. Recheck official guidance before travelling.</p>
         <ul className="mt-4 grid gap-3">
           <Bullet><strong>Travel season:</strong> 1 November 2026 to 15 March 2027.</Bullet>
-          <Bullet><strong>Environmental conservation fee:</strong> ৳100 per tourist announced.</Bullet>
-          <Bullet><strong>QR-coded ticket and travel pass:</strong> Follow the current official process for obtaining the required travel pass and QR-coded ticket.</Bullet>
+          <Bullet><strong>Environmental conservation fee:</strong> ৳100 per tourist announced included with ship ticket.</Bullet>
+          <Bullet><strong>QR-coded ticket and travel pass:</strong> Saintmartin Travel pass and QR-code will added with ship ticket.</Bullet>
           <Bullet><strong>Approved passenger vessels:</strong> Travel only on vessels authorized to operate on the Saint Martin route.</Bullet>
         </ul>
         <p className="mt-4 text-sm text-prose">Important: Earlier rules restrict overnight stays in November and permit them in December and January. As implementation details can be updated, confirm the permitted travel date and overnight-stay conditions through the official portal or relevant authority before booking.</p>
       </Section>
       <ProseSection title="How to get your travel pass">
         <ol className="list-decimal pl-6 space-y-1">
-          <li>Visit the official portal: <a href="https://travelpass.gov.bd/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" className="font-extrabold text-brand-ink">travelpass.gov.bd</a>.</li>
+          <li>Visit the official portal: <a href="https://travelpass.gov.bd/" target="_blank" rel="noopener noreferrer" className="font-extrabold text-brand-ink">travelpass.gov.bd</a>.</li>
           <li>Check the available travel dates, vessel information and pass requirements.</li>
           <li>Follow the official instructions to obtain the required pass and QR-coded ticket.</li>
           <li>Review your travel details and any applicable fee before completing the process.</li>
@@ -53,7 +53,7 @@ export default function TravelPassPage() {
           <table className="min-w-full text-sm">
             <thead className="bg-[#f5faf9]"><tr><th className="border-b border-line-soft px-3 py-2 text-left font-bold">Travel pass</th><th className="border-b border-line-soft px-3 py-2 text-left font-bold">Ship ticket</th></tr></thead>
             <tbody>
-              <tr><td className="border-t border-line-soft px-3 py-2">Records or authorizes visitor access under the applicable travel-control rules.</td><td className="border-t border-line-soft px-3 py-2">Relates to your passenger journey on a vessel.</td></tr>
+              <tr><td className="border-t border-line-soft px-3 py-2">Records or authorizes visitor access under the applicable travel-control rules.</td><td className="border-t border-line-soft px-3 py-2">QR coded Travel pass & Environmental conservation fee will included with our ship ticket.</td></tr>
             </tbody>
           </table>
         </div>
@@ -72,7 +72,14 @@ export default function TravelPassPage() {
       <ProseSection title="How ShipTickets.bd can help">
         <p>ShipTickets.bd helps travellers explore Saint Martin’s ship information, reference fares, seat and cabin options, and travel guidance. We do not operate a live booking engine or real-time ticket inventory. Please verify ticket availability, current fares and travel-pass requirements through the official portal or our support team before making payment.</p>
       </ProseSection>
-      <Schema data={{ '@context': 'https://schema.org', '@graph': [siteSchema, websiteSchema, faqSchema(faqs), breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Saint Martin Travel Pass' }])] }} />
+      <Section title="Related pages">
+        <ul className="grid gap-3 sm:grid-cols-2">
+          <Bullet><a href="/saint-martin-ship-ticket-price" className="font-extrabold text-brand-ink">Ship ticket price guide</a></Bullet>
+          <Bullet><a href="/saint-martin-travel-rules" className="font-extrabold text-brand-ink">Travel rules</a></Bullet>
+          <Bullet><a href="/saint-martin-ship" className="font-extrabold text-brand-ink">All ships directory</a></Bullet>
+          <Bullet><a href="/saint-martin-guide" className="font-extrabold text-brand-ink">Saint Martin travel guide</a></Bullet>
+        </ul>
+      </Section>
     </SeoPage>
   )
 }
