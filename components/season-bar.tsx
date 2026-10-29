@@ -20,7 +20,7 @@ export function SeasonBar() {
       <span className="mx-2 text-white/40" aria-hidden="true">
         ·
       </span>
-      <span className="text-[#ef9f27]">shiptickets.bd is an authorized ship ticket reseller</span>
+      <span className="text-[#ef9f27]">ShipTickets.bd is an authorized platform for Saint Martin’s ship ticket.</span>
     </div>
   )
 }
