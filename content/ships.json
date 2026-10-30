@@ -134,8 +134,8 @@
     "image": "/ship/mv-karnafuly-express.jpg",
     "capacity": "Approx. 600 passengers",
     "journeyDuration": "Approx. 5 to 7 hours (seasonal, confirm for your sailing)",
-    "departure": "Morning departure (seasonal, confirm the exact time)",
-    "jetty": "BIWTA Nuniarchhara Jetty, Cox's Bazar",
+    "departure": "Outbound 07:00 from Cox's Bazar; Inbound 16:00 from Saint Martin (seasonal, confirm for your date)",
+    "jetty": "Nuniachora BIWTA Ghat (Cox's Bazar) / Sontha BIWTA Ghat (Saint Martin)",
     "checkIn": "Arrive before the published departure time; final check-in is confirmed on your ticket",
     "cancellation": "Subject to operator and season rules; confirm before payment",
     "gallery": [
@@ -894,7 +894,7 @@
     "capacity": "Published capacity 310 passengers",
     "journeyDuration": "Approx. 5 to 7 hours (seasonal, confirm for your sailing)",
     "departure": "Seasonal. Reporting and departure time are confirmed for your date",
-    "jetty": "BIWTA Nuniarchhara Jetty, Cox's Bazar",
+    "jetty": "Nuniachora BIWTA Ghat (Cox's Bazar) / Sontha BIWTA Ghat (Saint Martin)",
     "checkIn": "Reporting time confirmed on your ticket or booking confirmation",
     "cancellation": "Subject to operator and season rules; confirm before payment",
     "gallery": [
