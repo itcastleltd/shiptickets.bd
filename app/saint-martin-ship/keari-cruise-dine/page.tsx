@@ -14,7 +14,7 @@ const quickAnswer: [string, string][] = [
   ['Does Keari Cruise & Dine include food?', 'The vessel has a floating restaurant and dining facilities, but food inclusion depends on the selected ticket or package and current operator terms. Never assume that every ticket automatically includes a meal.'],
   ['Where does Keari Cruise & Dine depart from?', 'Published Keari information identifies the Cox’s Bazar / Nuniarchhara BIWTA jetty area. Confirm the exact boarding point and reporting time for your specific sailing.'],
   ['How long does Keari Cruise & Dine take?', 'Sailing time varies by route, weather, tide and operating conditions. Use the date-specific schedule provided with your ticket rather than relying on a fixed duration.'],
-  ['কেয়ারি ক্রুজের টিকিট কত টাকা?', 'প্রকাশিত যাচাইকৃত ভাড়া অনুযায়ী Exclusive Lounge একমুখী প্রায় ৳২,০৭৫, Coral Lounge ৳২,৩২৫ এবং Pearl Lounge ৳২,৫৭৫। বর্তমান মূল্য ভ্রমণের তারিখ অনুযায়ী নিশ্চিত করতে হবে।'],
+  ['কেয়ারি ক্রুজের টিকিট কত টাকা?', 'প্রকাশিত যাচাইকৃত ভাড়া অনুযায়ী Exclusive Lounge রাউন্ড ট্রিপ প্রায় ৳৪,২০০, Coral Lounge ৳৪,৫০০ এবং Pearl Lounge ৳৫,২০০।'],
 ]
 
 export default function KeariCruiseDinePage() {

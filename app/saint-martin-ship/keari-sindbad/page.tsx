@@ -14,7 +14,7 @@ const quickAnswer: [string, string][] = [
   ['Where does Keari Sindbad depart from?', "Published information identifies the Nuniarchhara BIWTA Jetty area in Cox's Bazar. Boarding arrangements can change between seasons, so confirm the jetty and reporting time printed on your ticket."],
   ['How long does Keari Sindbad take?', 'Sailing time varies by date, route, weather, sea conditions and tide. No fixed duration is published for this vessel, so use the schedule issued for your sailing date.'],
   ['Does Keari Sindbad have cabins?', 'No private cabin inventory is published for this vessel. KEARI Sindbad publishes Main Deck, Open Deck and Bridge Deck seating. If you need private accommodation, confirm availability with the operator before booking.'],
-  ['কেয়ারি সিন্দবাদ টিকিটের দাম কত?', 'প্রকাশিত যাচাইকৃত ভাড়া অনুযায়ী মেইন ডেক একমুখী ৳১,৮২৫, ওপেন ডেক ৳২,০৭৫ এবং ব্রিজ ডেক ৳২,৩২৫। রাউন্ড ট্রিপ ভাড়া মেইন ডেক ৳৩,৫০০ থেকে শুরু। আপনার ভ্রমণের তারিখ অনুযায়ী বর্তমান ভাড়া নিশ্চিত করুন।'],
+  ['কেয়ারি সিন্দবাদ টিকিটের দাম কত?', 'প্রকাশিত যাচাইকৃত ভাড়া অনুযায়ী মেইন ডেক যাওয়া আসা ৳৩,৭০০, ওপেন ডেক ৳৪,২২০ এবং ব্রিজ ডেক ৳৪,৫০০। রাউন্ড ট্রিপ ভাড়া মেইন ডেক ৳৩,৫০০ থেকে শুরু। আপনার ভ্রমণের তারিখ অনুযায়ী বর্তমান ভাড়া নিশ্চিত করুন।'],
 ]
 
 export default function KeariSindbadPage() {

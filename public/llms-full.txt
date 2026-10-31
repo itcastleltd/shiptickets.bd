@@ -289,3 +289,9 @@ One-way ৳1,800–৳2,900, round-trip ৳3,000–৳5,600 (reference). WhatsAp
 - We do not publish fake live availability, reviews, ratings or booking counts
 - We do not invent schedules or prices
 - Always confirm current availability and fare before payment
+
+## 10) Blog & Guides (Reference)
+- [Saint Martin ship ticket price guide](https://www.shiptickets.bd/blog/saint-martin-ship-ticket-price) – Fares, classes, cabins overview
+- [Dhaka to Saint Martin travel guide](https://www.shiptickets.bd/blog/dhaka-to-saint-martin-travel-guide) – Route, transport, stay planning
+- [Best ship to Saint Martin](https://www.shiptickets.bd/blog/best-ship-to-saint-martin) – Comparison by price, comfort, route
+- [Saint Martin travel rules](https://www.shiptickets.bd/blog/saint-martin-travel-rules) – Permits, limits, regulations

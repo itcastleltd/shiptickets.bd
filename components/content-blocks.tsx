@@ -290,7 +290,7 @@ export function ScheduleBlock({ ship, id }: { ship: Ship; id?: string }) {
       <div className="rounded-xl border border-[#f3d9bf] bg-[#fff8ee] p-4 text-sm text-[#6f5d5a]">
         <p className="flex items-start gap-2">
           <CircleAlert className="mt-0.5 shrink-0 text-warm" size={17} />
-          <span>Do not rely on a departure time copied from a previous season. Schedules change with tide, weather, sea conditions, operator decisions and government instructions.</span>
+
         </p>
       </div>
       <dl className="mt-5 grid gap-x-6 gap-y-4 sm:grid-cols-2">
@@ -496,7 +496,7 @@ export function QuickAnswer({ items, id }: { items: [string, string][]; id?: str
         {items.map(([question, answer]) => (
           <div key={question} className="py-4 first:pt-0 last:pb-0">
             <p className="font-extrabold text-ink">{question}</p>
-            <p className="t-body mt-1.5 t-measure text-prose">{answer}</p>
+            <p className="t-body mt-1.5 text-prose">{answer}</p>
           </div>
         ))}
       </div>

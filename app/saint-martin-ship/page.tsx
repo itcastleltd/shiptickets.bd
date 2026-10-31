@@ -28,7 +28,7 @@ const hasCabins = (ship: Ship) => ship.cabins.length > 0
 
 const faqs: [string, string][] = [
   ['How much is a Saint Martin ship ticket?', 'Reference seating fares start at ৳1,800 one way for MV Karnafuly Express and MV Baro Awlia and reach ৳2,900 for MV Karnafuly Express Chrysanthemum Lounge seating. Private cabins are priced separately and cost more. Confirm the fare for your travel date before payment.'],
-  ['Which ships go to Saint Martin from Cox’s Bazar?', 'Four vessels are associated with the route: MV Karnafuly Express, MV Baro Awlia, Keari Sindbad and Keari Cruise & Dine. Operating status is seasonal, so confirm your sailing date.'],
+  ['Which ships go to Saint Martin from Cox’s Bazar?', 'Five vessels are associated with the route: MV Karnafuly Express, MV Baro Awlia, MV Teknaf, Keari Sindbad and Keari Cruise & Dine. Operating status is seasonal, so confirm your sailing date.'],
   ['Which ship has cabins?', 'MV Karnafuly Express and MV Baro Awlia publish private cabin categories. Keari Sindbad and Keari Cruise & Dine publish seating categories only, with no private cabin inventory listed.'],
   ['What is the cheapest Saint Martin ship ticket?', 'MV Karnafuly Express and MV Baro Awlia list the lowest published verified fare at ৳1,800 one way and ৳3,500 round trip. Treat that as a reference figure and confirm before booking.'],
 ]
@@ -94,7 +94,7 @@ export default function ShipsPage() {
 
       <Section title="Available Saint Martin ships">
         <p>
-          Four vessels are associated with the Cox&apos;s Bazar to Saint Martin route for the {season.label} season.
+          Five vessels are associated with the Cox&apos;s Bazar to Saint Martin route for the {season.label} season.
           Operating status is seasonal, so confirm your sailing date before you travel.
         </p>
         <div className="mt-6 grid gap-6 md:grid-cols-2">

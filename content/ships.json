@@ -603,7 +603,7 @@
   {
     "slug": "keari-sindbad",
     "name": "Keari Sindbad",
-    "summaryBn": "কেয়ারী সিন্দবাদ কক্সবাজার থেকে সেন্টমার্টিন দ্বীপের জন্য ৩৪৬ আসনের যাত্রীবাহক জাহাজ। মেইন ডেক একমুখী ৳১,৮২৫, ওপেন ডেক ৳২,০৭৫ এবং ব্রিজ ডেক ৳২,৩২৫; রাউন্ড ট্রিপ ৳৩,৫০০ থেকে ৳৪,৫০০। এই জাহাজে কোনো ব্যক্তিগত কেবিন নেই, তবে তিনটি ডেকেই আলাদা আসনের সুবিধা পাওয়া যায়। যাত্রা সময় তারিখ, আবহাওয়া, সমুদ্রের অবস্থা ও জোয়ার-ভাটার ওপর নির্ভর করে, তাই নির্দিষ্ট সময়সূচি প্রকাশ করা হয় না। আগের সিদ্ধান্ত অনুযায়ী ভ্রমণের তারিখ অনুযায়ী টিকিটের রিপোর্টিং সময় ও ভাড়া নিশ্চিত করুন।",
+    "summaryBn": "কেয়ারী সিন্দবাদ কক্সবাজার থেকে সেন্টমার্টিন দ্বীপের জন্য ৩৪৬ আসনের একটি নন-এসি যাত্রীবাহক জাহাজ। এই জাহাজের মেইন ডেকের একমুখী ভাড়া ৳২,০০০, ওপেন ডেক ৳২,২০০ এবং ব্রিজ ডেক ৳২,৪০০; রাউন্ড ট্রিপ ভাড়া ৳৩,৭০০ থেকে ৳৪,৫০০ পর্যন্ত নির্ধারণ করা হয়েছে। এই জাহাজে কোনো ব্যক্তিগত কেবিনের সুবিধা নেই, তবে তিনটি ডেকেই যাত্রীদের জন্য আলাদা আসনের ব্যবস্থা রয়েছে। জাহাজের যাত্রার সময় মূলত নির্দিষ্ট তারিখ, আবহাওয়া, সমুদ্রের অবস্থা এবং জোয়ার-ভাটার ওপর নির্ভরশীল, তাই কোনো নির্দিষ্ট সময়সূচি আগে থেকে প্রকাশ করা হয় না। ভ্রমণের তারিখ অনুযায়ী টিকিটের রিপোর্টিং সময় এবং চূড়ান্ত ভাড়া কর্তৃপক্ষের সাথে নিশ্চিত হয়ে নেওয়া জরুরি।",
     "nameBn": "কেয়ারী সিন্দবাদ",
     "operator": "KEARI Tours & Services Ltd.",
     "route": "Cox's Bazar → Saint Martin",
@@ -614,32 +614,23 @@
       {
         "name": "Main Deck",
         "nameBn": "মেইন ডেক",
-        "description": "Standard indoor and outdoor seating on the first floor. The largest and lowest-priced category on this vessel.",
-        "oneWayFare": "Not published",
-        "roundTripFare": "Not published",
-        "downFare": "৳1,675",
-        "deck": "1st Floor",
-        "seatCount": "Approx. 160 seats"
+        "description": "Non AC seating",
+        "oneWayFare": "৳2,000",
+        "roundTripFare": "৳3,700"
       },
       {
         "name": "Open Deck",
         "nameBn": "ওপেন ডেক",
-        "description": "Upper deck seating with access to open-air viewing areas on the second floor.",
-        "oneWayFare": "Not published",
-        "roundTripFare": "Not published",
-        "downFare": "৳1,925",
-        "deck": "2nd Floor",
-        "seatCount": "Approx. 144 seats"
+        "description": "Non AC open deck seating",
+        "oneWayFare": "৳2,200",
+        "roundTripFare": "৳4,200"
       },
       {
         "name": "Bridge Deck",
-        "nameBn": "ব্রিজ ডেক",
-        "description": "Second floor seating positioned closest to the bridge. The highest-priced published category on this vessel.",
-        "oneWayFare": "৳2,325",
-        "roundTripFare": "৳4,500",
-        "downFare": "৳2,175",
-        "deck": "2nd Floor",
-        "seatCount": "Approx. 42 seats"
+        "nameBn": "ব্রিয় ডেক",
+        "description": "Non AC bridge deck seating",
+        "oneWayFare": "৳2,400",
+        "roundTripFare": "৳4,500"
       }
     ],
     "cabins": [],
@@ -823,7 +814,7 @@
   {
     "slug": "keari-cruise-dine",
     "name": "Keari Cruise & Dine",
-    "summaryBn": "কেয়ারী ক্রুজ অ্যান্ড ডাইন কক্সবাজার থেকে সেন্টমার্টিন দ্বীপের জন্য ক্রুজধর্মের যাত্রা। প্রকাশিত সক্ষমতা ৩১০ জন যাত্রী। এক্সক্লুসিভ লাউঞ্জ একমুখী ৳২,০৭৫, কোরাল লাউঞ্জ ৳২,৩২৫ এবং পার্ল লাউঞ্জ ৳২,৫৭৫; রাউন্ড ট্রিপ ৳৪,০০০ থেকে ৳৫,০০০। নির্বাচিত ক্যাটাগরিতে খাবার ও ডাইনিং সুবিধা রয়েছে। বর্তমানে এই জাহাজটির চলাচলের তথ্য নিশ্চিত করা প্রয়োজন, তাই ভ্রমণের আগে সময়সূচি ও সক্ষমতা জেনে নিন।",
+    "summaryBn": "কেয়ারী ক্রুজ অ্যান্ড ডাইন কক্সবাজার থেকে সেন্টমার্টিন দ্বীপের জন্য চলাচলকারী একটি এসি (AC) ও ক্রুজধর্মী যাত্রীবাহক জাহাজ, যার প্রকাশিত ধারণক্ষমতা ৩১০ জন যাত্রী। এই জাহাজের এক্সক্লুসিভ লাউঞ্জের একমুখী ভাড়া ৳২,২০০, কোরাল লাউঞ্জ ৳২,৫০০ এবং পার্ল লাউঞ্জ ৳২,৭০০; অন্যদিকে রাউন্ড ট্রিপ ভাড়া ৳৪,২০০ থেকে ৳৫,২০০ পর্যন্ত নির্ধারণ করা হয়েছে। নির্বাচিত ক্যাটাগরিতে যাত্রীদের জন্য বিশেষ খাবার ও ডাইনিং সুবিধা রয়েছে। জাহাজের চলাচল মূলত আবহাওয়া, সমুদ্রের অবস্থা ও জোয়ার-ভাটার ওপর নির্ভরশীল, তাই ভ্রমণের আগে কর্তৃপক্ষের সাথে সময়সূচি, রিপোর্টিং সময় ও চূড়ান্ত ভাড়া নিশ্চিত করে নেওয়া জরুরি।",
     "nameBn": "কেয়ারী ক্রুজ অ্যান্ড ডাইন",
     "operator": "Keari Tours & Services Ltd.",
     "route": "Cox's Bazar → Saint Martin",
@@ -834,29 +825,23 @@
       {
         "name": "Exclusive Lounge",
         "nameBn": "এক্সক্লুসিভ লাউঞ্জ",
-        "description": "Basement lounge, air-conditioned, published capacity 44",
-        "oneWayFare": "Not published",
-        "roundTripFare": "Not published",
-        "downFare": "৳1,925",
-        "deck": "Basement"
+        "description": "AC lounge",
+        "oneWayFare": "৳2,200",
+        "roundTripFare": "৳4,200"
       },
       {
         "name": "Coral Lounge",
-        "nameBn": "করাল লাউঞ্জ",
-        "description": "1st floor lounge, air-conditioned, published capacity 156",
-        "oneWayFare": "৳2,325",
-        "roundTripFare": "৳4,500",
-        "downFare": "৳2,175",
-        "deck": "1st Floor"
+        "nameBn": "কোরাল লাউঞ্জ",
+        "description": "AC lounge",
+        "oneWayFare": "৳2,500",
+        "roundTripFare": "৳4,700"
       },
       {
         "name": "Pearl Lounge",
         "nameBn": "পার্ল লাউঞ্জ",
-        "description": "2nd floor lounge, air-conditioned, premium category, published capacity 110",
-        "oneWayFare": "৳2,575",
-        "roundTripFare": "৳5,000",
-        "downFare": "৳2,425",
-        "deck": "2nd Floor"
+        "description": "AC lounge",
+        "oneWayFare": "৳2,700",
+        "roundTripFare": "৳5,200"
       }
     ],
     "cabins": [],
@@ -1047,7 +1032,7 @@
     "summaryBn": "এমভি টেকনাফ কক্সবাজার থেকে সেন্টমার্টিন দ্বীপে পর্যটক পরিবহনের জন্য তালিকাভুক্ত একটি যাত্রীবাহী জাহাজ। ভ্রমণের আগে বর্তমান মৌসুমে জাহাজটির চলাচলের অনুমতি ও সময়সূচি নিশ্চিত করুন।",
     "route": "Cox's Bazar → Saint Martin",
     "operator": "Parapaar Cruise Line PCL",
-    "status": "seasonal_confirmation",
+    "status": "verified",
     "lastVerified": "29 October 2026",
     "source": "Operator-published reference; confirm for your travel date",
     "ticketClasses": [
@@ -1055,7 +1040,7 @@
         "name": "Main Deck",
         "nameBn": "মেইন ডেক",
         "description": "Main deck seating category",
-        "oneWayFare": "Confirm",
+        "oneWayFare": "৳1,900",
         "roundTripFare": "৳3,600",
         "seatCount": "343"
       },
@@ -1063,7 +1048,7 @@
         "name": "Ocean Deck",
         "nameBn": "ওশান ডেক",
         "description": "Ocean deck seating category",
-        "oneWayFare": "Confirm",
+        "oneWayFare": "৳2,200",
         "roundTripFare": "৳4,200",
         "seatCount": "78"
       },
@@ -1071,7 +1056,7 @@
         "name": "Coral Lounge",
         "nameBn": "কোরাল লাউঞ্জ",
         "description": "Coral lounge seating category",
-        "oneWayFare": "Confirm",
+        "oneWayFare": "৳2,400",
         "roundTripFare": "৳4,500",
         "seatCount": "23"
       },
@@ -1079,7 +1064,7 @@
         "name": "Coral Deck",
         "nameBn": "কোরাল ডেক",
         "description": "Coral deck seating category",
-        "oneWayFare": "Confirm",
+        "oneWayFare": "৳2,400",
         "roundTripFare": "৳4,500",
         "seatCount": "186"
       },
@@ -1087,7 +1072,7 @@
         "name": "Sky Dine",
         "nameBn": "স্কাই ডাইন",
         "description": "Sky Dine seating category",
-        "oneWayFare": "Confirm",
+        "oneWayFare": "৳2,600",
         "roundTripFare": "৳5,000",
         "seatCount": "28"
       },
@@ -1095,7 +1080,7 @@
         "name": "VIP Chair",
         "nameBn": "ভিআইপি চেয়ার",
         "description": "VIP Chair seating category",
-        "oneWayFare": "Confirm",
+        "oneWayFare": "৳2,600",
         "roundTripFare": "৳5,000",
         "seatCount": "8"
       }
@@ -1106,7 +1091,7 @@
         "nameBn": "ডিলাক্স কেবিন",
         "description": "Deluxe cabin category",
         "capacity": "6 passengers",
-        "oneWayFare": "Confirm",
+        "oneWayFare": "৳6,100",
         "roundTripFare": "৳12,000",
         "seatCount": "6"
       },
@@ -1115,7 +1100,7 @@
         "nameBn": "ভিআইপি কেবিন",
         "description": "VIP cabin category",
         "capacity": "2 passengers",
-        "oneWayFare": "Confirm",
+        "oneWayFare": "৳7,600",
         "roundTripFare": "৳15,000",
         "seatCount": "2"
       },
@@ -1124,7 +1109,7 @@
         "nameBn": "রয়্যাল কেবিন",
         "description": "Royal cabin category",
         "capacity": "1 passenger",
-        "oneWayFare": "Confirm",
+        "oneWayFare": "৳13,000",
         "roundTripFare": "৳25,000",
         "seatCount": "1"
       }
@@ -1149,7 +1134,7 @@
     "image": "/ship/mv-teknaf.jpg",
     "imageAlt": "MV Teknaf passenger ship operated by Parapaar Cruise Line PCL for the Cox's Bazar to Saint Martin route",
     "capacity": "675 seats",
-    "journeyDuration": "Not confirmed (seasonal — confirm for your sailing)",
+    "journeyDuration": "6-7 hours Based on weather, sea conditions and operational instructions",
     "departure": "Morning departure (seasonal — confirm exact time)",
     "jetty": "BIWTA Jetty, Airport Road, Nunia Chara, Cox's Bazar",
     "checkIn": "Arrive at least 1 hour before departure; confirm with operator",

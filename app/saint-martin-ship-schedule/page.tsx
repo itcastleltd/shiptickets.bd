@@ -30,7 +30,7 @@ const faqs: [string, string][] = [
   ],
   [
     'How long does it take to reach Saint Martin by ship?',
-    'It depends on the vessel. MV Karnafuly Express is generally quoted at around 5 hours, while MV Baro Awlia is listed at around 2 hours. Keari Sindbad and Keari Cruise & Dine publish no fixed duration. Sailing time changes with weather, sea conditions and tide.',
+    'It depends on the vessel. MV Karnafuly Express is generally quoted at around 5 hours, while MV Baro Awlia is listed at around 2–2.5 hours. Keari Sindbad and Keari Cruise & Dine publish no fixed duration. Sailing time changes with weather, sea conditions and tide.',
   ],
   [
     'How early should I arrive at the jetty?',
@@ -66,22 +66,17 @@ export default function SchedulePage() {
       <BanglaSummary path="/saint-martin-ship-schedule" />
       <Section title="Quick Answer">
         <div className="flex flex-wrap items-center gap-3">
-          <Status>Seasonal confirmation required</Status>
+          <Status>Verified</Status>
         </div>
-        <p>
-          Saint Martin ship departure times are seasonal and operator-specific, so there is no single fixed
-          schedule. Four vessels serve the Cox’s Bazar to Saint Martin route: MV Karnafuly Express, MV Baro Awlia,
-          Keari Sindbad and Keari Cruise &amp; Dine.
-        </p>
-        <p>
-          Crossing times differ by vessel rather than sharing one figure. MV Karnafuly Express is generally quoted at
-          around 5 hours, MV Baro Awlia at around 2 hours, and two vessels publish no fixed
-          duration at all. Confirm your operator, date, jetty and reporting time before you travel.
-        </p>
-        <p>
-          The {season.label} season opens {season.startDate}. Until you have confirmed a sailing for your specific
-          date, treat every time on this page as reference information rather than a booking guarantee.
-        </p>
+        <p>The 2026–27 tourist season for Saint Martin’s Island runs from 1 November 2026 to 15 March 2027. However, the opening of the tourist season does not mean that ship services begin on the same day. Passenger ship operations are scheduled to start from 5 November 2026, subject to the necessary government approvals and operational clearance.</p>
+
+<p>Tourist ships are expected to depart from BIWTA’s Nuniachhara Jetty in Cox’s Bazar. Regular passenger services from Teknaf are not confirmed for this season. MV Karnafuly Express, MV Baro Awlia and MV Teknaf are among the vessels preparing to operate from 5 November. Other approved vessels, including Keari Sindbad and Keari Cruise & Dine, are also expected to begin operations around the same week, subject to their individual schedules and clearances.</p>
+
+<p>Departure and return times may vary by vessel, sailing date, sea conditions and approved operating schedules. There is no single fixed departure time or journey duration for all ships. Always confirm your vessel, travel date, reporting time and boarding jetty with the operator before departure.</p>
+
+<p>Under the revised government guidelines, tourists can visit Saint Martin’s during the season, including overnight stays, subject to applicable travel restrictions. Passengers must also comply with the official travel-pass and QR-coded ticket requirements.</p>
+
+<p>Please note: ShipTickets.bd provides ship information and ticket-related assistance. Schedules, fares and vessel operations may change. All information is for guidance only and does not guarantee sailing or ticket availability.</p>
       </Section>
 
       <Section title="Published schedule information by vessel">
@@ -110,7 +105,7 @@ export default function SchedulePage() {
                   <td className="px-4 py-3 text-prose">{ship.departure ?? 'Confirm for your date'}</td>
                   <td className="px-4 py-3 text-prose">{ship.journeyDuration ?? 'Confirm for your date'}</td>
                   <td className="px-4 py-3 text-prose">
-                    {STATUS_LABELS[ship.status]}
+                    {ship.slug === 'mv-teknaf' ? 'Sailing 2026–27' : STATUS_LABELS[ship.status]}
                   </td>
                 </tr>
               ))}
@@ -118,8 +113,7 @@ export default function SchedulePage() {
           </table>
         </div>
         <p className="t-small mt-3 text-quiet">
-          Do not rely on a departure time copied from a previous season. Confirm your operator, date, jetty and
-          reporting time before leaving for Cox’s Bazar.
+          Confirm your operator, date, jetty and reporting time before leaving for Cox’s Bazar.
         </p>
       </Section>
 

@@ -189,8 +189,8 @@ export default function PricePage() {
       <Section title="Quick Answer">
         <p>
           Saint Martin ship ticket prices range from <strong>{cheapest.oneWay} one way</strong> on{' '}
-          {cheapest.name} up to considerably more for premium lounge seating and private VVIP cabins. Four vessels
-          serve this route: MV Karnafuly Express, MV Baro Awlia, Keari Sindbad and Keari Cruise &amp; Dine.
+          {cheapest.name} up to considerably more for premium lounge seating and private VVIP cabins. Five vessels
+          serve this route: MV Karnafuly Express, MV Baro Awlia, MV Teknaf, Keari Sindbad and Keari Cruise &amp; Dine.
         </p>
         <p>
           Fares depend on ship, class, cabin type, one-way versus round trip and the current season. The{' '}
