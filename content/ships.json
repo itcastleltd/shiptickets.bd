@@ -8,7 +8,7 @@
     "route": "Cox's Bazar → Saint Martin",
     "status": "verified",
     "lastVerified": "29 October 2026",
-    "source": "Operator-published reference; confirm for your travel date",
+    "source": "Operator-published information; confirm for your travel date",
     "ticketClasses": [
       {
         "name": "Lavender Economy Seat",
@@ -133,8 +133,8 @@
     ],
     "image": "/ship/mv-karnafuly-express.jpg",
     "capacity": "Approx. 600 passengers",
-    "journeyDuration": "Approx. 5 to 7 hours (seasonal, confirm for your sailing)",
-    "departure": "Outbound 07:00 from Cox's Bazar; Inbound 16:00 from Saint Martin (seasonal, confirm for your date)",
+    "journeyDuration": "Approx. 6 to 7 hours (seasonal, confirm for your sailing)",
+    "departure": "Outbound 07:00 from Cox's Bazar; Inbound 16:00 from Saint Martin ",
     "jetty": "Nuniachora BIWTA Ghat (Cox's Bazar) / Sontha BIWTA Ghat (Saint Martin)",
     "checkIn": "Arrive before the published departure time; final check-in is confirmed on your ticket",
     "cancellation": "Subject to operator and season rules; confirm before payment",
