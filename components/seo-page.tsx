@@ -205,7 +205,6 @@ export const vehicleSchema = (ship: Ship) => {
     vehicleConfiguration: 'Passenger ship',
     brand: { '@type': 'Brand', name: ship.operator },
     ...(publishedCapacity > 0 ? { passengerCapacity: { '@type': 'QuantitativeValue', value: publishedCapacity } } : {}),
-    offers: { '@id': `https://www.shiptickets.bd/saint-martin-ship/${ship.slug}#product` },
   }
 }
 
@@ -274,7 +273,17 @@ export const productSchema = (ship: Ship) => {
   }
 }
 
-export { whatsapp }
+export const articleSchema = (post: { title: string; slug: string; excerpt?: string; publishedAt?: string; updatedAt?: string }) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.title,
+  description: post.excerpt,
+  url: `https://www.shiptickets.bd/blog/${post.slug}`,
+  datePublished: post.publishedAt,
+  dateModified: post.updatedAt ?? post.publishedAt,
+  author: { '@type': 'Organization', name: 'ShipTickets.bd' },
+  publisher: { '@id': 'https://www.shiptickets.bd/#organization' },
+})
 
 export function Status({ children }: { children: React.ReactNode }) { return <Pill>{children}</Pill> }
 

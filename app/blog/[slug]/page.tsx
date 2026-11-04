@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return {
     title: post.seoTitle || post.titleBn,
     description: post.seoDescription || post.descriptionBn,
-    alternates: { canonical: `/blog/${post.slug}`, languages: { 'bn-BD': `/blog/${post.slug}`, 'x-default': `/blog/${post.slug}` } },
+    alternates: { canonical: `/blog/${post.slug}` },
     keywords: post.secondaryKeywords,
     openGraph: { title: post.seoTitle || post.titleBn, description: post.seoDescription || post.descriptionBn, type: 'article', url: `https://www.shiptickets.bd/blog/${post.slug}`, siteName: 'ShipTickets.bd', locale: 'bn_BD', images: [{ url: post.thumbnail, alt: post.imageAlt || post.titleBn, width: 1200, height: 630 }], publishedTime: `${post.date}T08:00:00+06:00`, modifiedTime: `${post.date}T08:00:00+06:00` },
     twitter: { card: 'summary_large_image', title: post.seoTitle || post.titleBn, description: post.seoDescription || post.descriptionBn, images: [post.thumbnail] },

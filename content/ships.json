@@ -7,7 +7,7 @@
     "operator": "Karnafuly Cruise Line",
     "route": "Cox's Bazar → Saint Martin",
     "status": "verified",
-    "lastVerified": "29 October 2026",
+    "lastVerified": "4 November 2026",
     "source": "Operator-published information; confirm for your travel date",
     "ticketClasses": [
       {
@@ -305,7 +305,7 @@
     "operator": "Karnafuly Cruise Line",
     "route": "Cox's Bazar → Saint Martin",
     "status": "verified",
-    "lastVerified": "29 October 2026",
+    "lastVerified": "4 November 2026",
     "source": "Operator-published reference; confirm for your travel date",
     "ticketClasses": [
       {
@@ -608,7 +608,7 @@
     "operator": "KEARI Tours & Services Ltd.",
     "route": "Cox's Bazar → Saint Martin",
     "status": "verified",
-    "lastVerified": "29 October 2026",
+    "lastVerified": "4 November 2026",
     "source": "KEARI published vessel and fare information; confirm the schedule for your travel date",
     "ticketClasses": [
       {
@@ -679,7 +679,7 @@
     "imageAlt": "KEARI Sindbad passenger tourist vessel",
     "capacity": "346 passengers (160 Main Deck, 144 Open Deck, 42 Bridge Deck)",
     "journeyDuration": "Approx. 5 to 7 hours (seasonal, confirm for your sailing)",
-    "departure": "Previously published 7:00 AM departure with 6:45 AM reporting. Reference only, confirm for your travel date.",
+    "departure": "Morning departure (seasonal — confirm exact time and reporting time)",
     "jetty": "Nuniarchhara BIWTA Jetty, Cox's Bazar",
     "checkIn": "Confirm the reporting time shown on your ticket for your sailing date",
     "cancellation": "Subject to operator and season rules. Confirm the cancellation policy before payment.",
@@ -819,7 +819,7 @@
     "operator": "Keari Tours & Services Ltd.",
     "route": "Cox's Bazar → Saint Martin",
     "status": "verified",
-    "lastVerified": "29 October 2026",
+    "lastVerified": "4 November 2026",
     "source": "Operator-published reference; confirm for your travel date",
     "ticketClasses": [
       {
@@ -1033,7 +1033,7 @@
     "route": "Cox's Bazar → Saint Martin",
     "operator": "Parapaar Cruise Line PCL",
     "status": "verified",
-    "lastVerified": "29 October 2026",
+    "lastVerified": "4 November 2026",
     "source": "Operator-published reference; confirm for your travel date",
     "ticketClasses": [
       {
@@ -1134,7 +1134,7 @@
     "image": "/ship/mv-teknaf.jpg",
     "imageAlt": "MV Teknaf passenger ship operated by Parapaar Cruise Line PCL for the Cox's Bazar to Saint Martin route",
     "capacity": "675 seats",
-    "journeyDuration": "6-7 hours Based on weather, sea conditions and operational instructions",
+    "journeyDuration": "Approx. 6–7 hours (weather, sea conditions and operational instructions)",
     "departure": "Morning departure (seasonal — confirm exact time)",
     "jetty": "BIWTA Jetty, Airport Road, Nunia Chara, Cox's Bazar",
     "checkIn": "Arrive at least 1 hour before departure; confirm with operator",
