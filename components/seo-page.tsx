@@ -285,6 +285,8 @@ export const articleSchema = (post: { title: string; slug: string; excerpt?: str
   publisher: { '@id': 'https://www.shiptickets.bd/#organization' },
 })
 
+export { whatsapp }
+
 export function Status({ children }: { children: React.ReactNode }) { return <Pill>{children}</Pill> }
 
 export function LinkCard({ href, title, text }: { href: string; title: string; text: string }) { return <Link href={href} className="group rounded-2xl border border-line-soft bg-white p-5 transition hover:-translate-y-1 hover:border-brand-ink"><h3 className="font-extrabold">{title}</h3><p className="mt-2 text-sm leading-6 text-prose">{text}</p><ArrowRight className="mt-4 text-brand-ink transition group-hover:translate-x-1" size={17}/></Link> }
