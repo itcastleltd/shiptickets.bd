@@ -79,7 +79,48 @@ export default function SchedulePage() {
 <p>Please note: ShipTickets.bd provides ship information and ticket-related assistance. Schedules, fares and vessel operations may change. All information is for guidance only and does not guarantee sailing or ticket availability.</p>
       </Section>
 
-      <Section title="Published schedule information by vessel">
+      <Section title="November 2026 cruise schedule (Karnafuly)">
+        <p className="mb-3 text-sm text-prose">Operator: Karnafuly Cruise Line Ltd · Route: Cox's Bazar ⇄ Saint Martin · Ships: MV Karnafuly Express &amp; MV Baro Awlia. Departure times subject to tide/ebb; confirm before travel.</p>
+        <div className="overflow-x-auto rounded-xl border border-line-soft">
+          <table className="w-full min-w-[640px] text-left text-sm">
+            <thead className="bg-[#e3ecea] text-ink"><tr><th className="px-3 py-2 font-bold">Date</th><th className="px-3 py-2 font-bold">Day</th><th className="px-3 py-2 font-bold">CB Departure</th><th className="px-3 py-2 font-bold">SM Return</th></tr></thead>
+            <tbody>
+              {[
+                ['05.11.2026','Thursday','07:00 AM','03:00 PM'],
+                ['06.11.2026','Friday','07:00 AM','03:00 PM'],
+                ['07.11.2026','Saturday','07:00 AM','03:00 PM'],
+                ['08.11.2026','Sunday','08:00 AM','04:00 PM'],
+                ['09.11.2026','Monday','08:00 AM','04:00 PM'],
+                ['10.11.2026','Tuesday','08:00 AM','04:00 PM'],
+                ['11.11.2026','Wednesday','09:00 AM','05:00 PM'],
+                ['12.11.2026','Thursday','09:00 AM','05:00 PM'],
+                ['13.11.2026','Friday','10:00 AM','05:00 PM'],
+                ['14.11.2026','Saturday','10:00 AM','05:00 PM'],
+                ['15.11.2026','Sunday','10:00 AM','05:00 PM'],
+                ['16.11.2026','Monday','04:00 AM','05:00 PM'],
+                ['17.11.2026','Tuesday','04:00 AM','05:00 PM'],
+                ['18.11.2026','Wednesday','04:00 AM','05:00 PM'],
+                ['19.11.2026','Thursday','06:00 AM','03:00 PM'],
+                ['20.11.2026','Friday','06:00 AM','03:00 PM'],
+                ['21.11.2026','Saturday','07:00 AM','04:00 PM'],
+                ['22.11.2026','Sunday','07:00 AM','04:00 PM'],
+                ['23.11.2026','Monday','07:00 AM','04:00 PM'],
+                ['24.11.2026','Tuesday','07:00 AM','04:00 PM'],
+                ['25.11.2026','Wednesday','08:00 AM','04:00 PM'],
+                ['26.11.2026','Thursday','09:00 AM','04:00 PM'],
+                ['27.11.2026','Friday','09:00 AM','04:00 PM'],
+                ['28.11.2026','Saturday','10:00 AM','05:00 PM'],
+                ['29.11.2026','Sunday','10:00 AM','05:00 PM'],
+                ['30.11.2026','Monday','05:00 AM','03:00 PM'],
+              ].map(([d,day,dep,ret]) => (
+                <tr key={d} className="border-t border-line-soft"><td className="px-3 py-2">{d}</td><td className="px-3 py-2">{day}</td><td className="px-3 py-2">{dep}</td><td className="px-3 py-2">{ret}</td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Section>
+
+
         <p>
           These are the schedule details each operator has published. They are reference values, not confirmed
           sailings for your date.
