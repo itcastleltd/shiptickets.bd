@@ -91,7 +91,7 @@ export type SeasonConfig = {
  *
  * Only publish reviews that were really collected from a real customer through a
  * real channel (Google, Facebook, post-trip feedback call, WhatsApp survey).
- * Never invent a review, a rating or a review count Ã¢â‚¬â€ Google treats fabricated
+ * Never invent a review, a rating or a review count — Google treats fabricated
  * review markup as structured-data spam, and in Bangladesh publishing invented
  * customer ratings is also a consumer-protection problem.
  *
