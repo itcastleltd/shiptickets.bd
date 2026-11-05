@@ -163,7 +163,7 @@ export function ShipPage({
       <ScheduleBlock ship={ship} id="schedule" />
       {(ship.slug === 'karnafuly-express' || ship.slug === 'baro-awlia') && (
         <section className="mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8">
-          <h2 className="t-title mb-3">November 2026 cruise schedule (Karnafuly)</h2>
+          <h2 className="t-title mb-3">{ship.name} November 2026 schedule</h2>
           <p className="mb-3 text-sm text-prose">Operator: Karnafuly Cruise Line Ltd. Departure times subject to tide/ebb; confirm before travel.</p>
           <div className="overflow-x-auto rounded-xl border border-line-soft">
             <table className="w-full min-w-[520px] text-left text-sm">
