@@ -11,6 +11,8 @@ export type TicketClass = {
   downFare?: string
   deck?: string
   seatCount?: string
+  image?: string
+  imageAlt?: string
 }
 
 export type Cabin = {
@@ -89,7 +91,7 @@ export type SeasonConfig = {
  *
  * Only publish reviews that were really collected from a real customer through a
  * real channel (Google, Facebook, post-trip feedback call, WhatsApp survey).
- * Never invent a review, a rating or a review count — Google treats fabricated
+ * Never invent a review, a rating or a review count Ã¢â‚¬â€ Google treats fabricated
  * review markup as structured-data spam, and in Bangladesh publishing invented
  * customer ratings is also a consumer-protection problem.
  *
@@ -129,7 +131,7 @@ export type SiteConfig = {
 }
 
 export const STATUS_LABELS: Record<ShipStatus, string> = {
-  verified: 'Sailing 2026–27',
+  verified: 'Sailing 2026Ã¢â‚¬â€œ27',
   needs_confirmation: 'Check latest schedule',
   seasonal_confirmation: 'Seasonal confirmation',
 }
