@@ -131,7 +131,7 @@ export type SiteConfig = {
 }
 
 export const STATUS_LABELS: Record<ShipStatus, string> = {
-  verified: 'Sailing 2026Ã¢â‚¬â€œ27',
+  verified: 'Sailing 2026–27',
   needs_confirmation: 'Check latest schedule',
   seasonal_confirmation: 'Seasonal confirmation',
 }
