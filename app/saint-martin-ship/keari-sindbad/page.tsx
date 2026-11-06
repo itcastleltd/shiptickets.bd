@@ -1,30 +1,29 @@
 import { getShipBySlug, ships } from '@/lib/ships'
-import { ShipPage, shipMetadata } from '@/components/ship-page'
+import { shipFareMetadata } from '@/components/ship-page'
+import { ShipBookingPage } from '@/components/ship-booking-page'
+
+/** Refresh hourly, so crawlers without JavaScript get sailing times from today, not the build date. */
+export const revalidate = 3600
 
 const ship = getShipBySlug('keari-sindbad')!
 
-export const metadata = shipMetadata(
-  ship,
-  'Keari Sindbad Ticket Price & Schedule',
-  'Check Keari Sindbad deck fares, vessel specifications, schedule, boarding point and booking details for the Cox\u2019s Bazar to Saint Martin route.',
-)
+export const metadata = shipFareMetadata(ship)
 
 const quickAnswer: [string, string][] = [
   ['How much is a Keari Sindbad ticket?', `Published verified fares list Main Deck at ${ship.ticketClasses[0].oneWayFare} one way, Open Deck at ${ship.ticketClasses[1].oneWayFare} and Bridge Deck at ${ship.ticketClasses[2].oneWayFare}. Round-trip fares start from ${ship.roundTrip}. Confirm the applicable fare for your travel date before payment.`],
   ['Where does Keari Sindbad depart from?', "Published information identifies the Nuniarchhara BIWTA Jetty area in Cox's Bazar. Boarding arrangements can change between seasons, so confirm the jetty and reporting time printed on your ticket."],
-  ['How long does Keari Sindbad take?', 'Sailing time varies by date, route, weather, sea conditions and tide. No fixed duration is published for this vessel, so use the schedule issued for your sailing date.'],
+  ['How long does Keari Sindbad take?', 'The crossing generally takes about 6 to 7 hours. Sailing time varies by date, weather, sea conditions and tide, so use the schedule issued for your sailing date.'],
   ['Does Keari Sindbad have cabins?', 'No private cabin inventory is published for this vessel. KEARI Sindbad publishes Main Deck, Open Deck and Bridge Deck seating. If you need private accommodation, confirm availability with the operator before booking.'],
-  ['কেয়ারি সিন্দবাদ টিকিটের দাম কত?', 'প্রকাশিত যাচাইকৃত ভাড়া অনুযায়ী মেইন ডেক যাওয়া আসা ৳৩,৭০০, ওপেন ডেক ৳৪,২২০ এবং ব্রিজ ডেক ৳৪,৫০০। রাউন্ড ট্রিপ ভাড়া মেইন ডেক ৳৩,৫০০ থেকে শুরু। আপনার ভ্রমণের তারিখ অনুযায়ী বর্তমান ভাড়া নিশ্চিত করুন।'],
+  ['কেয়ারি সিন্দবাদ জাহাজের টিকেটের দাম কত?', 'মেইন ডেকে জনপ্রতি একমুখী প্রকাশিত ভাড়া ৳২,০০০ এবং যাওয়া-আসা ৳৩,৭০০। ওপেন ডেকে যাওয়া-আসা ৳৪,২০০, আর ব্রিজ ডেকে ৳৪,৫০০। আপনার তারিখের ছাড়ার সময়, টিকেট কাটার আগে ShipTickets.bd থেকে জেনে নিন।'],
 ]
 
 export default function KeariSindbadPage() {
   return (
-    <ShipPage
+    <ShipBookingPage
       ship={ship}
       title="Keari Sindbad Ticket Price, Schedule & Booking"
-      description="Main Deck, Open Deck and Bridge Deck seating on a 346-passenger vessel, with published fares, vessel specifications, facilities and seasonal schedule guidance."
       quickAnswer={quickAnswer}
-      beforeYouPay={[
+      checklist={[
         'Travel date and one-way or round trip',
         'Preferred deck: Main Deck, Open Deck or Bridge Deck',
         'Number of passengers',

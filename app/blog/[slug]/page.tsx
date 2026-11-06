@@ -1,11 +1,28 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Image from 'next/image'
+import { Fragment } from 'react'
 import { notFound } from 'next/navigation'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
+import { ArrowLeft, ArrowRight, Calendar, Clock, MessageCircle, RefreshCw, Share2, ShieldCheck, Ship, Zap } from 'lucide-react'
+import { BackToTop } from '@/components/BackToTop'
+import { BlogBody } from '@/components/blog/blog-body'
+import { BlogCard, BlogCover } from '@/components/blog/blog-cards'
+import { BlogReadingNav, BlogSideToc, CopyLinkButton, ReadingProgress } from '@/components/blog/blog-reading'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { ContactLink } from '@/components/contact-link'
 import { FaqAccordion } from '@/components/faq-accordion'
-import { getAllSlugs, getPost, blogPosts } from '@/content/blog'
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
+import { Schema, breadcrumbSchema, faqSchema, siteSchema, websiteSchema } from '@/components/seo-page'
+import { HtmlLang } from '@/components/html-lang'
+import { blogPosts, getAllSlugs, getPost } from '@/content/blog'
+import { banglaDate, blogImage, modifiedISO, newestFirst, readingMinutes, splitQuickAnswer, toBanglaDigits, topicLabel, wordCount } from '@/lib/blog-helpers'
+import { WHATSAPP_NUMBER, ships } from '@/lib/ships'
+
+const BASE = 'https://www.shiptickets.bd'
+const headingId = (heading: string) => heading.replace(/\s+/g, '-')
+
+/** Only the posts in content/blog.ts exist. Any other address returns a real 404. */
+export const dynamicParams = false
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }))
@@ -15,185 +32,237 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const post = getPost(slug)
   if (!post) return {}
+  const title = post.seoTitle || post.titleBn
+  const description = post.seoDescription || post.descriptionBn
+  const url = `${BASE}/blog/${post.slug}`
   return {
-    title: post.seoTitle || post.titleBn,
-    description: post.seoDescription || post.descriptionBn,
-    alternates: { canonical: `/blog/${post.slug}` },
-    keywords: post.secondaryKeywords,
-    openGraph: { title: post.seoTitle || post.titleBn, description: post.seoDescription || post.descriptionBn, type: 'article', url: `https://www.shiptickets.bd/blog/${post.slug}`, siteName: 'ShipTickets.bd', locale: 'bn_BD', images: [{ url: post.thumbnail, alt: post.imageAlt || post.titleBn, width: 1200, height: 630 }], publishedTime: `${post.date}T08:00:00+06:00`, modifiedTime: `${post.date}T08:00:00+06:00` },
-    twitter: { card: 'summary_large_image', title: post.seoTitle || post.titleBn, description: post.seoDescription || post.descriptionBn, images: [post.thumbnail] },
+    title: `${title} | ShipTickets.bd`.length > 60 ? { absolute: title } : title,
+    description,
+    alternates: { canonical: url },
+    keywords: [post.primaryKeyword, ...(post.secondaryKeywords ?? [])].filter(Boolean) as string[],
+    openGraph: {
+      title,
+      description,
+      type: 'article',
+      url,
+      siteName: 'ShipTickets.bd',
+      locale: 'bn_BD',
+      images: [{ url: '/opengraph.jpg', width: 1200, height: 630, alt: post.titleBn }],
+      publishedTime: `${post.date}T08:00:00+06:00`,
+      modifiedTime: `${modifiedISO(post)}T08:00:00+06:00`,
+      authors: [BASE],
+      section: topicLabel(post),
+      tags: post.tags,
+    },
+    twitter: { card: 'summary_large_image', title, description, images: ['/opengraph.jpg'] },
   }
 }
 
-function renderBody(body: string) {
-  const lines = body.split('\n')
-  const normalized: string[] = []
-  for (let i = 0; i < lines.length; i++) {
-    if (lines[i].trim() === '' && i > 0 && i < lines.length - 1 && lines[i - 1].trim().startsWith('|') && lines[i + 1].trim().startsWith('|')) continue
-    normalized.push(lines[i])
-  }
-  // convert tab-separated tables to pipe tables
-  const converted = normalized.map((l) => (l.includes('\t') ? `| ${l.split('\t').map((c) => c.trim()).join(' | ')} |` : l))
-  const blocks = converted.join('\n').split('\n\n')
-  return blocks.map((block, i) => {
-    const lines = block.split('\n')
-    if (lines[0].trim().startsWith('|')) {
-      const rows = lines.filter((l) => l.trim().startsWith('|'))
-      return (
-        <div key={i} className="overflow-x-auto my-4 rounded-xl border border-line-soft">
-          <table className="min-w-full text-sm">
-            <thead>
-              <tr className="bg-[#f5faf9]">
-                {rows[0].split('|').map((c) => c.trim()).filter(Boolean).map((c, ci) => <th key={ci} className="border-b border-line-soft px-3 py-2 text-left font-bold">{c}</th>)}
-              </tr>
-            </thead>
-            <tbody>
-              {rows.slice(1).map((r, ri) => {
-                const cells = r.split('|').map((c) => c.trim()).filter(Boolean)
-                if (cells.length === 0) return null
-                if (cells.every((c) => /^-+$/.test(c))) return null
-                return (
-                  <tr key={ri} className={ri % 2 ? 'bg-[#fafcfc]' : ''}>
-                    {cells.map((c, ci) => <td key={ci} className="border-t border-line-soft px-3 py-2">{c}</td>)}
-                  </tr>
-                )
-              })}
-            </tbody>
-          </table>
-        </div>
-      )
-    }
-    if (lines.every((l) => l.trim().startsWith('- ') || l.trim().startsWith('* '))) {
-      return (
-        <ul key={i} className="list-disc pl-6 space-y-1 my-3">
-          {lines.filter((l) => l.trim()).map((l, j) => {
-            const txt = l.trim().replace(/^[-*]\s*/, '').replace(/^\[ \]\s*/, '☐ ').replace(/^\[x\]\s*/i, '☑ ').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-brand-ink underline">$1</a>')
-            return <li key={j} dangerouslySetInnerHTML={{ __html: txt }} />
-          })}
-        </ul>
-      )
-    }
-    if (lines.every((l) => /^\d+\./.test(l.trim()))) {
-      return (
-        <ol key={i} className="list-decimal pl-6 space-y-1 my-3">
-          {lines.filter((l) => l.trim()).map((l, j) => {
-            const txt = l.trim().replace(/^\d+\.\s*/, '').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-brand-ink underline">$1</a>')
-            return <li key={j} dangerouslySetInnerHTML={{ __html: txt }} />
-          })}
-        </ol>
-      )
-    }
-    const html = block.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-brand-ink underline">$1</a>')
-    if (html.includes('### ') || html.includes('## ')) {
-      return (
-        <div key={i}>
-          {html.split('\n').map((line, j) => {
-            const t = line.trim()
-            if (t.startsWith('### ')) return <h3 key={j} className="text-lg font-black text-ink mt-4 mb-1">{t.replace(/^###\s*/, '')}</h3>
-            if (t.startsWith('## ')) return <h2 key={j} className="text-xl font-black text-ink mt-4 mb-1">{t.replace(/^##\s*/, '')}</h2>
-            if (!t) return null
-            return <p key={j} className="text-prose leading-7 my-2" dangerouslySetInnerHTML={{ __html: t }} />
-          })}
-        </div>
-      )
-    }
-    return <p key={i} className="text-prose leading-7 my-3" dangerouslySetInnerHTML={{ __html: html.replace(/\n/g, '<br/>') }} />
-  })
-}
-
-export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const post = getPost(slug)
   if (!post) notFound()
-  const jsonLd = {
+
+  const url = `${BASE}/blog/${post.slug}`
+  const image = blogImage(post) ?? '/opengraph.jpg'
+  const { quick, content } = splitQuickAnswer(post)
+  const headings = content.map((block) => block.heading).filter(Boolean) as string[]
+
+  const sameTopic = blogPosts.filter((other) => other.slug !== post.slug && other.tags.some((tag) => post.tags.includes(tag)))
+  const others = newestFirst(blogPosts).filter((other) => other.slug !== post.slug && !sameTopic.includes(other))
+  const related = [...sameTopic, ...others].slice(0, 3)
+
+  const shareText = encodeURIComponent(`${post.titleBn} ${url}`)
+  const help = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello ShipTickets.bd, I want to check a Saint Martin ship ticket for my travel date.')}`
+
+  const schema = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: post.titleBn,
-    description: post.seoDescription || post.descriptionBn,
-    datePublished: `${post.date}T08:00:00+06:00`,
-    dateModified: `${post.date}T08:00:00+06:00`,
-    author: { '@type': 'Organization', name: post.author },
-    publisher: { '@type': 'Organization', name: 'ShipTickets.bd', url: 'https://www.shiptickets.bd', logo: { '@type': 'ImageObject', url: 'https://www.shiptickets.bd/og_image.png' } },
-    image: `https://www.shiptickets.bd${post.thumbnail}`,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `https://www.shiptickets.bd/blog/${post.slug}` },
-    keywords: post.secondaryKeywords?.join(', '),
-    inLanguage: 'bn-BD',
-  }
-  const faqJsonLd = post.faqs?.length ? {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: post.faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
-  } : null
-  const headings = post.content.map((b) => b.heading).filter(Boolean) as string[]
-  const related = blogPosts.filter((p) => p.slug !== post.slug && p.tags.some((t) => post.tags.includes(t))).slice(0, 2)
-  const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.shiptickets.bd/' },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: 'https://www.shiptickets.bd/blog' },
-      { '@type': 'ListItem', position: 3, name: post.titleBn, item: `https://www.shiptickets.bd/blog/${post.slug}` },
+    '@graph': [
+      siteSchema,
+      websiteSchema,
+      {
+        '@type': 'BlogPosting',
+        '@id': `${url}#article`,
+        headline: post.titleBn,
+        alternativeHeadline: post.title,
+        description: post.seoDescription || post.descriptionBn,
+        datePublished: `${post.date}T08:00:00+06:00`,
+        dateModified: `${modifiedISO(post)}T08:00:00+06:00`,
+        author: { '@type': 'Organization', name: 'ShipTickets.bd', url: BASE },
+        publisher: { '@id': `${BASE}/#organization` },
+        image: `${BASE}${image}`,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+        isPartOf: { '@id': `${BASE}/blog#blog` },
+        articleSection: topicLabel(post),
+        keywords: [post.primaryKeyword, ...(post.secondaryKeywords ?? [])].filter(Boolean).join(', '),
+        wordCount: wordCount(post),
+        inLanguage: 'bn-BD',
+        about: { '@type': 'Place', name: "Saint Martin's Island, Bangladesh" },
+      },
+      breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Blog', url: '/blog' }, { name: post.titleBn }]),
+      ...(post.faqs?.length ? [faqSchema(post.faqs.map((faq) => [faq.q, faq.a] as [string, string]))] : []),
     ],
   }
+
+  const contents = [
+    ...headings.map((heading) => ({ id: headingId(heading), label: heading })),
+    ...(post.faqs?.length ? [{ id: 'faq', label: 'সচরাচর জিজ্ঞাসিত প্রশ্ন' }] : []),
+  ]
+  const ordered = newestFirst(blogPosts)
+  const position = ordered.findIndex((other) => other.slug === post.slug)
+  const newer = ordered[position - 1]
+  const older = ordered[position + 1]
+  const lowestFare = Math.min(...ships.map((ship) => Number(ship.oneWay.replace(/[^0-9]/g, ''))).filter(Boolean))
+
   return (
     <>
       <Header />
-      <main className="mx-auto max-w-3xl px-5 py-12">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-        {faqJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />}
-        <nav className="text-sm text-quiet mb-4">
-          <Link href="/" className="hover:text-brand-ink">Home</Link> / <Link href="/blog" className="hover:text-brand-ink">Blog</Link> / <span className="text-ink">{post.titleBn}</span>
-        </nav>
-        <div className="relative h-64 rounded-2xl overflow-hidden bg-[#dcefeb] mb-6">
-          <Image src={post.thumbnail} alt={post.imageAlt || post.titleBn} fill sizes="(max-width: 768px) 100vw, 768px" className="object-cover" />
-        </div>
-        <h1 className="text-3xl font-black text-ink">{post.titleBn}</h1>
-        <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-quiet">
-          <span>{post.date}</span>
-          <span>·</span>
-          <span>{post.author}</span>
-          {post.lastReviewed && <span className="rounded-full bg-[#f5faf9] px-3 py-1 font-semibold text-brand-ink">Last reviewed: <time dateTime={post.lastReviewed}>{post.lastReviewed}</time></span>}
-        </div>
-        {headings.length > 2 && (
-          <nav className="toc my-4 rounded-xl border border-line-soft bg-[#f5faf9] p-4">
-            <p className="text-xs font-black uppercase tracking-[.2em] text-brand-ink mb-2">Contents</p>
-            <ul className="space-y-1 text-sm">
-              {headings.map((h) => <li key={h}><a href={`#${h.replace(/\s+/g, '-')}`} className="text-brand-ink hover:underline">{h}</a></li>)}
-            </ul>
-          </nav>
-        )}
-        <div className="flex flex-wrap gap-2 mt-3">
-          {post.tags.map((t) => <span key={t} className="rounded-full bg-[#f5faf9] px-2.5 py-0.5 text-xs font-semibold text-brand-ink">{t}</span>)}
-        </div>
-        <article className="mt-6">
-          {post.content.map((block, i) => (
-            <section key={i} className="mb-6">
-              {block.heading && <h2 id={block.heading.replace(/\s+/g, '-')} className="text-xl font-black text-ink mb-2">{block.heading}</h2>}
-              {renderBody(block.body)}
+      <main id="main" lang="bn" className="bg-white text-ink">
+        <HtmlLang lang="bn" />
+        <Schema data={schema} />
+        <ReadingProgress targetId="post-article" />
+
+        <header className="border-b border-line-soft bg-[#f7fbfa]">
+          <div className="mx-auto max-w-6xl px-5 pb-8 pt-5 md:pb-10">
+            <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Blog', href: '/blog' }]} />
+            <p className="mt-4 text-sm font-bold text-brand-ink">{topicLabel(post)}</p>
+            <h1 className="t-display mt-1.5 max-w-4xl text-[clamp(1.75rem,1.2rem+2.3vw,2.75rem)] leading-[1.25] tracking-normal text-ink">{post.titleBn}</h1>
+            <p className="t-lede mt-3 max-w-3xl text-prose">{post.descriptionBn}</p>
+            <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-semibold text-quiet">
+              <span className="inline-flex items-center gap-2 font-bold text-ink">
+                <span aria-hidden="true" className="grid size-8 place-items-center rounded-full bg-brand-ink text-white"><Ship size={16} /></span>
+                ShipTickets.bd টিম
+              </span>
+              <span className="inline-flex items-center gap-1.5"><Calendar size={15} aria-hidden="true" /> <time dateTime={post.date}>{banglaDate(post.date)}</time></span>
+              <span className="inline-flex items-center gap-1.5"><Clock size={15} aria-hidden="true" /> {toBanglaDigits(readingMinutes(post))} মিনিটে পড়ুন</span>
+              {modifiedISO(post) !== post.date && <span className="inline-flex items-center gap-1.5 rounded-full bg-[#e4f2ee] px-3 py-1 font-bold text-[#1d5c4b]"><RefreshCw size={13} aria-hidden="true" /> হালনাগাদ <time dateTime={modifiedISO(post)}>{banglaDate(modifiedISO(post))}</time></span>}
+            </div>
+          </div>
+        </header>
+
+        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-8 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-12 lg:py-10">
+          <div id="post-article" className="min-w-0">
+            {headings.length > 2 && <BlogReadingNav items={contents} />}
+            {quick && (
+              <section aria-label="সংক্ষেপে উত্তর" className="rounded-3xl border border-[#cfe5de] bg-[#f1f8f6] p-5 md:p-6">
+                <h2 className="flex items-center gap-2 text-base font-extrabold text-brand-ink"><Zap size={18} aria-hidden="true" /> সংক্ষেপে উত্তর</h2>
+                <div className="mt-1 text-[1.0625rem] font-medium leading-[1.85] text-ink [&>p]:my-1"><BlogBody body={quick} /></div>
+              </section>
+            )}
+
+            {blogImage(post) && <BlogCover post={post} priority sizes="(min-width: 1024px) 760px, 100vw" className="mt-6 aspect-[16/9] rounded-3xl" />}
+
+            <article className="mt-8 text-[1.0625rem] leading-[1.9] text-prose">
+              {content.map((block, index) => (
+                <Fragment key={index}>
+                  <section className={index > 0 ? 'mt-9 border-t border-line-soft pt-8' : ''}>
+                    {block.heading && <h2 id={headingId(block.heading)} className="mb-3 scroll-mt-28 text-[1.5rem] font-extrabold leading-snug text-ink md:text-[1.75rem]">{block.heading}</h2>}
+                    <BlogBody body={block.body} />
+                  </section>
+                  {index === 1 && content.length > 3 && (
+                    <aside aria-label="টিকেট" className="mt-8 flex flex-col gap-4 rounded-3xl bg-[#0d1b2a] p-5 text-white sm:flex-row sm:items-center sm:justify-between md:p-6">
+                      <div>
+                        <p className="text-lg font-extrabold leading-snug">যাত্রার তারিখ ঠিক করেছেন?</p>
+                        <p className="t-small mt-1 text-on-dark">একমুখী ভাড়া {toBanglaDigits(`৳${lowestFare.toLocaleString('en-US')}`)} থেকে। আপনার তারিখের ভাড়া ও সিট আমরা জানিয়ে দেব।</p>
+                      </div>
+                      <div className="flex shrink-0 flex-wrap gap-2">
+                        <ContactLink href={help} kind="whatsapp" eventLabel="blog_inline" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 text-sm font-extrabold transition-colors hover:bg-brand-ink-hover">
+                          <MessageCircle size={16} aria-hidden="true" /> WhatsApp
+                        </ContactLink>
+                        <Link href="/saint-martin-ship" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/30 px-4 text-sm font-extrabold transition-colors hover:bg-white/10">জাহাজ দেখুন</Link>
+                      </div>
+                    </aside>
+                  )}
+                </Fragment>
+              ))}
+            </article>
+
+            {post.sources?.length ? (
+              <section className="mt-8 rounded-2xl border border-line-soft p-5">
+                <h2 className="text-base font-extrabold text-ink">তথ্যের উৎস</h2>
+                <ul className="t-small mt-2 list-disc space-y-1 pl-5 text-prose">
+                  {post.sources.map((source) => (
+                    <li key={source.label}>{source.url ? <a href={source.url} target="_blank" rel="noopener noreferrer" className="font-semibold text-brand-ink underline underline-offset-2">{source.label}</a> : source.label}</li>
+                  ))}
+                </ul>
+              </section>
+            ) : null}
+
+            <section className="mt-8 flex gap-3 rounded-2xl bg-[#f7fbfa] p-5">
+              <ShieldCheck size={22} aria-hidden="true" className="mt-0.5 shrink-0 text-brand-ink" />
+              <div className="t-small text-prose">
+                <p>
+                  লিখেছে ShipTickets.bd টিম। ShipTickets.bd পরিচালনা করে <a href="https://www.tripzic.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-brand-ink underline underline-offset-2">Tripzic</a>। আমরা <Link href="/how-we-verify-information" className="font-semibold text-brand-ink underline underline-offset-2">কীভাবে তথ্য যাচাই করি</Link> তা দেখুন।
+                  {post.lastReviewed && <> শেষ যাচাই: {new Date(`${post.lastReviewed} UTC`).toLocaleDateString('bn-BD', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}।</>}
+                </p>
+                <p className="mt-1">ভাড়া ও সরকারি নিয়ম বদলাতে পারে, তাই পেমেন্টের আগে আপনার তারিখের তথ্য জেনে নিন।</p>
+              </div>
             </section>
-          ))}
-        </article>
-        {post.faqs?.length ? <FaqAccordion items={post.faqs.map((f) => [f.q, f.a])} heading="FAQ" headingBn="সচরাচর জিজ্ঞাসিত প্রশ্ন" id="faq" /> : null}
-        {related.length > 0 && (
-          <section className="mt-10">
-            <h2 className="text-xl font-black text-ink mb-3">Related posts</h2>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {related.map((p) => (
-                <Link key={p.slug} href={`/blog/${p.slug}`} className="flex gap-3 rounded-xl border border-line-soft bg-white p-3 hover:shadow-card">
-                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-[#dcefeb]">
-                    <Image src={p.thumbnail} alt={p.titleBn} fill sizes="80px" className="object-cover" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-ink text-sm line-clamp-2">{p.titleBn}</h3>
-                    <p className="mt-1 text-xs text-quiet">{p.date}</p>
-                  </div>
+
+            {post.faqs?.length ? <div className="mt-8 [&_#faq]:scroll-mt-28"><FaqAccordion items={post.faqs.map((faq) => [faq.q, faq.a] as [string, string])} heading="সচরাচর জিজ্ঞাসিত প্রশ্ন" id="faq" /></div> : null}
+
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 text-sm font-bold text-ink"><Share2 size={16} aria-hidden="true" /> শেয়ার করুন:</span>
+              <a href={`https://wa.me/?text=${shareText}`} target="_blank" rel="nofollow noopener noreferrer" className="inline-flex min-h-11 items-center rounded-xl border border-line px-4 text-sm font-bold text-ink transition-colors hover:border-brand-ink hover:text-brand-ink">WhatsApp</a>
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`} target="_blank" rel="nofollow noopener noreferrer" className="inline-flex min-h-11 items-center rounded-xl border border-line px-4 text-sm font-bold text-ink transition-colors hover:border-brand-ink hover:text-brand-ink">Facebook</a>
+              <CopyLinkButton url={url} />
+            </div>
+
+            {(newer || older) && (
+              <nav aria-label="আরও লেখা" className="mt-8 grid gap-3 sm:grid-cols-2">
+                {older ? (
+                  <Link href={`/blog/${older.slug}`} className="group flex flex-col gap-1 rounded-2xl border border-line-soft p-4 transition duration-200 hover:border-brand-ink hover:shadow-card">
+                    <span className="inline-flex items-center gap-1 text-[0.8125rem] font-bold text-quiet"><ArrowLeft size={14} aria-hidden="true" /> আগের লেখা</span>
+                    <span className="font-bold leading-snug text-ink group-hover:text-brand-ink">{older.titleBn}</span>
+                  </Link>
+                ) : <span className="hidden sm:block" />}
+                {newer && (
+                  <Link href={`/blog/${newer.slug}`} className="group flex flex-col gap-1 rounded-2xl border border-line-soft p-4 text-right transition duration-200 hover:border-brand-ink hover:shadow-card">
+                    <span className="inline-flex items-center justify-end gap-1 text-[0.8125rem] font-bold text-quiet">পরের লেখা <ArrowRight size={14} aria-hidden="true" /></span>
+                    <span className="font-bold leading-snug text-ink group-hover:text-brand-ink">{newer.titleBn}</span>
+                  </Link>
+                )}
+              </nav>
+            )}
+          </div>
+
+          <aside aria-label="এই লেখা ও টিকেট" className="hidden lg:block">
+            <div className="sticky top-24 space-y-4">
+              {headings.length > 2 && <BlogSideToc items={contents} />}
+              <div className="rounded-2xl bg-[#0d1b2a] p-5 text-white">
+                <p className="font-extrabold">টিকেট লাগবে?</p>
+                <p className="t-small mt-1 text-on-dark">যাত্রার তারিখ জানান, আমরা ভাড়া ও সিট আছে কি না জানিয়ে দেব।</p>
+                <ContactLink href={help} kind="whatsapp" eventLabel="blog_sidebar" className="mt-3 flex min-h-12 items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 text-sm font-extrabold transition-colors hover:bg-brand-ink-hover">
+                  <MessageCircle size={17} aria-hidden="true" /> WhatsApp-এ জানুন
+                </ContactLink>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <section className="border-t border-line-soft bg-[#f7fbfa]">
+          <div className="mx-auto max-w-6xl px-5 py-10">
+            <p className="t-title mb-4">জাহাজ ধরে ভাড়া দেখুন</p>
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+              {ships.map((ship) => (
+                <Link key={ship.slug} href={`/saint-martin-ship/${ship.slug}`} className="flex min-h-14 flex-col justify-center rounded-2xl border border-line-soft bg-white px-4 py-2.5 transition duration-200 hover:border-brand-ink hover:shadow-card">
+                  <span className="font-bold leading-snug text-ink">{ship.nameBn}</span>
+                  <span className="text-sm font-semibold text-brand-ink">একমুখী {toBanglaDigits(ship.oneWay)} থেকে</span>
                 </Link>
               ))}
             </div>
-          </section>
-        )}
+
+            <div className="mt-10 flex items-center justify-between gap-3">
+              <h2 className="t-title">আরও পড়ুন</h2>
+              <Link href="/blog" className="inline-flex min-h-11 shrink-0 items-center gap-1 text-sm font-extrabold text-brand-ink hover:underline">সব লেখা <ArrowRight size={16} aria-hidden="true" /></Link>
+            </div>
+            <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {related.map((other) => <BlogCard key={other.slug} post={other} headingAs="p" showSummary={false} />)}
+            </div>
+          </div>
+        </section>
       </main>
+      <div className="hidden lg:block"><BackToTop /></div>
       <Footer />
     </>
   )

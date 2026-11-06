@@ -1,7 +1,7 @@
 import { ExternalLink } from 'lucide-react'
 
 /**
- * Tripzic is our sister travel brand. These are genuinely related guides, so
+ * Tripzic operates ShipTickets.bd. These are genuinely related guides, so
  * they are linked as ordinary editorial recommendations with plain anchors.
  *
  * They are deliberately NOT added to Organization `sameAs`: `sameAs` asserts
@@ -54,7 +54,7 @@ export function RelatedGuides({
         ))}
       </ul>
       <p className="t-small mt-4 t-measure text-quiet">
-        Tripzic is our sister travel brand. It publishes destination and planning guides rather than ticket
+        Tripzic, which operates ShipTickets.bd, publishes destination and planning guides rather than ticket
         availability.
       </p>
     </section>

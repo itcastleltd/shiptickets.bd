@@ -2,6 +2,8 @@
 const nextConfig = {
   async headers() {
     return [
+      { source: '/blog', headers: [{ key: 'Content-Language', value: 'bn' }] },
+      { source: '/blog/:path*', headers: [{ key: 'Content-Language', value: 'bn' }] },
       {
         source: '/:path*',
         headers: [
@@ -11,7 +13,7 @@ const nextConfig = {
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'Strict-Transport-Security', value: 'max-age=63072000' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
-          { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://va.vercel-scripts.com https://connect.facebook.net; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://wa.me https://*.wa.me https://www.facebook.com https://*.facebook.com; img-src 'self' data: https: https://www.googletagmanager.com https://www.facebook.com https://*.facebook.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src 'self' https://www.googletagmanager.com https://wa.me https://*.wa.me https://www.facebook.com;" },
+          { key: 'Content-Security-Policy', value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://tagmanager.google.com https://www.google-analytics.com https://va.vercel-scripts.com https://connect.facebook.net https://cdn.jsdelivr.net/npm/meta-capi-param-builder-clientjs/ https://unpkg.com/meta-capi-param-builder-clientjs/; connect-src 'self' https://connect.facebook.net https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://www.google.com https://*.google.com https://*.g.doubleclick.net https://wa.me https://*.wa.me https://www.facebook.com https://*.facebook.com; img-src 'self' data: https: https://www.googletagmanager.com https://www.facebook.com https://*.facebook.com; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://tagmanager.google.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; frame-src 'self' https://www.googletagmanager.com https://wa.me https://*.wa.me https://www.facebook.com;" },
         ],
       },
       {
@@ -42,7 +44,8 @@ const nextConfig = {
   images: {
     unoptimized: false,
     formats: ['image/webp'],
-    deviceSizes: [640, 768, 1024, 1280, 1366, 1792, 1920, 2560],
+    deviceSizes: [640, 768, 1024, 1280, 1536, 1920],
+    minimumCacheTTL: 2592000,
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
 }

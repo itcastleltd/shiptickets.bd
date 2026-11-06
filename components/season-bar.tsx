@@ -1,26 +1,31 @@
-import { season } from '@/lib/ships'
+import { BOOKING_ENABLED } from '@/lib/bookings/validate'
+import { season, site } from '@/lib/ships'
+
+const banglaDigits = (value: number) => String(value).replace(/\d/g, (digit) => '০১২৩৪৫৬৭৮৯'[Number(digit)])
 
 /**
- * The single top banner, shown above the header on every page.
+ * The single top banner, shown above the header on every page. It states the
+ * advance while online booking is on, and the season dates otherwise.
  *
- * This replaces two separate bars that had drifted apart: the homepage said
- * "Information-first ticket support for Saint Martin Island, Bangladesh" while
- * SeoPage pages said only "Saint Martin Island, Bangladesh", and neither
- * carried the season date. The season message used to sit further down the
- * homepage in a SeasonNotice block that repeated itself twice.
- *
- * Reading season.label and season.startDate from lib/ships means this can never
- * disagree with content/site.json.
+ * The percentage comes from content/site.json. Pages are pre-built, so it can't
+ * read the database: when the advance changes in system_settings, change it there too.
  */
 export function SeasonBar() {
+  if (!BOOKING_ENABLED) {
+    return (
+      <div className="bg-[#0d1b2a] px-5 py-2 text-center text-xs font-semibold text-white/80">
+        Saint Martin season {season.label}:{' '}
+        <span className="text-[#ef9f27]">{season.startDate} to {season.endDate}</span>
+      </div>
+    )
+  }
+
+  const percent = site.advancePercentage
   return (
-    <div className="bg-[#0d1b2a] px-5 py-2 text-center text-xs font-semibold text-white/80">
-      Saint Martin season {season.label} opens on{' '}
-      <span className="text-[#ef9f27]">{season.startDate}</span>
-      <span className="mx-2 text-white/40" aria-hidden="true">
-        ·
-      </span>
-      <span className="text-[#ef9f27]">ShipTickets.bd is an authorized platform for Saint Martin’s ship ticket.</span>
+    <div className="bg-[#0d1b2a] px-3 py-2 text-center text-xs font-semibold leading-relaxed text-white/85">
+      <span className="block md:inline">Pay <span className="font-extrabold text-[#ef9f27]">{percent}%</span> now to book, the rest when you get your ticket</span>
+      <span className="mx-2 hidden text-white/40 md:inline" aria-hidden="true">·</span>
+      <span lang="bn" className="block md:inline">মাত্র <span className="font-extrabold text-[#ef9f27]">{banglaDigits(percent)}%</span> দিয়ে বুকিং, বাকি টাকা টিকেট পাওয়ার সময়</span>
     </div>
   )
 }

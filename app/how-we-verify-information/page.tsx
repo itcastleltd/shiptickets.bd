@@ -1,116 +1,99 @@
-import type { Metadata } from 'next'
-import { BanglaSummary } from '@/components/bangla-summary'
-import { SeoPage, Section, Bullet, LinkCard, Schema, siteSchema, websiteSchema, breadcrumbSchema, faqSchema, whatsapp, ProseSection } from '@/components/seo-page'
-import { LAST_VERIFIED, STATUS_LABELS, ships } from '@/lib/ships'
+import { XCircle } from 'lucide-react'
 import { FaqAccordion } from '@/components/faq-accordion'
-import { ContactLink } from '@/components/contact-link'
+import { BanglaBox, CtaBand, GuideHero, KitSection, LinkGrid, StepRows, pageMeta, pageUrl } from '@/components/page-kit'
+import { Schema, SeoPage, breadcrumbSchema, faqSchema, siteSchema, websiteSchema } from '@/components/seo-page'
+import { LAST_VERIFIED, STATUS_LABELS, ships } from '@/lib/ships'
 
-const title = 'How We Verify Saint Martin Ship Information'
-const description = `How ShipTickets.bd verifies fares, schedules and ship status before publishing.`
+const path = '/how-we-verify-information'
+const h1 = 'How We Verify Saint Martin Ship Information'
+const description = 'How ShipTickets.bd checks Saint Martin ship fares, schedules and ship status against operator sources, and what to confirm before you pay.'
 
-export const metadata: Metadata = {
-  title: 'How We Verify Saint Martin Ship Information',
+export const metadata = pageMeta({
+  title: h1,
   description,
-  alternates: { canonical: 'https://www.shiptickets.bd/how-we-verify-information' },
-  openGraph: {
-    title,
-    description,
-    url: 'https://www.shiptickets.bd/how-we-verify-information',
-    images: [{ url: '/og_image.png', width: 1200, height: 630 }],
-  },
-}
+  path,
+  keywords: ['how shiptickets.bd verifies information', 'saint martin ship information source', 'is shiptickets.bd reliable'],
+})
 
 const steps = [
-  { title: 'Operating status checked', text: 'We confirm whether the vessel is sailing for your season before we describe it as bookable.' },
-  { title: 'Fare checked', text: 'Fares are collected per ticket class (open deck, lounge, AC seating and cabin) rather than as a single headline number.' },
-  { title: 'Operator and route confirmed', text: 'Each ship page names the operator and the route it serves, so you know who is actually sailing.' },
-  { title: 'Availability confirmed before payment', text: 'Final availability, cabin basis and Travel Pass requirements are confirmed by a human support agent.' },
-  { title: 'Page updated with a new date', text: 'When something changes, the "last verified" date on the page changes with it. Stale pages are corrected, not quietly left in place.' },
+  { heading: 'Operating status checked', text: 'We confirm whether the ship is sailing for your season before we describe it as bookable.' },
+  { heading: 'Fare checked', text: 'Fares are collected per ticket class (open deck, lounge, AC seating and cabin), not as one headline number.' },
+  { heading: 'Operator and route confirmed', text: 'Each ship page names the operator and the route it serves, so you know who is actually sailing.' },
+  { heading: 'Availability confirmed before payment', text: 'Final availability, cabin basis and Travel Pass details are confirmed by a real support agent.' },
+  { heading: 'Page updated with a new date', text: 'When something changes, the date on the page changes with it. Stale pages are corrected, not left in place.' },
 ]
 
 const faqs: [string, string][] = [
-  ['How do I know if a Saint Martin ship fare is current?', 'Every ship page and price page shows a "Last verified" date and an operating status. Because fares are seasonal, treat the published figure as a reference and confirm the exact fare for your travel date on WhatsApp before paying.'],
-  ['Does ShipTickets.bd sell tickets online?', 'No. ShipTickets.bd is an information and booking support platform. There is no live booking engine or payment on this site. A support agent confirms availability, fare and Travel Pass requirements with you first.'],
-  ['Where does the ship information come from?', 'Fares, classes and facilities come from operator-published references and our authorized sales-partner contacts. Government travel rules are checked against official notices. We never publish invented prices, schedules, ratings or reviews.'],
-  ['Why do some ships say "needs confirmation"?', 'A seasonal vessel or a recently changed schedule is marked "needs confirmation" until we verify it for the current season. That status is deliberate. It tells you to confirm before booking rather than presenting an unverified schedule as fact.'],
+  ['How do I know if a Saint Martin ship fare is current?', 'Every ship page and price page shows a review date. Because fares are seasonal, treat the published figure as a reference and confirm the exact fare for your travel date before paying.'],
+  ['Does the site show live seat availability?', 'No. We do not show live seat availability. A support agent confirms availability, fare and Travel Pass details with you before you pay.'],
+  ['Where does the ship information come from?', 'Fares, classes and facilities come from operator-published references and our sales-partner contacts. Government travel rules are checked against official notices. We never publish invented prices, schedules, ratings or reviews.'],
+  ['What if a ship’s schedule has not been received?', 'We say so on the page and don’t list a time for it. Ask us for the time on your date, and follow the time printed on your ticket.'],
+  ['ShipTickets.bd-এর তথ্য কীভাবে যাচাই করা হয়?', 'জাহাজ কর্তৃপক্ষের প্রকাশিত তথ্য থেকে ভাড়া, টিকেটের ধরন ও রুট সংগ্রহ করা হয়। টাকা দেওয়ার আগে আমাদের সাপোর্ট টিম আপনার তারিখের টিকেট আছে কি না ও ভাড়া কত, তা নিশ্চিত করে।'],
 ]
+
+function Hero() {
+  return (
+    <GuideHero
+      crumbs={[{ name: 'Home', href: '/' }, { name: 'How we verify' }]}
+      h1={h1}
+      lede={<><strong className="font-extrabold text-ink">We check each ship’s status, fares, operator and route, and a real agent confirms availability before you pay.</strong> Every page shows when it was last reviewed. Last verified: {LAST_VERIFIED}.</>}
+      bangla="টাকা দেওয়ার আগে আমাদের সাপোর্ট টিম আপনার ভাড়া ও টিকেট নিশ্চিত করে।"
+      updated="6 November 2026"
+    />
+  )
+}
 
 export default function HowWeVerifyPage() {
   return (
-    <SeoPage eyebrow="Trust & verification" title={title} intro={description}>
-      <BanglaSummary path="/how-we-verify-information" />
-      <Section title="Quick Answer">
-        <p><strong>How does ShipTickets.bd verify ship information?</strong> We check operating status, fares per ticket class, operator and route, then confirm live availability with a human agent before any payment. Every page carries a <strong>Last verified: {LAST_VERIFIED}</strong> date, and every ship shows a clear seasonal status.</p>
-        <p className="mt-3"><strong>Do you publish live availability?</strong> No. We do not run a live booking engine or hold inventory, so we never present unconfirmed availability or fares as current. Confirmation happens on WhatsApp or phone.</p>
-      </Section>
+    <SeoPage eyebrow="Trust & verification" title={h1} intro={description} canonical={pageUrl(path)} modifiedISO="2026-11-06" updated="6 November 2026" hero={<Hero />} backToTopDesktopOnly>
+      <KitSection id="process" title="Our verification process">
+        <StepRows columns={3} steps={steps} />
+      </KitSection>
 
-      <Section title="Our verification process">
-        <ol className="flex flex-col gap-3">
-          {steps.map((step, index) => (
-            <li key={step.title} className="flex gap-3">
-              <span className="grid size-7 shrink-0 place-items-center rounded-full bg-brand-ink text-xs font-extrabold text-white">{index + 1}</span>
-              <span><strong className="block text-ink">{step.title}</strong>{step.text}</span>
-            </li>
-          ))}
-        </ol>
-      </Section>
+      <KitSection id="not-publish" title="What we will not publish">
+        <div className="rounded-3xl border border-[#f3d9bf] bg-[#fff8ee] p-5 md:p-7">
+          <ul className="t-small grid gap-2.5 text-prose md:grid-cols-2">
+            {['Invented fares, schedules, availability, ratings or review counts', 'A departure time from a previous season shown as current', 'Cabin prices without saying if they are per person or per cabin', 'Live seat availability we can’t back up', 'A ship marked as confirmed when its status is unverified'].map((item) => <li key={item} className="flex gap-2"><XCircle size={17} aria-hidden="true" className="mt-0.5 shrink-0 text-[#b7791f]" /> {item}</li>)}
+          </ul>
+        </div>
+      </KitSection>
 
-      <ProseSection title="What we will not publish">
-        <ul className="flex flex-col gap-3">
-          <Bullet>Invented fares, schedules, availability, ratings or review counts.</Bullet>
-          <Bullet>A departure time copied from a previous season presented as current.</Bullet>
-          <Bullet>Cabin pricing without stating whether it is per person or per cabin.</Bullet>
-          <Bullet>Claims of live booking or online payment that the site does not support.</Bullet>
-          <Bullet>A ship marked as confirmed when its seasonal status is still unverified.</Bullet>
-        </ul>
-      </ProseSection>
-
-      <Section title="Information source for each ship">
-        <div className="overflow-x-auto rounded-xl border border-line-soft">
+      <KitSection id="sources" title="Information source for each ship" intro="Government travel rules are checked against official notices. Seasonal access and Travel Pass requirements can change.">
+        <div className="overflow-hidden rounded-2xl border border-line-soft bg-white shadow-card">
           <table className="w-full text-left text-sm">
-            <thead className="bg-[#e3ecea] text-ink">
-              <tr><th className="px-4 py-3 font-bold">Ship</th><th className="px-4 py-3 font-bold">Operator</th><th className="px-4 py-3 font-bold">Status</th><th className="px-4 py-3 font-bold">Last verified</th></tr>
-            </thead>
+            <caption className="sr-only">Operator, status and last verified date for each Saint Martin ship</caption>
+            <thead className="bg-[#e3ecea] text-ink"><tr><th scope="col" className="px-3 py-3 font-bold sm:px-4">Ship</th><th scope="col" className="px-3 py-3 font-bold sm:px-4">Status</th><th scope="col" className="px-3 py-3 font-bold sm:px-4">Last verified</th></tr></thead>
             <tbody>
               {ships.map((ship) => (
                 <tr key={ship.slug} className="border-t border-line-soft">
-                  <td className="px-4 py-3 font-extrabold">{ship.name}</td>
-                  <td className="px-4 py-3">{ship.operator}</td>
-                  <td className="px-4 py-3">{STATUS_LABELS[ship.status]}</td>
-                  <td className="px-4 py-3">{ship.lastVerified}</td>
+                  <th scope="row" className="px-3 py-3.5 font-extrabold text-ink sm:px-4">{ship.name}<span className="block text-xs font-semibold text-quiet">{ship.operator}</span></th>
+                  <td className="px-3 py-3.5 text-prose sm:px-4">{STATUS_LABELS[ship.status]}</td>
+                  <td className="px-3 py-3.5 text-prose sm:px-4">{ship.lastVerified}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p className="mt-3 text-xs text-quiet">Government travel rules are checked against official notices. Seasonal access, Travel Pass and QR ticket requirements can change between seasons.</p>
-      </Section>
+      </KitSection>
 
-      <Section title="See the verification date on each page">
-        <div className="grid gap-4 md:grid-cols-2">
-          <LinkCard href="/saint-martin-ship" title="All Saint Martin ships" text="Every ship with status, fares, classes and cabins." />
-          <LinkCard href="/saint-martin-ship-ticket-price" title="Ticket price guide" text="How fares vary by ship, class, cabin and season." />
-          <LinkCard href="/saint-martin-ship-schedule" title="Schedule and status" text="Departure information with verification notes." />
-          <LinkCard href="/saint-martin-travel-rules" title="Travel rules" text="Current restrictions to check before you travel." />
-        </div>
-      </Section>
+      <BanglaBox id="bangla" title="আমরা তথ্য কীভাবে যাচাই করি">
+        <p>জাহাজ কর্তৃপক্ষের প্রকাশিত তথ্য থেকে ভাড়া, টিকেটের ধরন ও রুট সংগ্রহ করার পর আমাদের সাপোর্ট টিম আপনার তারিখের টিকেট আছে কি না যাচাই করে। প্রতিটি পাতায় সর্বশেষ যাচাইয়ের তারিখ থাকে, আর কোনো তথ্য নিশ্চিত না হলে আমরা সেটি প্রকাশ করি না।</p>
+      </BanglaBox>
 
-      <FaqAccordion items={faqs} />
+      <FaqAccordion items={faqs} heading="Questions about our information" id="faq" />
 
-      <ProseSection title="Confirm before you book">
-        <p className="mb-4">Share your travel date and passenger count. A support agent will confirm the current sailing, fare, cabin basis and Travel Pass requirement with you.</p>
-        <ContactLink href={`${whatsapp}Hello ShipTickets.bd, please confirm the current schedule and fare for my travel date.`} kind="whatsapp" eventLabel="verify_page_whatsapp" className="inline-flex items-center gap-2 rounded-full bg-brand-ink px-5 py-3 text-sm font-extrabold text-white">Confirm on WhatsApp</ContactLink>
-      </ProseSection>
+      <KitSection title="See the review date on each page">
+        <LinkGrid links={[
+          ['/saint-martin-ship', 'All Saint Martin ships'],
+          ['/saint-martin-ship-ticket-price', 'Ticket price guide'],
+          ['/saint-martin-ship-schedule', 'Schedule and status'],
+          ['/saint-martin-travel-rules', 'Travel rules'],
+        ]} />
+      </KitSection>
 
-      <Schema data={{
-        '@context': 'https://schema.org',
-        '@graph': [
-          siteSchema,
-          websiteSchema,
-          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'How we verify information' }]),
-          faqSchema(faqs),
-        ],
-      }} />
+      <CtaBand title="Confirm before you book" text="Share your travel date and passenger count, and a support agent will confirm your sailing and fare." message="Hello ShipTickets.bd, please confirm the current schedule and fare for my travel date." eventLabel="verify_page_whatsapp" />
+
+      <Schema data={{ '@context': 'https://schema.org', '@graph': [siteSchema, websiteSchema, faqSchema(faqs), breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'How we verify', url: path }])] }} />
     </SeoPage>
   )
 }

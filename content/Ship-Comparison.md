@@ -169,9 +169,9 @@ Keari Sindbad is operated by Keari Tours & Services Ltd. According to the operat
 
 | Category | One-way | Round trip |
 |---|---:|---:|
-| Main Deck | ৳1,825 | ৳3,500 |
-| Open Deck | ৳2,075 | ৳4,000 |
-| Bridge Deck | ৳2,325 | ৳4,500 |
+| Main Deck | ৳2,000 | ৳3,700 |
+| Open Deck | ৳2,200 | ৳4,200 |
+| Bridge Deck | ৳2,400 | ৳4,500 |
 
 *These are reference fares. Confirm the current season's price and ticket availability.*
 
@@ -196,9 +196,9 @@ Keari Cruise & Dine is another vessel operated by Keari Tours & Services Ltd. Th
 
 | Category | Indicative fare |
 |---|---:|
-| Exclusive Lounge | From ৳2,075 one-way |
-| Coral Lounge | From ৳2,325 one-way |
-| Pearl Lounge | From ৳2,575 one-way |
+| Exclusive Lounge | From ৳2,200 one-way |
+| Coral Lounge | From ৳2,500 one-way |
+| Pearl Lounge | From ৳2,700 one-way |
 
 *Fare references may vary by season and operator updates. Confirm the current price before booking.*
 
@@ -214,7 +214,7 @@ Keari Cruise & Dine is another vessel operated by Keari Tours & Services Ltd. Th
 | Private cabins | Yes | Yes | Yes | Not published | Not published |
 | Dining facilities | Available | Confirm | Confirm | Confirm | Buffet facility described |
 | Capacity data | Verify current operator figure | Historical figure available | Published deck categories | 346 seats | 310 seats |
-| Budget reference | From ৳4,200 return | From ৳4,200 return | From ৳3,600 return | From ৳3,500 return | From ৳4,000 return |
+| Budget reference | From ৳4,200 return | From ৳4,200 return | From ৳3,600 return | From ৳3,700 return | From ৳4,200 return |
 
 *The table summarizes published and available information. “Not published” does not necessarily mean a facility is unavailable. All fares are indicative and subject to operator confirmation.*
 
@@ -269,7 +269,7 @@ The best ship depends on your budget, seating preference, cabin requirements and
 
 ### Which is the cheapest ship to Saint Martin?
 
-Among the reference fares in this guide, Keari Sindbad's Main Deck starts from around ৳1,825 one-way or ৳3,500 round-trip. Always confirm current fares before payment.
+Among the reference fares in this guide, MV Teknaf's Main Deck starts from around ৳1,900 one-way or ৳3,600 round-trip. Always confirm current fares before payment.
 
 ### Which ship is suitable for families?
 

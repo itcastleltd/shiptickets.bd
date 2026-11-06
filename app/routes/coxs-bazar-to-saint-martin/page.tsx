@@ -1,15 +1,157 @@
-import type { Metadata } from 'next'
-import { SeoPage, Section, Bullet, LinkCard, Schema, siteSchema, websiteSchema, faqSchema, breadcrumbSchema, ProseSection } from '@/components/seo-page'
-export const metadata: Metadata = { title: "Cox's Bazar to Saint Martin Ship Guide | ShipTickets.bd", description: "Cox's Bazar to Saint Martin ship route, jetty, fares and travel guide for 2026–27 season.", openGraph: { title: "Cox's Bazar to Saint Martin Ship Route Guide", description: "Understand the route, jetty and Travel Pass requirements.", images: [{ url: '/og_image.png', width: 1200, height: 630 }] }, alternates: { canonical: 'https://www.shiptickets.bd/routes/coxs-bazar-to-saint-martin' } }
+import Link from 'next/link'
+import { Backpack, Droplets, FileCheck, Phone as PhoneIcon } from 'lucide-react'
+import { FaqAccordion } from '@/components/faq-accordion'
+import { BanglaBox, CtaBand, FactBox, GuideHero, IconCards, KitSection, LinkGrid, StepRows, inlineLink, pageMeta, pageUrl, primaryButton, secondaryButton } from '@/components/page-kit'
+import { Schema, SeoPage, breadcrumbSchema, faqSchema, siteSchema, websiteSchema } from '@/components/seo-page'
+import { BEST_FOR } from '@/components/ship-list-card'
+import { DATED_SCHEDULE_PERIOD, getUsualTimes } from '@/content/ship-schedules'
+import { season, ships } from '@/lib/ships'
+
+const path = '/routes/coxs-bazar-to-saint-martin'
+const amount = (fare?: string) => Number((fare ?? '').replace(/[^0-9]/g, '')) || 0
+const byFare = [...ships].sort((a, b) => amount(a.oneWay) - amount(b.oneWay))
+const cheapest = byFare[0]
+const teknaf = getUsualTimes('mv-teknaf')
+
+const pageTitle = 'Cox’s Bazar to Saint Martin Ship: Fare, Jetty & Time'
+const h1 = 'Cox’s Bazar to Saint Martin Ship: Route, Fare & Jetty'
+const description = `Cox’s Bazar to Saint Martin ship guide for 2026-27: fares from ${cheapest.oneWay}, Nuniarchhara Jetty, sailing times, Travel Pass and how to book your ticket.`
+
+export const metadata = pageMeta({
+  title: pageTitle,
+  description,
+  path,
+  keywords: ['cox’s bazar to saint martin ship', 'cox’s bazar to saint martin ship ticket', 'cox’s bazar to saint martin ship ticket price', 'saint martin ship jetty', 'nuniarchhara jetty', 'কক্সবাজার থেকে সেন্টমার্টিন জাহাজ'],
+})
+
 const faqs: [string, string][] = [
-  ["How much is a ship ticket from Cox's Bazar to Saint Martin?", 'Indicative one-way fares currently listed on ShipTickets.bd start from ৳2,200, depending on the ship and ticket category. Confirm your exact fare and availability before booking.'],
-  ["Where is the Saint Martin ship jetty in Cox's Bazar?", 'The authorised departure point announced for the tourist route is Nuniarchhara BIWTA Jetty Ghat in Cox\'s Bazar. Confirm your precise boarding point with the operator.'],
-  ['What time does the ship leave Cox\'s Bazar?', 'Previous published schedules indicate morning departures, but the exact time depends on the ship, tides and operational instructions. Always confirm the departure time for your date.'],
-  ['How many hours does the ship journey take?', 'Allow several hours each way. Previous travel guidance has cited approximately five to seven hours, but the actual journey may differ.'],
-  ['Is a round-trip ticket available?', 'Round-trip fares are listed for several ship options. Confirm whether both legs are included and whether your return date and vessel are confirmed.'],
-  ['Is Saint Martin open to tourists in 2026–27?', 'The latest announcement schedules tourist visits from 1 November 2026 to 15 March 2027. Actual ship operations and applicable restrictions should be checked before travel.'],
-  ['Is there an additional environmental fee?', 'The announcement published on 25 October 2026 states a ৳100 environmental conservation fee per visitor. Confirm how the fee is collected and whether it is included in your ticket total.'],
-  ['Can I travel from Teknaf instead?', 'Do not assume that the Teknaf route is available. Follow the currently authorised departure arrangements and confirm the boarding point for your date.'],
-  ['Can I stay overnight on Saint Martin?', 'Overnight stays depend on the rules applicable during the current tourist season. Verify the latest official guidance before booking accommodation.'],
+  ['How much is a ship ticket from Cox’s Bazar to Saint Martin?', `Published fares start at ${cheapest.oneWay} one way and ${cheapest.roundTrip} round trip per person on ${cheapest.name}. The fare depends on the ship and seat class, so confirm yours before you pay.`],
+  ['Where is the Saint Martin ship jetty in Cox’s Bazar?', 'Tourist ships leave from the BIWTA Nuniarchhara Jetty in Cox’s Bazar. Follow the boarding point printed on your ticket.'],
+  ['What time does the ship leave Cox’s Bazar?', `Ships leave in the morning. MV Teknaf leaves at ${teknaf?.departs} every day, and the dated times for MV Karnafuly Express and MV Baro Awlia change with the tide. See the Saint Martin ship schedule for your date.`],
+  ['How many hours does the ship journey take?', 'Allow about 6 to 7 hours each way. The actual time depends on the ship, weather and sea conditions.'],
+  ['Is a round-trip ticket available?', 'Yes. All five ships publish round-trip fares. Confirm your return date and sailing when you book.'],
+  ['Is Saint Martin open to tourists in 2026–27?', `Yes. The season runs from ${season.startDate} to ${season.endDate}, and tourist ships began sailing on 5 November 2026.`],
+  ['Is there an additional environmental fee?', 'A ৳100 environmental conservation fee applies per tourist. It is included with tickets booked through ShipTickets.bd.'],
+  ['Can I travel from Teknaf instead?', 'No. For the 2026–27 season, tourists are not permitted to travel by water from Teknaf. Ships leave from Cox’s Bazar. MV Teknaf is only the name of a ship.'],
+  ['Can I stay overnight on Saint Martin?', 'Yes. Overnight stays are allowed in the 2026–27 season, subject to the applicable travel rules.'],
 ]
-export default function RoutePage() { return <SeoPage eyebrow="Route guide · রুট" title="Cox's Bazar to Saint Martin ship" intro="Plan the route with the details that matter: seasonal operating status, approved jetty, check-in time, ship class, Travel Pass and return journey." crumbs={[{ name: 'Home', href: '/' }, { name: "Cox's Bazar to Saint Martin" }]}><ProseSection title="Route overview"><div className="mb-6 rounded-2xl border border-line-soft bg-white p-5 shadow-card"><p className="text-xs font-extrabold uppercase tracking-[.16em] text-brand-ink">Quick Answer</p><p className="mt-2 text-sm leading-6 text-prose">Passenger vessels operate from BIWTA Nuniarchhara Jetty in Cox's Bazar to Saint Martin Island during the approved tourist season. The sea crossing takes approximately five to seven hours. Four ships serve this route: MV Karnafuly Express, MV Baro Awlia, Keari Sindbad, Keari Cruise &amp; Dine and MV Teknaf. Arrive at least 30 minutes before departure. Confirm the approved jetty, reporting time, ticket type, Travel Pass and return sailing for your travel date before booking.</p></div><p>During an approved tourist season, passenger vessels may operate between the designated Cox's Bazar jetty and Saint Martin Island. The exact vessel, departure time and access rules can change, so confirm every detail for your travel date.</p></ProseSection><Section title="How to reach Saint Martin from Cox's Bazar"><ul className="grid gap-3"><Bullet>Step 1: Reach Cox's Bazar by bus, train connections or air.</Bullet><Bullet>Step 2: Go to Nuniarchhara BIWTA Jetty Ghat; confirm the exact boarding point with your ticket provider.</Bullet><Bullet>Step 3: Board the authorised passenger ship; allow several hours and follow crew instructions on arrival.</Bullet></ul></Section><Section title="Cox's Bazar to Saint Martin ship fare 2026–27"><p>Indicative operator fares; confirm the final fare and availability before booking.</p><ul className="grid gap-3"><Bullet>MV Karnafuly Express — one-way from ৳2,200, round-trip from ৳4,200</Bullet><Bullet>MV Baro Awlia — one-way from ৳2,200, round-trip from ৳4,200</Bullet><Bullet>Keari Sindbad — one-way from ৳1,825, round-trip from ৳3,500</Bullet><Bullet>Keari Cruise &amp; Dine — one-way from ৳2,075, round-trip from ৳4,000</Bullet></ul></Section><Section title="Where does the Saint Martin ship depart from?"><p>The authorised departure point is <strong>Nuniarchhara BIWTA Jetty Ghat</strong> in Cox's Bazar. Do not assume departure from Teknaf or Inani.</p></Section><Section title="Ship schedule and timing"><p>Departures are generally morning; exact times depend on vessel, tides, weather and official instructions. Confirm outbound and return arrangements before travel.</p></Section><Section title="Which ship should you choose?"><ul className="grid gap-3"><Bullet>MV Karnafuly Express — seating and cabin options; confirm availability for your date.</Bullet><Bullet>MV Baro Awlia — different seating arrangements and selected cabins.</Bullet><Bullet>Keari Sindbad — compare ticket categories and onboard arrangements.</Bullet><Bullet>Keari Cruise &amp; Dine — lounge and dining facilities on selected categories.</Bullet></ul></Section><Section title="Saint Martin tourist season 2026–27: rules to know"><p>The government announcement dated 25 October 2026 schedules tourist visits from 1 November 2026 to 15 March 2027, with a daily visitor limit of 3,500 tourists and a ৳100 environmental conservation fee per visitor.</p></Section><Section title="How to book a Cox's Bazar to Saint Martin ship ticket"><ol className="grid gap-2 list-decimal pl-5"><li>Choose your travel date and preferred ship.</li><li>Compare available ticket classes and fares.</li><li>Confirm whether you need a one-way or round-trip ticket.</li><li>Verify the departure jetty, reporting time and return schedule.</li><li>Complete the booking through an authorised channel.</li><li>Keep your confirmed ticket and required travel documents ready.</li></ol></Section><Section title="What to carry for the journey"><ul className="grid gap-3"><Bullet>Confirmed ship ticket and required travel pass or QR code.</Bullet><Bullet>National ID or other identification if required.</Bullet><Bullet>Phone, charger and power bank; personal medication.</Bullet><Bullet>Drinking water, sunglasses, cap, sunscreen, light clothing.</Bullet><Bullet>Avoid prohibited single-use plastic items.</Bullet></ul></Section><div className="grid gap-4 md:grid-cols-2"><LinkCard href="/saint-martin-ship-ticket-price" title="Check ticket price" text="Understand one-way, return, lounge and cabin fare categories."/><LinkCard href="/saint-martin-travel-pass" title="Read Travel Pass guide" text="Verify current QR and visitor authorization requirements."/></div><div className="grid gap-4 md:grid-cols-2"><LinkCard href="/saint-martin-ship/karnafuly-express" title="Karnafuly Express" text="Seating and cabin details."/><LinkCard href="/saint-martin-ship/baro-awlia" title="Baro Awlia" text="Seating and cabin details."/><LinkCard href="/saint-martin-ship/keari-sindbad" title="Keari Sindbad" text="Ticket categories."/><LinkCard href="/saint-martin-ship/keari-cruise-dine" title="Keari Cruise & Dine" text="Lounge and dining."/></div><Schema data={{ '@context':'https://schema.org', '@graph':[siteSchema, websiteSchema, faqSchema(faqs), breadcrumbSchema([{ name: 'Home', url: '/' }, { name: "Cox's Bazar to Saint Martin" }])] }} /></SeoPage> }
+
+function Hero() {
+  return (
+    <GuideHero
+      crumbs={[{ name: 'Home', href: '/' }, { name: 'Cox’s Bazar to Saint Martin' }]}
+      h1={h1}
+      lede={<><strong className="font-extrabold text-ink">Tourist ships to Saint Martin leave from the BIWTA Nuniarchhara Jetty in Cox’s Bazar.</strong> The <Link href="/routes/coxs-bazar-to-saint-martin-distance" className={inlineLink}>crossing is about 120 km</Link> and takes about 6 to 7 hours, with fares from {cheapest.oneWay} one way per person.</>}
+      bangla="কক্সবাজার থেকে সেন্টমার্টিন: জেটি, ভাড়া, সময় ও টিকেট, এক পাতায়।"
+      stats={[
+        { label: 'One way from', value: cheapest.oneWay, note: cheapest.name },
+        { label: 'Journey time', value: '6–7 hrs', note: 'each way' },
+        { label: 'Distance', value: '120 km', note: 'about, by sea' },
+        { label: 'Reach the jetty', value: '1 hour', note: 'before departure' },
+      ]}
+      actions={<><a href="#fares" className={primaryButton}>See fares</a><Link href="/saint-martin-ship-schedule" className={secondaryButton}>Sailing times</Link></>}
+      updated="6 November 2026"
+    />
+  )
+}
+
+export default function RoutePage() {
+  return (
+    <SeoPage eyebrow="Route guide · রুট" title={h1} intro={description} canonical={pageUrl(path)} modifiedISO="2026-11-06" updated="6 November 2026" hero={<Hero />} backToTopDesktopOnly>
+      <KitSection id="steps" title="How to reach Saint Martin from Cox’s Bazar">
+        <StepRows steps={[
+          { heading: 'Reach Cox’s Bazar', text: <>Arrive by bus, train or air, ideally the day before an early sailing. See the <Link href="/blog/dhaka-to-saint-martin-travel-guide" className={inlineLink}>Dhaka to Saint Martin guide</Link>.</> },
+          { heading: 'Go to Nuniarchhara Jetty', text: <>Be at the <a href="https://biwta.gov.bd/" target="_blank" rel="noopener noreferrer" className={inlineLink}>BIWTA</a> jetty at least 1 hour before departure.</> },
+          { heading: 'Board your ship', text: 'Keep your ticket and ID ready. Your QR-coded Travel Pass comes with your ticket.' },
+          { heading: 'Sail for 6 to 7 hours', text: <>You arrive at Saint Martin’s Island the same day. Read more about the <Link href="/routes/coxs-bazar-to-saint-martin-distance" className={inlineLink}>distance and journey time</Link>.</> },
+        ]} />
+      </KitSection>
+
+      <KitSection id="fares" title="Cox’s Bazar to Saint Martin ship ticket price" intro="Lowest published fare per person. Confirm the fare for your date before you pay.">
+        <div className="overflow-hidden rounded-2xl border border-line-soft bg-white shadow-card">
+          <table className="w-full text-left text-sm">
+            <caption className="sr-only">Lowest one-way and round-trip fares from Cox’s Bazar to Saint Martin on all five ships, in Bangladeshi taka</caption>
+            <thead className="bg-[#e3ecea] text-ink">
+              <tr>
+                <th scope="col" className="px-3 py-3 font-bold sm:px-4">Ship</th>
+                <th scope="col" className="px-3 py-3 text-right font-bold sm:px-4">One way</th>
+                <th scope="col" className="px-3 py-3 text-right font-bold sm:px-4">Round trip</th>
+                <th scope="col" className="hidden px-4 py-3 font-bold md:table-cell">Best for</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ships.map((ship) => (
+                <tr key={ship.slug} className="border-t border-line-soft">
+                  <th scope="row" className="px-3 py-3.5 font-extrabold text-ink sm:px-4"><Link href={`/saint-martin-ship/${ship.slug}`} className="underline-offset-2 hover:text-brand-ink hover:underline">{ship.name}</Link></th>
+                  <td className="px-3 py-3.5 text-right font-extrabold tabular-nums text-brand-ink sm:px-4">{ship.oneWay}</td>
+                  <td className="px-3 py-3.5 text-right font-extrabold tabular-nums text-brand-ink sm:px-4">{ship.roundTrip}</td>
+                  <td className="hidden px-4 py-3.5 text-prose md:table-cell">{BEST_FOR[ship.slug]?.en}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="t-small mt-3 text-prose">See <Link href="/saint-martin-ship-ticket-price" className={inlineLink}>every seat and cabin fare</Link>, <Link href="/saint-martin-ship" className={inlineLink}>compare the ships</Link> or plan your <Link href="/saint-martin-trip-cost" className={inlineLink}>full trip cost</Link>.</p>
+      </KitSection>
+
+      <KitSection id="jetty" title="Where the Saint Martin ship leaves from">
+        <FactBox facts={[
+          ['Boarding point', 'BIWTA Nuniarchhara Jetty, Cox’s Bazar'],
+          ['Sailing from Teknaf', 'Not permitted for tourists in 2026–27'],
+          ['MV Teknaf', 'A ship’s name. It also sails from Cox’s Bazar'],
+        ]}>
+          <p className="t-small mt-4 text-prose">Read more on <Link href="/blog/teknaf-to-saint-martin-ship" className={inlineLink}>why you cannot sail from Teknaf</Link>. Always follow the boarding point printed on your ticket.</p>
+        </FactBox>
+      </KitSection>
+
+      <KitSection id="times" title="Cox’s Bazar to Saint Martin ship time">
+        <p className="t-body max-w-3xl text-prose">Ships leave in the morning. MV Teknaf leaves at {teknaf?.departs} every day. MV Karnafuly Express and MV Baro Awlia change with the tide, and {DATED_SCHEDULE_PERIOD} has times for every date. Updated schedules for <Link href="/saint-martin-ship/keari-sindbad" className={inlineLink}>Keari Sindbad</Link> and <Link href="/saint-martin-ship/keari-cruise-dine" className={inlineLink}>Keari Cruise &amp; Dine</Link> have not been received yet, so ask us for your date.</p>
+        <Link href="/saint-martin-ship-schedule" className={`${secondaryButton} mt-4`}>See the full ship schedule</Link>
+      </KitSection>
+
+      <KitSection id="season" title="Saint Martin tourist season 2026–27">
+        <FactBox facts={[
+          ['Season', `${season.startDate} to ${season.endDate}`],
+          ['Daily limit', 'Up to 3,500 tourists a day'],
+          ['Overnight stays', 'Allowed this season'],
+          ['Environmental fee', '৳100, included with our tickets'],
+          ['Travel Pass', 'QR-coded, included with our tickets'],
+          ['First tourist ship', '5 November 2026'],
+        ]}>
+          <p className="t-small mt-4 text-prose">See the <Link href="/saint-martin-travel-rules" className={inlineLink}>travel rules</Link> and <Link href="/saint-martin-travel-pass" className={inlineLink}>Travel Pass guide</Link>.</p>
+        </FactBox>
+      </KitSection>
+
+      <KitSection id="carry" title="What to carry for the journey">
+        <IconCards columns={3} items={[
+          { icon: FileCheck, heading: 'Documents', text: 'Your ticket with QR code, plus your national ID or other identification.' },
+          { icon: PhoneIcon, heading: 'Phone and power', text: 'Your phone with the ticket saved, a charger and a power bank.' },
+          { icon: Droplets, heading: 'Sun and water', text: 'Drinking water, a cap, sunglasses, sunscreen and light clothing.' },
+          { icon: Backpack, heading: 'Personal items', text: 'Any medication you need. Avoid prohibited single-use plastic items.' },
+        ]} />
+      </KitSection>
+
+      <BanglaBox id="bangla" title="কক্সবাজার থেকে সেন্টমার্টিন জাহাজ: ভাড়া, জেটি ও সময়">
+        <p>পর্যটকবাহী জাহাজ ছাড়ে কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে। দূরত্ব প্রায় ১২০ কিলোমিটার, আর যেতে সময় লাগে প্রায় ৬ থেকে ৭ ঘণ্টা। জাহাজ ছাড়ার অন্তত ১ ঘণ্টা আগে জেটিতে পৌঁছে যান।</p>
+        <p>এই মৌসুমে পর্যটকেরা টেকনাফ থেকে জলপথে যেতে পারবেন না। এমভি টেকনাফ শুধু একটি জাহাজের নাম, সেটিও কক্সবাজার থেকেই ছাড়ে। পুরো ভাড়া দেখুন <Link href="/saint-martin-ship-ticket-price" className={inlineLink}>জাহাজের টিকিটের দাম</Link> পাতায়, আর সময় দেখুন <Link href="/saint-martin-ship-schedule" className={inlineLink}>জাহাজের সময়সূচিতে</Link>। দূরত্ব নিয়ে পড়ুন <Link href="/blog/coxs-bazar-saint-martin-distance" className={inlineLink}>দূরত্ব ও সময়ের লেখায়</Link>।</p>
+      </BanglaBox>
+
+      <FaqAccordion items={faqs} heading="Cox’s Bazar to Saint Martin ship questions" id="faq" />
+
+      <KitSection title="More for this route">
+        <LinkGrid links={[
+          ['/saint-martin-ship', 'Compare all Saint Martin ships'],
+          ['/saint-martin-ship-schedule', 'Ship schedule and return times'],
+          ['/saint-martin-travel-pass', 'Saint Martin Travel Pass'],
+          ['/blog/saint-martin-ship-ticket-booking-guide', 'How to book your ticket'],
+          ['/saint-martin-cabin-price', 'Cabin and seat prices'],
+          ['/saint-martin-guide', 'Saint Martin travel guide'],
+        ]} />
+      </KitSection>
+
+      <CtaBand title="Book your Cox’s Bazar to Saint Martin ticket" text="Send your date and passenger count. We confirm the fare before you pay." message="Hello ShipTickets.bd, I want a Cox’s Bazar to Saint Martin ship ticket for my travel date." eventLabel="route_cta" />
+
+      <Schema data={{ '@context': 'https://schema.org', '@graph': [siteSchema, websiteSchema, faqSchema(faqs), breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Cox’s Bazar to Saint Martin', url: path }])] }} />
+    </SeoPage>
+  )
+}

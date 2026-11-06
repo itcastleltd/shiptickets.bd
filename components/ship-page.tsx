@@ -1,267 +1,53 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
-import { SeoPage, Schema, siteSchema, websiteSchema, breadcrumbSchema, faqSchema, vehicleSchema, productSchema } from '@/components/seo-page'
-import { ShipViewTracker } from '@/components/ship-view-tracker'
-import {
-  BeforeYouPay,
-  BookingCta,
-  BookingSteps,
-  CabinBlock,
-  CategoryCompare,
-  ConfidenceBadge,
-  CustomerReviews,
-  FacilitiesGrid,
-  FareTable,
-  FaqAccordion,
-  JettyNote,
-  ProvenanceNote,
-  QuickAnswer,
-  QuickFacts,
-  ScheduleBlock,
-  TicketCards,
-} from '@/components/content-blocks'
-import { ShipPageNav } from '@/components/ship-page-nav'
-import { LAST_REVIEWED, STATUS_LABELS, getReviewsForShip, season, ships, type Ship } from '@/lib/ships'
+import { season, type Ship } from '@/lib/ships'
 
 export function shipMetadata(ship: Ship, title: string, description: string): Metadata {
   const canonical = `https://www.shiptickets.bd/saint-martin-ship/${ship.slug}`
 
   return {
-    title,
+    // Long titles drop the site name, so Google is less likely to cut off the fare.
+    title: `${title} | ShipTickets.bd`.length > 60 ? { absolute: title } : title,
     description,
     alternates: { canonical },
     openGraph: {
       title,
       description,
       url: canonical,
+      type: 'website',
+      siteName: 'ShipTickets.bd',
+      locale: 'en_BD',
       alternateLocale: ['bn_BD'],
-      images: ship.image ? [{ url: `https://www.shiptickets.bd${ship.image}`, width: 1264, height: 848, alt: ship.imageAlt ?? `${ship.name} passenger ship` }] : undefined,
+      images: [{ url: '/opengraph.jpg', width: 1200, height: 630, alt: `${ship.name} ticket from ShipTickets.bd` }],
     },
+    twitter: { card: 'summary_large_image', title, description, images: ['/opengraph.jpg'] },
   }
 }
 
-const DEFAULT_BEFORE_YOU_PAY = [
-  'Travel date and one-way or round trip',
-  'Number of passengers',
-  'Exact fare for your date',
-  'Whether meals or dining are included',
-  'Reporting time and departure time',
-  'Boarding jetty printed on your ticket',
-  'Travel Pass and QR ticket requirements',
-  'Cancellation and rescheduling policy',
-  'Passenger name spelling on the ticket',
-]
+function lowestFare(fares: string[]): number | null {
+  const amounts = fares.map((fare) => Number(fare.replace(/[^0-9]/g, ''))).filter((amount) => amount > 0)
+  return amounts.length ? Math.min(...amounts) : null
+}
 
-export function ShipPage({
-  ship,
-  title,
-  description,
-  quickAnswer,
-  beforeYouPay = DEFAULT_BEFORE_YOU_PAY,
-  relatedShips = [],
-}: {
-  ship: Ship
-  title: string
-  description: string
-  quickAnswer: [string, string][]
-  beforeYouPay?: string[]
-  relatedShips?: Ship[]
-}) {
-  const crumbs = [
-    { name: 'Home', href: '/' },
-    { name: 'Saint Martin ships', href: '/saint-martin-ship' },
-    { name: ship.name },
-  ]
+const taka = (amount: number) => `৳${amount.toLocaleString('en-US')}`
 
-  /**
-   * Jump links, built from what the page actually renders.
-   *
-   * A vessel with no published cabins and a vessel with no collected reviews
-   * must not be linked to anchors that do not exist, so both are conditional.
-   */
-  const navItems = [
-    { id: 'quick-answer', label: 'Quick answer' },
-    { id: 'at-a-glance', label: 'At a glance' },
-    { id: 'tickets', label: 'Tickets' },
-    { id: 'fares', label: 'Fare table' },
-    ...(ship.cabins.length > 0 ? [{ id: 'cabins', label: 'Cabins' }] : []),
-    { id: 'categories', label: 'Choosing a class' },
-    { id: 'facilities', label: 'Facilities' },
-    { id: 'schedule', label: 'Schedule' },
-    ...(getReviewsForShip(ship.slug).length > 0 ? [{ id: 'reviews', label: 'Reviews' }] : []),
-    { id: 'faq', label: 'FAQ' },
-  ]
+/**
+ * Builds a ship page's title and description from its published fares, so they
+ * cannot drift from content/ships.json. Pass roundTripOnly for ships whose lead
+ * fare should be the round trip.
+ */
+export function shipFareMetadata(ship: Ship, { roundTripOnly = false }: { roundTripOnly?: boolean } = {}): Metadata {
+  const seasonLabel = season.label.replace('-20', '-')
+  const oneWay = roundTripOnly ? null : lowestFare(ship.ticketClasses.map((item) => item.oneWayFare))
+  const roundTrip = lowestFare(ship.ticketClasses.map((item) => item.roundTripFare))
 
-  return (
-    <SeoPage
-      eyebrow={`Ship guide · ${ship.nameBn}`}
-      title={title}
-      intro={`${ship.name} (${ship.nameBn}) serves ${ship.route}. ${description}`}
-      updated={LAST_REVIEWED}
-      crumbs={crumbs}
-    >
-      <ShipViewTracker ship={ship} />
-      <div className="mb-8 flex flex-wrap items-center gap-2">
-        <ConfidenceBadge kind="seasonal">Season {season.label}</ConfidenceBadge>
-        <ConfidenceBadge kind="reference">Operator fares</ConfidenceBadge>
-        <ConfidenceBadge kind="confirm">Confirm before booking</ConfidenceBadge>
-      </div>
+  const titleFare = oneWay ? `: From ${taka(oneWay)}` : roundTrip ? `: ${taka(roundTrip)} Round Trip` : ''
+  const fareParts = [oneWay && `${taka(oneWay)} one way`, roundTrip && `${taka(roundTrip)} round trip`].filter(Boolean)
+  const fareText = fareParts.length ? `from ${fareParts.join(', ')}` : 'fares by class'
+  const compare = ship.cabins?.length ? 'seats, cabins' : 'seats'
 
-      {ship.image && (
-        <figure className="mb-8">
-          <div className="relative h-[280px] w-full overflow-hidden rounded-2xl bg-[#dcefeb] sm:h-[380px] lg:h-[440px]">
-            <Image
-              src={ship.image}
-              alt={ship.imageAlt ?? `${ship.name} passenger ship`}
-              fill
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 720px"
-              className="object-cover"
-              priority
-            />
-            {ship.photoPending && (
-              <p className="absolute inset-x-0 bottom-0 bg-[#0d1b2a]/80 px-4 py-2 text-center text-xs font-bold uppercase tracking-wider text-white">
-                Official operator photo coming soon
-              </p>
-            )}
-          </div>
-          <figcaption className="t-small mt-3 text-quiet">
-            {ship.name} on the {ship.route} route.
-          </figcaption>
-        </figure>
-      )}
-
-      <ShipPageNav items={navItems} />
-
-      <QuickAnswer items={quickAnswer} id="quick-answer" />
-
-      <QuickFacts ship={ship} id="at-a-glance" />
-      <TicketCards ship={ship} id="tickets" />
-      <FareTable ship={ship} id="fares" />
-      <CabinBlock ship={ship} id="cabins" />
-      <CategoryCompare ship={ship} id="categories" />
-      <FacilitiesGrid ship={ship} id="facilities" />
-
-      {/*
-        The Bangla summary sits here, next to the schedule, rather than directly
-        under the English Quick Answer. Up there it read as a second Quick
-        Answer — same panel, same border, same position — and pushed the actual
-        reference data a screen further down. A Bangla reader now finds the
-        translation next to the sailing information it describes, and it is
-        styled as a translation rather than as another answer block.
-      */}
-      <section id="bn-summary" lang="bn" className="mb-10 scroll-mt-32 rounded-3xl border border-dashed border-[#bcd9d3] bg-[#f7fbfa] p-6 md:p-7">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="t-label bn text-brand-ink">জাহাজ সম্পর্কে সংক্ষিপ্ত তথ্য</h2>
-          <span className="text-xs font-semibold text-quiet">Bangla summary</span>
-        </div>
-        <p className="t-body mt-4 t-measure text-prose">{ship.summaryBn}</p>
-        <p className="mt-4 border-t border-[#dcece9] pt-3 text-sm font-bold text-ink">{ship.nameBn}</p>
-      </section>
-
-      <ScheduleBlock ship={ship} id="schedule" />
-      {(ship.slug === 'karnafuly-express' || ship.slug === 'baro-awlia') && (
-        <section className="mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8">
-          <h2 className="t-title mb-3">{ship.name} November 2026 schedule</h2>
-          <p className="mb-3 text-sm text-prose">Operator: Karnafuly Cruise Line Ltd. Departure times subject to tide/ebb; confirm before travel.</p>
-          <div className="overflow-x-auto rounded-xl border border-line-soft">
-            <table className="w-full min-w-[520px] text-left text-sm">
-              <thead className="bg-[#e3ecea] text-ink"><tr><th className="px-3 py-2 font-bold">Date</th><th className="px-3 py-2 font-bold">Day</th><th className="px-3 py-2 font-bold">CB Departure</th><th className="px-3 py-2 font-bold">SM Return</th></tr></thead>
-              <tbody>
-                {[
-                  ['05.11.2026','Thursday','07:00 AM','03:00 PM'],
-                  ['06.11.2026','Friday','07:00 AM','03:00 PM'],
-                  ['07.11.2026','Saturday','07:00 AM','03:00 PM'],
-                  ['08.11.2026','Sunday','08:00 AM','04:00 PM'],
-                  ['09.11.2026','Monday','08:00 AM','04:00 PM'],
-                  ['10.11.2026','Tuesday','08:00 AM','04:00 PM'],
-                  ['11.11.2026','Wednesday','09:00 AM','05:00 PM'],
-                  ['12.11.2026','Thursday','09:00 AM','05:00 PM'],
-                  ['13.11.2026','Friday','10:00 AM','05:00 PM'],
-                  ['14.11.2026','Saturday','10:00 AM','05:00 PM'],
-                  ['15.11.2026','Sunday','10:00 AM','05:00 PM'],
-                  ['16.11.2026','Monday','04:00 AM','05:00 PM'],
-                  ['17.11.2026','Tuesday','04:00 AM','05:00 PM'],
-                  ['18.11.2026','Wednesday','04:00 AM','05:00 PM'],
-                  ['19.11.2026','Thursday','06:00 AM','03:00 PM'],
-                  ['20.11.2026','Friday','06:00 AM','03:00 PM'],
-                  ['21.11.2026','Saturday','07:00 AM','04:00 PM'],
-                  ['22.11.2026','Sunday','07:00 AM','04:00 PM'],
-                  ['23.11.2026','Monday','07:00 AM','04:00 PM'],
-                  ['24.11.2026','Tuesday','07:00 AM','04:00 PM'],
-                  ['25.11.2026','Wednesday','08:00 AM','04:00 PM'],
-                  ['26.11.2026','Thursday','09:00 AM','04:00 PM'],
-                  ['27.11.2026','Friday','09:00 AM','04:00 PM'],
-                  ['28.11.2026','Saturday','10:00 AM','05:00 PM'],
-                  ['29.11.2026','Sunday','10:00 AM','05:00 PM'],
-                  ['30.11.2026','Monday','05:00 AM','03:00 PM'],
-                ].map(([d, day, dep, ret]) => (
-                  <tr key={d} className="border-t border-line-soft"><td className="px-3 py-2">{d}</td><td className="px-3 py-2">{day}</td><td className="px-3 py-2">{dep}</td><td className="px-3 py-2">{ret}</td></tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      )}
-      <JettyNote ship={ship} />
-      <BookingSteps ship={ship} />
-      <BeforeYouPay items={beforeYouPay} />
-      <CustomerReviews ship={ship} id="reviews" />
-      <FaqAccordion items={ship.faq} heading={`${ship.name} FAQ`} id="faq" />
-      <ProvenanceNote ship={ship} />
-      <BookingCta ship={ship} />
-
-      {relatedShips.length > 0 && (
-        <section className="mb-10">
-          <h2 className="t-title mb-4">Compare other Saint Martin ships</h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            {relatedShips.map((other) => (
-              <Link
-                key={other.slug}
-                href={`/saint-martin-ship/${other.slug}`}
-                className="group flex flex-col rounded-2xl border border-line-soft bg-white p-5 shadow-card transition hover:-translate-y-0.5 hover:border-brand-ink hover:shadow-raised"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <h3 className="t-subtitle text-ink">{other.name}</h3>
-                    <p className="mt-1 text-sm font-semibold text-brand-ink" lang="bn">
-                      {other.nameBn}
-                    </p>
-                  </div>
-                  <span className="shrink-0 rounded-full bg-[#f1f0ec] px-2.5 py-1 t-label text-[#6b6a63]">
-                    {STATUS_LABELS[other.status]}
-                  </span>
-                </div>
-                <p className="t-body mt-3 text-prose">{other.detail}</p>
-                <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-line-soft pt-4">
-                  <p className="text-sm font-extrabold text-brand-ink">
-                    From {other.oneWay} one way, {other.roundTrip} round trip
-                  </p>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-extrabold text-ink">
-                    See full details
-                    <ArrowRight size={16} className="text-brand-ink transition group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
-
-      <Schema
-        data={{
-          '@context': 'https://schema.org',
-          '@graph': [
-            siteSchema,
-            websiteSchema,
-            vehicleSchema(ship),
-            productSchema(ship),
-            breadcrumbSchema(crumbs.map((crumb) => ({ name: crumb.name, url: crumb.href }))),
-            faqSchema(ship.faq),
-          ],
-        }}
-      />
-    </SeoPage>
+  return shipMetadata(
+    ship,
+    `${ship.name} Ticket Price ${seasonLabel}${titleFare}`,
+    `${ship.name} (${ship.nameBn}) ticket price ${seasonLabel}: ${fareText}. Compare ${compare} and schedule to Saint Martin.`,
   )
 }

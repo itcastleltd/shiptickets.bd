@@ -78,6 +78,7 @@
    */
   --color-brand: #1d9e75;      /*  3.4:1 — non-text use only */
   --color-brand-ink: #157a5b;  /*  5.3:1 as text, and 5.3:1 under white text */
+  --color-brand-ink-hover: #13734f;
 
   /* Borders. Interactive boundaries need 3:1 (WCAG 1.4.11). */
   --color-line: #75908f;      /*  3.4:1 — form fields, focusable outlines */
@@ -361,6 +362,26 @@
   }
 }
 
+/* Ship page: section links sit under the header, or at the top while it is hidden. */
+.ship-section-nav {
+  top: var(--ship-nav-top, var(--header-h));
+  transition: top 200ms ease;
+}
+
+@media (max-width: 1023.98px) {
+  html[data-header-hidden] { --ship-nav-top: 0px; }
+  html[data-header-hidden] header[data-site-header] { transform: translateY(-100%); }
+}
+
+@keyframes ship-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
+.ship-fade { animation: ship-fade 200ms ease-out; }
+
+/* A ship page with its own bar replaces the site-wide contact bar. */
+body:has([data-ship-bar]) [data-call-bar] { display: none; }
+
 button, a, input {
   -webkit-tap-highlight-color: transparent;
 }
@@ -380,3 +401,29 @@ body { padding-bottom: env(safe-area-inset-bottom); }
   body { padding-bottom: 0; }
 }
 
+/*
+ * Homepage sections below the first screen are drawn when they come near it.
+ * Their text stays in the HTML. --defer-* are measured heights, which keep
+ * in-page links accurate. The extra inline padding stops card shadows being clipped.
+ */
+.defer-section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto var(--defer-phone);
+  margin-inline: -0.5rem;
+  padding-inline: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+@media (min-width: 640px) {
+  .defer-section { contain-intrinsic-size: auto var(--defer-tablet); }
+}
+@media (min-width: 1024px) {
+  .defer-section { contain-intrinsic-size: auto var(--defer-desktop); }
+}
+
+/* Discourages casual saving of images. See components/image-guard.tsx. */
+img {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+  pointer-events: none;
+}

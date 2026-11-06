@@ -1,3 +1,5 @@
+import { blogPosts } from '@/content/blog'
+
 export const revalidate = 86400
 
 function escapeXml(s: string): string {
@@ -7,8 +9,13 @@ function escapeXml(s: string): string {
 export function GET() {
   const base = 'https://www.shiptickets.bd'
   const now = new Date().toISOString()
+  const posts = [...blogPosts]
+    .sort((a, b) => (b.updated ?? b.date).localeCompare(a.updated ?? a.date) || b.date.localeCompare(a.date))
+    .map((post) => ({ title: post.titleBn, link: `${base}/blog/${post.slug}`, pubDate: `${post.updated ?? post.date}T02:00:00Z`, description: post.descriptionBn }))
+
   const items = [
-    { title: 'Saint Martin ship tickets, made simple.', link: base, pubDate: '2026-09-22T00:00:00Z', description: 'Compare ships, check fares and book your Saint Martin journey with confidence.' },
+    ...posts,
+    { title: 'Saint Martin ship ticket booking', link: base, pubDate: '2026-09-22T00:00:00Z', description: 'Compare ships, check fares and book your Saint Martin journey with confidence.' },
     { title: 'Saint Martin ship ticket price guide', link: `${base}/saint-martin-ship-ticket-price`, pubDate: '2026-09-22T00:00:00Z', description: 'Compare one-way, round-trip, seat, lounge and cabin fares for Cox\'s Bazar to Saint Martin.' },
     { title: 'Saint Martin ship schedule and departure times', link: `${base}/saint-martin-ship-schedule`, pubDate: '2026-09-22T00:00:00Z', description: 'Check seasonal departure times, return schedules, jetty check-in points and operating status.' },
     { title: 'Saint Martin Travel Pass and QR ticket guide', link: `${base}/saint-martin-travel-pass`, pubDate: '2026-09-22T00:00:00Z', description: 'Learn what the Travel Pass and QR-coded ship ticket mean and what to verify before travel.' },
@@ -23,7 +30,7 @@ export function GET() {
     <title>ShipTickets.bd — Saint Martin ship ticket updates</title>
     <description>Latest verified information about Saint Martin ship tickets, fares, schedules and travel rules.</description>
     <link>${base}</link>
-    <lastBuildDate>${now}</lastBuildDate>
+    <lastBuildDate>${new Date(now).toUTCString()}</lastBuildDate>
     ${items.map((item) => `
     <item>
       <title>${escapeXml(item.title)}</title>

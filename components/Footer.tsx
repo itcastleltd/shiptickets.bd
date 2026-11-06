@@ -18,6 +18,7 @@ const footerGroups = [
     links: [
       { href: '/saint-martin-ship-ticket-price', label: 'Ticket price' },
       { href: '/saint-martin-cabin-price', label: 'Cabin & class prices' },
+      { href: '/cheapest-saint-martin-ship-ticket', label: 'Cheapest ticket' },
       { href: '/saint-martin-ship-schedule', label: 'Ship schedule' },
       { href: '/saint-martin-ship', label: 'All ships' },
     ],
@@ -29,6 +30,8 @@ const footerGroups = [
       { href: '/saint-martin-travel-rules', label: 'Travel rules' },
       { href: '/saint-martin-guide', label: 'Travel guide' },
       { href: '/routes/coxs-bazar-to-saint-martin', label: "Cox's Bazar route" },
+      { href: '/routes/coxs-bazar-to-saint-martin-distance', label: 'Distance & journey time' },
+      { href: '/saint-martin-trip-cost', label: 'Trip cost' },
     ],
   },
   {
@@ -66,7 +69,7 @@ export function Footer() {
           />
 
           <p className="mt-4 max-w-xs text-sm leading-6 text-quiet">
-            ShipTickets.bd is a dedicated platform for Saint Martin’s ship tickets and travel information in Bangladesh. Operated by Tripzic.com, a CAAB-approved travel agency and ETAB member.
+            ShipTickets.bd is a dedicated platform for Saint Martin’s ship tickets and travel information in Bangladesh. Operated by Tripzic.com.
           </p>
 
           <address className="mt-6 space-y-2.5 text-sm not-italic text-quiet">
@@ -95,7 +98,7 @@ export function Footer() {
 <div className="mt-6 flex items-center gap-3">
   {[
     { name: 'WhatsApp', href: whatsappHref, icon: 'whatsapp' as const },
-    { name: 'Facebook', href: 'https://facebook.com/shiptickets', icon: 'facebook' as const },
+    { name: 'Facebook', href: 'https://www.facebook.com/shiptickets', icon: 'facebook' as const },
     { name: 'Phone', href: phoneHref, icon: 'phone' as const },
   ].map((social) => (
     <a
@@ -150,9 +153,9 @@ export function Footer() {
         so nothing reads twice.
       */}
       <div className="mx-auto mt-12 max-w-7xl border-t border-line-soft pt-6 text-xs text-faint">
-        <p>&copy; 2026 ShipTickets.bd . A platform by <a href="https://tripzic.com" target="_blank" rel="noopener noreferrer" className="text-brand-ink hover:text-brand-ink-hover">
+        <p>&copy; 2026 ShipTickets.bd . Operated by <a href="https://www.tripzic.com" target="_blank" rel="noopener noreferrer" className="text-brand-ink underline underline-offset-2 hover:text-brand-ink-hover">
           Tripzic.com
-        </a> Civil Aviation Authority of Bangladesh (CAAB) Approved Travel Agency.</p>
+        </a>.</p>
         <p className="mt-2">
         </p>
       </div>

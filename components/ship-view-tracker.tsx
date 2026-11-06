@@ -2,11 +2,10 @@
 
 import { useEffect } from 'react'
 import { trackShipView } from '@/lib/gtm-events'
-import type { Ship } from '@/lib/ships'
 
-export function ShipViewTracker({ ship }: { ship: Ship }) {
+export function ShipViewTracker({ slug, name }: { slug: string; name: string }) {
   useEffect(() => {
-    trackShipView(ship.slug, ship.name)
-  }, [ship.slug, ship.name])
+    trackShipView(slug, name)
+  }, [slug, name])
   return null
 }

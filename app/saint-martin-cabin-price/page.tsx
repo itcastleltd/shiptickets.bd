@@ -1,156 +1,126 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
-import { SeoPage, Section, Bullet, LinkCard, Schema, siteSchema, websiteSchema, breadcrumbSchema, faqSchema, whatsapp, ProseSection } from '@/components/seo-page'
-import { LAST_VERIFIED, ships } from '@/lib/ships'
-import { ContactLink } from '@/components/contact-link'
+import { BedDouble, Armchair, Sun, Users } from 'lucide-react'
 import { FaqAccordion } from '@/components/faq-accordion'
+import { BanglaBox, CtaBand, GuideHero, IconCards, KitSection, LinkGrid, inlineLink, pageMeta, pageUrl, primaryButton, secondaryButton } from '@/components/page-kit'
+import { Schema, SeoPage, breadcrumbSchema, faqSchema, siteSchema, websiteSchema } from '@/components/seo-page'
+import { ships } from '@/lib/ships'
 
-const title = 'Saint Martin Ship Cabin & Seat Class Fares'
-const description = `Compare Saint Martin ship seat classes and cabins (open deck, lounge, AC seating, single, twin, VIP and VVIP cabin) with verified fares for the current season.`
+const path = '/saint-martin-cabin-price'
+const amount = (fare?: string) => Number((fare ?? '').replace(/[^0-9]/g, '')) || 0
+const taka = (value: number) => `৳${value.toLocaleString('en-US')}`
+const bangla = (value: string) => value.replace(/\d/g, (digit) => '০১২৩৪৫৬৭৮৯'[Number(digit)])
 
-export const metadata: Metadata = {
-  title: 'Saint Martin Cabin & Seat Fares',
+const withCabins = ships.filter((ship) => ship.cabins.length > 0)
+const seatOnly = ships.filter((ship) => ship.cabins.length === 0)
+const cabinFares = withCabins.flatMap((ship) => ship.cabins.map((cabin) => amount(cabin.oneWayFare)).filter(Boolean))
+const lowestCabin = Math.min(...cabinFares)
+const highestCabin = Math.max(...cabinFares)
+const lowestSeat = Math.min(...ships.flatMap((ship) => ship.ticketClasses.map((item) => amount(item.oneWayFare)).filter(Boolean)))
+const cheapestCabinShip = withCabins.find((ship) => ship.cabins.some((cabin) => amount(cabin.oneWayFare) === lowestCabin)) ?? withCabins[0]
+const cabinShipNames = withCabins.map((ship) => ship.name).join(', ').replace(/, ([^,]*)$/, ' and $1')
+
+const pageTitle = 'Saint Martin Ship Cabin Price 2026-27'
+const h1 = 'Saint Martin Ship Cabin Price & Seat Class Fares 2026–27'
+const description = `Compare Saint Martin ship cabin prices for 2026-27: private cabins from ${taka(lowestCabin)} one way on ${withCabins.length} ships, plus open deck, lounge and AC seat fares.`
+
+export const metadata = pageMeta({
+  title: pageTitle,
   description,
-  alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-cabin-price' },
-  openGraph: {
-    title,
-    description,
-    url: 'https://www.shiptickets.bd/saint-martin-cabin-price',
-    images: [{ url: '/og_image.png', width: 1200, height: 630 }],
-  },
-}
-
-const cabinReference: { name: string; price: string; note: string }[] = [
-  { name: 'Single Cabin', price: 'From ৳3,300 one-way', note: 'Single-occupancy private cabin. The basis is operator-specific, so confirm whether it is quoted per cabin.' },
-  { name: 'Twin Cabin', price: 'From ৳7,000 one-way', note: 'Two-passenger private cabin. Confirm whether the price covers both passengers.' },
-  { name: 'VIP Cabin', price: 'From ৳8,500 one-way', note: 'Premium private accommodation, usually limited in number per sailing.' },
-  { name: 'VVIP Cabin', price: 'From ৳10,500 one-way', note: 'Highest private category where offered. Availability is seasonal.' },
-]
-
-const categoryGlossary = [
-  { term: 'Open Deck', text: 'Outdoor seating. On some ships it is the entry-level fare, while on others a named Economy seat is cheaper, so compare the fare table rather than assuming.' },
-  { term: 'Sun Deck / Main Deck', text: 'Named deck sections. Sun deck is outdoor seating; main deck is usually the standard indoor-outdoor mix.' },
-  { term: 'Lounge', text: 'Indoor comfort seating, often air-conditioned on some sailings.' },
-  { term: 'AC Seating', text: 'Air-conditioned indoor seats, listed separately from lounge on some ships.' },
-  { term: 'Bunker Bed', text: 'Shared berth accommodation, usually priced per person.' },
-  { term: 'Cabin', text: 'Private or family accommodation, such as single, twin, VIP or VVIP. Often quoted per person or per cabin, so always confirm the basis.' },
-]
+  path,
+  keywords: ['saint martin ship cabin price', 'saint martin cabin price', 'saint martin ship vip cabin', 'সেন্টমার্টিন জাহাজের কেবিন ভাড়া'],
+})
 
 const faqs: [string, string][] = [
-  ['What is the Saint Martin ship cabin price?', 'Reference cabin pricing starts around ৳3,300 one-way for a single cabin, ৳7,000 for a twin cabin, ৳8,500 for a VIP cabin and ৳10,500 for a VVIP cabin where offered. Cabin pricing is seasonal and may be quoted per person or per cabin, so confirm the basis before payment.'],
-  ['Is a Saint Martin ship cabin price per person or per cabin?', 'It depends on the operator and the category. Bunker beds and lounge seats are normally per person, while a twin or VIP cabin is sometimes quoted for the whole cabin. Always ask for the pricing basis in writing before you pay.'],
-  ['Which ship has the cheapest cabin?', 'Cabin categories differ by ship rather than by price alone. MV Karnafuly Express lists single, twin and VIP cabins; MV Baro Awlia lists deluxe and family bunker/VIP cabins. Compare each ship page before deciding.'],
-  ['Is open deck cheaper than a cabin?', 'Yes. Cabins are always the premium tier, and deck and lounge seating is the lower band. Reference one-way fares for deck and lounge seating start from ৳1,800 depending on the ship. Note that on some ships a named Economy seat is cheaper than Open Deck, so check the fare table rather than assuming.'],
-  ['Can I get a cabin on any Cox’s Bazar to Saint Martin ship?', 'No. Cabin availability depends on the vessel and the sailing. Some ships list cabins, others only deck and lounge seating. Check the cabins table on the individual ship page, then confirm availability for your date.'],
+  ['What is the Saint Martin ship cabin price?', `Published cabin fares run from ${taka(lowestCabin)} to ${taka(highestCabin)} one way, depending on the ship and cabin. Cabin pricing may be quoted per person or per cabin, so confirm the basis before payment.`],
+  ['Is a Saint Martin ship cabin price per person or per cabin?', 'It depends on the operator and the category. Bunker beds and lounge seats are normally per person, while a twin or VIP cabin is sometimes quoted for the whole cabin. Ask for the pricing basis before you pay.'],
+  ['Which ship has the cheapest cabin?', `${cheapestCabinShip.name} has the lowest published cabin fare, from ${taka(lowestCabin)} one way.`],
+  ['Which Saint Martin ships have cabins?', `${cabinShipNames} publish private cabins. ${seatOnly.map((ship) => ship.name).join(' and ')} publish seating categories only.`],
+  ['Is open deck cheaper than a cabin?', `Yes. Seats start from ${taka(lowestSeat)} one way, while cabins start from ${taka(lowestCabin)}. On some ships a named Economy seat is cheaper than Open Deck, so check the fare table rather than assuming.`],
+  ['সেন্টমার্টিন জাহাজের কেবিনের ভাড়া কত?', `প্রকাশিত কেবিন ভাড়া একমুখী ${bangla(taka(lowestCabin))} থেকে ${bangla(taka(highestCabin))}, জাহাজ ও কেবিনভেদে। ভাড়া জনপ্রতি নাকি পুরো কেবিনের জন্য, তা টাকা দেওয়ার আগে জেনে নিন।`],
 ]
+
+function Hero() {
+  return (
+    <GuideHero
+      crumbs={[{ name: 'Home', href: '/' }, { name: 'Ticket price', href: '/saint-martin-ship-ticket-price' }, { name: 'Cabin price' }]}
+      h1={h1}
+      lede={<><strong className="font-extrabold text-ink">Private cabins start at {taka(lowestCabin)} one way on {cheapestCabinShip.name}, and reach {taka(highestCabin)}.</strong> {cabinShipNames} publish cabins, and seats are cheaper, from {taka(lowestSeat)}.</>}
+      bangla="জাহাজের কেবিনের ভাড়া মিলিয়ে দেখুন, আর জেনে নিন ভাড়া জনপ্রতি নাকি পুরো কেবিনের।"
+      stats={[
+        { label: 'Cabins from', value: taka(lowestCabin), note: 'one way' },
+        { label: 'Highest cabin', value: taka(highestCabin), note: 'one way' },
+        { label: 'Ships with cabins', value: String(withCabins.length), note: 'of 5 ships' },
+        { label: 'Seats from', value: taka(lowestSeat), note: 'one way' },
+      ]}
+      actions={<><a href="#cabins" className={primaryButton}>Compare cabins</a><Link href="/saint-martin-ship-ticket-price" className={secondaryButton}>All ticket prices</Link></>}
+      updated="6 November 2026"
+    />
+  )
+}
 
 export default function CabinPricePage() {
   return (
-    <SeoPage eyebrow="Cabin prices · কেবিন" title={title} intro={description}>
-      <Section title="Quick Answer">
-        <p><strong>How much is a Saint Martin ship cabin?</strong> Reference cabin fares start at about <strong>৳3,300 one-way</strong> for a single cabin, <strong>৳7,000</strong> for a twin cabin, <strong>৳8,500</strong> for VIP and <strong>৳10,500</strong> for VVIP where offered. Deck and lounge seating is cheaper, from <strong>৳1,800</strong> one-way depending on the ship.</p>
-        <p className="mt-3"><strong>Why do prices differ so much?</strong> Category, occupancy basis, ship and season all matter. A twin cabin quoted per cabin is not comparable with a lounge seat quoted per person, so confirm the basis before payment.</p>
-      </Section>
-
-      <Section title="Cabin price reference (one-way)">
-        <div className="overflow-x-auto rounded-xl border border-line-soft">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-[#e3ecea] text-ink">
-              <tr><th className="px-4 py-3 font-bold">Cabin</th><th className="px-4 py-3 font-bold">Verified fare</th><th className="px-4 py-3 font-bold">Notes</th></tr>
-            </thead>
-            <tbody>
-              {cabinReference.map((cabin) => (
-                <tr key={cabin.name} className="border-t border-line-soft">
-                  <td className="px-4 py-3 font-extrabold">{cabin.name}</td>
-                  <td className="px-4 py-3 font-extrabold text-brand-ink">{cabin.price}</td>
-                  <td className="px-4 py-3 text-quiet">{cabin.note}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="mt-3 text-xs text-quiet">Reference values, not live prices. Confirm the exact fare and pricing basis for your travel date.</p>
-      </Section>
-
-      <Section title="Seat class and cabin glossary">
-        <p>Ships use specific terms for accommodation. We keep the operator wording instead of calling everything a "room".</p>
-        <dl className="mt-4 grid gap-4 sm:grid-cols-2">
-          {categoryGlossary.map((item) => (
-            <div key={item.term} className="rounded-2xl border border-[#dedad3] p-4">
-              <dt className="font-extrabold text-ink">{item.term}</dt>
-              <dd className="mt-1 text-sm">{item.text}</dd>
-            </div>
-          ))}
-        </dl>
-      </Section>
-
-      <Section title="Classes and cabins by ship">
-        <div className="grid gap-4 md:grid-cols-2">
-          {ships.map((ship) => (
-            <div key={ship.slug} className="flex flex-col rounded-2xl border border-line-soft bg-white p-5">
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="t-subtitle text-ink">{ship.name}</h3>
-                <p className="text-sm font-extrabold text-brand-ink">
-                  From {ship.oneWay} one way, {ship.roundTrip} round trip
-                </p>
-              </div>
-              <p className="mt-3 t-body text-prose">
-                <strong className="text-ink">Classes:</strong>{' '}
-                {ship.ticketClasses.map((ticketClass) => `${ticketClass.name} (${ticketClass.oneWayFare})`).join(', ')}
-              </p>
-              <p className="mt-2 t-body text-prose">
-                <strong className="text-ink">Cabins:</strong>{' '}
-                {ship.cabins.length > 0
-                  ? ship.cabins.map((cabin) => `${cabin.name}, ${cabin.capacity}`).join('; ')
-                  : 'None published for this vessel'}
-              </p>
-              <Link
-                href={`/saint-martin-ship/${ship.slug}`}
-                className="mt-4 inline-flex items-center gap-1.5 self-start border-b border-transparent pb-0.5 text-sm font-extrabold text-brand-ink transition hover:border-brand-ink"
-              >
-                See the full {ship.name} page
-                <span aria-hidden="true">→</span>
-              </Link>
+    <SeoPage eyebrow="Cabin prices · কেবিন" title={h1} intro={description} canonical={pageUrl(path)} modifiedISO="2026-11-06" updated="6 November 2026" hero={<Hero />} backToTopDesktopOnly>
+      <KitSection id="cabins" title="Saint Martin ship cabins compared" intro="Published fares, not live prices. Confirm the exact fare and pricing basis for your travel date.">
+        <div className="grid gap-5 lg:grid-cols-2">
+          {withCabins.map((ship) => (
+            <div key={ship.slug} className="overflow-hidden rounded-2xl border border-line-soft bg-white shadow-card">
+              <h3 className="px-4 pb-2 pt-4 text-lg font-black text-ink"><Link href={`/saint-martin-ship/${ship.slug}`} className="underline-offset-2 hover:text-brand-ink hover:underline">{ship.name} cabins</Link></h3>
+              <table className="w-full text-left text-sm">
+                <caption className="sr-only">Cabin fares on {ship.name}, in Bangladeshi taka</caption>
+                <thead className="bg-[#e3ecea] text-ink"><tr><th scope="col" className="px-4 py-2.5 font-bold">Cabin</th><th scope="col" className="px-3 py-2.5 text-right font-bold">One way</th><th scope="col" className="px-4 py-2.5 text-right font-bold">Round trip</th></tr></thead>
+                <tbody className="tabular-nums">
+                  {ship.cabins.map((cabin) => (
+                    <tr key={cabin.name} className="border-t border-line-soft">
+                      <th scope="row" className="px-4 py-3 font-extrabold text-ink">{cabin.name}{cabin.capacity && <span className="block text-xs font-semibold text-quiet">{cabin.capacity}</span>}</th>
+                      <td className="px-3 py-3 text-right font-extrabold text-brand-ink">{cabin.oneWayFare ?? 'Ask us'}</td>
+                      <td className="px-4 py-3 text-right font-extrabold text-brand-ink">{cabin.roundTripFare ?? 'Ask us'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           ))}
         </div>
-      </Section>
+        <p className="t-small mt-4 text-prose">{seatOnly.map((ship, index) => <span key={ship.slug}>{index > 0 && ' and '}<Link href={`/saint-martin-ship/${ship.slug}`} className={inlineLink}>{ship.name}</Link></span>)} publish seating categories only.</p>
+      </KitSection>
 
-      <ProseSection title="Before you pay for a cabin">
-        <ul className="flex flex-col gap-3">
-          <Bullet>Ask whether the cabin price is per person or for the whole cabin.</Bullet>
-          <Bullet>Confirm occupancy. A twin cabin usually takes two passengers.</Bullet>
-          <Bullet>Check what is included: meals, deck access, washroom and seating.</Bullet>
-          <Bullet>Confirm cancellation terms before payment.</Bullet>
-          <Bullet>Keep the passenger name on the ticket identical to your ID.</Bullet>
-        </ul>
-      </ProseSection>
+      <KitSection id="classes" title="Seat classes and cabins explained" intro="Operators use their own names, so we keep their wording.">
+        <IconCards items={[
+          { icon: Sun, heading: 'Open deck and sun deck', text: 'Outdoor seating. It is often the entry fare, though a named Economy seat can cost less on some ships.' },
+          { icon: Armchair, heading: 'Lounge and AC seating', text: 'Indoor seats. Many are air-conditioned, and some ships list them separately.' },
+          { icon: Users, heading: 'Bunker bed', text: 'Shared berth accommodation, usually priced per person.' },
+          { icon: BedDouble, heading: 'Private cabin', text: 'Single, twin, family, VIP or VVIP. Check whether the fare is per person or per cabin.' },
+        ]} />
+      </KitSection>
 
-      <Section title="Related pages">
-        <div className="grid gap-4 md:grid-cols-2">
-          <LinkCard href="/saint-martin-ship-ticket-price" title="Full ticket price guide" text="Fares for every ship, class and cabin type." />
-          <LinkCard href="/saint-martin-ship" title="All ships directory" text="Compare vessels, operators and seasonal status." />
-          <LinkCard href="/saint-martin-ship-schedule" title="Ship schedule" text="Departure times and check-in guidance." />
-          <LinkCard href="/how-we-verify-information" title="How we verify information" text="Why fares are reference values and how we check them." />
+      <KitSection id="before" title="Before you pay for a cabin">
+        <div className="rounded-3xl border border-[#f3d9bf] bg-[#fff8ee] p-5 md:p-7">
+          <ul className="t-small grid gap-2.5 text-prose sm:grid-cols-2">
+            {['Ask whether the price is per person or for the whole cabin', 'Confirm how many people the cabin holds', 'Check what is included: meals, deck access, washroom and seating', 'Confirm the cancellation terms', 'Keep the name on your ticket identical to your ID'].map((item) => <li key={item} className="flex gap-2"><BedDouble size={17} aria-hidden="true" className="mt-0.5 shrink-0 text-[#b7791f]" /> {item}</li>)}
+          </ul>
         </div>
-      </Section>
+      </KitSection>
 
-      <FaqAccordion items={faqs} />
+      <BanglaBox id="bangla" title="সেন্টমার্টিন জাহাজের কেবিনের ভাড়া">
+        <p>প্রকাশিত কেবিন ভাড়া একমুখী {bangla(taka(lowestCabin))} থেকে {bangla(taka(highestCabin))}। {withCabins.map((ship) => ship.nameBn).join(', ')} জাহাজে কেবিন আছে। সিট আরও কম ভাড়ায় পাওয়া যায়, একমুখী {bangla(taka(lowestSeat))} থেকে।</p>
+        <p>ভাড়া জনপ্রতি নাকি পুরো কেবিনের জন্য, আর কেবিনে কতজন থাকতে পারবেন, তা টাকা দেওয়ার আগে জেনে নিন।</p>
+      </BanglaBox>
 
-      <ProseSection title="Confirm the current cabin fare">
-        <p className="mb-4">Send us your travel date, passenger count and preferred cabin. We will confirm availability, the pricing basis and the exact fare before you pay.</p>
-        <ContactLink href={`${whatsapp}Hello ShipTickets.bd, I want to check cabin availability and price for my travel date.`} kind="whatsapp" eventLabel="cabin_price_whatsapp" className="inline-flex items-center gap-2 rounded-full bg-brand-ink px-5 py-3 text-sm font-extrabold text-white">Check cabin price on WhatsApp</ContactLink>
-      </ProseSection>
+      <FaqAccordion items={faqs} heading="Saint Martin ship cabin questions" id="faq" />
 
-      <Schema data={{
-        '@context': 'https://schema.org',
-        '@graph': [
-          siteSchema,
-          websiteSchema,
-          breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Cabin and class prices' }]),
-          faqSchema(faqs),
-        ],
-      }} />
+      <KitSection title="More on cabins and fares">
+        <LinkGrid links={[
+          ['/saint-martin-ship-ticket-price', 'Full ticket price guide'],
+          ['/cheapest-saint-martin-ship-ticket', 'Cheapest ship ticket'],
+          ['/saint-martin-ship', 'Compare all ships'],
+          ['/saint-martin-ship-schedule', 'Ship schedule'],
+        ]} />
+      </KitSection>
+
+      <CtaBand title="Check the cabin fare for your date" text="Send your date, passenger count and preferred cabin. We confirm the fare and basis before you pay." message="Hello ShipTickets.bd, I want to check cabin availability and price for my travel date." eventLabel="cabin_price_whatsapp" />
+
+      <Schema data={{ '@context': 'https://schema.org', '@graph': [siteSchema, websiteSchema, faqSchema(faqs), breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Ticket price', url: '/saint-martin-ship-ticket-price' }, { name: 'Cabin price', url: path }])] }} />
     </SeoPage>
   )
 }

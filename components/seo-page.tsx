@@ -1,12 +1,11 @@
 import Link from 'next/link'
 import { Children, isValidElement } from 'react'
-import { ArrowRight, Check, Star } from 'lucide-react'
+import { ArrowRight, CalendarCheck, Check, Star } from 'lucide-react'
 import { site, WHATSAPP_NUMBER, LAST_REVIEWED, getBusinessRating, getReviewsForShip, type Ship } from '@/lib/ships'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { BackToTop } from '@/components/BackToTop'
 import { Breadcrumbs, type Crumb } from '@/components/Breadcrumbs'
-import { MobileCallBar } from '@/components/mobile-call-bar'
 import { SeasonBar } from '@/components/season-bar'
 
 const whatsapp = `https://wa.me/${WHATSAPP_NUMBER}?text=`
@@ -19,12 +18,15 @@ const whatsapp = `https://wa.me/${WHATSAPP_NUMBER}?text=`
   * if the same number is visible to the visitor, so the chip and the schema
   * read the same value.
   */
-function RatingChip({ updated }: { updated: string }) {
+export function RatingChip({ updated }: { updated: string }) {
   const rating = getBusinessRating()
 
   return (
     <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2">
-      <p className="t-small font-semibold text-quiet">Information last reviewed: {updated}</p>
+      <p className="inline-flex min-h-9 items-center gap-1.5 rounded-full border border-line-soft bg-[#f1f8f6] px-3 py-1 text-[0.8125rem] font-semibold text-prose sm:text-sm">
+        <CalendarCheck size={15} className="shrink-0 text-brand" aria-hidden="true" />
+        Information last reviewed: {updated}
+      </p>
       {rating && (
         <p className="inline-flex items-center gap-1.5 rounded-full border border-[#f3d9bf] bg-[#fff8ee] px-3 py-1.5 text-sm font-bold text-[#8a5a2f]">
           <Star size={15} className="fill-[#ef9f27] text-[#ef9f27]" aria-hidden="true" />
@@ -32,6 +34,12 @@ function RatingChip({ updated }: { updated: string }) {
           {rating.ratingValue.toFixed(1)} out of 5
           <span className="font-semibold text-warm">from {rating.reviewCount.toLocaleString('en-US')} reviews</span>
         </p>
+      )}
+      {!rating && site.googleReviewsUrl && (
+        <a href={site.googleReviewsUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-9 items-center gap-1.5 rounded-full border border-[#f3d9bf] bg-[#fff8ee] px-3 py-1 text-sm font-bold text-[#8a5a2f] transition-colors hover:border-[#8a5a2f]">
+          <Star size={15} className="shrink-0 fill-[#ef9f27] text-[#ef9f27]" aria-hidden="true" />
+          Read our reviews on Google
+        </a>
       )}
     </div>
   )
@@ -48,7 +56,7 @@ const BENGALI = /[\u0980-\u09FF]/
  * Bengali segment is wrapped in a `lang="bn"` span with tracking neutralised, so
  * screen readers switch voice and the script is set correctly.
  */
-function Eyebrow({ text }: { text: string }) {
+export function Eyebrow({ text }: { text: string }) {
   const separator = text.indexOf('·')
   if (separator === -1) {
     return BENGALI.test(text)
@@ -66,7 +74,7 @@ function Eyebrow({ text }: { text: string }) {
   )
 }
 
-export function SeoPage({ eyebrow, title, intro, updated = LAST_REVIEWED, crumbs, children }: { eyebrow: string; title: string; intro: string; updated?: string; crumbs?: Crumb[]; children: React.ReactNode }) {
+export function SeoPage({ eyebrow, title, intro, updated = LAST_REVIEWED, crumbs, canonical, modifiedISO, hero, mobileBar, backToTopDesktopOnly, children }: { eyebrow: string; title: string; intro: string; updated?: string; crumbs?: Crumb[]; canonical?: string; modifiedISO?: string; hero?: React.ReactNode; mobileBar?: React.ReactNode; backToTopDesktopOnly?: boolean; children: React.ReactNode }) {
   /*
    * `dateModified` and `datePublished` are read from content/site.json rather
    * than hardcoded, because a stale freshness claim is worse than none. The same
@@ -77,10 +85,10 @@ export function SeoPage({ eyebrow, title, intro, updated = LAST_REVIEWED, crumbs
   const pageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
+    ...(canonical ? { '@id': `${canonical}#webpage`, url: canonical } : {}),
     name: title,
     description: intro,
-    datePublished: site.updatedAt,
-    dateModified: site.updatedAt,
+    ...(modifiedISO ? { dateModified: modifiedISO } : { datePublished: site.updatedAt, dateModified: site.updatedAt }),
     inLanguage: 'en',
     isPartOf: { '@id': 'https://www.shiptickets.bd/#website' },
     publisher: { '@id': 'https://www.shiptickets.bd/#organization' },
@@ -91,11 +99,13 @@ export function SeoPage({ eyebrow, title, intro, updated = LAST_REVIEWED, crumbs
     <SeasonBar />
     <Header />
     {crumbs && crumbs.length > 0 && <div className="mx-auto max-w-7xl px-5 pt-6"><Breadcrumbs items={crumbs} /></div>}
-    <section className="mx-auto max-w-7xl px-5 pb-12 pt-8 md:pb-16 md:pt-10"><p className="t-label mb-4 text-brand-ink"><Eyebrow text={eyebrow} /></p><h1 className="t-display max-w-4xl text-ink">{title}</h1><p className="t-lede mt-5 max-w-2xl text-prose">{intro}</p><RatingChip updated={updated} /></section>
+    {hero
+      ? <section className="mx-auto max-w-7xl px-5 pb-8 pt-4 md:pb-12 md:pt-6">{hero}</section>
+      : <section className="mx-auto max-w-7xl px-5 pb-12 pt-8 md:pb-16 md:pt-10"><p className="t-label mb-4 text-brand-ink"><Eyebrow text={eyebrow} /></p><h1 className="t-display max-w-4xl text-ink">{title}</h1><p className="t-lede mt-5 max-w-2xl text-prose">{intro}</p><RatingChip updated={updated} /></section>}
     <div className="mx-auto max-w-7xl px-5 pb-20"><article className="min-w-0">{children}</article></div>
     <Footer />
-    <BackToTop />
-    <MobileCallBar />
+    {backToTopDesktopOnly ? <div className="hidden lg:block"><BackToTop /></div> : <BackToTop />}
+    {mobileBar}
   </main>
 }
 
@@ -178,7 +188,7 @@ export function Schema({ data }: { data: object }) { return <script type="applic
 
 export const faqSchema = (items: [string, string][]) => ({ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: items.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })) })
 
-export const siteSchema = { '@context': 'https://schema.org', '@type': 'Organization', '@id': 'https://www.shiptickets.bd/#organization', name: 'ShipTickets.bd', url: 'https://www.shiptickets.bd', areaServed: 'Bangladesh', description: 'Saint Martin ship ticket information, comparison and booking support.', sameAs: ['https://www.facebook.com/shipticketsbd', 'https://www.instagram.com/shipticketsbd'], contactPoint: { '@type': 'ContactPoint', telephone: '+880-1718-116799', contactType: 'customer service', availableLanguage: ['en', 'bn'] }, ...(() => { const rating = getBusinessRating(); return rating ? { aggregateRating: { '@type': 'AggregateRating', ratingValue: rating.ratingValue.toFixed(1), reviewCount: rating.reviewCount, bestRating: '5', worstRating: '1' } } : {} })() }
+export const siteSchema = { '@context': 'https://schema.org', '@type': 'Organization', '@id': 'https://www.shiptickets.bd/#organization', name: 'ShipTickets.bd', url: 'https://www.shiptickets.bd', logo: 'https://www.shiptickets.bd/Logo.png', areaServed: 'Bangladesh', description: 'Saint Martin ship ticket information, comparison and booking support.', sameAs: ['https://www.facebook.com/shiptickets', 'https://www.instagram.com/shipticketsbd'], contactPoint: { '@type': 'ContactPoint', telephone: '+880-1718-116799', contactType: 'customer service', availableLanguage: ['en', 'bn'] }, ...(() => { const rating = getBusinessRating(); return rating ? { aggregateRating: { '@type': 'AggregateRating', ratingValue: rating.ratingValue.toFixed(1), reviewCount: rating.reviewCount, bestRating: '5', worstRating: '1' } } : {} })() }
 
 export const websiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': 'https://www.shiptickets.bd/#website', url: 'https://www.shiptickets.bd/', name: 'ShipTickets.bd', publisher: { '@id': 'https://www.shiptickets.bd/#organization' } }
 
@@ -194,13 +204,13 @@ export const breadcrumbSchema = (items: { name: string; url?: string }[]) => ({
 })
 
 export const vehicleSchema = (ship: Ship) => {
-  const publishedCapacity = Number(ship.capacity?.replace(/[^0-9]/g, ''))
+  const publishedCapacity = Number(ship.capacity?.match(/\d[\d,]*/)?.[0].replace(/,/g, ''))
   return {
     '@context': 'https://schema.org',
     '@type': 'Vehicle',
     '@id': `https://www.shiptickets.bd/saint-martin-ship/${ship.slug}#vehicle`,
     name: ship.name,
-    alternateName: ship.nameBn,
+    alternateName: ship.alternateNames ? [ship.nameBn, ...ship.alternateNames] : ship.nameBn,
     description: `${ship.name} is a passenger vessel serving ${ship.route}. ${ship.detail}`,
     vehicleConfiguration: 'Passenger ship',
     brand: { '@type': 'Brand', name: ship.operator },
@@ -219,6 +229,8 @@ export const vehicleSchema = (ship: Ship) => {
 export const productSchema = (ship: Ship) => {
   const reviews = getReviewsForShip(ship.slug)
   const productId = `https://www.shiptickets.bd/saint-martin-ship/${ship.slug}#product`
+  // One-way fares for every seat and cabin category that has one.
+  const offerFares = [...ship.ticketClasses, ...ship.cabins].map((item) => Number((item.oneWayFare ?? '').replace(/[^0-9]/g, ''))).filter((fare) => fare > 0)
   const average = reviews.length
     ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
     : null
@@ -234,16 +246,10 @@ export const productSchema = (ship: Ship) => {
     offers: {
       '@type': 'AggregateOffer',
       priceCurrency: 'BDT',
-      offerCount: ship.ticketClasses.length,
-      lowPrice: ship.ticketClasses.reduce((min, cls) => {
-        const oneWayNum = Number(cls.oneWayFare.replace(/[^0-9]/g, ''))
-        return oneWayNum < min ? oneWayNum : min
-      }, Infinity).toString(),
-      highPrice: ship.ticketClasses.reduce((max, cls) => {
-        const oneWayNum = Number(cls.oneWayFare.replace(/[^0-9]/g, ''))
-        return oneWayNum > max ? oneWayNum : max
-      }, 0).toString(),
-      availability: ship.status === 'verified' ? 'https://schema.org/InStock' : 'https://schema.org/LimitedAvailability',
+      offerCount: offerFares.length,
+      lowPrice: String(Math.min(...offerFares)),
+      highPrice: String(Math.max(...offerFares)),
+      priceValidUntil: site.season.endISO,
       url: `https://www.shiptickets.bd/saint-martin-ship/${ship.slug}`,
       seller: { '@id': 'https://www.shiptickets.bd/#organization' },
     },

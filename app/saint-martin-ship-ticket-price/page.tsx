@@ -1,356 +1,288 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { BadgeCheck, MessageCircle } from 'lucide-react'
-import { LinkCard, Pill, Schema, Section, SeoPage, faqSchema, siteSchema, websiteSchema, breadcrumbSchema, whatsapp, ProseSection } from '@/components/seo-page'
-import { RelatedGuides } from '@/components/related-guides'
-import { FaqAccordion } from '@/components/faq-accordion'
-import { LAST_REVIEWED, season, ships, type Ship, type TicketClass } from '@/lib/ships'
+import { ArrowRight, Check, MessageCircle, Phone, ShieldCheck, Ticket } from 'lucide-react'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { ContactLink } from '@/components/contact-link'
+import { FaqAccordion } from '@/components/faq-accordion'
+import { Schema, SeoPage, breadcrumbSchema, faqSchema, productSchema, siteSchema, websiteSchema, whatsapp } from '@/components/seo-page'
+import { BOOKING_ENABLED } from '@/lib/bookings/validate'
+import { PHONE_NUMBER, season, ships, type Ship } from '@/lib/ships'
 
-const title = 'Saint Martin ship ticket price'
-const description =
-  'Compare Saint Martin ship ticket prices from Cox’s Bazar, including one-way, round-trip, seating class and cabin fares for all five vessels on the route.'
+const url = 'https://www.shiptickets.bd/saint-martin-ship-ticket-price'
+const amount = (fare?: string) => Number((fare ?? '').replace(/[^0-9]/g, '')) || 0
+const taka = (value: number) => `৳${value.toLocaleString('en-US')}`
+const bangla = (value: string) => value.replace(/\d/g, (digit) => '০১২৩৪৫৬৭৮৯'[Number(digit)])
+const byFare = [...ships].sort((a, b) => amount(a.oneWay) - amount(b.oneWay))
+const cheapest = byFare[0]
+const lowestRound = Math.min(...ships.map((ship) => amount(ship.roundTrip)))
+const seatFares = ships.flatMap((ship) => ship.ticketClasses.map((item) => amount(item.oneWayFare)))
+const highestSeat = Math.max(...seatFares)
+const cabinRows = ships
+  .flatMap((ship) => ship.cabins.filter((cabin) => cabin.oneWayFare).map((cabin) => ({ ship, cabin })))
+const lowestCabin = Math.min(...cabinRows.map((row) => amount(row.cabin.oneWayFare)))
+const highestCabin = Math.max(...cabinRows.map((row) => amount(row.cabin.oneWayFare)))
+const withCabins = ships.filter((ship) => ship.cabins.length > 0).map((ship) => ship.name).join(', ').replace(/, ([^,]*)$/, ' and $1')
+
+const h1 = 'Saint Martin Ship Ticket Price 2026–27'
+const seoTitle = `Saint Martin Ship Ticket Price 2026-27: From ${cheapest.oneWay}`
+const description = `Saint Martin ship ticket price 2026-27: one way from ${cheapest.oneWay}, round trip from ${taka(lowestRound)}. Compare every seat and cabin fare on all 5 ships from Cox’s Bazar.`
 
 export const metadata: Metadata = {
-  title: 'Saint Martin Ship Ticket Price 2026',
+  title: { absolute: seoTitle },
   description,
-  keywords: [
-    'saint martin ship ticket price',
-    'সেন্টমার্টিন জাহাজের টিকিটের দাম',
-    'saint martin ship cabin price',
-    "cox's bazar to saint martin ship ticket",
-  ],
-  alternates: { canonical: 'https://www.shiptickets.bd/saint-martin-ship-ticket-price' },
-  openGraph: {
-    title: 'Saint Martin Ship Ticket Price 2026',
-    description,
-    url: 'https://www.shiptickets.bd/saint-martin-ship-ticket-price',
-    images: [{ url: '/og_image.png', width: 1200, height: 630 }],
-  },
+  keywords: ['saint martin ship ticket price', 'saint martin ship ticket price 2026', 'cox’s bazar to saint martin ship ticket price', 'saint martin ship cabin price', 'সেন্টমার্টিন জাহাজের টিকিটের দাম', 'সেন্টমার্টিন জাহাজ ভাড়া'],
+  alternates: { canonical: url },
+  openGraph: { title: seoTitle, description, url, type: 'website', siteName: 'ShipTickets.bd', locale: 'en_BD', alternateLocale: ['bn_BD'], images: [{ url: '/opengraph.jpg', width: 1200, height: 630, alt: 'Saint Martin ship ticket prices from ShipTickets.bd' }] },
+  twitter: { card: 'summary_large_image', title: seoTitle, description, images: ['/opengraph.jpg'] },
 }
 
-const toAmount = (fare: string) => Number(fare.replace(/[^0-9]/g, ''))
-
-/** [label, ship, oneWay, roundTrip] */
-const cabinFares: [string, string, string, string][] = ships.flatMap((ship): [string, string, string, string][] =>
-  ship.cabins
-    .filter((cabin) => cabin.oneWayFare)
-    .map((cabin) => [cabin.name, ship.name, cabin.oneWayFare!, cabin.roundTripFare ?? 'Not published']),
-)
-
-const cheapest = ships.reduce((lowest, ship) =>
-  toAmount(ship.oneWay) < toAmount(lowest.oneWay) ? ship : lowest,
-)
-
-const lowestCabin = cabinFares.length
-  ? cabinFares.reduce((lowest, row) => (toAmount(row[2]) < toAmount(lowest[2]) ? row : lowest))
-  : null
-
-/**
- * The lowest round trip can sit on a different vessel from the lowest one way,
- * so it is reduced independently rather than read off `cheapest`.
- */
-const cheapestRoundTrip = ships.reduce((lowest, ship) =>
-  toAmount(ship.roundTrip) < toAmount(lowest.roundTrip) ? ship : lowest,
-)
-
 const faqs: [string, string][] = [
-  [
-    'How much does a Saint Martin ship ticket cost?',
-    `Operator fares start from ${cheapest.oneWay} one way on ${cheapest.name}. The highest published one-way figure is for VVIP cabins. Fares depend on ship, seating class, cabin type, one-way versus round trip and the current season, so confirm the fare for your travel date before payment.`,
-  ],
-  [
-    'Which ship has the cheapest ticket?',
-    `${cheapest.name} lists the lowest published operator fare at ${cheapest.oneWay} one way and ${cheapest.roundTrip} round trip. Treat that as an operator fare rather than a quoted price.`,
-  ],
-  [
-    'How much is a Saint Martin ship cabin?',
-    lowestCabin
-      ? `Published cabin fares start at ${lowestCabin[2]} one way. Cabins are quoted either per person or for the whole cabin depending on the operator, so always confirm the basis before payment.`
-      : 'Cabin fares are published per vessel on the cabin and seat class price guide.',
-  ],
-  [
-    'What is the difference between one-way and round-trip fares?',
-    'A one-way fare covers a single crossing. A round-trip fare covers the outward and return legs, and on some vessels the return leg is priced separately from the outward leg. Confirm whether the quoted round trip is the total or a per-leg figure.',
-  ],
-  [
-    'Is food included in the ticket price?',
-    'Not necessarily. Keari Cruise & Dine publishes a floating restaurant, and Keari Sindbad publishes a canteen, but dining inclusion depends on the ticket and current operator terms. Confirm before paying.',
-  ],
-  [
-    'Do I need a Travel Pass or QR ticket as well?',
-    'Seasonal entry requirements can apply alongside your ship ticket. Check the Travel Pass guide and current travel rules before you travel.',
-  ],
+  ['How much does a Saint Martin ship ticket cost?', `For the ${season.label} season, seat fares from Cox’s Bazar run from ${cheapest.oneWay} to ${taka(highestSeat)} one way per person, and start at ${taka(lowestRound)} round trip. Private cabins cost ${taka(lowestCabin)} to ${taka(highestCabin)} one way. Confirm the fare for your date before payment.`],
+  ['Which ship has the cheapest Saint Martin ticket?', `${cheapest.name} has the lowest published fare: ${cheapest.oneWay} one way and ${cheapest.roundTrip} round trip per person on Main Deck.`],
+  ['How much is a Saint Martin ship cabin?', `Published cabin fares start at ${taka(lowestCabin)} one way and reach ${taka(highestCabin)}. ${withCabins} publish cabins. Confirm occupancy and whether the fare is for the person or the whole cabin before payment.`],
+  ['Is the Travel Pass included in the ticket price?', 'Yes, when you book through ShipTickets.bd. The QR-coded Travel Pass and the ৳100 environmental conservation fee are included with your ticket.'],
+  ['Is food included in the ticket price?', 'Not necessarily. Keari Cruise & Dine has a floating restaurant and Keari Sindbad a canteen, but whether food comes with your ticket depends on the ticket and operator terms. Confirm before paying.'],
+  ['Is there a ship from Teknaf to Saint Martin, and how much is the ticket?', `No. For the 2026–27 season, tourist ships leave from the BIWTA Nuniarchhara Jetty in Cox’s Bazar, and tourists are not permitted to travel by water from Teknaf. MV Teknaf is only a ship’s name: it sails from Cox’s Bazar, with fares from ${ships.find((ship) => ship.slug === 'mv-teknaf')?.oneWay} one way.`],
+  ['সেন্টমার্টিন জাহাজের ভাড়া কত?', `২০২৬–২৭ মৌসুমে কক্সবাজার থেকে সিটের ভাড়া জনপ্রতি একমুখী ${bangla(cheapest.oneWay)} থেকে ${bangla(taka(highestSeat))} এবং যাওয়া-আসা ${bangla(taka(lowestRound))} থেকে শুরু। কেবিনের একমুখী ভাড়া ${bangla(taka(lowestCabin))} থেকে ${bangla(taka(highestCabin))}।`],
+  ['সবচেয়ে কম ভাড়া কোন জাহাজে?', `এমভি টেকনাফের মেইন ডেকে: জনপ্রতি একমুখী ${bangla(cheapest.oneWay)} এবং যাওয়া-আসা ${bangla(cheapest.roundTrip)}।`],
 ]
 
-/**
- * `rows` is either [label, oneWay, roundTrip] for a single ship, or
- * [label, ship, oneWay, roundTrip] when `includeType` is set, so cabin fares
- * can show which vessel each category belongs to.
- */
-function FareTable({
-  rows,
-  title,
-  includeType = false,
-}: {
-  rows: string[][]
-  title: string
-  includeType?: boolean
-}) {
-  if (rows.length === 0) {
-    return (
-      <div className="rounded-2xl border border-line-soft bg-[#f7f6f2] p-5">
-        <p className="t-body text-prose">
-          No private cabin inventory is published for any vessel on this page. Check the cabin and seat class guide
-          for the current picture.
-        </p>
-      </div>
-    )
-  }
-
+function ShipFares({ ship }: { ship: Ship }) {
+  const seatLow = Math.min(...ship.ticketClasses.map((item) => amount(item.oneWayFare)))
+  const hasDownFare = ship.ticketClasses.some((item) => item.downFare)
   return (
-    <div className="overflow-hidden rounded-2xl border border-line-soft">
-      <div className="flex items-center justify-between gap-3 border-b border-line-soft bg-[#f7f6f2] px-4 py-4">
-        <h3 className="font-extrabold">{title}</h3>
-        <Pill>Operator fare</Pill>
+    <section id={ship.slug} aria-labelledby={`${ship.slug}-fares`} className="scroll-mt-24 overflow-hidden rounded-3xl border border-line-soft bg-white shadow-card">
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 px-4 py-3.5 sm:px-5">
+        <div className="flex flex-wrap items-baseline gap-x-2">
+          <h3 id={`${ship.slug}-fares`} className="text-lg font-black leading-snug text-ink">{ship.name} ticket price</h3>
+          <span lang="bn" className="text-sm font-semibold text-brand-ink">{ship.nameBn}</span>
+        </div>
+        <Link href={`/saint-martin-ship/${ship.slug}`} className="inline-flex min-h-11 items-center gap-1 text-sm font-extrabold text-brand-ink hover:underline">Ship details <ArrowRight size={15} aria-hidden="true" /></Link>
       </div>
-      <div className="overflow-x-auto">
-        <table className="w-full min-w-[620px] text-left text-sm">
-          <thead className="bg-[#e3ecea] text-ink">
-            <tr>
-              <th className="px-4 py-3 font-bold">Category</th>
-              {includeType && <th className="px-4 py-3 font-bold">Ship</th>}
-              <th className="px-4 py-3 text-right font-bold">One way</th>
-              <th className="px-4 py-3 text-right font-bold">Round trip</th>
+      <table className="w-full text-left text-sm">
+        <caption className="sr-only">{ship.name} seat and cabin fares per category for the {season.label} season, in Bangladeshi taka</caption>
+        <thead className="bg-[#e3ecea] text-ink">
+          <tr>
+            <th scope="col" className="px-3 py-2.5 font-bold sm:px-5">Category</th>
+            <th scope="col" className="px-3 py-2.5 text-right font-bold sm:px-5">One way</th>
+            <th scope="col" className="px-3 py-2.5 text-right font-bold sm:px-5">Round trip</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ship.ticketClasses.map((item) => (
+            <tr key={item.name} className="border-t border-line-soft">
+              <th scope="row" className="px-3 py-2.5 font-bold text-ink sm:px-5">
+                {item.name}
+                {amount(item.oneWayFare) === seatLow && <span lang="bn" className="ml-1.5 inline-block rounded-md bg-[#e4f2ee] px-1.5 py-0.5 text-[0.75rem] font-bold text-[#1d5c4b]">কম ভাড়া</span>}
+              </th>
+              <td className="px-3 py-2.5 text-right font-extrabold tabular-nums text-ink sm:px-5">
+                {item.oneWayFare}
+                {hasDownFare && item.downFare && <span className="block text-xs font-semibold text-quiet">Return {item.downFare}</span>}
+              </td>
+              <td className="px-3 py-2.5 text-right font-extrabold tabular-nums text-ink sm:px-5">{item.roundTripFare}</td>
             </tr>
-          </thead>
-          <tbody>
-            {rows.map((row) => (
-              <tr key={`${row[0]}-${row[1]}`} className="border-b border-[#eceae3] last:border-0">
-                <td className="px-4 py-3 font-bold text-ink">{row[0]}</td>
-                {includeType && <td className="px-4 py-3 text-prose">{row[1]}</td>}
-                <td className="px-4 py-3 text-right font-extrabold text-brand-ink">
-                  {includeType ? row[2] : row[1]}
-                </td>
-                <td className="px-4 py-3 text-right font-extrabold text-ink">
-                  {includeType ? row[3] : row[2]}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+          {ship.cabins.length > 0 && (
+            <tr className="border-t border-line-soft bg-[#f7fbfa]"><th colSpan={3} scope="colgroup" className="px-3 py-2 text-xs font-extrabold text-quiet sm:px-5">Private cabins</th></tr>
+          )}
+          {ship.cabins.map((cabin) => (
+            <tr key={cabin.name} className="border-t border-line-soft">
+              <th scope="row" className="px-3 py-2.5 font-bold text-ink sm:px-5">{cabin.name}</th>
+              <td className="px-3 py-2.5 text-right font-extrabold tabular-nums text-ink sm:px-5">{cabin.oneWayFare ?? 'Ask us'}</td>
+              <td className="px-3 py-2.5 text-right font-extrabold tabular-nums text-ink sm:px-5">{cabin.roundTripFare ?? 'Ask us'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {ship.cabins.length === 0 && <p className="t-small border-t border-line-soft px-4 py-2.5 text-quiet sm:px-5">No private cabins are published for this ship.</p>}
+    </section>
+  )
+}
+
+function Hero() {
+  const stats = [
+    { label: 'One way from', value: cheapest.oneWay, note: cheapest.name },
+    { label: 'Round trip from', value: taka(lowestRound), note: cheapest.name },
+    { label: 'Cabins from', value: taka(lowestCabin), note: 'one way' },
+  ]
+  return (
+    <div>
+      <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Saint Martin ships', href: '/saint-martin-ship' }, { name: 'Ticket prices' }]} />
+      <h1 className="t-display mt-4 max-w-4xl text-[clamp(1.85rem,1.25rem+2.5vw,3.1rem)] text-ink">Saint Martin Ship Ticket Price <span className="whitespace-nowrap">2026–27</span></h1>
+      <p className="t-lede mt-3 max-w-3xl text-prose">
+        <strong className="font-extrabold text-ink">Saint Martin ship tickets from Cox’s Bazar cost {cheapest.oneWay} to {taka(highestSeat)} one way per person for a seat in {season.label}.</strong> Round trips start at {taka(lowestRound)}, and private cabins cost {taka(lowestCabin)} to {taka(highestCabin)} one way.
+      </p>
+      <p lang="bn" className="mt-2 max-w-3xl font-semibold text-prose">সেন্টমার্টিন জাহাজের টিকিটের দাম জনপ্রতি একমুখী {bangla(cheapest.oneWay)} এবং যাওয়া-আসা {bangla(taka(lowestRound))} থেকে শুরু।</p>
+      <dl className="mt-5 grid max-w-3xl grid-cols-3 divide-x divide-[#d9e8e4] rounded-2xl bg-[#f1f8f6] py-4">
+        {stats.map((stat) => (
+          <div key={stat.label} className="min-w-0 px-3 sm:px-5">
+            <dt className="text-xs font-bold text-quiet">{stat.label}</dt>
+            <dd className="mt-0.5 text-xl font-black leading-tight tabular-nums text-ink sm:text-[1.75rem]">{stat.value}</dd>
+            <dd className="mt-0.5 truncate text-xs font-semibold text-quiet">{stat.note}</dd>
+          </div>
+        ))}
+      </dl>
+      <p className="t-small mt-3 font-semibold text-quiet">Fares last reviewed: 6 November 2026</p>
     </div>
   )
 }
 
-function perShipRows(ship: Ship): [string, string, string][] {
-  return ship.ticketClasses.map((ticketClass: TicketClass): [string, string, string] => [
-    ticketClass.name,
-    ticketClass.oneWayFare,
-    ticketClass.roundTripFare,
-  ])
-}
-
 export default function PricePage() {
-  const productSchema = ships.map((ship) => {
-    const fares = ship.ticketClasses.map((ticketClass) => toAmount(ticketClass.oneWayFare))
-    return {
-      '@type': 'Product',
-      name: `${ship.name} Saint Martin ship ticket`,
-      description: `Verified fares and booking information for ${ship.name} from Cox's Bazar to Saint Martin.`,
-      brand: { '@type': 'Brand', name: ship.name },
-      category: 'Saint Martin ship ticket',
-      areaServed: 'Bangladesh',
-      offers: {
-        '@type': 'AggregateOffer',
-        priceCurrency: 'BDT',
-        lowPrice: String(Math.min(...fares)),
-        highPrice: String(Math.max(...fares)),
-        offerCount: String(ship.ticketClasses.length),
-        availability: 'https://schema.org/LimitedAvailability',
-        url: `https://www.shiptickets.bd/saint-martin-ship/${ship.slug}`,
-      },
-    }
-  })
+  const askFare = `${whatsapp}${encodeURIComponent('Hello ShipTickets.bd, please confirm the latest Saint Martin ship ticket price for my travel date.')}`
+  const phoneHref = `tel:${PHONE_NUMBER.replace(/[^+\d]/g, '')}`
 
   return (
-    <SeoPage
-      eyebrow="Price guide · ভাড়ার তথ্য"
-      title={title}
-      intro="Compare operator fares from Cox’s Bazar to Saint Martin by ship, seating class and cabin. Every figure on this page comes from operator-published information and must be confirmed for your travel date before payment."
-      updated={LAST_REVIEWED}
-      crumbs={[
-        { name: 'Home', href: '/' },
-        { name: 'Saint Martin ships', href: '/saint-martin-ship' },
-        { name: 'Ticket prices' },
-      ]}
-    >
-      <Section title="Quick Answer">
-        <p>
-          Saint Martin ship ticket prices range from <strong>{cheapest.oneWay} one way</strong> on{' '}
-          {cheapest.name} up to considerably more for premium lounge seating and private VVIP cabins. Five vessels
-          serve this route: MV Karnafuly Express, MV Baro Awlia, MV Teknaf, Keari Sindbad and Keari Cruise &amp; Dine.
-        </p>
-        <p>
-          Fares depend on ship, class, cabin type, one-way versus round trip and the current season. The{' '}
-          {season.label} season opens {season.startDate}. All prices shown are operator-published fares, so
-          confirm the latest fare for your date before payment.
-        </p>
-      </Section>
+    <SeoPage eyebrow="Price guide · ভাড়ার তথ্য" title={h1} intro={description} canonical={url} modifiedISO="2026-11-06" updated="6 November 2026" hero={<Hero />} backToTopDesktopOnly>
+      <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-10 xl:gap-12">
+        <div className="min-w-0">
+          <section id="compare" className="mb-10 scroll-mt-24">
+            <h2 className="t-title mb-1">Saint Martin ship ticket price by ship</h2>
+            <p className="t-small mb-4 text-prose">Lowest published fare per person from Cox’s Bazar. Tap a ship to see all its fares.</p>
+            <div className="overflow-hidden rounded-2xl border border-line-soft bg-white">
+              <table className="w-full text-left text-sm">
+                <caption className="sr-only">Lowest one-way and round-trip ticket price on each Saint Martin ship, in Bangladeshi taka</caption>
+                <thead className="bg-[#e3ecea] text-ink">
+                  <tr>
+                    <th scope="col" className="px-3 py-3 font-bold sm:px-4">Ship</th>
+                    <th scope="col" className="px-3 py-3 text-right font-bold sm:px-4">One way from</th>
+                    <th scope="col" className="px-3 py-3 text-right font-bold sm:px-4">Round trip from</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {ships.map((ship) => (
+                    <tr key={ship.slug} className="border-t border-line-soft">
+                      <th scope="row" className="px-3 py-3 font-extrabold sm:px-4"><a href={`#${ship.slug}`} className="text-ink underline-offset-2 hover:text-brand-ink hover:underline">{ship.name}</a></th>
+                      <td className="px-3 py-3 text-right font-extrabold tabular-nums text-brand-ink sm:px-4">{ship.oneWay}</td>
+                      <td className="px-3 py-3 text-right font-extrabold tabular-nums text-brand-ink sm:px-4">{ship.roundTrip}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
 
-      <div className="mb-8 grid gap-3 sm:grid-cols-3">
-        {[
-          { label: 'Lowest operator fare', value: cheapest.oneWay, note: `one way on ${cheapest.name}` },
-          {
-            label: 'Cabin fare',
-            value: lowestCabin ? `${lowestCabin[2]}+` : 'Not published',
-            note: 'subject to availability',
-          },
-          { label: 'Lowest round trip', value: cheapestRoundTrip.roundTrip, note: `return leg on ${cheapestRoundTrip.name}` },
-        ].map((stat) => (
-          <div key={stat.label} className="rounded-2xl border border-line-soft bg-white p-5">
-            <p className="t-label text-faint">{stat.label}</p>
-            <p className="t-subtitle mt-2 text-ink">{stat.value}</p>
-            <p className="t-small mt-1 text-prose">{stat.note}</p>
-          </div>
-        ))}
-      </div>
+          <section className="mb-10">
+            <h2 className="t-title mb-1">All seat and cabin fares</h2>
+            <p className="t-small mb-4 text-prose">Published fares for the {season.label} season, per person for seats. Prices may vary by date, so confirm yours before you pay.</p>
+            <div className="grid gap-5">
+              {ships.map((ship) => <ShipFares key={ship.slug} ship={ship} />)}
+            </div>
+          </section>
 
-      <div className="mb-10 flex flex-col gap-4 rounded-3xl bg-[#0d1b2a] p-6 text-white md:flex-row md:items-center md:justify-between md:p-8">
-        <div>
-          <div className="flex items-center gap-2 text-sm font-bold text-[#ef9f27]">
-            <BadgeCheck size={17} /> Fare status: operator-published
-          </div>
-          <h2 className="t-title mt-3">Need the fare for your date?</h2>
-          <p className="t-body mt-2 max-w-xl text-white/70">
-            Send your travel date and passenger count. We will confirm the latest price, ship status and cabin
-            availability before you pay.
-          </p>
-        </div>
-        <ContactLink href={`${whatsapp}Hello ShipTickets.bd, please confirm the latest Saint Martin ship ticket price for my travel date.`} kind="whatsapp" eventLabel="price_page_whatsapp" className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#ef9f27] px-5 py-3 text-sm font-extrabold text-ink">
-          <MessageCircle size={17} /> WhatsApp for latest fare
-        </ContactLink>
-      </div>
+          <section id="cabins" className="mb-10 scroll-mt-24">
+            <h2 className="t-title mb-1">Saint Martin ship cabin price</h2>
+            <p className="t-small mb-4 text-prose">Every published cabin, cheapest first. {withCabins} publish cabins. Keari Sindbad and Keari Cruise &amp; Dine publish seats only. See the <Link href="/saint-martin-cabin-price" className="font-bold text-brand-ink underline underline-offset-2">cabin price guide</Link> for what each includes.</p>
+            <div className="overflow-hidden rounded-2xl border border-line-soft bg-white">
+              <table className="w-full text-left text-sm">
+                <caption className="sr-only">All published Saint Martin ship cabin fares, in Bangladeshi taka</caption>
+                <thead className="bg-[#e3ecea] text-ink">
+                  <tr>
+                    <th scope="col" className="px-3 py-3 font-bold sm:px-4">Cabin</th>
+                    <th scope="col" className="px-3 py-3 text-right font-bold sm:px-4">One way</th>
+                    <th scope="col" className="px-3 py-3 text-right font-bold sm:px-4">Round trip</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cabinRows.map(({ ship, cabin }) => (
+                    <tr key={`${ship.slug}-${cabin.name}`} className="border-t border-line-soft">
+                      <th scope="row" className="px-3 py-2.5 sm:px-4">
+                        <span className="block font-bold text-ink">{cabin.name}</span>
+                        <Link href={`/saint-martin-ship/${ship.slug}`} className="block text-xs font-semibold text-brand-ink hover:underline">{ship.name}</Link>
+                      </th>
+                      <td className="px-3 py-2.5 text-right font-extrabold tabular-nums text-ink sm:px-4">{cabin.oneWayFare}</td>
+                      <td className="px-3 py-2.5 text-right font-extrabold tabular-nums text-ink sm:px-4">{cabin.roundTripFare ?? 'Ask us'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="t-small mt-3 text-quiet">Confirm occupancy, and whether the fare is for the person or the whole cabin, before payment.</p>
+          </section>
 
-      <Section title="Saint Martin ship ticket price at a glance">
-        <div className="overflow-x-auto rounded-xl border border-line-soft">
-          <table className="w-full min-w-[520px] text-left text-sm">
-            <thead className="bg-[#e3ecea] text-ink">
-              <tr>
-                <th className="px-4 py-3 font-bold">Ship</th>
-                <th className="px-4 py-3 text-right font-bold">One way from</th>
-                <th className="px-4 py-3 text-right font-bold">Round trip from</th>
-                <th className="px-4 py-3 font-bold">Cabins</th>
-              </tr>
-            </thead>
-            <tbody>
-              {ships.map((ship) => (
-                <tr key={ship.slug} className="border-t border-line-soft">
-                  <td className="px-4 py-3 font-extrabold">
-                    <Link href={`/saint-martin-ship/${ship.slug}`} className="hover:text-brand-ink hover:underline">
-                      {ship.name}
-                    </Link>
-                  </td>
-                  <td className="px-4 py-3 text-right font-extrabold text-brand-ink">{ship.oneWay}</td>
-                  <td className="px-4 py-3 text-right font-extrabold text-brand-ink">{ship.roundTrip}</td>
-                  <td className="px-4 py-3 text-quiet">
-                    {ship.cabins.length > 0 ? `${ship.cabins.length} categories` : 'None published'}
-                  </td>
-                </tr>
+          <section className="mb-10 rounded-3xl border border-[#cfe5de] bg-[#f1f8f6] p-5 md:p-7">
+            <h2 className="t-title">What your ticket price includes</h2>
+            <ul className="t-body mt-3 grid gap-2 text-prose">
+              <li className="flex gap-2"><Ticket size={18} aria-hidden="true" className="mt-1 shrink-0 text-brand" /><span>With ShipTickets.bd, the <Link href="/saint-martin-travel-pass" className="font-bold text-brand-ink underline underline-offset-2">QR-coded Travel Pass</Link> and ৳100 environmental fee are included. The government portal is <a href="https://travelpass.gov.bd/" target="_blank" rel="noopener noreferrer" className="font-bold text-brand-ink underline underline-offset-2">travelpass.gov.bd</a>.</span></li>
+              <li className="flex gap-2"><Check size={18} aria-hidden="true" className="mt-1 shrink-0 text-brand" /><span>A round trip usually costs less than two one-way tickets. {cheapest.name} Main Deck saves {taka(amount(cheapest.oneWay) * 2 - lowestRound)}.</span></li>
+              <li className="flex gap-2"><Check size={18} aria-hidden="true" className="mt-1 shrink-0 text-brand" /><span>Food is not automatically included, so ask if it matters to you. For your full budget, see <Link href="/saint-martin-trip-cost" className="font-bold text-brand-ink underline underline-offset-2">Saint Martin trip cost</Link>.</span></li>
+            </ul>
+          </section>
+
+          <section className="mb-10">
+            <h2 className="t-title mb-4">What to confirm before you pay</h2>
+            <ul className="grid gap-2 sm:grid-cols-2">
+              {[
+                'Ship name and boarding point',
+                'One-way or round-trip fare, and whether the round trip is a total or per-leg figure',
+                'Exact fare for your travel date',
+                'Seating class or cabin, and whether the price is per person or per cabin',
+                'Whether meals or dining are included',
+                'Reporting time and departure time',
+                'Travel Pass and QR ticket requirements',
+                'Cancellation and rescheduling policy',
+              ].map((item) => (
+                <li key={item} className="t-small flex items-start gap-2 text-prose"><Check size={16} aria-hidden="true" className="mt-1 shrink-0 text-brand-ink" />{item}</li>
               ))}
-            </tbody>
-          </table>
+            </ul>
+          </section>
+
+          <section className="mb-10 flex gap-3 rounded-2xl bg-[#f7fbfa] p-5">
+            <ShieldCheck size={22} aria-hidden="true" className="mt-0.5 shrink-0 text-brand-ink" />
+            <div className="t-small text-prose">
+              <h2 className="font-extrabold text-ink">Where these fares come from</h2>
+              <p className="mt-1">Fares come from operator-published information. On 6 November 2026 we checked MV Baro Awlia against the operator’s fare sheet, and MV Teknaf’s round-trip fares against its published list. Fares may change, and these are not live seat availability. See <Link href="/how-we-verify-information" className="font-bold text-brand-ink underline underline-offset-2">how we verify information</Link>.</p>
+              <p className="mt-1">Ships leave from the <a href="https://biwta.gov.bd/" target="_blank" rel="noopener noreferrer" className="font-bold text-brand-ink underline underline-offset-2">BIWTA</a> jetty at Nuniarchhara. See the <Link href="/saint-martin-ship-schedule" className="font-bold text-brand-ink underline underline-offset-2">ship schedule</Link> for sailing times.</p>
+            </div>
+          </section>
+
+          <FaqAccordion items={faqs} heading="Saint Martin ticket price questions" id="faq" />
+
+          <section className="mb-4">
+            <h2 className="t-title mb-4">Related guides</h2>
+            <ul className="grid gap-2 sm:grid-cols-2">
+              {[
+                ['/saint-martin-ship', 'Compare all Saint Martin ships'],
+                ['/cheapest-saint-martin-ship-ticket', 'Cheapest Saint Martin ship ticket'],
+                ['/saint-martin-cabin-price', 'Cabin and seat class prices'],
+                ['/saint-martin-trip-cost', 'Saint Martin trip cost'],
+                ['/saint-martin-ship-schedule', 'Ship schedule and departure times'],
+                ['/blog/saint-martin-ship-ticket-booking-guide', 'How to book your ship ticket'],
+                ['/saint-martin-travel-pass', 'Travel Pass and QR ticket'],
+                ['/saint-martin-travel-rules', 'Travel rules and restrictions'],
+                ['/how-we-verify-information', 'How we verify information'],
+                ['/routes/coxs-bazar-to-saint-martin', 'Cox’s Bazar to Saint Martin route'],
+              ].map(([href, label]) => (
+                <li key={href}>
+                  <Link href={href} className="group flex min-h-12 items-center justify-between gap-3 rounded-xl border border-line-soft bg-white px-4 py-2.5 text-sm font-bold text-ink transition duration-200 hover:border-brand-ink hover:text-brand-ink">
+                    {label}
+                    <ArrowRight size={16} aria-hidden="true" className="shrink-0 text-brand-ink transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="t-small mt-3 text-prose">Planning the island too? See the <a href="https://www.tripzic.com/destinations/saint-martin-island" target="_blank" rel="noopener noreferrer" className="font-bold text-brand-ink underline underline-offset-2">Saint Martin Island guide</a> and <a href="https://www.tripzic.com/visit-bangladesh/saint-martins-island" target="_blank" rel="noopener noreferrer" className="font-bold text-brand-ink underline underline-offset-2">visitor guide</a> from Tripzic, or find us on <a href="https://www.facebook.com/shiptickets" target="_blank" rel="noopener noreferrer" className="font-bold text-brand-ink underline underline-offset-2">Facebook</a>.</p>
+          </section>
         </div>
-      </Section>
 
-      <Section title="Seating class fares by ship">
-        <div className="flex flex-col gap-4">
-          {ships.map((ship) => (
-            <FareTable key={ship.slug} rows={perShipRows(ship)} title={`${ship.name} · Cox's Bazar to Saint Martin`} />
-          ))}
-        </div>
-      </Section>
-
-      <Section title="Saint Martin ship cabin price">
-        <p>
-          Cabin fares are published by MV Karnafuly Express and MV Baro Awlia. Keari Sindbad and Keari Cruise
-          &amp; Dine list seating categories only, with no private cabin inventory published.
-        </p>
-        <div className="mt-4 flex flex-col gap-4">
-          <FareTable rows={cabinFares} title="Private cabin operator fares" includeType />
-        </div>
-        <p className="t-small mt-3 text-quiet">
-          Cabins are quoted either per person or for the whole cabin depending on the operator. Always confirm the
-          basis before payment. See the{' '}
-          <Link href="/saint-martin-cabin-price" className="font-extrabold text-brand-ink hover:underline">
-            cabin and seat class price guide
-          </Link>{' '}
-          for a fuller breakdown.
-        </p>
-      </Section>
-
-      <Section title="What to confirm before you pay">
-        <ul className="grid gap-3 md:grid-cols-2">
-          {[
-            'Ship name and boarding point',
-            'One-way or round-trip fare, and whether the round trip is a total or per-leg figure',
-            'Exact fare for your travel date',
-            'Seating class or cabin, and whether the price is per person or per cabin',
-            'Whether meals or dining are included',
-            'Reporting time and departure time',
-            'Travel Pass and QR ticket requirements',
-            'Cancellation and rescheduling policy',
-          ].map((item) => (
-            <li key={item} className="flex gap-3">
-              <span className="mt-2 size-1.5 shrink-0 rounded-full bg-[#1d9e75]" />
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      <Section title="Related information">
-        <div className="grid gap-4 md:grid-cols-2">
-          <LinkCard
-            href="/saint-martin-cabin-price"
-            title="Cabin and seat class prices"
-            text="What each category includes and how cabin pricing is quoted."
-          />
-          <LinkCard
-            href="/saint-martin-ship"
-            title="Compare Saint Martin ships"
-            text="All five vessels with classes, cabins and facilities."
-          />
-          <LinkCard
-            href="/saint-martin-ship-schedule"
-            title="Ship schedule"
-            text="Seasonal departure times and reporting guidance."
-          />
-          <LinkCard
-            href="/saint-martin-travel-pass"
-            title="Travel Pass and QR ticket"
-            text="Seasonal entry requirements to check before you travel."
-          />
-          <LinkCard
-            href="/saint-martin-travel-rules"
-            title="Travel rules"
-            text="Current restrictions affecting your sailing."
-          />
-          <LinkCard
-            href="/how-we-verify-information"
-            title="How we verify information"
-            text="Why fares are operator values and how we check them."
-          />
-        </div>
-      </Section>
-
-      <RelatedGuides
-        title="Planning your trip"
-        intro="Fare and schedule pages cover the ticket itself. These guides cover the trip around it."
-      />
-
-      <FaqAccordion items={faqs} heading="Frequently asked questions" />
+        <aside aria-label="Check your fare" className="hidden lg:block">
+          <div className="sticky top-24 rounded-3xl border border-line-soft bg-white p-6 shadow-raised">
+            <p className="text-xs font-bold text-quiet">Tickets from</p>
+            <p className="text-4xl font-black tabular-nums text-ink">{cheapest.oneWay}</p>
+            <p className="mt-1 text-sm font-bold text-prose">one way, {taka(lowestRound)} round trip</p>
+            <div className="mt-5 grid gap-2">
+              {BOOKING_ENABLED && <Link href="/booking" rel="nofollow" className="flex min-h-12 items-center justify-center rounded-xl bg-brand-ink px-4 text-sm font-extrabold text-white transition duration-200 hover:bg-brand-ink-hover">Book now</Link>}
+              <ContactLink href={askFare} kind="whatsapp" eventLabel="price_page_whatsapp" className={`flex min-h-12 items-center justify-center gap-2 rounded-xl px-4 text-sm font-extrabold transition duration-200 ${BOOKING_ENABLED ? 'border border-line text-ink hover:border-brand-ink hover:text-brand-ink' : 'bg-brand-ink text-white hover:bg-brand-ink-hover'}`}><MessageCircle size={16} aria-hidden="true" /> Fare for my date</ContactLink>
+              <ContactLink href={phoneHref} kind="phone" eventLabel="price_page_phone" className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-line px-4 text-sm font-extrabold text-ink transition duration-200 hover:border-brand-ink hover:text-brand-ink"><Phone size={16} aria-hidden="true" /> {PHONE_NUMBER}</ContactLink>
+            </div>
+            <p className="mt-4 text-sm font-extrabold text-ink">Jump to a ship</p>
+            <ul className="mt-1 grid gap-0.5">
+              {ships.map((ship) => (
+                <li key={ship.slug}><a href={`#${ship.slug}`} className="flex min-h-9 items-center justify-between gap-2 rounded-lg px-2 text-sm font-semibold text-prose transition-colors hover:bg-[#f1f8f6] hover:text-brand-ink"><span>{ship.name}</span><span className="tabular-nums text-quiet">{ship.oneWay}</span></a></li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+      </div>
 
       <Schema
         data={{
@@ -358,12 +290,8 @@ export default function PricePage() {
           '@graph': [
             siteSchema,
             websiteSchema,
-            ...productSchema,
-            breadcrumbSchema([
-              { name: 'Home', url: '/' },
-              { name: 'Saint Martin ships', url: '/saint-martin-ship' },
-              { name: 'Ticket prices', url: '/saint-martin-ship-ticket-price' },
-            ]),
+            ...ships.map((ship) => productSchema(ship)),
+            breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Saint Martin ships', url: '/saint-martin-ship' }, { name: 'Ticket prices', url: '/saint-martin-ship-ticket-price' }]),
             faqSchema(faqs),
           ],
         }}

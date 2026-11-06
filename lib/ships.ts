@@ -11,6 +11,8 @@ export type TicketClass = {
   downFare?: string
   deck?: string
   seatCount?: string
+  tagsBn?: string[]
+  bestForBn?: string
   image?: string
   imageAlt?: string
 }
@@ -23,6 +25,9 @@ export type Cabin = {
   oneWayFare?: string
   roundTripFare?: string
   seatCount?: string
+  capacityBn?: string
+  tagsBn?: string[]
+  bestForBn?: string
 }
 
 export type Facility = {
@@ -46,6 +51,14 @@ export type Ship = {
   slug: string
   name: string
   nameBn: string
+  /** Passenger capacity shown on the government Travel Pass portal. */
+  portalCapacity?: number
+  /** The date this page's content last changed, as YYYY-MM-DD. */
+  pageUpdated?: string
+  /** Width and height of `image`, when it is not the usual 1264 by 848. */
+  imageSize?: [number, number]
+  /** Other spellings people search for, shown on the page and in the schema. */
+  alternateNames?: string[]
   /**
    * Short Bengali summary of the vessel, rendered on the ship page beneath the
    * English Quick Answer. Required rather than optional so a ship can never
@@ -83,6 +96,8 @@ export type SeasonConfig = {
   label: string
   startDate: string
   startISO: string
+  endDate: string
+  endISO: string
   note: string
 }
 
@@ -127,6 +142,8 @@ export type SiteConfig = {
     ratingValue: number | null
     reviewCount: number | null
   }
+  advancePercentage: number
+  googleReviewsUrl?: string
   season: SeasonConfig
 }
 
@@ -238,7 +255,6 @@ export function getBusinessRating(): { ratingValue: number; reviewCount: number 
   return { ratingValue, reviewCount }
 }
 
-export const WHATSAPP_NUMBER = site.whatsapp
-export const PHONE_NUMBER = site.phone
+export { WHATSAPP_NUMBER, PHONE_NUMBER } from '@/lib/contact'
 export const LAST_VERIFIED = site.lastVerified
 export const LAST_REVIEWED = site.lastReviewed

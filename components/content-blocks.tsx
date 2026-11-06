@@ -1,5 +1,8 @@
+import Image from 'next/image'
 import Link from 'next/link'
-import { Check, CircleAlert, Info, MapPin, Plus, ShieldCheck, Sparkles } from 'lucide-react'
+import { Check, Info, MapPin, Plus, ShieldCheck, Sparkles } from 'lucide-react'
+import { BOOKING_ENABLED } from '@/lib/bookings/validate'
+import { seatPhotoAlt, seatPhotoName, seatPhotoSrc } from '@/lib/seat-photos'
 import { CONFIDENCE_LABELS, LAST_REVIEWED, STATUS_LABELS, WHATSAPP_NUMBER, getReviewsForShip, season, type Cabin, type CategoryGuidance, type Ship, type ShipSpec, type TicketClass } from '@/lib/ships'
 import { ContactLink } from '@/components/contact-link'
 
@@ -102,9 +105,42 @@ export function TicketCards({ ship, id }: { ship: Ship; id?: string }) {
   )
 }
 
+/** Sits beside "Check availability" once online booking is switched on. */
+function BookNowLink({ ship, categoryName }: { ship: Ship; categoryName: string }) {
+  if (!BOOKING_ENABLED) return null
+  return (
+    <Link
+      href={`/booking?ship=${ship.slug}&category=${seatPhotoName(categoryName)}`}
+      rel="nofollow"
+      className="mt-2 inline-flex min-h-11 items-center justify-center rounded-full bg-brand-ink px-4 py-2.5 text-xs font-extrabold text-white transition hover:bg-[#13734f]"
+    >
+      Book now
+    </Link>
+  )
+}
+
+/** Renders only once the photo has been added to the ship's public folder. */
+function SeatPhoto({ ship, categoryName }: { ship: Ship; categoryName: string }) {
+  const src = seatPhotoSrc(ship.slug, categoryName)
+  if (!src) return null
+
+  return (
+    <div className="relative -mx-5 -mt-5 mb-4 aspect-[3/2] overflow-hidden rounded-t-2xl bg-[#eaf5f3]">
+      <Image
+        src={src}
+        alt={seatPhotoAlt(ship.slug, categoryName, ship.name)}
+        fill
+        sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw"
+        className="object-cover"
+      />
+    </div>
+  )
+}
+
 function TicketCard({ ship, ticketClass }: { ship: Ship; ticketClass: TicketClass }) {
   return (
     <article className="flex flex-col rounded-2xl border border-line-soft bg-white p-5 transition hover:border-brand-ink hover:shadow-raised">
+      <SeatPhoto ship={ship} categoryName={ticketClass.name} />
       <div className="flex items-start justify-between gap-3">
         <div>
           <h3 className="text-lg font-black text-ink">{ticketClass.name}</h3>
@@ -121,6 +157,7 @@ function TicketCard({ ship, ticketClass }: { ship: Ship; ticketClass: TicketClas
       <ContactLink href={`${whatsapp}Hello ShipTickets.bd, I want to check ${ship.name} ${ticketClass.name} availability for my travel date.`} kind="whatsapp" eventLabel="ticket_class" className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full bg-[#0d1b2a] px-4 py-2.5 text-xs font-extrabold text-white transition hover:bg-brand-ink">
         Check availability <span aria-hidden="true">→</span>
       </ContactLink>
+      <BookNowLink ship={ship} categoryName={ticketClass.name} />
     </article>
   )
 }
@@ -192,6 +229,7 @@ export function CabinBlock({ ship, id }: { ship: Ship; id?: string }) {
 function CabinCard({ ship, cabin }: { ship: Ship; cabin: Cabin }) {
   return (
     <article className="flex flex-col rounded-2xl border border-line-soft bg-white p-5">
+      <SeatPhoto ship={ship} categoryName={cabin.name} />
       <div className="flex items-start justify-between gap-3">
         <div>
           <h3 className="text-lg font-black text-ink">{cabin.name}</h3>
@@ -210,6 +248,7 @@ function CabinCard({ ship, cabin }: { ship: Ship; cabin: Cabin }) {
       <ContactLink href={`${whatsapp}Hello ShipTickets.bd, I want to check ${ship.name} ${cabin.name} availability and price for my travel date.`} kind="whatsapp" eventLabel="cabin_block" className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full border border-line px-4 py-2.5 text-xs font-extrabold text-ink transition hover:border-brand-ink hover:text-brand-ink">
         Check cabin availability
       </ContactLink>
+      <BookNowLink ship={ship} categoryName={cabin.name} />
     </article>
   )
 }
@@ -287,12 +326,6 @@ export function ScheduleBlock({ ship, id }: { ship: Ship; id?: string }) {
         <h2 className="t-title">Schedule &amp; boarding</h2>
         <ConfidenceBadge kind="seasonal">Seasonal confirmation</ConfidenceBadge>
       </div>
-      <div className="rounded-xl border border-[#f3d9bf] bg-[#fff8ee] p-4 text-sm text-[#6f5d5a]">
-        <p className="flex items-start gap-2">
-          <CircleAlert className="mt-0.5 shrink-0 text-warm" size={17} />
-
-        </p>
-      </div>
       <dl className="mt-5 grid gap-x-6 gap-y-4 sm:grid-cols-2">
         {rows.map((row) => (
           <div key={row.label} className="border-b border-line-soft pb-3">
@@ -328,7 +361,7 @@ export function BookingSteps({ ship }: { ship: Ship }) {
           </li>
         ))}
       </ol>
-      <p className="mt-4 t-small t-measure text-quiet">ShipTickets.bd does not process payment on this website. A support agent confirms the booking before you pay.</p>
+      {!BOOKING_ENABLED && <p className="mt-4 t-small t-measure text-quiet">ShipTickets.bd does not process payment on this website. A support agent confirms the booking before you pay.</p>}
     </section>
   )
 }
@@ -394,14 +427,17 @@ export function ProvenanceNote({ ship }: { ship: Ship }) {
   return (
     <div className="mb-10 rounded-2xl border border-line-soft bg-[#f7fbfa] p-5">
       <h2 className="flex items-center gap-2 t-label text-[#0f6e56]">
-        <ShieldCheck size={16} /> Information source
+        <ShieldCheck size={16} /> {ship.name} information source
       </h2>
       <ul className="mt-3 flex flex-col gap-1.5 t-body t-measure text-prose">
         <li>Fare and class information: {ship.source}</li>
         <li>Schedule last checked: {ship.lastVerified}.</li>
-        <li>Government travel rules checked against official notices. The {season.label} season opens {season.startDate}.</li>
+        <li>Government travel rules checked against official notices. The {season.label} season runs from {season.startDate} to {season.endDate}.</li>
       </ul>
-      <Link href="/how-we-verify-information" className="mt-3 inline-block text-sm font-extrabold text-brand-ink hover:underline">How we verify ship information →</Link>
+      <p className="t-body t-measure mt-3 text-prose">
+        ShipTickets.bd is operated by <a href="https://www.tripzic.com/" target="_blank" rel="noopener noreferrer" className="font-bold text-brand-ink underline underline-offset-2">Tripzic</a>. You can also find us on <a href="https://www.facebook.com/shiptickets" target="_blank" rel="noopener noreferrer" className="font-bold text-brand-ink underline underline-offset-2">Facebook</a>.
+      </p>
+      <Link href="/how-we-verify-information" className="mt-3 inline-flex min-h-11 items-center text-sm font-extrabold text-brand-ink hover:underline">How we verify ship information →</Link>
     </div>
   )
 }
@@ -451,7 +487,7 @@ export function FaqAccordion({
   if (items.length === 0) return null
 
   return (
-    <section id={id} className="mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8">
+    <section id={id} className={`mb-10 rounded-3xl border border-line-soft bg-white p-6 md:p-8 ${ANCHOR_CLEARANCE}`}>
       <h2 className="t-title">{heading}</h2>
       {headingBn && <p className="mt-1 text-sm font-semibold text-brand-ink">{headingBn}</p>}
       <div className="mt-4 flex flex-col divide-y divide-line-soft">

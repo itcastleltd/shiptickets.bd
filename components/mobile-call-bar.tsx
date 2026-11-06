@@ -1,7 +1,7 @@
 'use client'
 
 import { MessageCircle, Phone } from 'lucide-react'
-import { PHONE_NUMBER, WHATSAPP_NUMBER } from '@/lib/ships'
+import { PHONE_NUMBER, WHATSAPP_NUMBER } from '@/lib/contact'
 import { trackPhoneClick, trackWhatsApp } from '@/lib/gtm-events'
 
 const waLink = (message: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`
@@ -22,7 +22,7 @@ export function MobileCallBar({ message }: { message?: string }) {
   const text = message ?? 'Hello ShipTickets.bd, I want to check ticket availability.'
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t border-line-soft bg-white/95 p-2 shadow-bar backdrop-blur sm:hidden">
+    <div data-call-bar className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t border-line-soft bg-white/95 p-2 shadow-bar backdrop-blur sm:hidden">
       <a
         href={waLink(text)}
         onClick={() => trackWhatsApp('mobile_cta')}

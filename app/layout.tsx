@@ -5,6 +5,7 @@ import { Nunito } from 'next/font/google'
 import './globals.css'
 import { GTMPageTracker } from '@/components/GTMPageTracker'
 import { FaqTracker } from '@/components/faq-tracker'
+import { ImageGuard } from '@/components/image-guard'
 import { MobileCallBar } from '@/components/mobile-call-bar'
 
 const nunito = Nunito({ subsets: ['latin'], display: 'swap', variable: '--font-nunito' })
@@ -13,15 +14,14 @@ const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-NXTPXRQK'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.shiptickets.bd'),
-  title: { default: 'Saint Martin Ship Tickets Bangladesh', template: '%s | ShipTickets.bd' },
+  title: { default: 'Saint Martin Ship Ticket 2026-27: Fares & Booking', template: '%s | ShipTickets.bd' },
   description: "Compare Saint Martin ship ticket prices, schedules, cabins and facilities from Cox's Bazar, then confirm your travel date with our support team.",
   keywords: ['Saint Martin ship ticket', 'Saint Martin ship ticket price', 'Cox’s Bazar to Saint Martin ship', 'সেন্টমার্টিন জাহাজের টিকিট'],
-  alternates: { canonical: '/' },
   manifest: '/manifest.webmanifest',
   appleWebApp: { capable: true, title: 'ShipTickets.bd', statusBarStyle: 'default' },
   formatDetection: { telephone: false },
-  openGraph: { type: 'website', url: 'https://www.shiptickets.bd/', siteName: 'ShipTickets.bd', title: 'Saint Martin ship tickets, made simple.', description: 'Compare ships, check fares and book your Saint Martin journey with confidence. shiptickets.bd is an authorized ship ticket reseller.', images: [{ url: '/og_image.png', width: 1200, height: 630, alt: "ShipTickets.bd - Saint Martin ship tickets" }] },
-  twitter: { card: 'summary_large_image', title: 'Saint Martin ship tickets, made simple.', description: 'Compare ships, check fares and book with confidence. shiptickets.bd is an authorized ship ticket reseller.', images: ['/og_image.png'] },
+  openGraph: { type: 'website', url: 'https://www.shiptickets.bd/', siteName: 'ShipTickets.bd', title: 'Saint Martin ship tickets, made simple.', description: 'Compare ships, check fares and book your Saint Martin journey with confidence. shiptickets.bd is an authorized ship ticket reseller.', images: [{ url: '/opengraph.jpg', width: 1200, height: 630, alt: "ShipTickets.bd - Saint Martin ship tickets" }] },
+  twitter: { card: 'summary_large_image', title: 'Saint Martin ship tickets, made simple.', description: 'Compare ships, check fares and book with confidence. shiptickets.bd is an authorized ship ticket reseller.', images: ['/opengraph.jpg'] },
   category: 'Travel information',
   authors: [{ name: 'Al Amin Hosain', url: 'https://www.shiptickets.bd' }],
   creator: 'Al Amin Hosain',
@@ -37,7 +37,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="preconnect" href="https://wa.me" />
         <link rel="dns-prefetch" href="https://facebook.com" />
         <link rel="dns-prefetch" href="https://instagram.com" />
-        <link rel="preload" as="image" href="/og_image.png" />
         <link rel="alternate" type="application/rss+xml" title="ShipTickets.bd RSS" href="/rss.xml" />
         {/*
          * The file on disk is public/icon.svg, and the deployment filesystem is
@@ -47,7 +46,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="mask-icon" href="/icon.svg" color="#1d9e75" />
         <meta name="geo.region" content="BD" />
         <meta name="geo.placename" content="Dhaka" />
-        <meta name="author" content="Al Amin Hosain" />
         {gtmId && (
           <Script
             id="gtm-base"
@@ -70,7 +68,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             }}
           />
         )}
-      <Script id="meta-pixel" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','29740631978871614');fbq('track','PageView');" }} />
+      <Script id="meta-pixel" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];var l=function(){if(n.l)return;n.l=1;t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)};['pointerdown','keydown','scroll'].forEach(function(k){f.addEventListener(k,l,{once:!0,passive:!0})});f.addEventListener('load',function(){setTimeout(l,4000)})}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','29740631978871614');fbq('track','PageView');" }} />
       </head>
       <body className={`antialiased ${nunito.variable} font-sans`}>
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-extrabold focus:text-brand-ink focus:shadow-raised">Skip to main content</a>
@@ -85,6 +83,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <GTMPageTracker />
         <FaqTracker />
         {children}
+        <ImageGuard />
         <MobileCallBar />
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

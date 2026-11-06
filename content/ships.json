@@ -2,12 +2,12 @@
   {
     "slug": "karnafuly-express",
     "name": "MV Karnafuly Express",
-    "summaryBn": "কর্ণফুলী এক্সপ্রেস কক্সবাজার থেকে সেন্টমার্টিন দ্বীপে যাতায়াতের জন্য সবচেয়ে জনপ্রিয় একটি যাত্রীবাহী জাহাজ। এতে ইকোনমি সিট, ওপেন ডেক, বিজনেস ক্লাস, লাউঞ্জ এবং সিঙ্গেল, টুইন, ভিআইপি ও ভিভিআইপি কেবিনের সুবিধা রয়েছে। আপডেট করা যাচাইকৃত ভাড়া অনুযায়ী, ল্যাভেন্ডার ও ম্যারিগোল্ড ক্যাটাগরিতে একমুখী টিকিট জনপ্রতি ৳২,২০০ এবং রাউন্ড ট্রিপ ৳৪,২০০। অন্যান্য ক্যাটাগরি ও কেবিনের ভাড়া আলাদা। যাত্রার তারিখ অনুযায়ী টিকিটের প্রাপ্যতা, সর্বশেষ ভাড়া ও জাহাজের সময়সূচি নিশ্চিত করে নিন। বিস্তারিত জানতে ভিজিট করুন ShipTickets.bd",
+    "summaryBn": "এমভি কর্ণফুলী এক্সপ্রেসের টিকেটের দাম ২০২৬-২৭ মৌসুমে জনপ্রতি একমুখী ৳২,২০০ এবং যাওয়া-আসা (রাউন্ড ট্রিপ) ৳৪,২০০ থেকে শুরু। এই সবচেয়ে কম ভাড়া ল্যাভেন্ডার ও ম্যারিগোল্ড ইকোনমি সিটে। ওপেন ডেকের একমুখী ভাড়া ৳২,৩০০, গ্ল্যাডিওলাস বিজনেস সিট ৳২,৬০০, আর লাউঞ্জ ৳২,৮০০ থেকে ৳৩,০০০। কেবিন নিলে একমুখী ভাড়া পড়বে ৳৩,৬০০ থেকে ৳১০,০০০।\n\nজাহাজটি কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে ছাড়ে। প্রায় ১২০ কিলোমিটার সমুদ্রপথ পেরিয়ে সেন্টমার্টিন পৌঁছাতে সময় লাগে প্রায় ৬ থেকে ৭ ঘণ্টা। জোয়ার-ভাটার কারণে ছাড়ার সময় তারিখভেদে বদলায়, তাই টিকেট কাটার আগে আপনার তারিখের সময় জেনে নিন এবং ছাড়ার অন্তত ১ ঘণ্টা আগে জেটিতে পৌঁছে যান।\n\n৬ নভেম্বর ২০২৬ পর্যন্ত সরকারি ট্রাভেল পাস পোর্টালের সূচিতে জাহাজটি আছে, যেখানে যাত্রী ধারণক্ষমতা দেখানো হয়েছে ৭৩২ জন। এই মৌসুমে ১ নভেম্বর ২০২৬ থেকে ১৫ মার্চ ২০২৭ পর্যন্ত সেন্টমার্টিনে ভ্রমণ ও রাত্রিযাপন করা যাবে, তবে দিনে সর্বোচ্চ ৩,৫০০ জন পর্যটক যেতে পারবেন। ShipTickets.bd থেকে টিকেট কাটলে QR কোডসহ ট্রাভেল পাস ও ৳১০০ পরিবেশ ফি টিকেটের মধ্যেই থাকে।",
     "nameBn": "কর্ণফুলী এক্সপ্রেস",
     "operator": "Karnafuly Cruise Line",
     "route": "Cox's Bazar → Saint Martin",
     "status": "verified",
-    "lastVerified": "4 November 2026",
+    "lastVerified": "6 November 2026",
     "source": "Operator-published information; confirm for your travel date",
     "ticketClasses": [
       {
@@ -16,7 +16,11 @@
         "description": "Economy seating for travellers looking for a lower-cost ticket",
         "oneWayFare": "৳2,200",
         "roundTripFare": "৳4,200",
-        "seatCount": "70"
+        "seatCount": "70",
+        "bestForBn": "কম খরচে যেতে চাইলে",
+        "tagsBn": [
+          "ইকোনমি"
+        ]
       },
       {
         "name": "Marigold Economy Seat",
@@ -24,7 +28,11 @@
         "description": "Economy category priced close to Lavender",
         "oneWayFare": "৳2,200",
         "roundTripFare": "৳4,200",
-        "seatCount": "294"
+        "seatCount": "294",
+        "bestForBn": "একই ভাড়ায় ইকোনমি সিট চাইলে",
+        "tagsBn": [
+          "ইকোনমি"
+        ]
       },
       {
         "name": "Open Deck",
@@ -32,7 +40,11 @@
         "description": "Outdoor deck seating with open sea views",
         "oneWayFare": "৳2,300",
         "roundTripFare": "৳4,400",
-        "seatCount": "84"
+        "seatCount": "84",
+        "bestForBn": "খোলা হাওয়ায় সমুদ্র দেখতে দেখতে যেতে চাইলে",
+        "tagsBn": [
+          "খোলা ডেক"
+        ]
       },
       {
         "name": "Gladiolus Business Seat",
@@ -40,7 +52,11 @@
         "description": "Higher-category seating above the economy decks",
         "oneWayFare": "৳2,600",
         "roundTripFare": "৳5,000",
-        "seatCount": "108"
+        "seatCount": "108",
+        "bestForBn": "ইকোনমির চেয়ে ওপরের ক্যাটাগরিতে যেতে চাইলে",
+        "tagsBn": [
+          "বিজনেস"
+        ]
       },
       {
         "name": "Lilac Lounge",
@@ -48,7 +64,11 @@
         "description": "Premium lounge-style seating",
         "oneWayFare": "৳2,800",
         "roundTripFare": "৳5,500",
-        "seatCount": "24"
+        "seatCount": "24",
+        "bestForBn": "লাউঞ্জে বসে আরামে যেতে চাইলে",
+        "tagsBn": [
+          "লাউঞ্জ"
+        ]
       },
       {
         "name": "Chrysanthemum Lounge",
@@ -56,7 +76,11 @@
         "description": "Highest listed lounge category",
         "oneWayFare": "৳3,000",
         "roundTripFare": "৳5,800",
-        "seatCount": "24"
+        "seatCount": "24",
+        "bestForBn": "সবচেয়ে ওপরের লাউঞ্জে যেতে চাইলে",
+        "tagsBn": [
+          "লাউঞ্জ"
+        ]
       }
     ],
     "cabins": [
@@ -67,7 +91,9 @@
         "capacity": "1 passenger",
         "oneWayFare": "৳3,600",
         "roundTripFare": "৳7,000",
-        "seatCount": "1"
+        "seatCount": "1",
+        "bestForBn": "একা আলাদা কেবিনে যেতে চাইলে",
+        "capacityBn": "১ জন"
       },
       {
         "name": "Twin Cabin",
@@ -76,7 +102,9 @@
         "capacity": "2 passengers",
         "oneWayFare": "৳7,000",
         "roundTripFare": "৳13,000",
-        "seatCount": "6"
+        "seatCount": "6",
+        "bestForBn": "দুজনে একসঙ্গে আলাদা কেবিনে যেতে চাইলে",
+        "capacityBn": "২ জন"
       },
       {
         "name": "VIP Cabin",
@@ -85,7 +113,9 @@
         "capacity": "Private cabin",
         "oneWayFare": "৳9,000",
         "roundTripFare": "৳16,000",
-        "seatCount": "4"
+        "seatCount": "4",
+        "bestForBn": "নিরিবিলি প্রিমিয়াম কেবিন চাইলে",
+        "capacityBn": "আলাদা কেবিন"
       },
       {
         "name": "VVIP Cabin",
@@ -94,7 +124,9 @@
         "capacity": "Private cabin",
         "oneWayFare": "৳10,000",
         "roundTripFare": "৳19,000",
-        "seatCount": "3"
+        "seatCount": "3",
+        "bestForBn": "সবচেয়ে প্রিমিয়াম কেবিন চাইলে",
+        "capacityBn": "আলাদা কেবিন"
       }
     ],
     "facilities": [
@@ -132,10 +164,10 @@
       }
     ],
     "image": "/ship/mv-karnafuly-express.jpg",
-    "capacity": "Approx. 600 passengers",
+    "capacity": "604 seats and 14 cabins",
     "journeyDuration": "Approx. 6 to 7 hours (seasonal, confirm for your sailing)",
     "departure": "Outbound 07:00 from Cox's Bazar; Inbound 16:00 from Saint Martin ",
-    "jetty": "Nuniachora BIWTA Ghat (Cox's Bazar) / Sontha BIWTA Ghat (Saint Martin)",
+    "jetty": "Nuniarchhara BIWTA Ghat (Cox's Bazar) / Sontha BIWTA Ghat (Saint Martin)",
     "checkIn": "Arrive before the published departure time; final check-in is confirmed on your ticket",
     "cancellation": "Subject to operator and season rules; confirm before payment",
     "gallery": [
@@ -152,12 +184,12 @@
         "Published round-trip operator fares start from around ৳4,200 for selected economy categories. Premium lounge and cabin fares are higher."
       ],
       [
-        "কর্ণফুলী এক্সপ্রেস টিকিটের দাম কত?",
-        "প্রকাশিত অপারেটর ভাড়া অনুযায়ী কর্ণফুলী এক্সপ্রেসের ইকোনমি ক্যাটাগরি থেকে একমুখী টিকিট প্রায় ৳২,২০০ থেকে শুরু। লাউঞ্জ ও কেবিনের ভাড়া বেশি। আপনার ভ্রমণের তারিখ অনুযায়ী বর্তমান ভাড়া নিশ্চিত করুন।"
+        "কর্ণফুলী এক্সপ্রেস জাহাজের ভাড়া কত?",
+        "ল্যাভেন্ডার ও ম্যারিগোল্ড ইকোনমি সিটে জনপ্রতি একমুখী ৳২,২০০ এবং যাওয়া-আসা ৳৪,২০০। ওপেন ডেকে একমুখী ৳২,৩০০, গ্ল্যাডিওলাস বিজনেস সিটে ৳২,৬০০, আর লাউঞ্জে ৳২,৮০০ থেকে ৳৩,০০০। কেবিনের একমুখী ভাড়া ৳৩,৬০০ থেকে ৳১০,০০০।"
       ],
       [
         "Is Karnafuly Express available every day?",
-        "Not necessarily. Saint Martin ship operations are seasonal and depend on current government rules, weather, sea conditions, tides and operator schedules. The 2026-2027 season opens on 1 November 2026."
+        "Not necessarily. Saint Martin ship operations are seasonal and depend on current government rules, weather, sea conditions, tides and operator schedules. The 2026-2027 season runs from 1 November 2026 to 15 March 2027."
       ],
       [
         "Where is Karnafuly Express boarding in Cox’s Bazar?",
@@ -165,7 +197,7 @@
       ],
       [
         "How long is the Karnafuly Express journey?",
-        "The journey is generally around 5 hours, but actual sailing time can vary according to weather, sea conditions and tide."
+        "The journey is generally about 6 to 7 hours, but actual sailing time can vary according to weather, sea conditions and tide."
       ],
       [
         "Does Karnafuly Express have a cabin?",
@@ -194,9 +226,29 @@
       [
         "How can I check the latest Karnafuly Express fare?",
         "Send your travel date and passenger count on WhatsApp. We can check the current sailing information and applicable fare before booking."
+      ],
+      [
+        "কর্ণফুলী এক্সপ্রেস কি এখন চলছে?",
+        "৬ নভেম্বর ২০২৬ পর্যন্ত সরকারি ট্রাভেল পাস পোর্টালের সূচিতে জাহাজটি আছে। তবে আবহাওয়া ও জোয়ার-ভাটার কারণে সূচি বদলাতে পারে, তাই আপনার তারিখটি জেনে নিন।"
+      ],
+      [
+        "কর্ণফুলী এক্সপ্রেসের কেবিন ভাড়া কত?",
+        "একমুখী ভাড়া: সিঙ্গেল কেবিন ৳৩,৬০০, টুইন কেবিন ৳৭,০০০, ভিআইপি কেবিন ৳৯,০০০ এবং ভিভিআইপি কেবিন ৳১০,০০০।"
+      ],
+      [
+        "কর্ণফুলী এক্সপ্রেস কোথা থেকে ছাড়ে?",
+        "কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে। যাত্রার আগে টিকেটে লেখা জেটির নাম ও ছাড়ার সময় দেখে নিন।"
+      ],
+      [
+        "কর্ণফুলী এক্সপ্রেসের টিকেট কীভাবে কাটব?",
+        "যাত্রার তারিখ, যাত্রীর সংখ্যা ও পছন্দের সিট বা কেবিন জানিয়ে আমাদের WhatsApp-এ মেসেজ দিন বা কল করুন। আমরা আপনার তারিখের ভাড়া ও সিট আছে কি না জানিয়ে দেব।"
+      ],
+      [
+        "কর্ণফুলী এক্সপ্রেসে ট্রাভেল পাস কি আলাদা করে লাগবে?",
+        "ShipTickets.bd থেকে টিকেট কাটলে লাগবে না। QR কোডসহ ট্রাভেল পাস ও ৳১০০ পরিবেশ ফি টিকেটের মধ্যেই থাকে। অন্য কোথাও থেকে টিকেট কাটলে travelpass.gov.bd-এ নিয়ম দেখে নিন।"
       ]
     ],
-    "imageAlt": "MV Karnafuly Express passenger ship on the Cox's Bazar to Saint Martin route",
+    "imageAlt": "MV Karnafuly Express passenger ship sailing beside a palm-lined beach, Saint Martin ship from Cox’s Bazar",
     "specs": [
       {
         "label": "Route",
@@ -208,7 +260,7 @@
       },
       {
         "label": "Journey time",
-        "value": "Approximately 5 hours (seasonal)"
+        "value": "Approximately 6 to 7 hours (seasonal)"
       },
       {
         "label": "Ticket types",
@@ -295,18 +347,23 @@
       }
     ],
     "oneWay": "৳2,200",
-    "roundTrip": "৳4,200"
+    "roundTrip": "৳4,200",
+    "alternateNames": [
+      "Karnaphuli Express"
+    ],
+    "pageUpdated": "2026-11-06",
+    "portalCapacity": 732
   },
   {
     "slug": "baro-awlia",
     "name": "MV Baro Awlia",
-    "summaryBn": "বারো আওলিয়া জাহাজ বাংলাদেশের কক্সবাজার থেকে সেন্টমার্টিন দ্বীপে ভ্রমণের জন্য একটি পর্যটকবাহী জাহাজ। বারো আওলিয়া জাহাজের টিকিটের যাচাইকৃত ভাড়া একমুখী জনপ্রতি ২,২০০ টাকা এবং রাউন্ড ট্রিপ জনপ্রতি ৪,২০০ টাকা। মেইন ডেক, সান ডেক, বিজনেস ক্লাস ও কেবিনের মতো আসন বা ভ্রমণ ক্যাটাগরি অনুযায়ী ভাড়া ভিন্ন হতে পারে। সেন্টমার্টিন ভ্রমণের আগে জাহাজের সর্বশেষ টিকিটের দাম, যাত্রার সময়সূচি, টিকিটের প্রাপ্যতা এবং চলাচলের অনুমতি সম্পর্কে নিশ্চিত হয়ে নিন।",
-    "nameBn": "বারো আওলিয়া",
+    "summaryBn": "এমভি বার আউলিয়ার (অনেকে লেখেন বারো আওলিয়া) টিকেটের দাম ২০২৬-২৭ মৌসুমে জনপ্রতি একমুখী ৳২,২০০ এবং যাওয়া-আসা (রাউন্ড ট্রিপ) ৳৪,২০০ থেকে শুরু। এই সবচেয়ে কম ভাড়া মেইন ডেক ও সান ডেকে। এসি বিজনেস চেয়ারের একমুখী ভাড়া ৳২,৩০০, আর মোজারাত চেয়ারের ৳২,৫০০। কেবিন নিলে একমুখী ভাড়া পড়বে ৳৬,০০০ থেকে ৳১১,০০০।\n\nজাহাজটি কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে ছাড়ে। প্রায় ১২০ কিলোমিটার সমুদ্রপথ পেরিয়ে সেন্টমার্টিন পৌঁছাতে সময় লাগে প্রায় ৬ থেকে ৭ ঘণ্টা। জোয়ার-ভাটার কারণে ছাড়ার সময় তারিখভেদে বদলায়, তাই টিকেট কাটার আগে আপনার তারিখের সময় জেনে নিন এবং ছাড়ার অন্তত ১ ঘণ্টা আগে জেটিতে পৌঁছে যান।\n\n৫ নভেম্বর ২০২৬ তারিখে মৌসুমের প্রথম জাহাজ হিসেবে এমভি বার আউলিয়া ৮৩৬ জন পর্যটক নিয়ে সেন্টমার্টিন যায়। সরকারি ট্রাভেল পাস পোর্টালে এর যাত্রী ধারণক্ষমতা দেখানো হয়েছে ৮৫০ জন। এই মৌসুমে ১ নভেম্বর ২০২৬ থেকে ১৫ মার্চ ২০২৭ পর্যন্ত সেন্টমার্টিনে ভ্রমণ ও রাত্রিযাপন করা যাবে, তবে দিনে সর্বোচ্চ ৩,৫০০ জন পর্যটক যেতে পারবেন। ShipTickets.bd থেকে টিকেট কাটলে QR কোডসহ ট্রাভেল পাস ও ৳১০০ পরিবেশ ফি টিকেটের মধ্যেই থাকে।",
+    "nameBn": "বার আউলিয়া",
     "operator": "Karnafuly Cruise Line",
     "route": "Cox's Bazar → Saint Martin",
     "status": "verified",
-    "lastVerified": "4 November 2026",
-    "source": "Operator-published reference; confirm for your travel date",
+    "lastVerified": "6 November 2026",
+    "source": "Karnafuly Cruise Line fare sheet for the 2026-2027 season; confirm for your travel date",
     "ticketClasses": [
       {
         "name": "Main Deck Seat",
@@ -314,7 +371,11 @@
         "description": "Lower-priced open-view deck seating, approx. 66 published seats",
         "oneWayFare": "৳2,200",
         "roundTripFare": "৳4,200",
-        "seatCount": "66"
+        "seatCount": "66",
+        "tagsBn": [
+          "খোলা ভিউ"
+        ],
+        "bestForBn": "কম খরচে খোলা হাওয়ায় সমুদ্র দেখতে দেখতে যেতে চাইলে"
       },
       {
         "name": "Sun Deck Seat",
@@ -322,7 +383,11 @@
         "description": "Open-view seating category, approx. 160 published seats",
         "oneWayFare": "৳2,200",
         "roundTripFare": "৳4,200",
-        "seatCount": "160"
+        "seatCount": "160",
+        "tagsBn": [
+          "খোলা ভিউ"
+        ],
+        "bestForBn": "ওপরের ডেকে বসে সমুদ্র দেখতে দেখতে যেতে চাইলে"
       },
       {
         "name": "Panorama Business Chair",
@@ -330,7 +395,12 @@
         "description": "Air-conditioned business seating",
         "oneWayFare": "৳2,300",
         "roundTripFare": "৳4,500",
-        "seatCount": "270"
+        "seatCount": "270",
+        "tagsBn": [
+          "এসি",
+          "বিজনেস"
+        ],
+        "bestForBn": "ঠান্ডা পরিবেশে আরাম করে যেতে চাইলে"
       },
       {
         "name": "Riviera Business Chair",
@@ -338,7 +408,12 @@
         "description": "Air-conditioned business category",
         "oneWayFare": "৳2,300",
         "roundTripFare": "৳4,500",
-        "seatCount": "114"
+        "seatCount": "114",
+        "tagsBn": [
+          "এসি",
+          "বিজনেস"
+        ],
+        "bestForBn": "রোদ-গরম এড়িয়ে আরামে বসে যেতে চাইলে"
       },
       {
         "name": "Mozarat Chair",
@@ -346,7 +421,12 @@
         "description": "Premium air-conditioned chair seating, approx. 54 published seats",
         "oneWayFare": "৳2,500",
         "roundTripFare": "৳4,800",
-        "seatCount": "54"
+        "seatCount": "54",
+        "tagsBn": [
+          "এসি",
+          "প্রিমিয়াম"
+        ],
+        "bestForBn": "আরও একটু বাড়তি আরাম চাইলে"
       }
     ],
     "cabins": [
@@ -357,7 +437,12 @@
         "capacity": "2-person category",
         "oneWayFare": "৳6,000",
         "roundTripFare": "৳10,000",
-        "seatCount": "2"
+        "seatCount": "2",
+        "tagsBn": [
+          "কমন ওয়াশরুম"
+        ],
+        "bestForBn": "কম খরচে শুয়ে যেতে চাইলে",
+        "capacityBn": "২ জনের"
       },
       {
         "name": "Deluxe Cabin",
@@ -366,7 +451,13 @@
         "capacity": "2 persons",
         "oneWayFare": "৳7,000",
         "roundTripFare": "৳13,000",
-        "seatCount": "12"
+        "seatCount": "12",
+        "tagsBn": [
+          "এসি",
+          "আলাদা কেবিন"
+        ],
+        "bestForBn": "দুজনে নিরিবিলি যেতে চাইলে",
+        "capacityBn": "২ জন"
       },
       {
         "name": "Family Bunker Cabin",
@@ -375,7 +466,12 @@
         "capacity": "4 persons",
         "oneWayFare": "৳11,000",
         "roundTripFare": "৳20,000",
-        "seatCount": "8"
+        "seatCount": "8",
+        "tagsBn": [
+          "আলাদা কেবিন"
+        ],
+        "bestForBn": "পরিবারের চারজন একসঙ্গে যেতে চাইলে",
+        "capacityBn": "৪ জন"
       },
       {
         "name": "VIP Cabin",
@@ -384,7 +480,13 @@
         "capacity": "2 persons",
         "oneWayFare": "৳8,000",
         "roundTripFare": "৳15,000",
-        "seatCount": "3"
+        "seatCount": "3",
+        "tagsBn": [
+          "এসি",
+          "কমন ওয়াশরুম"
+        ],
+        "bestForBn": "দুজনের জন্য আরামদায়ক কেবিন চাইলে",
+        "capacityBn": "২ জন"
       },
       {
         "name": "VVIP Cabin",
@@ -393,7 +495,13 @@
         "capacity": "2 persons",
         "oneWayFare": "৳10,000",
         "roundTripFare": "৳18,000",
-        "seatCount": "2"
+        "seatCount": "2",
+        "tagsBn": [
+          "এসি",
+          "অ্যাটাচড ওয়াশরুম"
+        ],
+        "bestForBn": "নিজস্ব ওয়াশরুমসহ সবচেয়ে প্রিমিয়াম কেবিন চাইলে",
+        "capacityBn": "২ জন"
       }
     ],
     "facilities": [
@@ -431,8 +539,8 @@
       }
     ],
     "image": "/ship/mv-baroawlia.jpg",
-    "capacity": "Approx. 400 passengers ",
-    "journeyDuration": "Approx. 5 to 7 hours",
+    "capacity": "664 seats and 27 cabins",
+    "journeyDuration": "Approx. 6 to 7 hours",
     "departure": "Date and tide dependent, so published schedules vary by sailing date",
     "jetty": "Nuniarchhara BIWTA Jetty, Cox’s Bazar, so confirm the boarding point printed on your ticket",
     "checkIn": "Approx. 1 hour before departure (follow the time printed on your ticket)",
@@ -448,11 +556,23 @@
       ],
       [
         "How much is a Baro Awlia cabin?",
-        "Published one-way cabin fares range from around ৳4,100 for Bunker Bed to ৳10,500 for VVIP Cabin. The price depends on cabin type and occupancy."
+        "Published one-way cabin fares range from around ৳6,000 for Bunker Bed to ৳11,000 for Family Bunker Cabin. The price depends on cabin type and occupancy."
       ],
       [
-        "বারো আওলিয়া টিকিটের দাম কত?",
-        "প্রকাশিত অপারেটর ভাড়া অনুযায়ী মেইন ডেক ও সান ডেক ক্যাটাগরি থেকে একমুখী ৳২,২০০ এবং রাউন্ড ট্রিপ ৳৪,২০০ থেকে শুরু। বিজনেস ক্লাস চেয়ার ও কেবিনের ভাড়া বেশি।"
+        "বার আউলিয়া জাহাজের ভাড়া কত?",
+        "মেইন ডেক ও সান ডেকে জনপ্রতি একমুখী ৳২,২০০ এবং যাওয়া-আসা ৳৪,২০০। এসি বিজনেস চেয়ারে একমুখী ৳২,৩০০ ও যাওয়া-আসা ৳৪,৫০০, আর মোজারাত চেয়ারে একমুখী ৳২,৫০০ ও যাওয়া-আসা ৳৪,৮০০।"
+      ],
+      [
+        "বার আউলিয়া জাহাজের কেবিন ভাড়া কত?",
+        "একমুখী ভাড়া: বাঙ্কার বেড ৳৬,০০০, ডিলাক্স কেবিন ৳৭,০০০, ভিআইপি কেবিন ৳৮,০০০, ভিভিআইপি কেবিন ৳১০,০০০ এবং ফ্যামিলি বাঙ্কার কেবিন ৳১১,০০০।"
+      ],
+      [
+        "বার আউলিয়া জাহাজ কোথা থেকে ছাড়ে?",
+        "কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে। যাত্রার আগে টিকেটে লেখা জেটির নাম ও ছাড়ার সময় দেখে নিন।"
+      ],
+      [
+        "বার আউলিয়া জাহাজের টিকেট কীভাবে কাটব?",
+        "যাত্রার তারিখ, যাত্রীর সংখ্যা ও পছন্দের সিট বা কেবিন জানিয়ে আমাদের WhatsApp-এ মেসেজ দিন বা কল করুন। আমরা আপনার তারিখের ভাড়া ও সিট আছে কি না জানিয়ে দেব।"
       ],
       [
         "Does Baro Awlia have AC seats?",
@@ -484,18 +604,26 @@
       ],
       [
         "Is Baro Awlia available every day?",
-        "Not necessarily. Saint Martin ship operations are seasonal and subject to government regulations, weather, sea conditions, tides and operator schedules. The 2026-2027 season opens on 1 November 2026."
+        "Not necessarily. Saint Martin ship operations are seasonal and subject to government regulations, weather, sea conditions, tides and operator schedules. The 2026-2027 season runs from 1 November 2026 to 15 March 2027."
       ],
       [
         "Does Baro Awlia have a VVIP cabin?",
-        "Yes. The published VVIP category is listed for two passengers, with a operator fare of ৳10,500 one way / ৳20,000 round trip. Published specifications include AC and an attached washroom."
+        "Yes. The published VVIP category is listed for two passengers, with an operator fare of ৳10,000 one way / ৳18,000 round trip. Published specifications include AC and an attached washroom."
       ],
       [
         "How can I check the latest Baro Awlia ticket price?",
         "Send your travel date, passenger count and preferred ticket category through WhatsApp. The applicable fare and availability should be confirmed before payment."
+      ],
+      [
+        "বার আউলিয়া জাহাজ কি এখন চলছে?",
+        "৫ নভেম্বর ২০২৬ তারিখে মৌসুমের প্রথম জাহাজ হিসেবে এটি সেন্টমার্টিন যায়, এবং সরকারি ট্রাভেল পাস পোর্টালের সূচিতেও আছে। তবে আবহাওয়া ও জোয়ার-ভাটার কারণে সূচি বদলাতে পারে, তাই আপনার তারিখটি জেনে নিন।"
+      ],
+      [
+        "বার আউলিয়া জাহাজে ট্রাভেল পাস কি আলাদা করে লাগবে?",
+        "ShipTickets.bd থেকে টিকেট কাটলে লাগবে না। QR কোডসহ ট্রাভেল পাস ও ৳১০০ পরিবেশ ফি টিকেটের মধ্যেই থাকে। অন্য কোথাও থেকে টিকেট কাটলে travelpass.gov.bd-এ নিয়ম দেখে নিন।"
       ]
     ],
-    "imageAlt": "MV Baro Awlia passenger ship at the Cox's Bazar jetty",
+    "imageAlt": "MV Baro Awlia passenger ship with a blue and red hull beside a sandy beach, Saint Martin ship from Cox’s Bazar",
     "specs": [
       {
         "label": "Ship",
@@ -598,223 +726,256 @@
       }
     ],
     "oneWay": "৳2,200",
-    "roundTrip": "৳4,200"
+    "roundTrip": "৳4,200",
+    "alternateNames": [
+      "MV Baroawlia",
+      "Baro Aulia",
+      "বারো আওলিয়া"
+    ],
+    "pageUpdated": "2026-11-06",
+    "portalCapacity": 850
   },
   {
-    "slug": "keari-sindbad",
-    "name": "Keari Sindbad",
-    "summaryBn": "কেয়ারী সিন্দবাদ কক্সবাজার থেকে সেন্টমার্টিন দ্বীপের জন্য ৩৪৬ আসনের একটি নন-এসি যাত্রীবাহক জাহাজ। এই জাহাজের মেইন ডেকের একমুখী ভাড়া ৳২,০০০, ওপেন ডেক ৳২,২০০ এবং ব্রিজ ডেক ৳২,৪০০; রাউন্ড ট্রিপ ভাড়া ৳৩,৭০০ থেকে ৳৪,৫০০ পর্যন্ত নির্ধারণ করা হয়েছে। এই জাহাজে কোনো ব্যক্তিগত কেবিনের সুবিধা নেই, তবে তিনটি ডেকেই যাত্রীদের জন্য আলাদা আসনের ব্যবস্থা রয়েছে। জাহাজের যাত্রার সময় মূলত নির্দিষ্ট তারিখ, আবহাওয়া, সমুদ্রের অবস্থা এবং জোয়ার-ভাটার ওপর নির্ভরশীল, তাই কোনো নির্দিষ্ট সময়সূচি আগে থেকে প্রকাশ করা হয় না। ভ্রমণের তারিখ অনুযায়ী টিকিটের রিপোর্টিং সময় এবং চূড়ান্ত ভাড়া কর্তৃপক্ষের সাথে নিশ্চিত হয়ে নেওয়া জরুরি।",
-    "nameBn": "কেয়ারী সিন্দবাদ",
-    "operator": "KEARI Tours & Services Ltd.",
+    "slug": "mv-teknaf",
+    "name": "MV Teknaf",
+    "nameBn": "এমভি টেকনাফ",
+    "summaryBn": "এমভি টেকনাফের টিকেটের দাম ২০২৬-২৭ মৌসুমে জনপ্রতি একমুখী ৳১,৯০০ এবং যাওয়া-আসা (রাউন্ড ট্রিপ) ৳৩,৬০০ থেকে শুরু। এই সবচেয়ে কম ভাড়া মেইন ডেকে। ওশান ডেকের একমুখী ভাড়া ৳২,২০০, কোরাল লাউঞ্জ ও কোরাল ডেক ৳২,৪০০, আর স্কাই ডাইন ও ভিআইপি চেয়ার ৳২,৬০০। কেবিন নিলে একমুখী ভাড়া পড়বে ৳৬,১০০ থেকে ৳১৩,০০০।\n\nনাম টেকনাফ হলেও জাহাজটি টেকনাফ থেকে নয়, কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে ছাড়ে। এই মৌসুমে টেকনাফ থেকে জাহাজে সেন্টমার্টিন যাওয়ার অনুমতি নেই। প্রায় ১২০ কিলোমিটার সমুদ্রপথ পেরিয়ে সেন্টমার্টিন পৌঁছাতে সময় লাগে প্রায় ৬ থেকে ৭ ঘণ্টা। জাহাজটি প্রতিদিন সকাল ৭টায় কক্সবাজার ছাড়ে, আর বিকেল ৪টায় সেন্টমার্টিন থেকে ছাড়ে। হালনাগাদ তারিখভিত্তিক সময়সূচি এখনো আমাদের হাতে আসেনি, তাই ছাড়ার অন্তত ১ ঘণ্টা আগে জেটিতে পৌঁছে যান এবং টিকেটে লেখা সময় দেখে নিন।\n\n৬ নভেম্বর ২০২৬ পর্যন্ত সরকারি ট্রাভেল পাস পোর্টালের সূচিতে জাহাজটি আছে, যেখানে যাত্রী ধারণক্ষমতা দেখানো হয়েছে ৭১৬ জন। এই মৌসুমে ১ নভেম্বর ২০২৬ থেকে ১৫ মার্চ ২০২৭ পর্যন্ত সেন্টমার্টিনে ভ্রমণ ও রাত্রিযাপন করা যাবে, তবে দিনে সর্বোচ্চ ৩,৫০০ জন পর্যটক যেতে পারবেন। ShipTickets.bd থেকে টিকেট কাটলে QR কোডসহ ট্রাভেল পাস ও ৳১০০ পরিবেশ ফি টিকেটের মধ্যেই থাকে।",
     "route": "Cox's Bazar → Saint Martin",
+    "operator": "Parapaar Cruise Line PCL",
     "status": "verified",
-    "lastVerified": "4 November 2026",
-    "source": "KEARI published vessel and fare information; confirm the schedule for your travel date",
+    "lastVerified": "6 November 2026",
+    "source": "Operator-published reference; confirm for your travel date",
     "ticketClasses": [
       {
         "name": "Main Deck",
         "nameBn": "মেইন ডেক",
-        "description": "Non AC seating",
-        "oneWayFare": "৳2,000",
-        "roundTripFare": "৳3,700"
+        "description": "Main deck seating category",
+        "oneWayFare": "৳1,900",
+        "roundTripFare": "৳3,600",
+        "seatCount": "343",
+        "bestForBn": "সবচেয়ে কম ভাড়ায় যেতে চাইলে"
       },
       {
-        "name": "Open Deck",
-        "nameBn": "ওপেন ডেক",
-        "description": "Non AC open deck seating",
+        "name": "Ocean Deck",
+        "nameBn": "ওশান ডেক",
+        "description": "Ocean deck seating category",
         "oneWayFare": "৳2,200",
-        "roundTripFare": "৳4,200"
+        "roundTripFare": "৳4,200",
+        "seatCount": "78",
+        "bestForBn": "মেইন ডেকের পরের ক্যাটাগরিতে যেতে চাইলে"
       },
       {
-        "name": "Bridge Deck",
-        "nameBn": "ব্রিয় ডেক",
-        "description": "Non AC bridge deck seating",
+        "name": "Coral Lounge",
+        "nameBn": "কোরাল লাউঞ্জ",
+        "description": "Coral lounge seating category",
         "oneWayFare": "৳2,400",
-        "roundTripFare": "৳4,500"
+        "roundTripFare": "৳4,500",
+        "seatCount": "23",
+        "bestForBn": "লাউঞ্জে বসে যেতে চাইলে",
+        "tagsBn": [
+          "লাউঞ্জ"
+        ]
+      },
+      {
+        "name": "Coral Deck",
+        "nameBn": "কোরাল ডেক",
+        "description": "Coral deck seating category",
+        "oneWayFare": "৳2,400",
+        "roundTripFare": "৳4,500",
+        "seatCount": "186",
+        "bestForBn": "লাউঞ্জের সমান ভাড়ায় ডেকে বসে যেতে চাইলে"
+      },
+      {
+        "name": "Sky Dine",
+        "nameBn": "স্কাই ডাইন",
+        "description": "Sky Dine seating category",
+        "oneWayFare": "৳2,600",
+        "roundTripFare": "৳5,000",
+        "seatCount": "28",
+        "bestForBn": "স্কাই ডাইন ক্যাটাগরিতে যেতে চাইলে"
+      },
+      {
+        "name": "VIP Chair",
+        "nameBn": "ভিআইপি চেয়ার",
+        "description": "VIP Chair seating category",
+        "oneWayFare": "৳2,600",
+        "roundTripFare": "৳5,000",
+        "seatCount": "8",
+        "bestForBn": "অল্প সিটের ভিআইপি ক্যাটাগরি চাইলে"
       }
     ],
-    "cabins": [],
-    "cabinNote": "KEARI Sindbad publishes three deck seating categories and does not list private cabin inventory for this vessel. If you need private accommodation, confirm current availability with the operator before booking.",
+    "cabins": [
+      {
+        "name": "Deluxe Cabin",
+        "nameBn": "ডিলাক্স কেবিন",
+        "description": "Deluxe cabin category",
+        "capacity": "2 adults, 1 child",
+        "oneWayFare": "৳6,100",
+        "roundTripFare": "৳12,000",
+        "seatCount": "6",
+        "bestForBn": "সবচেয়ে কম ভাড়ায় কেবিন চাইলে",
+        "capacityBn": "২ জন বড়, ১ শিশু"
+      },
+      {
+        "name": "VIP Cabin",
+        "nameBn": "ভিআইপি কেবিন",
+        "description": "VIP cabin category",
+        "capacity": "2 adults, 1 child",
+        "oneWayFare": "৳7,600",
+        "roundTripFare": "৳15,000",
+        "seatCount": "2",
+        "bestForBn": "আরও প্রিমিয়াম কেবিন চাইলে",
+        "capacityBn": "২ জন বড়, ১ শিশু"
+      },
+      {
+        "name": "Royal Cabin",
+        "nameBn": "রয়্যাল কেবিন",
+        "description": "Royal cabin category",
+        "capacity": "3 adults, 1 child",
+        "oneWayFare": "৳13,000",
+        "roundTripFare": "৳25,000",
+        "seatCount": "1",
+        "bestForBn": "সবচেয়ে প্রিমিয়াম কেবিন চাইলে",
+        "capacityBn": "৩ জন বড়, ১ শিশু"
+      }
+    ],
     "facilities": [
       {
-        "name": "Passenger seating",
+        "name": "Multiple deck seating",
         "available": true
       },
       {
-        "name": "Open viewing areas",
+        "name": "Cabin accommodation",
         "available": true
       },
       {
-        "name": "Canteen / food service",
-        "available": true
-      },
-      {
-        "name": "Audio facilities",
-        "available": true
-      },
-      {
-        "name": "Passenger security arrangements",
-        "available": true
-      },
-      {
-        "name": "Life rafts",
-        "available": true
-      },
-      {
-        "name": "Life jackets",
-        "available": true
-      },
-      {
-        "name": "Life buoys",
-        "available": true
-      },
-      {
-        "name": "Rescue boat",
+        "name": "Passenger service areas",
         "available": true
       }
     ],
     "oneWay": "Not published",
-    "roundTrip": "Not published",
-    "image": "/ship/Keari-Sindbad.jpg",
-    "imageAlt": "KEARI Sindbad passenger tourist vessel",
-    "capacity": "346 passengers (160 Main Deck, 144 Open Deck, 42 Bridge Deck)",
-    "journeyDuration": "Approx. 5 to 7 hours (seasonal, confirm for your sailing)",
-    "departure": "Morning departure (seasonal — confirm exact time and reporting time)",
-    "jetty": "Nuniarchhara BIWTA Jetty, Cox's Bazar",
-    "checkIn": "Confirm the reporting time shown on your ticket for your sailing date",
-    "cancellation": "Subject to operator and season rules. Confirm the cancellation policy before payment.",
+    "roundTrip": "৳3,600",
+    "detail": "Passenger vessel listed for Cox's Bazar to Saint Martin tourist travel, operated by Parapaar Cruise Line PCL. Confirm the sailing schedule for your date before booking.",
+    "image": "/ship/mv-teknaf.jpg",
+    "imageAlt": "MV Teknaf passenger ship on calm water, cream with a blue and red hull, Saint Martin ship from Cox’s Bazar",
+    "capacity": "666 seats",
+    "journeyDuration": "Approx. 6–7 hours (weather, sea conditions and operational instructions)",
+    "departure": "Every day at 7:00 AM from Cox’s Bazar and 4:00 PM from Saint Martin. The updated dated schedule has not been received yet",
+    "jetty": "BIWTA Jetty, Airport Road, Nuniarchhara, Cox's Bazar",
+    "checkIn": "Arrive at least 1 hour before departure; confirm with operator",
+    "cancellation": "Subject to operator policy; confirm before payment",
     "gallery": [
-      "/ship/Keari-Sindbad.jpg"
+      "/ship/mv-teknaf.jpg"
     ],
-    "specs": [
-      {
-        "label": "Vessel",
-        "value": "KEARI Sindbad"
-      },
-      {
-        "label": "Owner",
-        "value": "KEARI Tours & Services Ltd."
-      },
-      {
-        "label": "Builder",
-        "value": "Western Marine Shipyard"
-      },
-      {
-        "label": "Launch date",
-        "value": "22 January 2004"
-      },
-      {
-        "label": "Length",
-        "value": "34.10 m"
-      },
-      {
-        "label": "Beam",
-        "value": "7.62 m"
-      },
-      {
-        "label": "Depth",
-        "value": "2.77 m"
-      },
-      {
-        "label": "Total published seating",
-        "value": "346 passengers"
-      },
-      {
-        "label": "Bridge Deck",
-        "value": "42 passengers"
-      },
-      {
-        "label": "Open Deck",
-        "value": "144 passengers"
-      },
-      {
-        "label": "Main Deck",
-        "value": "160 passengers"
-      }
-    ],
-    "categoryGuidance": [
-      {
-        "category": "Main Deck",
-        "bestFor": "Travellers looking for the lowest published fare, and families or groups travelling together.",
-        "privacy": "Standard open seating",
-        "outdoor": "Partial",
-        "priceLevel": "Lowest"
-      },
-      {
-        "category": "Open Deck",
-        "bestFor": "Travellers who want open-air views and an upper-deck position.",
-        "privacy": "Standard open seating",
-        "outdoor": "Yes",
-        "priceLevel": "Middle"
-      },
-      {
-        "category": "Bridge Deck",
-        "bestFor": "Travellers who want the closest position to the bridge.",
-        "privacy": "Standard open seating",
-        "outdoor": "Yes",
-        "priceLevel": "Highest"
-      }
-    ],
-    "detail": "Passenger tourist vessel built by Western Marine Shipyard with 346 published seats across Main Deck, Open Deck and Bridge Deck.",
     "faq": [
       [
-        "How much is a Keari Sindbad ticket?",
-        "Published verified fares list Main Deck at ৳1,825 one way, Open Deck at ৳2,075 and Bridge Deck at ৳2,325. Confirm the applicable fare for your travel date before payment."
+        "What is MV Teknaf?",
+        "MV Teknaf is a passenger vessel listed for tourist travel between Cox’s Bazar and Saint Martin Island. It is operated by Parapaar Cruise Line PCL. Confirm the sailing schedule for your date before planning a trip."
       ],
       [
-        "How much is a Keari Sindbad round-trip ticket?",
-        "Published return fares are ৳3,500 for Main Deck, ৳4,000 for Open Deck and ৳4,500 for Bridge Deck. These are reference values rather than a quoted price for your date."
+        "How much is an MV Teknaf ticket?",
+        "MV Teknaf round-trip seat fares range from ৳3,600 for Main Deck to ৳5,000 for Sky Dine and VIP Chair, and one-way seat fares start from ৳1,900. Round-trip cabin fares range from ৳12,000 to ৳25,000. Confirm whether a cabin fare applies per cabin or per passenger before booking."
       ],
       [
-        "Where does Keari Sindbad depart from?",
-        "Published information identifies the Nuniarchhara BIWTA Jetty area in Cox's Bazar. Boarding arrangements can change between seasons, so confirm the jetty and reporting time printed on your ticket."
+        "What seating categories are available on MV Teknaf?",
+        "The published fare list includes Main Deck, Ocean Deck, Coral Lounge, Coral Deck, Sky Dine and VIP Chair. Actual availability depends on the sailing date."
       ],
       [
-        "Does Keari Sindbad have an Open Deck?",
-        "Yes. Open Deck is one of the three published seating categories and is located on the second floor, with approximately 144 seats."
+        "What cabin types are available on MV Teknaf?",
+        "The published fare list includes Deluxe Cabin, VIP Cabin and Royal Cabin. Confirm cabin capacity, occupancy rules, amenities and final price before booking."
       ],
       [
-        "Does Keari Sindbad have a Bridge Deck?",
-        "Yes. Bridge Deck is a published second-floor seating category with approximately 42 seats."
+        "Where does MV Teknaf depart from?",
+        "The listed Cox’s Bazar boarding location is BIWTA Jetty in Nuniarchhara, Airport Road. Confirm the actual boarding point and reporting instructions for your travel date."
       ],
       [
-        "Does Keari Sindbad have cabins?",
-        "No private cabin inventory is published for this vessel. KEARI Sindbad publishes Main Deck, Open Deck and Bridge Deck seating. If you need private accommodation, confirm availability with the operator before booking."
+        "How long does MV Teknaf take to reach Saint Martin?",
+        "A verified journey duration has not been established. Sailing time can depend on the vessel, weather, sea conditions and operational instructions. Confirm the expected duration with the operator."
       ],
       [
-        "Does Keari Sindbad have food?",
-        "Published vessel information lists a canteen and food service facility. Food service may be available onboard, but dining inclusion depends on the current ticket and operator terms, so confirm before payment."
+        "What time does MV Teknaf depart?",
+        "MV Teknaf leaves Cox’s Bazar at 7:00 AM and Saint Martin at 4:00 PM every day. The updated dated schedule has not been received yet, so follow the time printed on your ticket."
       ],
       [
-        "What time does Keari Sindbad leave Cox’s Bazar?",
-        "A previously published schedule listed 7:00 AM departure with reporting at 6:45 AM. Treat that as reference information rather than a guaranteed current-season schedule, and confirm the times for your sailing date."
+        "How early should passengers check in?",
+        "Arriving at least one hour before departure is a useful planning recommendation, but the operator's reporting time and check-in deadline should be confirmed before travel."
       ],
       [
-        "How long does Keari Sindbad take?",
-        "Sailing time varies by date, route, weather, sea conditions and tide. We do not publish a fixed duration for this vessel, so use the schedule issued for your sailing date."
+        "Are MV Teknaf tickets refundable?",
+        "The applicable cancellation and refund policy has not been verified. Ask the operator or ShipTickets.bd support to explain the ticket terms before payment."
       ],
       [
-        "Is Keari Sindbad available every day?",
-        "Saint Martin ship services are seasonal. Availability depends on the applicable tourist season, government rules, weather and the operator schedule."
+        "Is MV Teknaf currently operating?",
+        "MV Teknaf is listed as sailing in the 2026–27 season. Sailings depend on the approved schedule, weather and sea conditions, so contact ShipTickets.bd support to confirm availability for your travel date."
       ],
       [
-        "Can I book a one-way Keari Sindbad ticket?",
-        "Yes. Published fares include one-way pricing for Main Deck, Open Deck and Bridge Deck, subject to availability."
+        "Does MV Teknaf offer dining facilities?",
+        "Sky Dine is listed as a seating category. However, dining availability, food service and meal inclusions should be confirmed with the operator."
       ],
       [
-        "Can I book a round-trip Keari Sindbad ticket?",
-        "Yes. Published round-trip fares are available for all three seating categories, subject to availability."
+        "How can I check MV Teknaf ticket availability?",
+        "Contact ShipTickets.bd with your travel date, passenger count and preferred seat or cabin category. The support team can help you verify the applicable fare, sailing schedule and availability."
       ],
       [
-        "How can I check the latest Keari Sindbad fare?",
-        "Send your travel date, passenger count and preferred deck on WhatsApp. We will check the latest applicable fare and availability for your sailing date."
+        "এমভি টেকনাফ জাহাজ কী?",
+        "এমভি টেকনাফ কক্সবাজার থেকে সেন্টমার্টিন দ্বীপে পর্যটক পরিবহনের জন্য তালিকাভুক্ত একটি যাত্রীবাহী জাহাজ। জাহাজটি Parapaar Cruise Line PCL-এর সঙ্গে সংশ্লিষ্ট। ভ্রমণের আগে বর্তমান মৌসুমে জাহাজটির চলাচলের অনুমতি ও সময়সূচি নিশ্চিত করুন।"
+      ],
+      [
+        "এমভি টেকনাফ জাহাজের ভাড়া কত?",
+        "জনপ্রতি একমুখী ভাড়া: মেইন ডেক ৳১,৯০০, ওশান ডেক ৳২,২০০, কোরাল লাউঞ্জ ও কোরাল ডেক ৳২,৪০০, স্কাই ডাইন ও ভিআইপি চেয়ার ৳২,৬০০। যাওয়া-আসার ভাড়া ৳৩,৬০০ থেকে ৳৫,০০০। কেবিনের একমুখী ভাড়া ৳৬,১০০ থেকে ৳১৩,০০০।"
+      ],
+      [
+        "এমভি টেকনাফে কী কী আসন ক্যাটাগরি রয়েছে?",
+        "প্রদত্ত তালিকায় Main Deck, Ocean Deck, Coral Lounge, Coral Deck, Sky Dine এবং VIP Chair—এই ছয়টি আসন ক্যাটাগরি রয়েছে। নির্দিষ্ট তারিখে কোন ক্যাটাগরির টিকিট পাওয়া যাবে, তা নিশ্চিত করতে হবে।"
+      ],
+      [
+        "এমভি টেকনাফে কী কী কেবিন রয়েছে?",
+        "প্রদত্ত তালিকায় Deluxe Cabin, VIP Cabin এবং Royal Cabin রয়েছে। বুকিংয়ের আগে কেবিনের ধারণক্ষমতা, সুবিধা, যাত্রীসংখ্যা ও ভাড়া যাচাই করুন।"
+      ],
+      [
+        "এমভি টেকনাফ জাহাজ কোথা থেকে ছাড়ে?",
+        "কক্সবাজারের এয়ারপোর্ট রোডে নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে। যাত্রার আগে টিকেটে লেখা জেটির নাম ও রিপোর্টিং সময় দেখে নিন।"
+      ],
+      [
+        "এমভি টেকনাফে সেন্টমার্টিন যেতে কত সময় লাগে?",
+        "প্রায় ৬ থেকে ৭ ঘণ্টা। আবহাওয়া, সমুদ্রের অবস্থা ও পরিচালনার নির্দেশনা অনুযায়ী সময় কিছুটা বদলাতে পারে।"
+      ],
+      [
+        "এমভি টেকনাফ কখন ছাড়ে?",
+        "এমভি টেকনাফ প্রতিদিন সকাল ৭টায় কক্সবাজার ছাড়ে, আর বিকেল ৪টায় সেন্টমার্টিন থেকে ছাড়ে। হালনাগাদ তারিখভিত্তিক সময়সূচি এখনো আমাদের হাতে আসেনি, তাই টিকেটে লেখা সময় দেখে নিন।"
+      ],
+      [
+        "যাত্রার কত আগে চেক-ইন করতে হবে?",
+        "পরিকল্পনার সুবিধার্থে যাত্রার অন্তত এক ঘণ্টা আগে পৌঁছানোর পরামর্শ দেওয়া হচ্ছে। তবে নির্দিষ্ট চেক-ইন সময় ও রিপোর্টিং নির্দেশনা অপারেটরের কাছ থেকে নিশ্চিত করুন।"
+      ],
+      [
+        "এমভি টেকনাফের টিকিট বাতিল করলে টাকা ফেরত পাওয়া যাবে কি?",
+        "টিকিট বাতিল, রিফান্ড ও তারিখ পরিবর্তনের নীতি এখনো যাচাই করা হয়নি। পেমেন্টের আগে প্রযোজ্য শর্তাবলি অপারেটর বা ShipTickets.bd সাপোর্ট টিমের কাছ থেকে জেনে নিন।"
+      ],
+      [
+        "এমভি টেকনাফ কি এখন চলছে?",
+        "৬ নভেম্বর ২০২৬ পর্যন্ত সরকারি ট্রাভেল পাস পোর্টালের সূচিতে জাহাজটি আছে। তবে আবহাওয়া ও জোয়ার-ভাটার কারণে সূচি বদলাতে পারে, তাই আপনার তারিখটি জেনে নিন।"
+      ],
+      [
+        "এমভি টেকনাফে খাবারের ব্যবস্থা আছে কি?",
+        "Sky Dine নামে একটি আসন ক্যাটাগরি তালিকাভুক্ত রয়েছে। তবে খাবার পরিবেশন করা হয় কি না, খাবারের মূল্য টিকিটে অন্তর্ভুক্ত কি না এবং কী ধরনের খাবার পাওয়া যায়, তা অপারেটরের কাছ থেকে নিশ্চিত করতে হবে।"
+      ],
+      [
+        "এমভি টেকনাফের টিকিটের প্রাপ্যতা কীভাবে জানব?",
+        "আপনার ভ্রমণের তারিখ, যাত্রীর সংখ্যা এবং পছন্দের আসন বা কেবিনের তথ্য দিয়ে ShipTickets.bd সাপোর্ট টিমের সঙ্গে যোগাযোগ করুন। তারা প্রযোজ্য ভাড়া, সময়সূচি ও টিকিটের প্রাপ্যতা যাচাই করতে সহায়তা করতে পারবে।"
+      ],
+      [
+        "এমভি টেকনাফে ট্রাভেল পাস কি আলাদা করে লাগবে?",
+        "ShipTickets.bd থেকে টিকেট কাটলে লাগবে না। QR কোডসহ ট্রাভেল পাস ও ৳১০০ পরিবেশ ফি টিকেটের মধ্যেই থাকে। অন্য কোথাও থেকে টিকেট কাটলে travelpass.gov.bd-এ নিয়ম দেখে নিন।"
       ]
-    ]
+    ],
+    "pageUpdated": "2026-11-06",
+    "portalCapacity": 716
   },
   {
     "slug": "keari-cruise-dine",
     "name": "Keari Cruise & Dine",
-    "summaryBn": "কেয়ারী ক্রুজ অ্যান্ড ডাইন কক্সবাজার থেকে সেন্টমার্টিন দ্বীপের জন্য চলাচলকারী একটি এসি (AC) ও ক্রুজধর্মী যাত্রীবাহক জাহাজ, যার প্রকাশিত ধারণক্ষমতা ৩১০ জন যাত্রী। এই জাহাজের এক্সক্লুসিভ লাউঞ্জের একমুখী ভাড়া ৳২,২০০, কোরাল লাউঞ্জ ৳২,৫০০ এবং পার্ল লাউঞ্জ ৳২,৭০০; অন্যদিকে রাউন্ড ট্রিপ ভাড়া ৳৪,২০০ থেকে ৳৫,২০০ পর্যন্ত নির্ধারণ করা হয়েছে। নির্বাচিত ক্যাটাগরিতে যাত্রীদের জন্য বিশেষ খাবার ও ডাইনিং সুবিধা রয়েছে। জাহাজের চলাচল মূলত আবহাওয়া, সমুদ্রের অবস্থা ও জোয়ার-ভাটার ওপর নির্ভরশীল, তাই ভ্রমণের আগে কর্তৃপক্ষের সাথে সময়সূচি, রিপোর্টিং সময় ও চূড়ান্ত ভাড়া নিশ্চিত করে নেওয়া জরুরি।",
+    "summaryBn": "কেয়ারী ক্রুজ অ্যান্ড ডাইনের প্রকাশিত ভাড়া জনপ্রতি একমুখী ৳২,২০০ এবং যাওয়া-আসা (রাউন্ড ট্রিপ) ৳৪,২০০ থেকে শুরু। এই সবচেয়ে কম ভাড়া এক্সক্লুসিভ লাউঞ্জে। কোরাল লাউঞ্জের একমুখী ভাড়া ৳২,৫০০ আর পার্ল লাউঞ্জের ৳২,৭০০। এটি এসি লাউঞ্জের জাহাজ, প্রকাশিত ধারণক্ষমতা ৩১০ জন। জাহাজে রেস্টুরেন্ট আছে, তবে খাবার টিকেটের সঙ্গে আছে কি না আগে জেনে নিন।\n\nএই মৌসুমে জাহাজটি চলছে। তবে তারিখ ধরে সময়সূচি এখনো আমাদের হাতে আসেনি, তাই আপনার তারিখের ছাড়ার সময় ও ভাড়া টিকেট কাটার আগে আমাদের কাছ থেকে জেনে নিন।\n\nপ্রকাশিত তথ্য অনুযায়ী জাহাজটি কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি এলাকা থেকে ছাড়ে। প্রায় ১২০ কিলোমিটার সমুদ্রপথ পেরিয়ে সেন্টমার্টিন পৌঁছাতে সময় লাগে প্রায় ৬ থেকে ৭ ঘণ্টা। এই মৌসুমে ১ নভেম্বর ২০২৬ থেকে ১৫ মার্চ ২০২৭ পর্যন্ত সেন্টমার্টিনে ভ্রমণ ও রাত্রিযাপন করা যাবে, তবে দিনে সর্বোচ্চ ৩,৫০০ জন পর্যটক যেতে পারবেন। ShipTickets.bd থেকে টিকেট কাটলে QR কোডসহ ট্রাভেল পাস ও ৳১০০ পরিবেশ ফি টিকেটের মধ্যেই থাকে।",
     "nameBn": "কেয়ারী ক্রুজ অ্যান্ড ডাইন",
     "operator": "Keari Tours & Services Ltd.",
     "route": "Cox's Bazar → Saint Martin",
@@ -827,21 +988,39 @@
         "nameBn": "এক্সক্লুসিভ লাউঞ্জ",
         "description": "AC lounge",
         "oneWayFare": "৳2,200",
-        "roundTripFare": "৳4,200"
+        "roundTripFare": "৳4,200",
+        "bestForBn": "কম ভাড়ায় এসি লাউঞ্জে যেতে চাইলে",
+        "tagsBn": [
+          "এসি",
+          "লাউঞ্জ"
+        ],
+        "seatCount": "44"
       },
       {
         "name": "Coral Lounge",
         "nameBn": "কোরাল লাউঞ্জ",
         "description": "AC lounge",
         "oneWayFare": "৳2,500",
-        "roundTripFare": "৳4,700"
+        "roundTripFare": "৳4,700",
+        "bestForBn": "পরিবার বা দল নিয়ে মাঝারি ভাড়ার লাউঞ্জে যেতে চাইলে",
+        "tagsBn": [
+          "এসি",
+          "লাউঞ্জ"
+        ],
+        "seatCount": "156"
       },
       {
         "name": "Pearl Lounge",
         "nameBn": "পার্ল লাউঞ্জ",
         "description": "AC lounge",
         "oneWayFare": "৳2,700",
-        "roundTripFare": "৳5,200"
+        "roundTripFare": "৳5,200",
+        "bestForBn": "ওপরের লাউঞ্জে ভালো ভিউসহ যেতে চাইলে",
+        "tagsBn": [
+          "এসি",
+          "লাউঞ্জ"
+        ],
+        "seatCount": "110"
       }
     ],
     "cabins": [],
@@ -877,9 +1056,9 @@
     ],
     "image": "/ship/keari-cruise-dine.jpg",
     "capacity": "Published capacity 310 passengers",
-    "journeyDuration": "Approx. 5 to 7 hours (seasonal, confirm for your sailing)",
+    "journeyDuration": "Approx. 6 to 7 hours (seasonal, confirm for your sailing)",
     "departure": "Seasonal. Reporting and departure time are confirmed for your date",
-    "jetty": "Nuniachora BIWTA Ghat (Cox's Bazar) / Sontha BIWTA Ghat (Saint Martin)",
+    "jetty": "Nuniarchhara BIWTA Ghat (Cox's Bazar) / Sontha BIWTA Ghat (Saint Martin)",
     "checkIn": "Reporting time confirmed on your ticket or booking confirmation",
     "cancellation": "Subject to operator and season rules; confirm before payment",
     "gallery": [
@@ -889,11 +1068,11 @@
     "faq": [
       [
         "How much is a Keari Cruise & Dine ticket?",
-        "Published verified fares list approximately ৳2,075 for Exclusive Lounge one way, ৳2,325 for Coral Lounge and ৳2,575 for Pearl Lounge. Round-trip verified fares start from ৳4,000. Confirm current fares before booking."
+        "Published verified fares list approximately ৳2,200 for Exclusive Lounge one way, ৳2,500 for Coral Lounge and ৳2,700 for Pearl Lounge. Round-trip verified fares start from ৳4,200. Confirm current fares before booking."
       ],
       [
-        "কেয়ারি ক্রুজের টিকিট কত টাকা?",
-        "প্যাচাইকৃত ভাড়া অনুযায়ী Exclusive Lounge একমুখী প্রায় ৳২,০৭৫, Coral Lounge ৳২,৩২৫ এবং Pearl Lounge ৳২,৫৭৫। বর্তমান মূল্য ভ্রমণের তারিখ অনুযায়ী নিশ্চিত করতে হবে।"
+        "কেয়ারি ক্রুজের টিকেটের দাম কত?",
+        "এক্সক্লুসিভ লাউঞ্জে একমুখী ৳২,২০০, কোরাল লাউঞ্জে ৳২,৫০০ এবং পার্ল লাউঞ্জে ৳২,৭০০। আপনার তারিখের ভাড়া টিকেট কাটার আগে জেনে নিন।"
       ],
       [
         "Does Keari Cruise & Dine include food?",
@@ -901,7 +1080,7 @@
       ],
       [
         "কেয়ারি ক্রুজ অ্যান্ড ডাইনে কি খাবার আছে?",
-        "জাহাজে floating restaurant ও dining facilities রয়েছে। তবে আপনার টিকিটের সঙ্গে খাবার অন্তর্ভুক্ত কিনা তা বুকিংয়ের আগে নিশ্চিত করুন।"
+        "জাহাজে রেস্টুরেন্ট ও খাবারের ব্যবস্থা আছে। তবে খাবার আপনার টিকেটের সঙ্গে আছে কি না, বুকিংয়ের আগে জেনে নিন।"
       ],
       [
         "Does Keari Cruise & Dine have AC?",
@@ -921,18 +1100,26 @@
       ],
       [
         "কেয়ারি ক্রুজ কোথা থেকে ছাড়ে?",
-        "কেয়ারি ক্রুজের Cox’s Bazar passenger service Nuniarchhara BIWTA Jetty এলাকার সঙ্গে যুক্ত। নির্দিষ্ট যাত্রার boarding point অবশ্যই টিকিটে নিশ্চিত করুন।"
+        "কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি এলাকা থেকে। যাত্রার আগে টিকেটে লেখা জেটির নাম ও রিপোর্টিং সময় দেখে নিন।"
       ],
       [
         "How long does Keari Cruise & Dine take?",
-        "Sailing time varies by route, weather, tide and operating conditions. Use the date-specific schedule provided with your ticket rather than relying on a fixed duration."
+        "The crossing generally takes about 6 to 7 hours. Sailing time varies with weather, tide and operating conditions, so use the date-specific schedule provided with your ticket."
       ],
       [
         "Can I book a round-trip Keari Cruise ticket?",
-        "Yes. Published round-trip verified fares start from ৳4,000 for Exclusive Lounge, ৳4,500 for Coral Lounge and ৳5,000 for Pearl Lounge."
+        "Yes. Published round-trip verified fares start from ৳4,200 for Exclusive Lounge, ৳4,700 for Coral Lounge and ৳5,200 for Pearl Lounge."
+      ],
+      [
+        "কেয়ারি ক্রুজ কি এখন চলছে?",
+        "এই মৌসুমে জাহাজটি চলছে। তবে তারিখ ধরে সময়সূচি এখনো আমাদের হাতে আসেনি, তাই আপনার তারিখের ছাড়ার সময় ও ভাড়া টিকেট কাটার আগে আমাদের কাছ থেকে জেনে নিন।"
+      ],
+      [
+        "কেয়ারি ক্রুজের টিকেট কীভাবে কাটব?",
+        "যাত্রার তারিখ, যাত্রীর সংখ্যা ও পছন্দের সিট জানিয়ে আমাদের WhatsApp-এ মেসেজ দিন বা কল করুন। আমরা আপনার তারিখের ভাড়া ও সিট আছে কি না জানিয়ে দেব।"
       ]
     ],
-    "imageAlt": "Keari Cruise & Dine passenger ship on the Cox’s Bazar to Saint Martin route",
+    "imageAlt": "Keari Cruise & Dine passenger ship at sea, white with a red stripe, Saint Martin ship from Cox’s Bazar",
     "photoPending": true,
     "cabinNote": "Published Keari information focuses on Pearl, Coral and Exclusive lounge seating. No private cabin inventory is published for this vessel, so confirm current availability before booking.",
     "specs": [
@@ -1023,222 +1210,267 @@
         "outdoor": "Best outlook",
         "priceLevel": "৳৳৳"
       }
+    ],
+    "alternateNames": [
+      "Keari Cruise and Dine",
+      "কেয়ারি ক্রুজ"
+    ],
+    "pageUpdated": "2026-11-06",
+    "imageSize": [
+      1200,
+      805
     ]
   },
   {
-    "slug": "mv-teknaf",
-    "name": "MV Teknaf",
-    "nameBn": "এমভি টেকনাফ",
-    "summaryBn": "এমভি টেকনাফ কক্সবাজার থেকে সেন্টমার্টিন দ্বীপে পর্যটক পরিবহনের জন্য তালিকাভুক্ত একটি যাত্রীবাহী জাহাজ। ভ্রমণের আগে বর্তমান মৌসুমে জাহাজটির চলাচলের অনুমতি ও সময়সূচি নিশ্চিত করুন।",
+    "slug": "keari-sindbad",
+    "name": "Keari Sindbad",
+    "summaryBn": "কেয়ারী সিন্দবাদের (অনেকে লেখেন কেয়ারি সিন্দাবাদ) প্রকাশিত ভাড়া জনপ্রতি একমুখী ৳২,০০০ এবং যাওয়া-আসা (রাউন্ড ট্রিপ) ৳৩,৭০০ থেকে শুরু। এই সবচেয়ে কম ভাড়া মেইন ডেকে। ওপেন ডেকের একমুখী ভাড়া ৳২,২০০ আর ব্রিজ ডেকের ৳২,৪০০। এটি ৩৪৬ আসনের নন-এসি জাহাজ, এবং এতে আলাদা কেবিনের তথ্য প্রকাশ করা হয়নি।\n\nএই মৌসুমে জাহাজটি চলছে। তবে তারিখ ধরে সময়সূচি এখনো আমাদের হাতে আসেনি, তাই আপনার তারিখের ছাড়ার সময় ও ভাড়া টিকেট কাটার আগে আমাদের কাছ থেকে জেনে নিন।\n\nপ্রকাশিত তথ্য অনুযায়ী জাহাজটি কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি এলাকা থেকে ছাড়ে। প্রায় ১২০ কিলোমিটার সমুদ্রপথ পেরিয়ে সেন্টমার্টিন পৌঁছাতে সময় লাগে প্রায় ৬ থেকে ৭ ঘণ্টা। এই মৌসুমে ১ নভেম্বর ২০২৬ থেকে ১৫ মার্চ ২০২৭ পর্যন্ত সেন্টমার্টিনে ভ্রমণ ও রাত্রিযাপন করা যাবে, তবে দিনে সর্বোচ্চ ৩,৫০০ জন পর্যটক যেতে পারবেন। ShipTickets.bd থেকে টিকেট কাটলে QR কোডসহ ট্রাভেল পাস ও ৳১০০ পরিবেশ ফি টিকেটের মধ্যেই থাকে।",
+    "nameBn": "কেয়ারী সিন্দবাদ",
+    "operator": "KEARI Tours & Services Ltd.",
     "route": "Cox's Bazar → Saint Martin",
-    "operator": "Parapaar Cruise Line PCL",
     "status": "verified",
     "lastVerified": "4 November 2026",
-    "source": "Operator-published reference; confirm for your travel date",
+    "source": "KEARI published vessel and fare information; confirm the schedule for your travel date",
     "ticketClasses": [
       {
         "name": "Main Deck",
         "nameBn": "মেইন ডেক",
-        "description": "Main deck seating category",
-        "oneWayFare": "৳1,900",
-        "roundTripFare": "৳3,600",
-        "seatCount": "343"
+        "description": "Non AC seating",
+        "oneWayFare": "৳2,000",
+        "roundTripFare": "৳3,700",
+        "bestForBn": "সবচেয়ে কম ভাড়ায় পরিবার বা দল নিয়ে যেতে চাইলে",
+        "tagsBn": [
+          "নন-এসি"
+        ],
+        "seatCount": "160"
       },
       {
-        "name": "Ocean Deck",
-        "nameBn": "ওশান ডেক",
-        "description": "Ocean deck seating category",
+        "name": "Open Deck",
+        "nameBn": "ওপেন ডেক",
+        "description": "Non AC open deck seating",
         "oneWayFare": "৳2,200",
         "roundTripFare": "৳4,200",
-        "seatCount": "78"
+        "bestForBn": "খোলা হাওয়ায় ওপরের ডেক থেকে সমুদ্র দেখতে চাইলে",
+        "tagsBn": [
+          "নন-এসি",
+          "খোলা ডেক"
+        ],
+        "seatCount": "144"
       },
       {
-        "name": "Coral Lounge",
-        "nameBn": "কোরাল লাউঞ্জ",
-        "description": "Coral lounge seating category",
+        "name": "Bridge Deck",
+        "nameBn": "ব্রিজ ডেক",
+        "description": "Non AC bridge deck seating",
         "oneWayFare": "৳2,400",
         "roundTripFare": "৳4,500",
-        "seatCount": "23"
-      },
-      {
-        "name": "Coral Deck",
-        "nameBn": "কোরাল ডেক",
-        "description": "Coral deck seating category",
-        "oneWayFare": "৳2,400",
-        "roundTripFare": "৳4,500",
-        "seatCount": "186"
-      },
-      {
-        "name": "Sky Dine",
-        "nameBn": "স্কাই ডাইন",
-        "description": "Sky Dine seating category",
-        "oneWayFare": "৳2,600",
-        "roundTripFare": "৳5,000",
-        "seatCount": "28"
-      },
-      {
-        "name": "VIP Chair",
-        "nameBn": "ভিআইপি চেয়ার",
-        "description": "VIP Chair seating category",
-        "oneWayFare": "৳2,600",
-        "roundTripFare": "৳5,000",
-        "seatCount": "8"
+        "bestForBn": "ব্রিজের সবচেয়ে কাছে বসে যেতে চাইলে",
+        "tagsBn": [
+          "নন-এসি"
+        ],
+        "seatCount": "42"
       }
     ],
-    "cabins": [
-      {
-        "name": "Deluxe Cabin",
-        "nameBn": "ডিলাক্স কেবিন",
-        "description": "Deluxe cabin category",
-        "capacity": "6 passengers",
-        "oneWayFare": "৳6,100",
-        "roundTripFare": "৳12,000",
-        "seatCount": "6"
-      },
-      {
-        "name": "VIP Cabin",
-        "nameBn": "ভিআইপি কেবিন",
-        "description": "VIP cabin category",
-        "capacity": "2 passengers",
-        "oneWayFare": "৳7,600",
-        "roundTripFare": "৳15,000",
-        "seatCount": "2"
-      },
-      {
-        "name": "Royal Cabin",
-        "nameBn": "রয়্যাল কেবিন",
-        "description": "Royal cabin category",
-        "capacity": "1 passenger",
-        "oneWayFare": "৳13,000",
-        "roundTripFare": "৳25,000",
-        "seatCount": "1"
-      }
-    ],
+    "cabins": [],
+    "cabinNote": "KEARI Sindbad publishes three deck seating categories and does not list private cabin inventory for this vessel. If you need private accommodation, confirm current availability with the operator before booking.",
     "facilities": [
       {
-        "name": "Multiple deck seating",
+        "name": "Passenger seating",
         "available": true
       },
       {
-        "name": "Cabin accommodation",
+        "name": "Open viewing areas",
         "available": true
       },
       {
-        "name": "Passenger service areas",
+        "name": "Canteen / food service",
+        "available": true
+      },
+      {
+        "name": "Audio facilities",
+        "available": true
+      },
+      {
+        "name": "Passenger security arrangements",
+        "available": true
+      },
+      {
+        "name": "Life rafts",
+        "available": true
+      },
+      {
+        "name": "Life jackets",
+        "available": true
+      },
+      {
+        "name": "Life buoys",
+        "available": true
+      },
+      {
+        "name": "Rescue boat",
         "available": true
       }
     ],
     "oneWay": "Not published",
-    "roundTrip": "৳3,600",
-    "detail": "Passenger vessel listed for Cox's Bazar to Saint Martin tourist travel, operated by Parapaar Cruise Line PCL. Confirm current operating authorization and sailing schedule before booking.",
-    "image": "/ship/mv-teknaf.jpg",
-    "imageAlt": "MV Teknaf passenger ship operated by Parapaar Cruise Line PCL for the Cox's Bazar to Saint Martin route",
-    "capacity": "675 seats",
-    "journeyDuration": "Approx. 6–7 hours (weather, sea conditions and operational instructions)",
-    "departure": "Morning departure (seasonal — confirm exact time)",
-    "jetty": "BIWTA Jetty, Airport Road, Nunia Chara, Cox's Bazar",
-    "checkIn": "Arrive at least 1 hour before departure; confirm with operator",
-    "cancellation": "Subject to operator policy; confirm before payment",
+    "roundTrip": "Not published",
+    "image": "/ship/Keari-Sindbad.jpg",
+    "imageAlt": "Keari Sindbad passenger ship at sea flying the Bangladesh flag, Saint Martin ship from Cox’s Bazar",
+    "capacity": "346 passengers (160 Main Deck, 144 Open Deck, 42 Bridge Deck)",
+    "journeyDuration": "Approx. 6 to 7 hours (seasonal, confirm for your sailing)",
+    "departure": "Morning departure (seasonal — confirm exact time and reporting time)",
+    "jetty": "Nuniarchhara BIWTA Jetty, Cox's Bazar",
+    "checkIn": "Confirm the reporting time shown on your ticket for your sailing date",
+    "cancellation": "Subject to operator and season rules. Confirm the cancellation policy before payment.",
     "gallery": [
-      "/ship/mv-teknaf-saint-martin-ship.jpg"
+      "/ship/Keari-Sindbad.jpg"
     ],
+    "specs": [
+      {
+        "label": "Vessel",
+        "value": "KEARI Sindbad"
+      },
+      {
+        "label": "Owner",
+        "value": "KEARI Tours & Services Ltd."
+      },
+      {
+        "label": "Builder",
+        "value": "Western Marine Shipyard"
+      },
+      {
+        "label": "Launch date",
+        "value": "22 January 2004"
+      },
+      {
+        "label": "Length",
+        "value": "34.10 m"
+      },
+      {
+        "label": "Beam",
+        "value": "7.62 m"
+      },
+      {
+        "label": "Depth",
+        "value": "2.77 m"
+      },
+      {
+        "label": "Total published seating",
+        "value": "346 passengers"
+      },
+      {
+        "label": "Bridge Deck",
+        "value": "42 passengers"
+      },
+      {
+        "label": "Open Deck",
+        "value": "144 passengers"
+      },
+      {
+        "label": "Main Deck",
+        "value": "160 passengers"
+      }
+    ],
+    "categoryGuidance": [
+      {
+        "category": "Main Deck",
+        "bestFor": "Travellers looking for the lowest published fare, and families or groups travelling together.",
+        "privacy": "Standard open seating",
+        "outdoor": "Partial",
+        "priceLevel": "Lowest"
+      },
+      {
+        "category": "Open Deck",
+        "bestFor": "Travellers who want open-air views and an upper-deck position.",
+        "privacy": "Standard open seating",
+        "outdoor": "Yes",
+        "priceLevel": "Middle"
+      },
+      {
+        "category": "Bridge Deck",
+        "bestFor": "Travellers who want the closest position to the bridge.",
+        "privacy": "Standard open seating",
+        "outdoor": "Yes",
+        "priceLevel": "Highest"
+      }
+    ],
+    "detail": "Passenger tourist vessel built by Western Marine Shipyard with 346 published seats across Main Deck, Open Deck and Bridge Deck.",
     "faq": [
       [
-        "What is MV Teknaf?",
-        "MV Teknaf is a passenger vessel listed for tourist travel between Cox’s Bazar and Saint Martin Island. It is associated with Parapaar Cruise Line PCL. Confirm its current operating authorization and sailing schedule before planning a trip."
+        "How much is a Keari Sindbad ticket?",
+        "Published verified fares list Main Deck at ৳2,000 one way, Open Deck at ৳2,200 and Bridge Deck at ৳2,400. Confirm the applicable fare for your travel date before payment."
       ],
       [
-        "How much is an MV Teknaf ticket?",
-        "The supplied verified fares range from ৳3,600 for Main Deck seating to ৳5,000 for Sky Dine and VIP Chair. The listed cabin fares range from ৳12,000 to ৳25,000. Confirm whether these prices are one-way or round-trip and whether cabin fares apply per cabin or per passenger."
+        "How much is a Keari Sindbad round-trip ticket?",
+        "Published return fares are ৳3,700 for Main Deck, ৳4,200 for Open Deck and ৳4,500 for Bridge Deck. These are reference values rather than a quoted price for your date."
       ],
       [
-        "What seating categories are available on MV Teknaf?",
-        "The supplied fare sheet lists Main Deck, Ocean Deck, Coral Lounge, Coral Deck, Sky Dine and VIP Chair. Actual availability depends on the sailing date."
+        "Where does Keari Sindbad depart from?",
+        "Published information identifies the Nuniarchhara BIWTA Jetty area in Cox's Bazar. Boarding arrangements can change between seasons, so confirm the jetty and reporting time printed on your ticket."
       ],
       [
-        "What cabin types are available on MV Teknaf?",
-        "The supplied fare sheet lists Deluxe Cabin, VIP Cabin and Royal Cabin. Confirm cabin capacity, occupancy rules, amenities and final price before booking."
+        "Does Keari Sindbad have an Open Deck?",
+        "Yes. Open Deck is one of the three published seating categories and is located on the second floor, with approximately 144 seats."
       ],
       [
-        "Where does MV Teknaf depart from?",
-        "The listed Cox’s Bazar boarding location is BIWTA Jetty in Nunia Chara, Airport Road. Confirm the actual boarding point and reporting instructions for your travel date."
+        "Does Keari Sindbad have a Bridge Deck?",
+        "Yes. Bridge Deck is a published second-floor seating category with approximately 42 seats."
       ],
       [
-        "How long does MV Teknaf take to reach Saint Martin?",
-        "A verified journey duration has not been established. Sailing time can depend on the vessel, weather, sea conditions and operational instructions. Confirm the expected duration with the operator."
+        "Does Keari Sindbad have cabins?",
+        "No private cabin inventory is published for this vessel. KEARI Sindbad publishes Main Deck, Open Deck and Bridge Deck seating. If you need private accommodation, confirm availability with the operator before booking."
       ],
       [
-        "What time does MV Teknaf depart?",
-        "The departure time must be confirmed for the selected travel date. Seasonal schedules and tide conditions can affect sailing arrangements."
+        "Does Keari Sindbad have food?",
+        "Published vessel information lists a canteen and food service facility. Food service may be available onboard, but dining inclusion depends on the current ticket and operator terms, so confirm before payment."
       ],
       [
-        "How early should passengers check in?",
-        "Arriving at least one hour before departure is a useful planning recommendation, but the operator's reporting time and check-in deadline should be confirmed before travel."
+        "What time does Keari Sindbad leave Cox’s Bazar?",
+        "Keari Sindbad's updated schedule has not been received yet, so ask us for the time on your date. Arrive at the jetty at least 1 hour before departure."
       ],
       [
-        "Are MV Teknaf tickets refundable?",
-        "The applicable cancellation and refund policy has not been verified. Ask the operator or ShipTickets.bd support to explain the ticket terms before payment."
+        "How long does Keari Sindbad take?",
+        "The crossing generally takes about 6 to 7 hours. Sailing time varies by date, weather, sea conditions and tide, so use the schedule issued for your sailing date."
       ],
       [
-        "Is MV Teknaf currently operating?",
-        "Operation depends on seasonal authorization and the approved sailing schedule. Contact ShipTickets.bd support to verify whether MV Teknaf is authorized and available for your travel date."
+        "Is Keari Sindbad available every day?",
+        "Saint Martin ship services are seasonal. Availability depends on the applicable tourist season, government rules, weather and the operator schedule."
       ],
       [
-        "Does MV Teknaf offer dining facilities?",
-        "Sky Dine is listed as a seating category. However, dining availability, food service and meal inclusions should be confirmed with the operator."
+        "Can I book a one-way Keari Sindbad ticket?",
+        "Yes. Published fares include one-way pricing for Main Deck, Open Deck and Bridge Deck, subject to availability."
       ],
       [
-        "How can I check MV Teknaf ticket availability?",
-        "Contact ShipTickets.bd with your travel date, passenger count and preferred seat or cabin category. The support team can help you verify the applicable fare, sailing schedule and availability."
+        "Can I book a round-trip Keari Sindbad ticket?",
+        "Yes. Published round-trip fares are available for all three seating categories, subject to availability."
       ],
       [
-        "এমভি টেকনাফ জাহাজ কী?",
-        "এমভি টেকনাফ কক্সবাজার থেকে সেন্টমার্টিন দ্বীপে পর্যটক পরিবহনের জন্য তালিকাভুক্ত একটি যাত্রীবাহী জাহাজ। জাহাজটি Parapaar Cruise Line PCL-এর সঙ্গে সংশ্লিষ্ট। ভ্রমণের আগে বর্তমান মৌসুমে জাহাজটির চলাচলের অনুমতি ও সময়সূচি নিশ্চিত করুন।"
+        "How can I check the latest Keari Sindbad fare?",
+        "Send your travel date, passenger count and preferred deck on WhatsApp. We will check the latest applicable fare and availability for your sailing date."
       ],
       [
-        "এমভি টেকনাফ জাহাজের টিকিটের দাম কত?",
-        "প্রদত্ত যাচাইকৃত ভাড়া অনুযায়ী, Main Deck-এর টিকিট ৳3,600, Ocean Deck-এর ৳4,200 এবং Coral Lounge ও Coral Deck-এর ৳4,500। Sky Dine ও VIP Chair-এর ভাড়া ৳5,000। কেবিনের তালিকাভুক্ত ভাড়া ৳12,000 থেকে ৳25,000। বুকিংয়ের আগে ভাড়া একমুখী নাকি রাউন্ড ট্রিপ এবং কেবিনের মূল্য জনপ্রতি নাকি সম্পূর্ণ কেবিনের জন্য, তা নিশ্চিত করুন।"
+        "কেয়ারি সিন্দবাদ জাহাজের ভাড়া কত?",
+        "মেইন ডেকে জনপ্রতি একমুখী ৳২,০০০ ও যাওয়া-আসা ৳৩,৭০০, ওপেন ডেকে একমুখী ৳২,২০০ ও যাওয়া-আসা ৳৪,২০০, আর ব্রিজ ডেকে একমুখী ৳২,৪০০ ও যাওয়া-আসা ৳৪,৫০০।"
       ],
       [
-        "এমভি টেকনাফে কী কী আসন ক্যাটাগরি রয়েছে?",
-        "প্রদত্ত তালিকায় Main Deck, Ocean Deck, Coral Lounge, Coral Deck, Sky Dine এবং VIP Chair—এই ছয়টি আসন ক্যাটাগরি রয়েছে। নির্দিষ্ট তারিখে কোন ক্যাটাগরির টিকিট পাওয়া যাবে, তা নিশ্চিত করতে হবে।"
+        "কেয়ারি সিন্দবাদ কোথা থেকে ছাড়ে?",
+        "কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে। যাত্রার আগে টিকেটে লেখা জেটির নাম ও রিপোর্টিং সময় দেখে নিন।"
       ],
       [
-        "এমভি টেকনাফে কী কী কেবিন রয়েছে?",
-        "প্রদত্ত তালিকায় Deluxe Cabin, VIP Cabin এবং Royal Cabin রয়েছে। বুকিংয়ের আগে কেবিনের ধারণক্ষমতা, সুবিধা, যাত্রীসংখ্যা ও ভাড়া যাচাই করুন।"
+        "কেয়ারি সিন্দবাদ কি এখন চলছে?",
+        "এই মৌসুমে জাহাজটি চলছে। তবে তারিখ ধরে সময়সূচি এখনো আমাদের হাতে আসেনি, তাই আপনার তারিখের ছাড়ার সময় ও ভাড়া টিকেট কাটার আগে আমাদের কাছ থেকে জেনে নিন।"
       ],
       [
-        "এমভি টেকনাফ জাহাজ কোথা থেকে ছাড়ে?",
-        "কক্সবাজারের সম্ভাব্য বোর্ডিং পয়েন্ট হলো নুনিয়াছড়া, এয়ারপোর্ট রোডের BIWTA Jetty। তবে যাত্রার তারিখ অনুযায়ী নির্ধারিত ঘাট, রিপোর্টিং সময় ও বোর্ডিং নির্দেশনা নিশ্চিত করে নিন।"
-      ],
-      [
-        "এমভি টেকনাফে সেন্টমার্টিন যেতে কত সময় লাগে?",
-        "এমভি টেকনাফের যাত্রার নির্দিষ্ট সময় এই তথ্যপত্রে নিশ্চিত করা যায়নি। জাহাজ, আবহাওয়া, সমুদ্রের অবস্থা ও পরিচালনাসূচি অনুযায়ী সময় পরিবর্তিত হতে পারে। যাত্রার আগে অপারেটরের কাছ থেকে সম্ভাব্য সময় জেনে নিন।"
-      ],
-      [
-        "এমভি টেকনাফ কখন ছাড়ে?",
-        "যাত্রার তারিখ অনুযায়ী ছাড়ার সময় নিশ্চিত করতে হবে। মৌসুমি সময়সূচি, জোয়ার-ভাটা ও পরিচালনাগত নির্দেশনার কারণে সময় পরিবর্তিত হতে পারে।"
-      ],
-      [
-        "যাত্রার কত আগে চেক-ইন করতে হবে?",
-        "পরিকল্পনার সুবিধার্থে যাত্রার অন্তত এক ঘণ্টা আগে পৌঁছানোর পরামর্শ দেওয়া হচ্ছে। তবে নির্দিষ্ট চেক-ইন সময় ও রিপোর্টিং নির্দেশনা অপারেটরের কাছ থেকে নিশ্চিত করুন।"
-      ],
-      [
-        "এমভি টেকনাফের টিকিট বাতিল করলে টাকা ফেরত পাওয়া যাবে কি?",
-        "টিকিট বাতিল, রিফান্ড ও তারিখ পরিবর্তনের নীতি এখনো যাচাই করা হয়নি। পেমেন্টের আগে প্রযোজ্য শর্তাবলি অপারেটর বা ShipTickets.bd সাপোর্ট টিমের কাছ থেকে জেনে নিন।"
-      ],
-      [
-        "এমভি টেকনাফ কি বর্তমানে চলাচল করছে?",
-        "জাহাজটির চলাচল মৌসুমি অনুমোদন ও অনুমোদিত সময়সূচির ওপর নির্ভরশীল। আপনার ভ্রমণের তারিখে জাহাজটি চলাচলের অনুমতি পেয়েছে কি না এবং টিকিট পাওয়া যাচ্ছে কি না, তা আগে নিশ্চিত করুন।"
-      ],
-      [
-        "এমভি টেকনাফে খাবারের ব্যবস্থা আছে কি?",
-        "Sky Dine নামে একটি আসন ক্যাটাগরি তালিকাভুক্ত রয়েছে। তবে খাবার পরিবেশন করা হয় কি না, খাবারের মূল্য টিকিটে অন্তর্ভুক্ত কি না এবং কী ধরনের খাবার পাওয়া যায়, তা অপারেটরের কাছ থেকে নিশ্চিত করতে হবে।"
-      ],
-      [
-        "এমভি টেকনাফের টিকিটের প্রাপ্যতা কীভাবে জানব?",
-        "আপনার ভ্রমণের তারিখ, যাত্রীর সংখ্যা এবং পছন্দের আসন বা কেবিনের তথ্য দিয়ে ShipTickets.bd সাপোর্ট টিমের সঙ্গে যোগাযোগ করুন। তারা প্রযোজ্য ভাড়া, সময়সূচি ও টিকিটের প্রাপ্যতা যাচাই করতে সহায়তা করতে পারবে।"
+        "কেয়ারি সিন্দবাদের টিকেট কীভাবে কাটব?",
+        "যাত্রার তারিখ, যাত্রীর সংখ্যা ও পছন্দের সিট জানিয়ে আমাদের WhatsApp-এ মেসেজ দিন বা কল করুন। আমরা আপনার তারিখের ভাড়া ও সিট আছে কি না জানিয়ে দেব।"
       ]
+    ],
+    "alternateNames": [
+      "KEARI Sindbad",
+      "কেয়ারি সিন্দাবাদ"
+    ],
+    "pageUpdated": "2026-11-06",
+    "imageSize": [
+      900,
+      600
     ]
   }
 ]

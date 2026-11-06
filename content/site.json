@@ -19,13 +19,17 @@
     ]
   },
   "businessRating": {
-    "ratingValue": 4.7,
-    "reviewCount": 1199
+    "ratingValue": null,
+    "reviewCount": null
   },
+  "advancePercentage": 20,
+  "googleReviewsUrl": "https://maps.app.goo.gl/xEH7SFERtWsCsJq99",
   "season": {
     "label": "2026-2027",
     "startDate": "1 November 2026",
     "startISO": "2026-11-01",
-    "note": "Saint Martin island access and ship operations are seasonal. The 2026-2027 tourist season opens on 1 November 2026. Sailing dates, departure times and fares are confirmed by the operator for each date."
+    "endDate": "15 March 2027",
+    "endISO": "2027-03-15",
+    "note": "Saint Martin island access and ship operations are seasonal. The 2026-2027 tourist season runs from 1 November 2026 to 15 March 2027. Sailing dates, departure times and fares are confirmed by the operator for each date."
   }
 }
