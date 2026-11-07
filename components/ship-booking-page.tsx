@@ -92,7 +92,7 @@ function ShipHero({ ship, title, intro, seatFrom, roundFrom, hasCabins }: { ship
         {isPreBooking(ship) && (
           <div className="mt-4 max-w-2xl rounded-2xl border border-[#f3d9bf] bg-[#fff8ee] p-4">
             <p className="font-extrabold text-ink">Schedule not published yet: pre-booking is open</p>
-            <p className="t-small mt-1 text-prose">{ship.name} has not published its 2026–27 schedule. We are taking pre-bookings with a {site.advancePercentage}% advance, and we will confirm your date and time on WhatsApp once it is published. If your date is not available, you can choose another date or ship, or get your advance back in full.</p>
+            <p className="t-small mt-1 text-prose">{ship.name} has not published its 2026–27 schedule. We are taking pre-bookings with a {site.advancePercentage}% advance, and we will confirm your date and time on WhatsApp once it is published. If your date is not available, you can choose another date or ship, or get your payment back in full.</p>
             <p lang="bn" className="t-small mt-1 font-semibold text-prose">এই জাহাজের সময়সূচি এখনো প্রকাশ হয়নি। {banglaDigits(site.advancePercentage)}% অগ্রিম দিয়ে প্রি-বুকিং চলছে। সময়সূচি প্রকাশ হলে আমরা WhatsApp-এ আপনার তারিখ ও সময় জানিয়ে দেব।</p>
           </div>
         )}
@@ -738,7 +738,7 @@ export function ShipBookingPage({
                 <NextSailings rows={schedule.rows} whatsappHref={whatsappHref(scheduleMessage)} initialToday={dhakaToday()} />
               </div>
             )}
-            {!schedule && <p className="t-small mb-3 rounded-xl bg-[#fff8ee] p-3 text-ink">{usualTimes ? <><strong>Leaves Cox’s Bazar at {usualTimes.departs} every day.</strong> The updated dated schedule has not been received yet.</> : <><strong>The updated schedule has not been received yet.</strong> Ask us for the departure and reporting time on your date.</>}</p>}
+            {!schedule && <p className="t-small mb-3 rounded-xl bg-[#fff8ee] p-3 text-ink">{usualTimes ? <><strong>Leaves Cox’s Bazar at {usualTimes.departs} every day.</strong> The updated dated schedule has not been received yet.</> : <><strong>The schedule has not been published yet.</strong> Ask us for the departure and reporting time on your date.</>}</p>}
             <SailingDetails ship={ship} hasTimetable={Boolean(schedule)} />
             <p className="t-small mt-4 flex items-start gap-2 text-prose">
               <MapPin size={16} aria-hidden="true" className="mt-1 shrink-0 text-brand" />

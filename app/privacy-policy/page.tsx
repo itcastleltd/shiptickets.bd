@@ -24,14 +24,14 @@ function Hero() {
       crumbs={[{ name: 'Home', href: '/' }, { name: 'Privacy Policy' }]}
       h1={h1}
       lede={<><strong className="font-extrabold text-ink">We use your details only to help with your ticket, and we don’t sell them.</strong> This page explains how ShipTickets.bd handles information shared on our website and during support conversations.</>}
-      updated="6 November 2026"
+      updated="7 November 2026"
     />
   )
 }
 
 export default function PrivacyPage() {
   return (
-    <SeoPage eyebrow="Policy · নীতি" title={h1} intro={description} canonical={pageUrl(path)} modifiedISO="2026-11-06" updated="6 November 2026" hero={<Hero />} backToTopDesktopOnly>
+    <SeoPage eyebrow="Policy · নীতি" title={h1} intro={description} canonical={pageUrl(path)} modifiedISO="2026-11-07" updated="7 November 2026" hero={<Hero />} backToTopDesktopOnly>
       <div className="mb-12 grid max-w-3xl gap-6">
         <Block title="Information we collect">
           <ul className="list-disc space-y-1 pl-5">

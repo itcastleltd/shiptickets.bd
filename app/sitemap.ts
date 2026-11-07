@@ -9,23 +9,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date(site.updatedAt)
 
   const staticPages: { path: string; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency']; priority: number; updated?: string }[] = [
-    { path: '', changeFrequency: 'weekly', priority: 1, updated: '2026-11-06' },
+    { path: '', changeFrequency: 'weekly', priority: 1, updated: '2026-11-07' },
     { path: '/saint-martin-ship-ticket-price', changeFrequency: 'weekly', priority: .9, updated: '2026-11-06' },
     { path: '/saint-martin-cabin-price', changeFrequency: 'weekly', priority: .85, updated: '2026-11-06' },
     { path: '/cheapest-saint-martin-ship-ticket', changeFrequency: 'weekly', priority: .85, updated: '2026-11-06' },
     { path: '/saint-martin-trip-cost', changeFrequency: 'monthly', priority: .8, updated: '2026-11-06' },
     { path: '/routes/coxs-bazar-to-saint-martin-distance', changeFrequency: 'monthly', priority: .7, updated: '2026-11-06' },
-    { path: '/saint-martin-ship-schedule', changeFrequency: 'weekly', priority: .9, updated: '2026-11-06' },
+    { path: '/saint-martin-ship-schedule', changeFrequency: 'weekly', priority: .9, updated: '2026-11-07' },
     { path: '/saint-martin-travel-pass', changeFrequency: 'monthly', priority: .8, updated: '2026-11-06' },
     { path: '/saint-martin-travel-rules', changeFrequency: 'monthly', priority: .8, updated: '2026-11-06' },
-    { path: '/saint-martin-ship', changeFrequency: 'weekly', priority: .8, updated: '2026-11-06' },
+    { path: '/saint-martin-ship', changeFrequency: 'weekly', priority: .8, updated: '2026-11-07' },
     { path: '/saint-martin-guide', changeFrequency: 'monthly', priority: .8, updated: '2026-11-06' },
-    { path: '/routes/coxs-bazar-to-saint-martin', changeFrequency: 'monthly', priority: .8, updated: '2026-11-06' },
+    { path: '/routes/coxs-bazar-to-saint-martin', changeFrequency: 'monthly', priority: .8, updated: '2026-11-07' },
     { path: '/about', changeFrequency: 'monthly', priority: .7, updated: '2026-11-06' },
     { path: '/how-we-verify-information', changeFrequency: 'monthly', priority: .7, updated: '2026-11-06' },
-    { path: '/contact', changeFrequency: 'monthly', priority: .7, updated: '2026-11-06' },
-    { path: '/privacy-policy', changeFrequency: 'monthly', priority: .6, updated: '2026-11-06' },
-    { path: '/booking-policy', changeFrequency: 'monthly', priority: .6, updated: '2026-11-06' },
+    { path: '/contact', changeFrequency: 'monthly', priority: .7, updated: '2026-11-07' },
+    { path: '/privacy-policy', changeFrequency: 'monthly', priority: .6, updated: '2026-11-07' },
+    { path: '/booking-policy', changeFrequency: 'monthly', priority: .6, updated: '2026-11-07' },
   ]
 
   return [

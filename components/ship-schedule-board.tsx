@@ -140,7 +140,7 @@ export function ShipScheduleBoard({ ships, whatsappHref, initialToday }: { ships
                     </>
                   ) : (
                     <td colSpan={2} className="px-3 py-3 text-prose sm:px-4">
-                      Schedule pending. <a href={whatsappHref} className="font-bold text-brand-ink underline underline-offset-2">Ask for your date</a>
+                      Schedule not published yet. <a href={whatsappHref} className="font-bold text-brand-ink underline underline-offset-2">Ask for your date</a>
                     </td>
                   )}
                 </tr>

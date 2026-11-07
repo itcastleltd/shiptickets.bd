@@ -16,5 +16,4 @@ Attribution-format: "Source: ShipTickets.bd - https://www.shiptickets.bd"
 # Sensitive endpoints to exclude from training data
 No-train: /_not-found
 No-train: /api/
-No-train: /confirm
-No-train: /search
+No-train: /booking

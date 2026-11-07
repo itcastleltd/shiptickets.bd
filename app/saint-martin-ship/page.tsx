@@ -7,7 +7,7 @@ import { FaqAccordion } from '@/components/faq-accordion'
 import { RatingChip, Schema, SeoPage, breadcrumbSchema, faqSchema, siteSchema, websiteSchema, whatsapp } from '@/components/seo-page'
 import { ShipListCard } from '@/components/ship-list-card'
 import { ShipScheduleBoard } from '@/components/ship-schedule-board'
-import { TEKNAF_TIME_NOTE, dhakaToday, getShipSchedule, getUsualTimes } from '@/content/ship-schedules'
+import { SCHEDULE_TIME_NOTE, dhakaToday, getShipSchedule, getUsualTimes } from '@/content/ship-schedules'
 import { BOOKING_ENABLED } from '@/lib/bookings/validate'
 import { isPreBooking, PHONE_NUMBER, season, ships } from '@/lib/ships'
 
@@ -39,13 +39,13 @@ export const metadata: Metadata = {
 }
 
 const faqs: [string, string][] = [
-  ['Which ships go to Saint Martin from Cox’s Bazar?', 'MV Karnafuly Express, MV Baro Awlia, MV Teknaf, Keari Cruise & Dine and Keari Sindbad are listed for the 2026–27 season. The two Keari ships have not published their schedules yet, and pre-booking is open. Ships leave from Cox’s Bazar. Updated dated schedules have not been received for every ship yet, so confirm your sailing time.'],
+  ['Which ships go to Saint Martin from Cox’s Bazar?', 'MV Karnafuly Express, MV Baro Awlia, MV Teknaf, Keari Cruise & Dine and Keari Sindbad are listed for the 2026–27 season. The two Keari ships have not published their schedules yet, and pre-booking is open. Ships leave from Cox’s Bazar. Tide and weather can change times, so confirm your sailing time.'],
   ['What is the cheapest Saint Martin ship?', `${cheapest.name} has the lowest published fare: ${cheapest.oneWay} one way and ${cheapest.roundTrip} round trip per person on Main Deck.`],
   ['Which Saint Martin ship has cabins?', `${cabinShips} publish private cabins. Keari Cruise & Dine and Keari Sindbad publish seating categories only.`],
-  ['What time do Saint Martin ships leave Cox’s Bazar?', 'Departures are in the morning. MV Teknaf leaves at 7:00 AM every day, while the dated schedule for MV Karnafuly Express and MV Baro Awlia changes with the tide. Check the schedule on this page, then confirm the time printed on your ticket.'],
+  ['What time do Saint Martin ships leave Cox’s Bazar?', 'Departures are in the morning. The dated schedule for MV Teknaf, MV Karnafuly Express and MV Baro Awlia changes with the tide. Check the schedule on this page, then confirm the time printed on your ticket.'],
   ['Can I go to Saint Martin by ship from Teknaf?', 'No. For the 2026–27 season, tourist ships leave from the BIWTA Nuniarchhara Jetty in Cox’s Bazar, and tourists are not permitted to travel by water from Teknaf. MV Teknaf is only the name of a ship, and it also sails from Cox’s Bazar.'],
   ['Is a Saint Martin launch ticket the same as a ship ticket?', 'Many travellers say “launch” for these boats. Tourist travel from Cox’s Bazar to Saint Martin is on the passenger ships listed on this page, so use the ship’s name when you book.'],
-  ['সেন্টমার্টিনে কোন কোন জাহাজ যায়?', 'এই মৌসুমের জাহাজ: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া, এমভি টেকনাফ, কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ। কেয়ারী জাহাজ দুটির সময়সূচি এখনো প্রকাশ হয়নি, তবে অগ্রিম দিয়ে প্রি-বুকিং চলছে। জাহাজ কক্সবাজার থেকে ছাড়ে। সব জাহাজের হালনাগাদ সময়সূচি এখনো আমাদের হাতে আসেনি, তাই আপনার তারিখের সময় জেনে নিন।'],
+  ['সেন্টমার্টিনে কোন কোন জাহাজ যায়?', 'এই মৌসুমের জাহাজ: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া, এমভি টেকনাফ, কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ। কেয়ারী জাহাজ দুটির সময়সূচি এখনো প্রকাশ হয়নি, তবে অগ্রিম দিয়ে প্রি-বুকিং চলছে। জাহাজ কক্সবাজার থেকে ছাড়ে। কেয়ারী জাহাজের সময়সূচি এখনো প্রকাশ হয়নি, তাই সেগুলোর সময় আমাদের কাছে জেনে নিন।'],
 ]
 
 const CHOICES = [
@@ -95,7 +95,7 @@ function Hero() {
         <a href="#schedule" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-line bg-white px-5 text-sm font-extrabold text-ink transition duration-200 hover:border-brand-ink hover:text-brand-ink">See schedule</a>
         <Link href="/saint-martin-ship-ticket-price" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-line bg-white px-5 text-sm font-extrabold text-ink transition duration-200 hover:border-brand-ink hover:text-brand-ink">All ticket prices</Link>
       </div>
-      <RatingChip updated="6 November 2026" />
+      <RatingChip updated="7 November 2026" />
     </div>
   )
 }
@@ -107,7 +107,7 @@ export default function ShipsPage() {
   const phoneHref = `tel:${PHONE_NUMBER.replace(/[^+\d]/g, '')}`
 
   return (
-    <SeoPage eyebrow="Ship directory · জাহাজ" title={h1} intro={description} canonical={url} modifiedISO="2026-11-06" updated="6 November 2026" hero={<Hero />} backToTopDesktopOnly>
+    <SeoPage eyebrow="Ship directory · জাহাজ" title={h1} intro={description} canonical={url} modifiedISO="2026-11-07" updated="7 November 2026" hero={<Hero />} backToTopDesktopOnly>
       <section id="compare" className="mb-12 scroll-mt-24">
         <h2 className="t-title mb-1">Saint Martin ship fares compared</h2>
         <p className="t-small mb-4 text-prose">Lowest published fare per person from Cox’s Bazar, {season.label} season. Confirm the fare for your date before you pay.</p>
@@ -153,9 +153,9 @@ export default function ShipsPage() {
 
       <section id="schedule" className="mb-12 scroll-mt-24">
         <h2 className="t-title mb-1">Saint Martin ship schedule</h2>
-        <p className="t-small mb-4 text-prose">Sailing times for the coming days. We have not received updated schedules for every ship yet, and tide and weather can change times, so confirm the time on your ticket.</p>
+        <p className="t-small mb-4 text-prose">Sailing times for the coming days. The two Keari ships have not published their schedules yet, and tide and weather can change times, so confirm the time on your ticket.</p>
         <ShipScheduleBoard ships={boardShips} whatsappHref={askSchedule} initialToday={dhakaToday()} />
-        <p className="t-small mt-3 text-quiet">* {TEKNAF_TIME_NOTE} Dated times for MV Karnafuly Express and MV Baro Awlia are from Karnafuly Cruise Line’s November 2026 schedule.</p>
+        <p className="t-small mt-3 text-quiet">{SCHEDULE_TIME_NOTE} Dated times cover November 2026.</p>
         <p className="t-small mt-2 text-prose">See every date on the <Link href="/saint-martin-ship-schedule" className="font-bold text-brand-ink underline underline-offset-2">Saint Martin ship schedule</Link> page, or read <Link href="/blog/saint-martin-ship-status-2026-27" className="font-bold text-brand-ink underline underline-offset-2">which ships are sailing now</Link>.</p>
       </section>
 
@@ -195,7 +195,7 @@ export default function ShipsPage() {
       <section lang="bn" className="mb-12 rounded-3xl border border-line-soft bg-white p-5 md:p-7">
         <h2 className="t-title">সেন্টমার্টিন জাহাজের তালিকা, ভাড়া ও টিকেট বুকিং</h2>
         <p className="t-body mt-3 text-prose">এই মৌসুমের জাহাজ: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া, এমভি টেকনাফ, কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ। কেয়ারী জাহাজ দুটির সময়সূচি এখনো প্রকাশ হয়নি, তবে অগ্রিম দিয়ে প্রি-বুকিং চলছে। সিটের ভাড়া জনপ্রতি একমুখী {bangla(cheapest.oneWay)} এবং যাওয়া-আসা {bangla(taka(lowestRound))} থেকে শুরু, আর কেবিনের একমুখী ভাড়া {bangla(taka(lowestCabin))} থেকে।</p>
-        <p className="t-body mt-3 text-prose">জাহাজ ছাড়ে কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে, আর পৌঁছাতে সময় লাগে প্রায় ৬ থেকে ৭ ঘণ্টা। এমভি টেকনাফ প্রতিদিন সকাল ৭টায় ছাড়ে। সব জাহাজের হালনাগাদ সময়সূচি এখনো আমাদের হাতে আসেনি, তাই আপনার তারিখের সময় জেনে নিন।</p>
+        <p className="t-body mt-3 text-prose">জাহাজ ছাড়ে কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে, আর পৌঁছাতে সময় লাগে প্রায় ৬ থেকে ৭ ঘণ্টা। এমভি টেকনাফ, এমভি কর্ণফুলী এক্সপ্রেস ও এমভি বার আউলিয়ার সময় তারিখভেদে বদলায়। কেয়ারী জাহাজের সময়সূচি এখনো প্রকাশ হয়নি, তাই সেগুলোর সময় আমাদের কাছে জেনে নিন।</p>
         <p className="t-body mt-3 text-prose">{BOOKING_ENABLED ? <><Link href="/booking" className="font-bold text-brand-ink underline underline-offset-2">বুকিং পাতায়</Link> অনলাইনে টিকেট বুক করুন, অথবা WhatsApp-এ মেসেজ দিন বা কল করুন: </> : 'টিকেট বুকিং করতে WhatsApp-এ মেসেজ দিন বা কল করুন: '}<a href={phoneHref} className="font-bold text-brand-ink underline underline-offset-2">{PHONE_NUMBER}</a>। ধাপে ধাপে দেখুন <Link href="/blog/saint-martin-ship-ticket-booking-guide" className="font-bold text-brand-ink underline underline-offset-2">টিকেট বুকিং গাইডে</Link>, আর পুরো ভাড়া দেখুন <Link href="/saint-martin-ship-ticket-price" className="font-bold text-brand-ink underline underline-offset-2">জাহাজের টিকিটের দাম</Link> পাতায়।</p>
       </section>
 

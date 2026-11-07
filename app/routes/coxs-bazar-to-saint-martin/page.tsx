@@ -4,14 +4,13 @@ import { FaqAccordion } from '@/components/faq-accordion'
 import { BanglaBox, CtaBand, FactBox, GuideHero, IconCards, KitSection, LinkGrid, StepRows, inlineLink, pageMeta, pageUrl, primaryButton, secondaryButton } from '@/components/page-kit'
 import { Schema, SeoPage, breadcrumbSchema, faqSchema, siteSchema, websiteSchema } from '@/components/seo-page'
 import { BEST_FOR } from '@/components/ship-list-card'
-import { DATED_SCHEDULE_PERIOD, getUsualTimes } from '@/content/ship-schedules'
+import { DATED_SCHEDULE_PERIOD } from '@/content/ship-schedules'
 import { season, ships } from '@/lib/ships'
 
 const path = '/routes/coxs-bazar-to-saint-martin'
 const amount = (fare?: string) => Number((fare ?? '').replace(/[^0-9]/g, '')) || 0
 const byFare = [...ships].sort((a, b) => amount(a.oneWay) - amount(b.oneWay))
 const cheapest = byFare[0]
-const teknaf = getUsualTimes('mv-teknaf')
 
 const pageTitle = 'Cox’s Bazar to Saint Martin Ship: Fare, Jetty & Time'
 const h1 = 'Cox’s Bazar to Saint Martin Ship: Route, Fare & Jetty'
@@ -27,7 +26,7 @@ export const metadata = pageMeta({
 const faqs: [string, string][] = [
   ['How much is a ship ticket from Cox’s Bazar to Saint Martin?', `Published fares start at ${cheapest.oneWay} one way and ${cheapest.roundTrip} round trip per person on ${cheapest.name}. The fare depends on the ship and seat class, so confirm yours before you pay.`],
   ['Where is the Saint Martin ship jetty in Cox’s Bazar?', 'Tourist ships leave from the BIWTA Nuniarchhara Jetty in Cox’s Bazar. Follow the boarding point printed on your ticket.'],
-  ['What time does the ship leave Cox’s Bazar?', `Ships leave in the morning. MV Teknaf leaves at ${teknaf?.departs} every day, and the dated times for MV Karnafuly Express and MV Baro Awlia change with the tide. See the Saint Martin ship schedule for your date.`],
+  ['What time does the ship leave Cox’s Bazar?', 'Ships leave in the morning. The dated times for MV Teknaf, MV Karnafuly Express and MV Baro Awlia change with the tide. See the Saint Martin ship schedule for your date.'],
   ['How many hours does the ship journey take?', 'Allow about 6 to 7 hours each way. The actual time depends on the ship, weather and sea conditions.'],
   ['Is a round-trip ticket available?', 'Yes. Round-trip fares are published for every ship. Confirm your return date and sailing when you book.'],
   ['Is Saint Martin open to tourists in 2026–27?', `Yes. The season runs from ${season.startDate} to ${season.endDate}, and tourist ships began sailing on 5 November 2026.`],
@@ -50,14 +49,14 @@ function Hero() {
         { label: 'Reach the jetty', value: '1 hour', note: 'before departure' },
       ]}
       actions={<><a href="#fares" className={primaryButton}>See fares</a><Link href="/saint-martin-ship-schedule" className={secondaryButton}>Sailing times</Link></>}
-      updated="6 November 2026"
+      updated="7 November 2026"
     />
   )
 }
 
 export default function RoutePage() {
   return (
-    <SeoPage eyebrow="Route guide · রুট" title={h1} intro={description} canonical={pageUrl(path)} modifiedISO="2026-11-06" updated="6 November 2026" hero={<Hero />} backToTopDesktopOnly>
+    <SeoPage eyebrow="Route guide · রুট" title={h1} intro={description} canonical={pageUrl(path)} modifiedISO="2026-11-07" updated="7 November 2026" hero={<Hero />} backToTopDesktopOnly>
       <KitSection id="steps" title="How to reach Saint Martin from Cox’s Bazar">
         <StepRows steps={[
           { heading: 'Reach Cox’s Bazar', text: <>Arrive by bus, train or air, ideally the day before an early sailing. See the <Link href="/blog/dhaka-to-saint-martin-travel-guide" className={inlineLink}>Dhaka to Saint Martin guide</Link>.</> },
@@ -105,7 +104,7 @@ export default function RoutePage() {
       </KitSection>
 
       <KitSection id="times" title="Cox’s Bazar to Saint Martin ship time">
-        <p className="t-body max-w-3xl text-prose">Ships leave in the morning. MV Teknaf leaves at {teknaf?.departs} every day. MV Karnafuly Express and MV Baro Awlia change with the tide, and {DATED_SCHEDULE_PERIOD} has times for every date. Updated schedules for <Link href="/saint-martin-ship/keari-sindbad" className={inlineLink}>Keari Sindbad</Link> and <Link href="/saint-martin-ship/keari-cruise-dine" className={inlineLink}>Keari Cruise &amp; Dine</Link> have not been received yet, so ask us for your date.</p>
+        <p className="t-body max-w-3xl text-prose">Ships leave in the morning. MV Teknaf, MV Karnafuly Express and MV Baro Awlia change with the tide, and {DATED_SCHEDULE_PERIOD} has times for every date. Schedules for <Link href="/saint-martin-ship/keari-sindbad" className={inlineLink}>Keari Sindbad</Link> and <Link href="/saint-martin-ship/keari-cruise-dine" className={inlineLink}>Keari Cruise &amp; Dine</Link> have not been published yet, so ask us for your date.</p>
         <Link href="/saint-martin-ship-schedule" className={`${secondaryButton} mt-4`}>See the full ship schedule</Link>
       </KitSection>
 

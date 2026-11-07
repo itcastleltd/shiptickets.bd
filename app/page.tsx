@@ -10,7 +10,7 @@ import { RatingChip, Schema, SeoPage, faqSchema, productSchema, siteSchema, webs
 import { ShipListCard } from '@/components/ship-list-card'
 import { ShipScheduleBoard } from '@/components/ship-schedule-board'
 import { blogPosts } from '@/content/blog'
-import { TEKNAF_TIME_NOTE, dhakaToday, getShipSchedule, getUsualTimes } from '@/content/ship-schedules'
+import { SCHEDULE_TIME_NOTE, dhakaToday, getShipSchedule, getUsualTimes } from '@/content/ship-schedules'
 import { BOOKING_ENABLED } from '@/lib/bookings/validate'
 import { newestFirst, photosFirst } from '@/lib/blog-helpers'
 import { COURIER_NOTE } from '@/lib/contact'
@@ -37,7 +37,6 @@ const cabinFrom = (ship: Ship) => Math.min(...ship.cabins.map((cabin) => amount(
 const cabinShips = withCabins.map((ship) => ship.name).join(', ').replace(/, ([^,]*)$/, ' and $1')
 const shipFare = (slug: string) => ships.find((ship) => ship.slug === slug)?.oneWay ?? ''
 const phoneHref = `tel:${PHONE_NUMBER.replace(/[^+\d]/g, '')}`
-const teknaf = getUsualTimes('mv-teknaf')
 
 const h1 = 'Saint Martin Ship Ticket Online Booking'
 const description = `Book Saint Martin ship tickets from Cox’s Bazar: compare ships, fares from ${cheapest.oneWay} one way, schedules and cabins. Travel Pass included.`
@@ -57,14 +56,14 @@ const faqs: [string, string][] = [
     : `Send your travel date, passenger count and preferred seat or cabin to ShipTickets.bd on WhatsApp, or call ${PHONE_NUMBER}. We confirm the fare and availability, you pay by bKash or bank transfer, and we confirm on WhatsApp after your payment is checked. Collect your printed ticket from our Kawran Bazar office, or we can send it by courier.`],
   ['Do I need a printed ticket?', `Yes. Bring your printed ticket to the jetty. After we confirm your booking on WhatsApp, collect it from our Kawran Bazar office in Dhaka, or we can send it to your address by courier. ${COURIER_NOTE}`],
   ['Do children need to pay?', 'Children under 5 travel free. Count only passengers aged 5 and over when you book.'],
-  ...(BOOKING_ENABLED ? [['How much do I pay when I book online?', `You pay a ${site.advancePercentage}% advance to book, and the rest when your ticket is issued, collected or delivered. You can also pay the full fare at once. If your seat or cabin is not available, you can choose another date or ship, or get your advance back in full.`] as [string, string]] : []),
+  ...(BOOKING_ENABLED ? [['How much do I pay when I book online?', `You pay a ${site.advancePercentage}% advance to book, and the rest when your ticket is issued, collected or delivered. You can also pay the full fare at once. If your seat or cabin is not available, you can choose another date or ship, or get your payment back in full.`] as [string, string]] : []),
   ['How much is a Saint Martin ship ticket?', `Published seat fares start at ${cheapest.oneWay} one way and ${taka(lowestRound)} round trip per person, and reach ${taka(highestSeat)} one way for the highest lounge. Private cabins start at ${taka(lowestCabin)} one way. Fares vary by ship, seat class and date, so confirm yours before you pay.`],
   ['Can I book a ticket by WhatsApp?', 'Yes. Send your travel date, passenger count and preferred ship or class. Our support team will confirm current availability and the fare before you pay.'],
   ['Do I need a Travel Pass?', 'Yes. Every ship ticket booked through ShipTickets.bd includes the QR-coded Travel Pass, so you do not need to apply for it separately. Government rules can change, so read the latest guidance before your journey.'],
   ['Is food included in the ship ticket?', 'Not necessarily. Whether food comes with your ticket depends on the ticket and the operator’s terms, so confirm before paying.'],
-  ['What is the MV Teknaf ship ticket price?', `MV Teknaf has the lowest published fare this season: ${cheapest.oneWay} one way and ${cheapest.roundTrip} round trip per person on Main Deck. It leaves Cox’s Bazar at ${teknaf?.departs} every day.`],
+  ['What is the MV Teknaf ship ticket price?', `MV Teknaf has the lowest published fare this season: ${cheapest.oneWay} one way and ${cheapest.roundTrip} round trip per person on Main Deck. Its departure time changes by date, so check the Saint Martin ship schedule for your date.`],
   ['Can I buy a Teknaf to Saint Martin ship ticket?', 'No. For the 2026–27 season, tourist ships leave from the BIWTA Nuniarchhara Jetty in Cox’s Bazar, and tourists are not permitted to travel by water from Teknaf. MV Teknaf is only the name of a ship, and it also sails from Cox’s Bazar.'],
-  ['What time do Saint Martin ships leave?', `Ships leave Cox’s Bazar in the morning. MV Teknaf leaves at ${teknaf?.departs} every day, and the dated times for MV Karnafuly Express and MV Baro Awlia change with the tide. See the Saint Martin ship schedule, then follow the time on your ticket.`],
+  ['What time do Saint Martin ships leave?', 'Ships leave Cox’s Bazar in the morning. The dated times for MV Teknaf, MV Karnafuly Express and MV Baro Awlia change with the tide. See the Saint Martin ship schedule, then follow the time on your ticket.'],
   ['How do I go to Saint Martin from Dhaka?', 'First travel from Dhaka to Cox’s Bazar, then board your ship at the BIWTA Nuniarchhara Jetty. The crossing takes about 6 to 7 hours, so plan to reach Cox’s Bazar before your sailing day, especially for an early departure.'],
   ['Is ShipTickets.bd an authorized seller?', 'Yes. ShipTickets.bd is an authorized platform for Saint Martin ship tickets and a corporate partner of all five ships listed on this site.'],
   ['কক্সবাজার থেকে সেন্টমার্টিন কোন জাহাজ যায়?', 'এই মৌসুমের জাহাজ: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া, এমভি টেকনাফ, কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ। কেয়ারী জাহাজ দুটির সময়সূচি এখনো প্রকাশ হয়নি, তবে অগ্রিম দিয়ে প্রি-বুকিং চলছে। জাহাজ কক্সবাজারের নুনিয়ারছড়া জেটি থেকে ছাড়ে।'],
@@ -127,7 +126,7 @@ function Hero() {
             <li key={item} className="flex items-center gap-1.5"><Check size={16} aria-hidden="true" className="shrink-0 text-brand" /> {item}</li>
           ))}
         </ul>
-        <RatingChip updated="6 November 2026" />
+        <RatingChip updated="7 November 2026" />
       </div>
     </div>
   )
@@ -139,7 +138,7 @@ export default function Page() {
   const askTicket = `${whatsapp}${encodeURIComponent('Hello ShipTickets.bd, I want help finding the right Saint Martin ship ticket.')}`
 
   return (
-    <SeoPage eyebrow="Ship tickets · জাহাজের টিকেট" title={h1} intro={description} canonical={url} modifiedISO="2026-11-06" updated="6 November 2026" hero={<Hero />} backToTopDesktopOnly>
+    <SeoPage eyebrow="Ship tickets · জাহাজের টিকেট" title={h1} intro={description} canonical={url} modifiedISO="2026-11-07" updated="7 November 2026" hero={<Hero />} backToTopDesktopOnly>
       <section id="price" className="mb-12 scroll-mt-24 md:mb-14">
         <div className="mb-5">
           <h2 className="t-title">Saint Martin ship ticket price 2026–27</h2>
@@ -225,7 +224,7 @@ export default function Page() {
 
       <Section id="schedule" title="Saint Martin ship times this week" intro="Pick a date to compare the ships. Tide and weather can change times, so follow the time on your ticket." size={[721, 514, 498]}>
         <ShipScheduleBoard ships={boardShips} whatsappHref={askSchedule} initialToday={dhakaToday()} />
-        <p className="t-small mt-3 text-quiet">* {TEKNAF_TIME_NOTE}</p>
+        <p className="t-small mt-3 text-quiet">{SCHEDULE_TIME_NOTE}</p>
         <p className="t-small mt-2 text-prose">See every date and return time on the <Link href="/saint-martin-ship-schedule" className={link}>Saint Martin ship schedule</Link>.</p>
       </Section>
 
@@ -354,7 +353,7 @@ export default function Page() {
       <Section id="bangla" lang="bn" title="সেন্টমার্টিন জাহাজের টিকেট: ভাড়া, সময় ও বুকিং" size={[738, 411, 358]}>
         <div className="rounded-3xl border border-line-soft bg-white p-5 shadow-card md:p-7">
           <p className="t-body text-prose">এই মৌসুমের জাহাজ: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া, এমভি টেকনাফ, কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ। কেয়ারী জাহাজ দুটির সময়সূচি এখনো প্রকাশ হয়নি, তবে অগ্রিম দিয়ে প্রি-বুকিং চলছে। অনেকে একে লঞ্চের টিকেটও বলেন। জাহাজের টিকিটের দাম জনপ্রতি একমুখী {bangla(cheapest.oneWay)} এবং যাওয়া-আসা {bangla(taka(lowestRound))} থেকে শুরু, আর কেবিনের একমুখী ভাড়া {bangla(taka(lowestCabin))} থেকে।</p>
-          <p className="t-body mt-3 text-prose">জাহাজ ছাড়ে কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে। এমভি টেকনাফ প্রতিদিন সকাল ৭টায় ছাড়ে, আর অন্য জাহাজের সময় তারিখভেদে বদলাতে পারে। দেখে নিন <Link href="/saint-martin-ship-schedule" className={link}>জাহাজের সময়সূচি</Link>।</p>
+          <p className="t-body mt-3 text-prose">জাহাজ ছাড়ে কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে। এমভি টেকনাফ, এমভি কর্ণফুলী এক্সপ্রেস ও এমভি বার আউলিয়ার সময় তারিখভেদে বদলায়। দেখে নিন <Link href="/saint-martin-ship-schedule" className={link}>জাহাজের সময়সূচি</Link>।</p>
           <p className="t-body mt-3 text-prose">{BOOKING_ENABLED ? <><Link href="/booking" className={link}>বুকিং পাতায়</Link> অনলাইনে টিকেট বুক করুন, অথবা WhatsApp-এ মেসেজ দিন বা কল করুন: </> : 'টিকেট বুকিং করতে যাত্রার তারিখ ও যাত্রীর সংখ্যা জানিয়ে WhatsApp-এ মেসেজ দিন, অথবা কল করুন: '}<a href={phoneHref} className={link}>{PHONE_NUMBER}</a>। ট্রাভেল পাস টিকেটের সঙ্গেই থাকে। বিস্তারিত দেখুন <Link href="/blog/saint-martin-ship-ticket-booking-guide" className={link}>টিকেট বুকিং গাইডে</Link>।</p>
         </div>
       </Section>

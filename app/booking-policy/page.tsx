@@ -21,7 +21,7 @@ const faqs: [string, string][] = [
   ['How can I book a Saint Martin ship ticket?', 'Book online on our booking page, or contact ShipTickets.bd by phone or WhatsApp at +880 1718-116799. Online, you choose your ship, dates and seat or cabin, add your details, pay the advance shown at checkout and enter your transaction ID.'],
   ['Is my booking confirmed after I pay the advance online?', 'Not yet. You receive a booking reference, then send your payment screenshot, NID number and date of birth on WhatsApp. Our team checks your payment and confirms the ticket with the operator. Your booking is final when your ticket is issued.'],
   ['When do I pay the rest of the fare?', 'You pay the advance when you book online, and the balance when your ticket is issued, collected or delivered.'],
-  ['What if my seat is not available after I pay the advance?', 'Our team will contact you on WhatsApp. You can choose another date or ship, or get your advance back in full.'],
+  ['What if my seat is not available after I pay the advance?', 'Our team will contact you on WhatsApp. You can choose another date or ship, or get your payment back in full.'],
   ['Do I need a printed ticket?', `Yes. Bring your printed ticket to the jetty. After we confirm your booking on WhatsApp, collect the ticket from our Kawran Bazar office in Dhaka, or we can send it to your address by courier. ${COURIER_NOTE}`],
   ['Can I pay the full fare online?', 'Yes. On the payment step, choose the advance or the full fare. If your seat or cabin is not available, you can choose another date or ship, or get your payment back in full.'],
   ['Do children need to pay?', 'Children under 5 travel free. Count only passengers aged 5 and over when you book.'],
@@ -65,14 +65,14 @@ function Hero() {
       h1={h1}
       lede={<><strong className="font-extrabold text-ink">Confirm your fare and ticket conditions before you pay.</strong> Availability, fares and cancellation terms vary by operator, travel date and government rules.</>}
       bangla="টাকা দেওয়ার আগে ভাড়া ও টিকেটের শর্ত জেনে নিন।"
-      updated="6 November 2026"
+      updated="7 November 2026"
     />
   )
 }
 
 export default function BookingPolicyPage() {
   return (
-    <SeoPage eyebrow="Policy · নীতিমালা" title={h1} intro={description} canonical={pageUrl(path)} modifiedISO="2026-11-06" updated="6 November 2026" hero={<Hero />} backToTopDesktopOnly>
+    <SeoPage eyebrow="Policy · নীতিমালা" title={h1} intro={description} canonical={pageUrl(path)} modifiedISO="2026-11-07" updated="7 November 2026" hero={<Hero />} backToTopDesktopOnly>
       <KitSection id="summary" title="The short version">
         <IconCards items={[
           { icon: FileText, heading: 'Check your details', text: 'Your name, date, ship and seat should be right before and after your ticket is issued.' },
@@ -144,8 +144,8 @@ export default function BookingPolicyPage() {
 
       <BanglaBox id="bangla" title="বুকিং নীতিমালা, সংক্ষেপে">
         <p>টিকেট বুকিং, যাত্রীর তথ্য, পেমেন্ট, ট্রাভেল পাস, টিকেট বাতিল ও তারিখ বদলের নিয়ম এই পাতায় আছে। টাকা দেওয়ার আগে ভাড়া ও টিকেটের শর্ত জেনে নিন, আর পেমেন্টের রসিদ রেখে দিন।</p>
-        <p>অনলাইনে বুকিং করলে অগ্রিম পেমেন্ট করে ট্রানজেকশন আইডি দিন, তারপর WhatsApp-এ স্ক্রিনশট, এনআইডি নম্বর ও জন্মতারিখ পাঠান। আমাদের টিম পেমেন্ট যাচাই করার পর টিকেট দেয়, আর টিকেট হাতে পেলে তবেই বুকিং চূড়ান্ত হয়। বাকি টাকা দিতে হয় টিকেট ইস্যু, সংগ্রহ বা ডেলিভারির সময়। সিট না থাকলে আপনি অন্য তারিখ বা জাহাজ বেছে নিতে পারবেন, অথবা অগ্রিমের পুরো টাকা ফেরত পাবেন।</p>
-        <p>জাহাজে উঠতে প্রিন্ট করা টিকেট লাগবে। WhatsApp-এ নিশ্চিত হওয়ার পর টিকেট আমাদের কাওরান বাজার অফিস থেকে নিন, অথবা কুরিয়ারে আপনার ঠিকানায় পাঠানো যাবে। ৫ বছরের কম বয়সী শিশুদের ভাড়া লাগে না।</p>
+        <p>অনলাইনে বুকিং করলে অগ্রিম পেমেন্ট করে ট্রানজেকশন আইডি দিন, তারপর WhatsApp-এ স্ক্রিনশট, এনআইডি নম্বর ও জন্মতারিখ পাঠান। আমাদের টিম পেমেন্ট যাচাই করার পর টিকেট দেয়, আর টিকেট হাতে পেলে তবেই বুকিং চূড়ান্ত হয়। বাকি টাকা দিতে হয় টিকেট ইস্যু, সংগ্রহ বা ডেলিভারির সময়। সিট না থাকলে আপনি অন্য তারিখ বা জাহাজ বেছে নিতে পারবেন, অথবা পেমেন্টের পুরো টাকা ফেরত পাবেন।</p>
+        <p>জাহাজে উঠতে প্রিন্ট করা টিকেট লাগবে। WhatsApp-এ নিশ্চিত হওয়ার পর টিকেট আমাদের কাওরান বাজার অফিস থেকে নিন, অথবা কুরিয়ারে আপনার ঠিকানায় পাঠানো যাবে। কুরিয়ার খরচ ঢাকায় ৳৮০ (পরদিন), ঢাকার বাইরে ৳১৩০ (৩ দিন)। কুরিয়ার খরচ অনলাইন পেমেন্টের সঙ্গে দিতে হবে। ঢাকার বাইরে ডেলিভারিতে পুরো ভাড়া অনলাইনে দিতে হবে, তবে প্রি-বুকিংয়ে নয়। ৫ বছরের কম বয়সী শিশুদের ভাড়া লাগে না।</p>
         <p>টাকা ফেরত পাওয়া যাবে কি না, তা জাহাজ কর্তৃপক্ষের নিয়মের ওপর নির্ভর করে। কাউকে কখনো আপনার পিন, পাসওয়ার্ড বা ওটিপি দেবেন না।</p>
       </BanglaBox>
 

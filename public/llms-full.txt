@@ -75,8 +75,8 @@ Fares are published per-person reference prices in Bangladeshi taka, not live qu
 - **Page:** https://www.shiptickets.bd/saint-martin-ship/mv-teknaf
 - **Operator:** Parapaar Cruise Line PCL
 - **Capacity:** 666 seats
-- **Sailing time:** Leaves Cox’s Bazar at 7:00 AM and Saint Martin at 4:00 PM every day. The updated dated schedule has not been received yet.
-- **Last reviewed:** 6 November 2026
+- **Sailing time:** Changes with the tide. See the MV Teknaf November 2026 table in the full file or on the schedule page.
+- **Last reviewed:** 7 November 2026
 
 | Seat | One way | Round trip | Seats on board |
 |---|---|---|---|
@@ -127,8 +127,6 @@ No private cabins are published for this ship.
 
 ## Saint Martin ship schedule
 
-**MV Teknaf:** leaves Cox’s Bazar at 7:00 AM and Saint Martin at 4:00 PM every day. Its updated dated schedule has not been received yet.
-
 **Keari Sindbad and Keari Cruise & Dine:** schedules not published yet. Pre-booking is open with an advance, and the date and time are confirmed on WhatsApp once published.
 
 **MV Karnafuly Express and MV Baro Awlia, November 2026:** Karnafuly Cruise Line’s published times. Departure times are subject to tide.
@@ -159,6 +157,37 @@ No private cabins are published for this ship.
 | 26 November 2026 | 9:00 AM | 4:00 PM |
 | 27 November 2026 | 9:00 AM | 4:00 PM |
 | 28 November 2026 | 10:00 AM | 5:00 PM |
+| 29 November 2026 | 10:00 AM | 5:00 PM |
+| 30 November 2026 | 5:00 AM | 3:00 PM |
+
+**MV Teknaf, November 2026:** MV Teknaf’s published times. Departure times are subject to tide.
+
+| Date | Leaves Cox’s Bazar | Leaves Saint Martin |
+|---|---|---|
+| 5 November 2026 | 7:00 AM | 3:00 PM |
+| 6 November 2026 | 7:00 AM | 3:00 PM |
+| 7 November 2026 | 7:00 AM | 3:00 PM |
+| 8 November 2026 | 8:00 AM | 4:00 PM |
+| 9 November 2026 | 8:00 AM | 4:00 PM |
+| 10 November 2026 | 8:00 AM | 4:00 PM |
+| 11 November 2026 | 9:00 AM | 5:00 PM |
+| 12 November 2026 | 9:00 AM | 5:00 PM |
+| 13 November 2026 | 10:00 AM | 5:00 PM |
+| 14 November 2026 | 10:00 AM | 5:00 PM |
+| 15 November 2026 | 10:00 AM | 5:00 PM |
+| 16 November 2026 | 4:00 AM | 5:00 PM |
+| 17 November 2026 | 4:00 AM | 5:00 PM |
+| 18 November 2026 | 4:00 AM | 5:00 PM |
+| 19 November 2026 | 4:00 AM | 3:00 PM |
+| 20 November 2026 | 6:00 AM | 3:00 PM |
+| 21 November 2026 | 7:00 AM | 4:00 PM |
+| 22 November 2026 | 7:00 AM | 4:00 PM |
+| 23 November 2026 | 7:00 AM | 4:00 PM |
+| 24 November 2026 | 7:00 AM | 4:00 PM |
+| 25 November 2026 | 8:00 AM | 4:00 PM |
+| 26 November 2026 | 9:00 AM | 4:00 PM |
+| 27 November 2026 | 9:00 AM | 4:00 PM |
+| 28 November 2026 | 10:00 AM | 4:00 PM |
 | 29 November 2026 | 10:00 AM | 5:00 PM |
 | 30 November 2026 | 5:00 AM | 3:00 PM |
 

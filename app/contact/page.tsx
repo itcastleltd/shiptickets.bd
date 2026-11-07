@@ -32,7 +32,7 @@ function Hero() {
       h1={pageTitle}
       lede={<><strong className="font-extrabold text-ink">Call or WhatsApp ShipTickets.bd on <span className="whitespace-nowrap">{PHONE_NUMBER}</span>.</strong> We confirm fares, availability and schedules before you pay.</>}
       bangla="টিকেট, ভাড়া বা সময়সূচি জানতে ফোন বা WhatsApp করুন।"
-      updated="6 November 2026"
+      updated="7 November 2026"
     >
       <div className="mt-5 grid max-w-xl gap-2 sm:grid-cols-2">
         <ContactLink href={phoneHref} kind="phone" eventLabel="contact_page_call" className="flex min-h-14 items-center justify-center gap-2 rounded-xl bg-[#0d1b2a] px-5 text-base font-extrabold text-white transition-colors hover:bg-[#1d3045]"><Phone size={18} aria-hidden="true" /> Call now</ContactLink>
@@ -46,7 +46,7 @@ const rowIcon = 'grid size-11 shrink-0 place-items-center rounded-xl bg-[#e4f2ee
 
 export default function ContactPage() {
   return (
-    <SeoPage eyebrow="Contact · যোগাযোগ" title={pageTitle} intro={description} canonical={pageUrl(path)} modifiedISO="2026-11-06" updated="6 November 2026" hero={<Hero />} backToTopDesktopOnly>
+    <SeoPage eyebrow="Contact · যোগাযোগ" title={pageTitle} intro={description} canonical={pageUrl(path)} modifiedISO="2026-11-07" updated="7 November 2026" hero={<Hero />} backToTopDesktopOnly>
       <KitSection id="ways" title="Ways to reach our ticket team">
         <div className="grid gap-3 sm:gap-4 md:grid-cols-2">
           <div className="flex gap-3 rounded-2xl border border-line-soft bg-white p-4 shadow-card sm:p-5">
@@ -94,7 +94,7 @@ export default function ContactPage() {
       </KitSection>
 
       <BanglaBox id="bangla" title="সেন্টমার্টিন জাহাজের টিকেটের জন্য যোগাযোগ">
-        <p>টিকেট, ভাড়া বা সময়সূচি জানতে ফোন বা WhatsApp-এ যোগাযোগ করুন: <a href={phoneHref} className="font-bold text-brand-ink underline underline-offset-2">{PHONE_NUMBER}</a>। সাপোর্ট চলে রবি থেকে বৃহস্পতিবার, সকাল ৯টা থেকে সন্ধ্যা ৬টা। অফিস: ৩৩, হাফিজ ম্যানসন (১ম তলা), কারওয়ান বাজার, ঢাকা ১২১৫।</p>
+        <p>টিকেট, ভাড়া বা সময়সূচি জানতে ফোন বা WhatsApp-এ যোগাযোগ করুন: <a href={phoneHref} className="font-bold text-brand-ink underline underline-offset-2">{PHONE_NUMBER}</a>। সাপোর্ট চলে প্রতিদিন সকাল ৯টা থেকে রাত ৯টা। অফিস: ৩৩, হাফিজ ম্যানসন (১ম তলা), কারওয়ান বাজার, ঢাকা ১২১৫।</p>
         <p>আপনার যাত্রার তারিখ, যাত্রীর সংখ্যা ও পছন্দের জাহাজ জানালে আমরা দ্রুত সাহায্য করতে পারব।</p>
       </BanglaBox>
 
