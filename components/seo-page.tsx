@@ -203,21 +203,6 @@ export const breadcrumbSchema = (items: { name: string; url?: string }[]) => ({
   })),
 })
 
-export const vehicleSchema = (ship: Ship) => {
-  const publishedCapacity = Number(ship.capacity?.match(/\d[\d,]*/)?.[0].replace(/,/g, ''))
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'Vehicle',
-    '@id': `https://www.shiptickets.bd/saint-martin-ship/${ship.slug}#vehicle`,
-    name: ship.name,
-    alternateName: ship.alternateNames ? [ship.nameBn, ...ship.alternateNames] : ship.nameBn,
-    description: `${ship.name} is a passenger vessel serving ${ship.route}. ${ship.detail}`,
-    vehicleConfiguration: 'Passenger ship',
-    brand: { '@type': 'Brand', name: ship.operator },
-    ...(publishedCapacity > 0 ? { vehicleSeatingCapacity: { '@type': 'QuantitativeValue', value: publishedCapacity } } : {}),
-  }
-}
-
 /**
  * One Product node per ship, carrying the fare range and any verified reviews.
  *
@@ -234,13 +219,21 @@ export const productSchema = (ship: Ship) => {
   const average = reviews.length
     ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
     : null
+  const publishedCapacity = Number(ship.capacity?.match(/\d[\d,]*/)?.[0].replace(/,/g, ''))
 
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
     '@id': productId,
     name: `${ship.name} Saint Martin ship ticket`,
+    // Google treats a Vehicle as a Product that needs its own price, so the ship's details live here.
+    alternateName: [ship.name, ship.nameBn, ...(ship.alternateNames ?? [])],
     description: ship.detail,
+    additionalProperty: [
+      { '@type': 'PropertyValue', name: 'Operator', value: ship.operator },
+      { '@type': 'PropertyValue', name: 'Route', value: ship.route },
+      ...(publishedCapacity > 0 ? [{ '@type': 'PropertyValue', name: 'Passenger capacity', value: publishedCapacity }] : []),
+    ],
     image: ship.image ? `https://www.shiptickets.bd${ship.image}` : undefined,
     brand: { '@type': 'Brand', name: ship.name },
     offers: {

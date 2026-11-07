@@ -7,7 +7,7 @@ import { isApproved, isPreBooking, site, PHONE_NUMBER, WHATSAPP_NUMBER, getRevie
 import { dhakaToday, getShipSchedule, getUsualTimes } from '@/content/ship-schedules'
 import { ContactLink } from '@/components/contact-link'
 import { CustomerReviews, FaqAccordion, ProvenanceNote } from '@/components/content-blocks'
-import { Eyebrow, RatingChip, Schema, SeoPage, breadcrumbSchema, faqSchema, productSchema, siteSchema, vehicleSchema, websiteSchema } from '@/components/seo-page'
+import { Eyebrow, RatingChip, Schema, SeoPage, breadcrumbSchema, faqSchema, productSchema, siteSchema, websiteSchema } from '@/components/seo-page'
 import { BookLink, CategoryTabs, NextSailings, QuickBook, ShipMobileBar, ShipSectionNav } from '@/components/ship-booking-client'
 import { ShipViewTracker } from '@/components/ship-view-tracker'
 
@@ -770,7 +770,6 @@ export function ShipBookingPage({
           '@graph': [
             siteSchema,
             websiteSchema,
-            vehicleSchema(ship),
             productSchema(ship),
             tripSchema,
             breadcrumbSchema(crumbs.map((crumb) => ({ name: crumb.name, url: crumb.href }))),
