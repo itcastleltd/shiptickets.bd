@@ -37,7 +37,7 @@ export default function PrivacyPage() {
           <ul className="list-disc space-y-1 pl-5">
             <li>Name and phone or WhatsApp number when you contact us</li>
             <li>Travel date, passenger count and preferred ship or class when you share booking details</li>
-            <li>When you book online: your name, mobile number, optional email, co-passenger names and payment Transaction ID</li>
+            <li>When you book online: your name, mobile number, email, co-passenger names, how you will get your ticket, your delivery address if you choose courier, and payment Transaction ID</li>
             <li>When you complete a booking on WhatsApp: your payment screenshot, NID number and date of birth, which are needed for your ticket and Travel Pass</li>
             <li>Basic website usage data such as pages visited and referral source</li>
           </ul>

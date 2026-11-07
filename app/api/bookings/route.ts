@@ -1,5 +1,5 @@
 import { after, NextResponse } from 'next/server'
-import { BOOKING_ENABLED, bookingSchema, type BookingResult } from '@/lib/bookings/validate'
+import { BOOKING_ENABLED, bookingSchema, mustPayInFull, type BookingResult } from '@/lib/bookings/validate'
 import { isOverBookingLimit } from '@/lib/bookings/rate-limit'
 import { processSheetQueue } from '@/lib/sheets/sync'
 import { getShipBySlug, isApproved } from '@/lib/ships'
@@ -16,10 +16,25 @@ const KNOWN_ERRORS: Record<string, [number, string]> = {
   FARE_MISSING: [409, 'We could not find a current fare for this option. Please contact us on WhatsApp.'],
   ADVANCE_NOT_SET: [503, 'Online booking is unavailable right now. Please contact us on WhatsApp.'],
   PAYMENT_METHOD_NOT_FOUND: [400, 'Choose a payment method.'],
+  COURIER_NOT_SET: [503, 'Home delivery is unavailable right now. Please choose office pickup, or contact us on WhatsApp.'],
+}
+
+/** Browsers send Origin on these requests. Another website must not be able to submit a booking from a visitor's browser. */
+function isFromThisSite(request: Request): boolean {
+  const origin = request.headers.get('origin')
+  if (!origin) return true
+  try {
+    return new URL(origin).host === request.headers.get('host')
+  } catch {
+    return false
+  }
 }
 
 export async function POST(request: Request) {
   if (!BOOKING_ENABLED) return fail(503, 'BOOKING_DISABLED', 'Online booking is not open yet. Please contact us on WhatsApp.')
+  if (!isFromThisSite(request)) return fail(403, 'CROSS_SITE', 'Please book on www.shiptickets.bd.')
+  // Plain-text requests skip the browser's cross-site check, so only JSON is read.
+  if (!request.headers.get('content-type')?.toLowerCase().startsWith('application/json')) return fail(415, 'INVALID_CONTENT_TYPE', 'The booking could not be read. Please try again.')
 
   let body: unknown
   try {
@@ -35,11 +50,15 @@ export async function POST(request: Request) {
     return fail(400, 'INVALID_INPUT', 'Please check the highlighted details.', fields)
   }
 
+  const input = parsed.data
+  const requestedShip = getShipBySlug(input.shipSlug)
+  if (!input.payInFull && mustPayInFull(input.ticketDelivery, requestedShip?.status === 'pre_booking')) {
+    return fail(400, 'FULL_PAYMENT_REQUIRED', 'Delivery outside Dhaka needs the full fare paid online. Pay the full fare, or choose another delivery method.')
+  }
+
   const supabase = createAdminClient()
   if (!supabase) return fail(503, 'UNAVAILABLE', 'Online booking is unavailable right now. Please contact us on WhatsApp.')
 
-  const input = parsed.data
-  const requestedShip = getShipBySlug(input.shipSlug)
   if (requestedShip && !isApproved(requestedShip)) {
     return fail(409, 'SHIP_NOT_APPROVED', `${requestedShip.name} is not yet approved to sail this season. Please choose another ship, or contact us on WhatsApp.`)
   }
@@ -63,8 +82,10 @@ export async function POST(request: Request) {
       p_co_passengers: input.coPassengers,
       p_payment_method_type: input.paymentMethodType,
       p_transaction_id: input.transactionId,
+      p_ticket_delivery: input.ticketDelivery,
+      p_delivery_address: input.ticketDelivery === 'office' ? null : input.deliveryAddress,
       // Sent only when chosen, so advance bookings work whichever of the site and database updates first.
-      ...(input.payInFull ? { p_pay_in_full: true } : {}),
+      ...(input.payInFull && requestedShip?.status !== 'pre_booking' ? { p_pay_in_full: true } : {}),
     })
 
   let { data, error } = await callBooking()

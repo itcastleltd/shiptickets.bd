@@ -3,8 +3,10 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Check, CircleAlert, MessageCircle, Phone, RotateCcw } from 'lucide-react'
+import { BookingNotice } from '@/components/booking/booking-notice'
 import { CopyButton } from '@/components/booking/copy-button'
-import { COURIER_NOTE, PHONE_NUMBER, WHATSAPP_NUMBER } from '@/lib/contact'
+import { PHONE_NUMBER, WHATSAPP_NUMBER } from '@/lib/contact'
+import { TICKET_OPTIONS } from '@/lib/bookings/validate'
 import { readBookingFailure, readBookingOutcome, type BookingFailure, type BookingOutcome } from '@/lib/bookings/outcome'
 import { trackPhoneClick, trackWhatsApp } from '@/lib/gtm-events'
 
@@ -54,15 +56,24 @@ export function BookingSuccess() {
     )
   }
 
+  const ticket = outcome.ticketDelivery ? TICKET_OPTIONS[outcome.ticketDelivery] : undefined
+  // Seats are counted per person. A cabin holds an unknown number of people, so the customer adds them.
+  const passengerLines = outcome.isCabin
+    ? ['Passenger 1', 'NID Number:', 'Date of Birth:', '', 'Other passengers in the cabin (name, NID Number, Date of Birth):']
+    : Array.from({ length: outcome.quantity }, (_, index) => [...(outcome.quantity > 1 ? [`Passenger ${index + 1}`] : []), 'NID Number:', 'Date of Birth:', '']).flat().slice(0, -1)
   const message = [
     `Hello ShipTickets.bd, my booking reference is ${outcome.reference}.`,
     `Ship: ${outcome.shipName}`,
+    `${outcome.isCabin ? 'Cabin' : 'Seat'}: ${outcome.categoryName} x ${outcome.quantity}`,
     `Journey date: ${outcome.travelDate}`,
+    ...(outcome.tripType === 'round_trip' && outcome.returnDate ? [`Return date: ${outcome.returnDate}`] : []),
+    `Delivery: ${ticket ? (ticket.charge > 0 ? `${ticket.label} (${ticket.detail})` : ticket.label) : '(office pickup, or courier with full address)'}`,
+    `Total: ${taka(outcome.total)}${ticket && ticket.charge > 0 ? ` (includes ${taka(ticket.charge)} courier)` : ''}`,
+    `Paid: ${taka(outcome.advance)}`,
+    `Due: ${taka(outcome.balance)}`,
     'I am attaching my payment screenshot.',
     '',
-    'NID Number:',
-    'Date of Birth:',
-    'Ticket (office collection, or courier with full address):',
+    ...passengerLines,
   ].join('\n')
 
   return (
@@ -85,7 +96,21 @@ export function BookingSuccess() {
       <div className="mt-5 rounded-2xl border-2 border-brand-ink p-4">
         <h2 className="t-subtitle text-ink">Next step: message us on WhatsApp</h2>
         <p lang="bn" className="mt-1 text-sm font-semibold text-brand-ink">টিকেট পেতে আমাদের WhatsApp-এ মেসেজ পাঠান</p>
-        <p className="t-small mt-2 text-prose">We have written the message for you. Attach your payment screenshot, then add your NID number and date of birth so we can issue your ticket.</p>
+        <p className="mt-3 text-sm font-bold text-ink">We need these to issue your ticket:</p>
+        <p lang="bn" className="text-sm font-semibold text-prose">টিকেট ইস্যু করতে এগুলো লাগবে:</p>
+        <ol className="mt-2 grid gap-1.5 text-sm text-ink">
+          {[
+            ['Payment screenshot', 'পেমেন্টের স্ক্রিনশট'],
+            [outcome.quantity > 1 || outcome.isCabin ? 'NID number of each passenger' : 'NID number', outcome.quantity > 1 || outcome.isCabin ? 'প্রত্যেক যাত্রীর NID নম্বর' : 'NID নম্বর'],
+            [outcome.quantity > 1 || outcome.isCabin ? 'Date of birth of each passenger' : 'Date of birth', outcome.quantity > 1 || outcome.isCabin ? 'প্রত্যেক যাত্রীর জন্মতারিখ' : 'জন্মতারিখ'],
+          ].map(([label, labelBn], index) => (
+            <li key={label} className="flex items-start gap-2.5 rounded-xl bg-[#f1f8f6] px-3 py-2">
+              <span aria-hidden="true" className="grid size-6 shrink-0 place-items-center rounded-full bg-brand-ink text-xs font-black text-white">{index + 1}</span>
+              <span className="min-w-0"><span className="block font-bold">{label}</span><span lang="bn" className="block text-[0.8125rem] text-prose">{labelBn}</span></span>
+            </li>
+          ))}
+        </ol>
+        <p className="t-small mt-3 text-prose">We have written the message for you. Fill in the blank lines and attach the screenshot before you send it.</p>
         <a href={whatsappLink(message)} target="_blank" rel="noopener noreferrer" onClick={() => trackWhatsApp('booking_confirmation', outcome.shipName)} className={`${primary} mt-3`}><MessageCircle size={18} aria-hidden="true" /> Send message on WhatsApp</a>
       </div>
 
@@ -95,19 +120,23 @@ export function BookingSuccess() {
         <Row label={outcome.isCabin ? 'Cabin' : 'Seat'}>{outcome.categoryName} × {outcome.quantity}</Row>
         <Row label="Journey">{prettyDate(outcome.travelDate)}{outcome.departs && <span className="block text-xs font-semibold text-quiet">Published time: {outcome.departs}</span>}</Row>
         {outcome.tripType === 'round_trip' && outcome.returnDate && <Row label="Return">{prettyDate(outcome.returnDate)}{outcome.returns && <span className="block text-xs font-semibold text-quiet">Published time: {outcome.returns}</span>}</Row>}
+        {ticket && <Row label="Ticket">{ticket.label}{outcome.ticketDelivery !== 'office' && <span className="block text-xs font-semibold text-quiet">{ticket.detail}</span>}</Row>}
         <Row label="Payment method">{outcome.paymentMethod}</Row>
+        {ticket && ticket.charge > 0 && <Row label="Courier">{taka(ticket.charge)}</Row>}
         <Row label="Total">{taka(outcome.total)}</Row>
-        <Row label={outcome.balance > 0 ? `${outcome.advancePercentage}% advance` : 'Full fare submitted'}>{taka(outcome.advance)}</Row>
+        <Row label={`${outcome.balance > 0 ? `${outcome.advancePercentage}% advance` : 'Full fare'}${ticket && ticket.charge > 0 ? ' + courier' : ''}${outcome.balance > 0 ? '' : ' submitted'}`}>{taka(outcome.advance)}</Row>
         {outcome.balance > 0 && <Row label="Balance due later">{taka(outcome.balance)}</Row>}
       </dl>
+
+      {outcome.preBooking && <p className="t-small mt-5 rounded-xl border border-[#f3d9bf] bg-[#fff8ee] p-3 font-semibold text-ink">This is a pre-booking. {outcome.shipName} has not published its schedule yet, so we will confirm your date and time on WhatsApp once it is published.</p>}
 
       <h2 className="t-subtitle mt-6 text-ink">What happens next</h2>
       <ol className="t-small mt-2 grid list-decimal gap-1.5 pl-5 text-prose">
         <li>You send us the WhatsApp message.</li>
         <li>Our team checks your payment and confirms the ticket with the operator.</li>
-        <li>We confirm on WhatsApp. Collect your printed ticket from our Kawran Bazar office, or we can send it by courier. {COURIER_NOTE}{outcome.balance > 0 ? ' You pay the balance when your ticket is issued, collected or delivered.' : ''}</li>
+        <li>We confirm on WhatsApp. {!ticket ? 'Then collect your printed ticket from our office, or we can send it by courier.' : outcome.ticketDelivery === 'office' ? 'Then collect your printed ticket from our Kawran Bazar office.' : 'Then we send your printed ticket by courier.'}</li>
       </ol>
-      <p className="t-small mt-3 text-prose">If your seat or cabin is not available, you can choose another date or ship, or get your payment back in full. You need your printed ticket to board.</p>
+      <div className="mt-5"><BookingNotice title="মনে রাখবেন" delivery={outcome.ticketDelivery} balance={outcome.balance} /></div>
       <p className="t-small mt-4 text-prose">Please save your booking reference. See our <Link href="/booking-policy" className={textLink}>booking policy</Link> for refunds and changes, or call <a href={phoneHref} onClick={() => trackPhoneClick('booking_confirmation')} className={textLink}>{PHONE_NUMBER}</a> if you need help.</p>
     </section>
   )

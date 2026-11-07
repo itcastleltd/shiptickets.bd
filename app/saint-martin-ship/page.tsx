@@ -9,7 +9,7 @@ import { ShipListCard } from '@/components/ship-list-card'
 import { ShipScheduleBoard } from '@/components/ship-schedule-board'
 import { TEKNAF_TIME_NOTE, dhakaToday, getShipSchedule, getUsualTimes } from '@/content/ship-schedules'
 import { BOOKING_ENABLED } from '@/lib/bookings/validate'
-import { isApproved, PHONE_NUMBER, season, ships } from '@/lib/ships'
+import { isPreBooking, PHONE_NUMBER, season, ships } from '@/lib/ships'
 
 /** Refresh hourly, so crawlers without JavaScript get sailing times from today, not the build date. */
 export const revalidate = 3600
@@ -39,13 +39,13 @@ export const metadata: Metadata = {
 }
 
 const faqs: [string, string][] = [
-  ['Which ships go to Saint Martin from Cox’s Bazar?', 'MV Karnafuly Express, MV Baro Awlia and MV Teknaf are approved for the 2026–27 season. Keari Cruise & Dine and Keari Sindbad are awaiting approval. Ships leave from Cox’s Bazar. Updated dated schedules have not been received for every ship yet, so confirm your sailing time.'],
+  ['Which ships go to Saint Martin from Cox’s Bazar?', 'MV Karnafuly Express, MV Baro Awlia, MV Teknaf, Keari Cruise & Dine and Keari Sindbad are listed for the 2026–27 season. The two Keari ships have not published their schedules yet, and pre-booking is open. Ships leave from Cox’s Bazar. Updated dated schedules have not been received for every ship yet, so confirm your sailing time.'],
   ['What is the cheapest Saint Martin ship?', `${cheapest.name} has the lowest published fare: ${cheapest.oneWay} one way and ${cheapest.roundTrip} round trip per person on Main Deck.`],
   ['Which Saint Martin ship has cabins?', `${cabinShips} publish private cabins. Keari Cruise & Dine and Keari Sindbad publish seating categories only.`],
   ['What time do Saint Martin ships leave Cox’s Bazar?', 'Departures are in the morning. MV Teknaf leaves at 7:00 AM every day, while the dated schedule for MV Karnafuly Express and MV Baro Awlia changes with the tide. Check the schedule on this page, then confirm the time printed on your ticket.'],
   ['Can I go to Saint Martin by ship from Teknaf?', 'No. For the 2026–27 season, tourist ships leave from the BIWTA Nuniarchhara Jetty in Cox’s Bazar, and tourists are not permitted to travel by water from Teknaf. MV Teknaf is only the name of a ship, and it also sails from Cox’s Bazar.'],
   ['Is a Saint Martin launch ticket the same as a ship ticket?', 'Many travellers say “launch” for these boats. Tourist travel from Cox’s Bazar to Saint Martin is on the passenger ships listed on this page, so use the ship’s name when you book.'],
-  ['সেন্টমার্টিনে কোন কোন জাহাজ যায়?', 'এই মৌসুমে অনুমোদিত জাহাজ: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া ও এমভি টেকনাফ। কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ এখনো ২০২৬–২৭ মৌসুমের অনুমোদন পায়নি। জাহাজ কক্সবাজার থেকে ছাড়ে। সব জাহাজের হালনাগাদ সময়সূচি এখনো আমাদের হাতে আসেনি, তাই আপনার তারিখের সময় জেনে নিন।'],
+  ['সেন্টমার্টিনে কোন কোন জাহাজ যায়?', 'এই মৌসুমের জাহাজ: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া, এমভি টেকনাফ, কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ। কেয়ারী জাহাজ দুটির সময়সূচি এখনো প্রকাশ হয়নি, তবে অগ্রিম দিয়ে প্রি-বুকিং চলছে। জাহাজ কক্সবাজার থেকে ছাড়ে। সব জাহাজের হালনাগাদ সময়সূচি এখনো আমাদের হাতে আসেনি, তাই আপনার তারিখের সময় জেনে নিন।'],
 ]
 
 const CHOICES = [
@@ -61,7 +61,7 @@ function shipFare(slug: string) {
 
 function Hero() {
   const stats = [
-    { label: 'Approved ships', value: String(ships.filter(isApproved).length), note: `${ships.filter((ship) => !isApproved(ship)).length} more awaiting approval` },
+    { label: 'Ships this season', value: String(ships.length), note: `${ships.filter(isPreBooking).length} open for pre-booking` },
     { label: 'One way from', value: cheapest.oneWay, note: cheapest.name },
     { label: 'Round trip from', value: taka(lowestRound), note: cheapest.name },
     { label: 'Journey time', value: '6–7 hrs', note: 'about 120 km' },
@@ -194,7 +194,7 @@ export default function ShipsPage() {
 
       <section lang="bn" className="mb-12 rounded-3xl border border-line-soft bg-white p-5 md:p-7">
         <h2 className="t-title">সেন্টমার্টিন জাহাজের তালিকা, ভাড়া ও টিকেট বুকিং</h2>
-        <p className="t-body mt-3 text-prose">এই মৌসুমে অনুমোদিত জাহাজ: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া ও এমভি টেকনাফ। কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ এখনো ২০২৬–২৭ মৌসুমের অনুমোদন পায়নি। সিটের ভাড়া জনপ্রতি একমুখী {bangla(cheapest.oneWay)} এবং যাওয়া-আসা {bangla(taka(lowestRound))} থেকে শুরু, আর কেবিনের একমুখী ভাড়া {bangla(taka(lowestCabin))} থেকে।</p>
+        <p className="t-body mt-3 text-prose">এই মৌসুমের জাহাজ: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া, এমভি টেকনাফ, কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ। কেয়ারী জাহাজ দুটির সময়সূচি এখনো প্রকাশ হয়নি, তবে অগ্রিম দিয়ে প্রি-বুকিং চলছে। সিটের ভাড়া জনপ্রতি একমুখী {bangla(cheapest.oneWay)} এবং যাওয়া-আসা {bangla(taka(lowestRound))} থেকে শুরু, আর কেবিনের একমুখী ভাড়া {bangla(taka(lowestCabin))} থেকে।</p>
         <p className="t-body mt-3 text-prose">জাহাজ ছাড়ে কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে, আর পৌঁছাতে সময় লাগে প্রায় ৬ থেকে ৭ ঘণ্টা। এমভি টেকনাফ প্রতিদিন সকাল ৭টায় ছাড়ে। সব জাহাজের হালনাগাদ সময়সূচি এখনো আমাদের হাতে আসেনি, তাই আপনার তারিখের সময় জেনে নিন।</p>
         <p className="t-body mt-3 text-prose">{BOOKING_ENABLED ? <><Link href="/booking" className="font-bold text-brand-ink underline underline-offset-2">বুকিং পাতায়</Link> অনলাইনে টিকেট বুক করুন, অথবা WhatsApp-এ মেসেজ দিন বা কল করুন: </> : 'টিকেট বুকিং করতে WhatsApp-এ মেসেজ দিন বা কল করুন: '}<a href={phoneHref} className="font-bold text-brand-ink underline underline-offset-2">{PHONE_NUMBER}</a>। ধাপে ধাপে দেখুন <Link href="/blog/saint-martin-ship-ticket-booking-guide" className="font-bold text-brand-ink underline underline-offset-2">টিকেট বুকিং গাইডে</Link>, আর পুরো ভাড়া দেখুন <Link href="/saint-martin-ship-ticket-price" className="font-bold text-brand-ink underline underline-offset-2">জাহাজের টিকিটের দাম</Link> পাতায়।</p>
       </section>

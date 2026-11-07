@@ -15,7 +15,7 @@ export type CatalogCategory = {
   roundTrip: number | null
 }
 
-export type CatalogShip = { slug: string; name: string; nameBn: string | null; categories: CatalogCategory[] }
+export type CatalogShip = { slug: string; name: string; nameBn: string | null; categories: CatalogCategory[]; preBooking?: boolean }
 
 export type CatalogPaymentMethod = {
   type: 'bkash_merchant' | 'bank_transfer'
@@ -117,7 +117,7 @@ export async function getBookingCatalog(): Promise<BookingCatalog | null> {
   try {
     const catalog = await cachedCatalog()
     // Outside the cache, so a change in a ship's approval applies straight away.
-    return { ...catalog, ships: catalog.ships.filter((ship) => getShipBySlug(ship.slug)?.status !== 'awaiting_approval') }
+    return { ...catalog, ships: catalog.ships.filter((ship) => getShipBySlug(ship.slug)?.status !== 'awaiting_approval').map((ship) => ({ ...ship, preBooking: getShipBySlug(ship.slug)?.status === 'pre_booking' })) }
   } catch {
     return null
   }

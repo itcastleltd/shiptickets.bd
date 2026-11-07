@@ -14,7 +14,7 @@ import { TEKNAF_TIME_NOTE, dhakaToday, getShipSchedule, getUsualTimes } from '@/
 import { BOOKING_ENABLED } from '@/lib/bookings/validate'
 import { newestFirst, photosFirst } from '@/lib/blog-helpers'
 import { COURIER_NOTE } from '@/lib/contact'
-import { PHONE_NUMBER, WHATSAPP_NUMBER, isApproved, season, ships, site, type Ship } from '@/lib/ships'
+import { PHONE_NUMBER, WHATSAPP_NUMBER, isPreBooking, season, ships, site, type Ship } from '@/lib/ships'
 
 /** Refresh hourly, so crawlers without JavaScript get sailing times from today, not the build date. */
 export const revalidate = 3600
@@ -67,7 +67,7 @@ const faqs: [string, string][] = [
   ['What time do Saint Martin ships leave?', `Ships leave Cox’s Bazar in the morning. MV Teknaf leaves at ${teknaf?.departs} every day, and the dated times for MV Karnafuly Express and MV Baro Awlia change with the tide. See the Saint Martin ship schedule, then follow the time on your ticket.`],
   ['How do I go to Saint Martin from Dhaka?', 'First travel from Dhaka to Cox’s Bazar, then board your ship at the BIWTA Nuniarchhara Jetty. The crossing takes about 6 to 7 hours, so plan to reach Cox’s Bazar before your sailing day, especially for an early departure.'],
   ['Is ShipTickets.bd an authorized seller?', 'Yes. ShipTickets.bd is an authorized platform for Saint Martin ship tickets and a corporate partner of all five ships listed on this site.'],
-  ['কক্সবাজার থেকে সেন্টমার্টিন কোন জাহাজ যায়?', 'এই মৌসুমে অনুমোদিত জাহাজ: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া ও এমভি টেকনাফ। কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ এখনো ২০২৬–২৭ মৌসুমের অনুমোদন পায়নি। জাহাজ কক্সবাজারের নুনিয়ারছড়া জেটি থেকে ছাড়ে।'],
+  ['কক্সবাজার থেকে সেন্টমার্টিন কোন জাহাজ যায়?', 'এই মৌসুমের জাহাজ: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া, এমভি টেকনাফ, কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ। কেয়ারী জাহাজ দুটির সময়সূচি এখনো প্রকাশ হয়নি, তবে অগ্রিম দিয়ে প্রি-বুকিং চলছে। জাহাজ কক্সবাজারের নুনিয়ারছড়া জেটি থেকে ছাড়ে।'],
   ['সেন্টমার্টিন জাহাজের টিকেটের দাম কত?', `সিটের ভাড়া জনপ্রতি একমুখী ${bangla(cheapest.oneWay)} এবং যাওয়া-আসা ${bangla(taka(lowestRound))} থেকে শুরু। ভাড়া জাহাজ, সিটের ধরন ও তারিখভেদে আলাদা হয়, তাই টাকা দেওয়ার আগে আপনার তারিখের ভাড়া জেনে নিন।`],
 ]
 
@@ -102,7 +102,7 @@ function Hero() {
   const stats = [
     { label: 'One way from', value: cheapest.oneWay, note: cheapest.name },
     { label: 'Round trip from', value: taka(lowestRound), note: cheapest.name },
-    { label: 'Approved ships', value: String(ships.filter(isApproved).length), note: `${ships.filter((ship) => !isApproved(ship)).length} more awaiting approval` },
+    { label: 'Ships this season', value: String(ships.length), note: `${ships.filter(isPreBooking).length} open for pre-booking` },
   ]
   return (
     <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-x-12">
@@ -111,7 +111,7 @@ function Hero() {
         <p className="t-lede mt-3 max-w-2xl text-prose"><strong className="font-extrabold text-ink">Compare Saint Martin ships from Cox’s Bazar,</strong> {BOOKING_ENABLED ? 'book online or on WhatsApp' : 'send your travel date on WhatsApp'}, and get your ticket from ShipTickets.bd with the Travel Pass included.</p>
         <p lang="bn" className="mt-2 max-w-2xl font-semibold text-prose">সেন্টমার্টিনের জাহাজের টিকেট: ভাড়া দেখুন, {BOOKING_ENABLED ? 'তারিখ বেছে নিন' : 'তারিখ জানান'}, টিকেট নিন।</p>
       </div>
-      <div className="lg:row-span-2 lg:mt-2"><HomeTripPanel ships={ships.filter(isApproved).map(({ slug, name }) => ({ slug, name }))} minDate={season.startISO} maxDate={season.endISO} bookingEnabled={BOOKING_ENABLED} whatsappNumber={WHATSAPP_NUMBER} phoneHref={phoneHref} phoneNumber={PHONE_NUMBER} /></div>
+      <div className="lg:row-span-2 lg:mt-2"><HomeTripPanel ships={ships.map(({ slug, name }) => ({ slug, name }))} minDate={season.startISO} maxDate={season.endISO} bookingEnabled={BOOKING_ENABLED} whatsappNumber={WHATSAPP_NUMBER} phoneHref={phoneHref} phoneNumber={PHONE_NUMBER} /></div>
       <div>
         <dl className="grid grid-cols-3 divide-x divide-[#d9e8e4] rounded-2xl bg-[#f1f8f6] py-4">
           {stats.map((stat) => (
@@ -170,7 +170,7 @@ export default function Page() {
             </tbody>
           </table>
         </div>
-        <p className="t-small mt-3 text-prose">See every seat and cabin fare in our <Link href="/saint-martin-ship-ticket-price" className={link}>Saint Martin ship ticket price guide</Link>, or find the <Link href="/cheapest-saint-martin-ship-ticket" className={link}>cheapest ship ticket</Link>. The lowest fare is on the <Link href="/saint-martin-ship/mv-teknaf" className={link}>MV Teknaf ship ticket</Link>. Keari Cruise &amp; Dine and Keari Sindbad are awaiting 2026–27 approval.</p>
+        <p className="t-small mt-3 text-prose">See every seat and cabin fare in our <Link href="/saint-martin-ship-ticket-price" className={link}>Saint Martin ship ticket price guide</Link>, or find the <Link href="/cheapest-saint-martin-ship-ticket" className={link}>cheapest ship ticket</Link>. The lowest fare is on the <Link href="/saint-martin-ship/mv-teknaf" className={link}>MV Teknaf ship ticket</Link>. The two Keari ships have not published their schedules yet, and pre-booking is open.</p>
       </section>
 
       <Section id="ships" title="Choose your Saint Martin ship" intro={`MV Teknaf ship tickets have the lowest published fare, from ${cheapest.oneWay} one way.`} action={textLink('/saint-martin-ship', 'Compare all Saint Martin ships')} size={[2276, 1719, 1193]}>
@@ -353,7 +353,7 @@ export default function Page() {
 
       <Section id="bangla" lang="bn" title="সেন্টমার্টিন জাহাজের টিকেট: ভাড়া, সময় ও বুকিং" size={[738, 411, 358]}>
         <div className="rounded-3xl border border-line-soft bg-white p-5 shadow-card md:p-7">
-          <p className="t-body text-prose">এই মৌসুমে অনুমোদিত জাহাজ: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া ও এমভি টেকনাফ। কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ এখনো ২০২৬–২৭ মৌসুমের অনুমোদন পায়নি। অনেকে একে লঞ্চের টিকেটও বলেন। জাহাজের টিকিটের দাম জনপ্রতি একমুখী {bangla(cheapest.oneWay)} এবং যাওয়া-আসা {bangla(taka(lowestRound))} থেকে শুরু, আর কেবিনের একমুখী ভাড়া {bangla(taka(lowestCabin))} থেকে।</p>
+          <p className="t-body text-prose">এই মৌসুমের জাহাজ: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া, এমভি টেকনাফ, কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ। কেয়ারী জাহাজ দুটির সময়সূচি এখনো প্রকাশ হয়নি, তবে অগ্রিম দিয়ে প্রি-বুকিং চলছে। অনেকে একে লঞ্চের টিকেটও বলেন। জাহাজের টিকিটের দাম জনপ্রতি একমুখী {bangla(cheapest.oneWay)} এবং যাওয়া-আসা {bangla(taka(lowestRound))} থেকে শুরু, আর কেবিনের একমুখী ভাড়া {bangla(taka(lowestCabin))} থেকে।</p>
           <p className="t-body mt-3 text-prose">জাহাজ ছাড়ে কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে। এমভি টেকনাফ প্রতিদিন সকাল ৭টায় ছাড়ে, আর অন্য জাহাজের সময় তারিখভেদে বদলাতে পারে। দেখে নিন <Link href="/saint-martin-ship-schedule" className={link}>জাহাজের সময়সূচি</Link>।</p>
           <p className="t-body mt-3 text-prose">{BOOKING_ENABLED ? <><Link href="/booking" className={link}>বুকিং পাতায়</Link> অনলাইনে টিকেট বুক করুন, অথবা WhatsApp-এ মেসেজ দিন বা কল করুন: </> : 'টিকেট বুকিং করতে যাত্রার তারিখ ও যাত্রীর সংখ্যা জানিয়ে WhatsApp-এ মেসেজ দিন, অথবা কল করুন: '}<a href={phoneHref} className={link}>{PHONE_NUMBER}</a>। ট্রাভেল পাস টিকেটের সঙ্গেই থাকে। বিস্তারিত দেখুন <Link href="/blog/saint-martin-ship-ticket-booking-guide" className={link}>টিকেট বুকিং গাইডে</Link>।</p>
         </div>

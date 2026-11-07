@@ -8,6 +8,7 @@ import { BlogBody } from '@/components/blog/blog-body'
 import { BlogCard, BlogCover } from '@/components/blog/blog-cards'
 import { BlogReadingNav, BlogSideToc, CopyLinkButton, ReadingProgress } from '@/components/blog/blog-reading'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { BOOKING_ENABLED } from '@/lib/bookings/validate'
 import { ContactLink } from '@/components/contact-link'
 import { FaqAccordion } from '@/components/faq-accordion'
 import { Footer } from '@/components/Footer'
@@ -28,6 +29,22 @@ export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }))
 }
 
+/** The English guide for the same topic, so each post and page support each other. */
+const MAIN_GUIDES: Record<string, { href: string; label: string }> = {
+  'saint-martin-ship-ticket-price': { href: '/saint-martin-ship-ticket-price', label: 'Saint Martin ship ticket price' },
+  'dhaka-to-saint-martin-travel-guide': { href: '/saint-martin-guide', label: 'Saint Martin travel guide' },
+  'best-ship-to-saint-martin': { href: '/saint-martin-ship', label: 'Saint Martin ship list' },
+  'saint-martin-travel-rules': { href: '/saint-martin-travel-rules', label: 'Saint Martin travel rules' },
+  'saint-martin-tour-cost': { href: '/saint-martin-trip-cost', label: 'Saint Martin trip cost' },
+  'saint-martin-cheapest-ship-ticket': { href: '/cheapest-saint-martin-ship-ticket', label: 'Cheapest Saint Martin ship ticket' },
+  'saint-martin-travel-pass-guide': { href: '/saint-martin-travel-pass', label: 'Saint Martin Travel Pass' },
+  'coxs-bazar-saint-martin-distance': { href: '/routes/coxs-bazar-to-saint-martin-distance', label: 'Cox’s Bazar to Saint Martin distance' },
+  'saint-martin-ship-status-2026-27': { href: '/saint-martin-ship-schedule', label: 'Saint Martin ship schedule' },
+  'teknaf-to-saint-martin-ship': { href: '/routes/coxs-bazar-to-saint-martin', label: 'Cox’s Bazar to Saint Martin ship' },
+  'saint-martin-overnight-stay-rules': { href: '/saint-martin-travel-rules', label: 'Saint Martin travel rules' },
+  'saint-martin-ship-ticket-booking-guide': { href: '/booking-policy', label: 'Saint Martin ship ticket booking policy' },
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const post = getPost(slug)
@@ -39,7 +56,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: `${title} | ShipTickets.bd`.length > 60 ? { absolute: title } : title,
     description,
     alternates: { canonical: url },
-    keywords: [post.primaryKeyword, ...(post.secondaryKeywords ?? [])].filter(Boolean) as string[],
+    // Posts target Bangla searches. The matching English guide targets English ones.
+    keywords: [post.primaryKeyword, ...(post.secondaryKeywords ?? [])].filter((keyword): keyword is string => Boolean(keyword) && /[\u0980-\u09ff]/.test(keyword as string)),
     openGraph: {
       title,
       description,
@@ -66,6 +84,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const url = `${BASE}/blog/${post.slug}`
   const image = blogImage(post) ?? '/opengraph.jpg'
   const { quick, content } = splitQuickAnswer(post)
+  const mainGuide = MAIN_GUIDES[post.slug]
   const headings = content.map((block) => block.heading).filter(Boolean) as string[]
 
   const sameTopic = blogPosts.filter((other) => other.slug !== post.slug && other.tags.some((tag) => post.tags.includes(tag)))
@@ -99,7 +118,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         inLanguage: 'bn-BD',
         about: { '@type': 'Place', name: "Saint Martin's Island, Bangladesh" },
       },
-      breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Blog', url: '/blog' }, { name: post.titleBn }]),
+      breadcrumbSchema([{ name: 'হোম', url: '/' }, { name: 'ব্লগ', url: '/blog' }, { name: post.titleBn }]),
       ...(post.faqs?.length ? [faqSchema(post.faqs.map((faq) => [faq.q, faq.a] as [string, string]))] : []),
     ],
   }
@@ -114,6 +133,21 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const older = ordered[position + 1]
   const lowestFare = Math.min(...ships.map((ship) => Number(ship.oneWay.replace(/[^0-9]/g, ''))).filter(Boolean))
 
+  const cta = (
+    <aside aria-label="টিকেট" className="mt-8 flex flex-col gap-4 rounded-3xl bg-[#0d1b2a] p-5 text-white sm:flex-row sm:items-center sm:justify-between md:p-6">
+      <div>
+        <p className="text-lg font-extrabold leading-snug">যাত্রার তারিখ ঠিক করেছেন?</p>
+        <p className="t-small mt-1 text-on-dark">একমুখী ভাড়া {toBanglaDigits(`৳${lowestFare.toLocaleString('en-US')}`)} থেকে। অনলাইনে বুক করুন, অথবা WhatsApp-এ তারিখ জানান।</p>
+      </div>
+      <div className="flex shrink-0 flex-wrap gap-2">
+        {BOOKING_ENABLED ? <Link href="/booking" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-brand-ink px-4 text-sm font-extrabold text-white transition-colors hover:bg-brand-ink-hover">অনলাইনে বুক করুন</Link> : <Link href="/saint-martin-ship" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/30 px-4 text-sm font-extrabold transition-colors hover:bg-white/10">জাহাজ দেখুন</Link>}
+        <ContactLink href={help} kind="whatsapp" eventLabel="blog_inline" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/30 px-4 text-sm font-extrabold transition-colors hover:bg-white/10">
+          <MessageCircle size={16} aria-hidden="true" /> WhatsApp
+        </ContactLink>
+      </div>
+    </aside>
+  )
+
   return (
     <>
       <Header />
@@ -124,7 +158,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         <header className="border-b border-line-soft bg-[#f7fbfa]">
           <div className="mx-auto max-w-6xl px-5 pb-8 pt-5 md:pb-10">
-            <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Blog', href: '/blog' }]} />
+            <Breadcrumbs items={[{ name: 'হোম', href: '/' }, { name: 'ব্লগ', href: '/blog' }, { name: post.titleBn }]} />
             <p className="mt-4 text-sm font-bold text-brand-ink">{topicLabel(post)}</p>
             <h1 className="t-display mt-1.5 max-w-4xl text-[clamp(1.75rem,1.2rem+2.3vw,2.75rem)] leading-[1.25] tracking-normal text-ink">{post.titleBn}</h1>
             <p className="t-lede mt-3 max-w-3xl text-prose">{post.descriptionBn}</p>
@@ -159,23 +193,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                     {block.heading && <h2 id={headingId(block.heading)} className="mb-3 scroll-mt-28 text-[1.5rem] font-extrabold leading-snug text-ink md:text-[1.75rem]">{block.heading}</h2>}
                     <BlogBody body={block.body} />
                   </section>
-                  {index === 1 && content.length > 3 && (
-                    <aside aria-label="টিকেট" className="mt-8 flex flex-col gap-4 rounded-3xl bg-[#0d1b2a] p-5 text-white sm:flex-row sm:items-center sm:justify-between md:p-6">
-                      <div>
-                        <p className="text-lg font-extrabold leading-snug">যাত্রার তারিখ ঠিক করেছেন?</p>
-                        <p className="t-small mt-1 text-on-dark">একমুখী ভাড়া {toBanglaDigits(`৳${lowestFare.toLocaleString('en-US')}`)} থেকে। আপনার তারিখের ভাড়া ও সিট আমরা জানিয়ে দেব।</p>
-                      </div>
-                      <div className="flex shrink-0 flex-wrap gap-2">
-                        <ContactLink href={help} kind="whatsapp" eventLabel="blog_inline" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 text-sm font-extrabold transition-colors hover:bg-brand-ink-hover">
-                          <MessageCircle size={16} aria-hidden="true" /> WhatsApp
-                        </ContactLink>
-                        <Link href="/saint-martin-ship" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/30 px-4 text-sm font-extrabold transition-colors hover:bg-white/10">জাহাজ দেখুন</Link>
-                      </div>
-                    </aside>
-                  )}
+                  {index === 1 && content.length > 3 && cta}
                 </Fragment>
               ))}
             </article>
+
+            {content.length <= 3 && cta}
+
+            {mainGuide && (
+              <p className="t-small mt-6 rounded-2xl border border-line-soft p-4 text-prose">
+                ইংরেজিতে পুরো গাইড: <Link href={mainGuide.href} lang="en" className="font-bold text-brand-ink underline underline-offset-2">{mainGuide.label}</Link>
+              </p>
+            )}
 
             {post.sources?.length ? (
               <section className="mt-8 rounded-2xl border border-line-soft p-5">
@@ -231,8 +260,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               {headings.length > 2 && <BlogSideToc items={contents} />}
               <div className="rounded-2xl bg-[#0d1b2a] p-5 text-white">
                 <p className="font-extrabold">টিকেট লাগবে?</p>
-                <p className="t-small mt-1 text-on-dark">যাত্রার তারিখ জানান, আমরা ভাড়া ও সিট আছে কি না জানিয়ে দেব।</p>
-                <ContactLink href={help} kind="whatsapp" eventLabel="blog_sidebar" className="mt-3 flex min-h-12 items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 text-sm font-extrabold transition-colors hover:bg-brand-ink-hover">
+                <p className="t-small mt-1 text-on-dark">অনলাইনে বুক করুন, অথবা যাত্রার তারিখ জানান।</p>
+                {BOOKING_ENABLED && <Link href="/booking" className="mt-3 flex min-h-12 items-center justify-center rounded-xl bg-brand-ink px-4 text-sm font-extrabold text-white transition-colors hover:bg-brand-ink-hover">অনলাইনে বুক করুন</Link>}
+                <ContactLink href={help} kind="whatsapp" eventLabel="blog_sidebar" className={`mt-2 flex min-h-12 items-center justify-center gap-2 rounded-xl px-4 text-sm font-extrabold transition-colors ${BOOKING_ENABLED ? 'border border-white/30 hover:bg-white/10' : 'bg-brand-ink hover:bg-brand-ink-hover'}`}>
                   <MessageCircle size={17} aria-hidden="true" /> WhatsApp-এ জানুন
                 </ContactLink>
               </div>

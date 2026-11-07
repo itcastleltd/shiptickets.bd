@@ -538,7 +538,7 @@
         "available": true
       }
     ],
-    "image": "/ship/mv-baroawlia.jpg",
+    "image": "/ship/mv-baro-awlia.jpg",
     "capacity": "664 seats and 27 cabins",
     "journeyDuration": "Approx. 6 to 7 hours",
     "departure": "Date and tide dependent, so published schedules vary by sailing date",
@@ -546,7 +546,7 @@
     "checkIn": "Approx. 1 hour before departure (follow the time printed on your ticket)",
     "cancellation": "Subject to operator and season rules; confirm before payment",
     "gallery": [
-      "/ship/mv-baroawlia.jpg"
+      "/ship/mv-baro-awlia.jpg"
     ],
     "detail": "Passenger ship offering deck, lounge and selected cabin options for the route.",
     "faq": [
@@ -979,7 +979,7 @@
     "nameBn": "কেয়ারী ক্রুজ অ্যান্ড ডাইন",
     "operator": "Keari Tours & Services Ltd.",
     "route": "Cox's Bazar → Saint Martin",
-    "status": "awaiting_approval",
+    "status": "pre_booking",
     "lastVerified": "4 November 2026",
     "source": "Operator-published reference; confirm for your travel date",
     "ticketClasses": [
@@ -1108,11 +1108,11 @@
       ],
       [
         "Can I book a round-trip Keari Cruise ticket?",
-        "It is awaiting 2026–27 approval, so it cannot be booked yet. Yes. Published round-trip verified fares start from ৳4,200 for Exclusive Lounge, ৳4,700 for Coral Lounge and ৳5,200 for Pearl Lounge."
+        "Yes. Published round-trip verified fares start from ৳4,200 for Exclusive Lounge, ৳4,700 for Coral Lounge and ৳5,200 for Pearl Lounge."
       ],
       [
         "কেয়ারি ক্রুজ কি এখন চলছে?",
-        "না। এই জাহাজ এখনো ২০২৬–২৭ মৌসুমের অনুমোদন পায়নি, তাই অনলাইন বুকিং বন্ধ আছে। অনুমোদন পেলে এখানে জানানো হবে।"
+        "এই জাহাজের ২০২৬–২৭ মৌসুমের সময়সূচি এখনো প্রকাশ হয়নি। অগ্রিম দিয়ে প্রি-বুকিং চলছে, আর সময়সূচি প্রকাশ হলে আমরা WhatsApp-এ আপনার তারিখ ও সময় জানিয়ে দেব।"
       ],
       [
         "কেয়ারি ক্রুজের টিকেট কীভাবে কাটব?",
@@ -1228,7 +1228,7 @@
     "nameBn": "কেয়ারী সিন্দবাদ",
     "operator": "KEARI Tours & Services Ltd.",
     "route": "Cox's Bazar → Saint Martin",
-    "status": "awaiting_approval",
+    "status": "pre_booking",
     "lastVerified": "4 November 2026",
     "source": "KEARI published vessel and fare information; confirm the schedule for your travel date",
     "ticketClasses": [
@@ -1424,7 +1424,7 @@
       ],
       [
         "What time does Keari Sindbad leave Cox’s Bazar?",
-        "Keari Sindbad is awaiting 2026–27 approval, so there is no schedule yet."
+        "Keari Sindbad has not published its 2026–27 schedule yet. Pre-booking is open, and we confirm your time on WhatsApp once it is published."
       ],
       [
         "How long does Keari Sindbad take?",
@@ -1436,15 +1436,15 @@
       ],
       [
         "Can I book a one-way Keari Sindbad ticket?",
-        "It is awaiting 2026–27 approval, so it cannot be booked yet. Yes. Published fares include one-way pricing for Main Deck, Open Deck and Bridge Deck, subject to availability."
+        "Yes. Published fares include one-way pricing for Main Deck, Open Deck and Bridge Deck, subject to availability."
       ],
       [
         "Can I book a round-trip Keari Sindbad ticket?",
-        "It is awaiting 2026–27 approval, so it cannot be booked yet. Yes. Published round-trip fares are available for all three seating categories, subject to availability."
+        "Yes. Published round-trip fares are available for all three seating categories, subject to availability."
       ],
       [
         "How can I check the latest Keari Sindbad fare?",
-        "It is awaiting 2026–27 approval, so it cannot be booked yet. Send your travel date, passenger count and preferred deck on WhatsApp. We will check the latest applicable fare and availability for your sailing date."
+        "Send your travel date, passenger count and preferred deck on WhatsApp. We will check the latest applicable fare and availability for your sailing date."
       ],
       [
         "কেয়ারি সিন্দবাদ জাহাজের ভাড়া কত?",
@@ -1456,7 +1456,7 @@
       ],
       [
         "কেয়ারি সিন্দবাদ কি এখন চলছে?",
-        "না। এই জাহাজ এখনো ২০২৬–২৭ মৌসুমের অনুমোদন পায়নি, তাই অনলাইন বুকিং বন্ধ আছে। অনুমোদন পেলে এখানে জানানো হবে।"
+        "এই জাহাজের ২০২৬–২৭ মৌসুমের সময়সূচি এখনো প্রকাশ হয়নি। অগ্রিম দিয়ে প্রি-বুকিং চলছে, আর সময়সূচি প্রকাশ হলে আমরা WhatsApp-এ আপনার তারিখ ও সময় জানিয়ে দেব।"
       ],
       [
         "কেয়ারি সিন্দবাদের টিকেট কীভাবে কাটব?",

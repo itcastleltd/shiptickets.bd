@@ -1,7 +1,9 @@
+import type { TicketDelivery } from '@/lib/bookings/validate'
+
 /**
  * What the success and failed pages show. Kept in this browser tab only, so the
- * URL never holds a booking reference or customer details. Names, mobile numbers
- * and Transaction IDs are never stored here.
+ * URL never holds a booking reference or customer details. Names, mobile numbers,
+ * delivery addresses and Transaction IDs are never stored here.
  */
 export type BookingOutcome = {
   savedAt: number
@@ -20,6 +22,8 @@ export type BookingOutcome = {
   departs?: string
   returns?: string
   paymentMethod: string
+  preBooking?: boolean
+  ticketDelivery?: TicketDelivery
 }
 
 export type BookingFailure = { savedAt: number; code: string; shipName: string; travelDate: string }

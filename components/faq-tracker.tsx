@@ -17,7 +17,8 @@ export function FaqTracker() {
     const handler = (e: Event) => {
       const target = e.target as HTMLElement
       const summary = target.closest('summary')
-      if (!summary) return
+      // Footer link groups use the same element, but they aren't questions.
+      if (!summary || summary.closest('footer')) return
       const details = summary.closest('details')
       // Only opening a question counts. The click runs before the panel changes.
       if (!details || details.open) return

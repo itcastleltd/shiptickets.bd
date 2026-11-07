@@ -1,4 +1,5 @@
 import { appendBookingRow } from '@/lib/sheets/client'
+import { TICKET_OPTIONS, type TicketDelivery } from '@/lib/bookings/validate'
 import { createAdminClient } from '@/lib/supabase/admin'
 
 const MAX_ATTEMPTS = 10
@@ -13,7 +14,8 @@ async function buildRow(supabase: NonNullable<ReturnType<typeof createAdminClien
       customers ( full_name, mobile_number, email ),
       booking_items ( id, quantity, trip_type, travel_date, return_date, seat_preference, ship_categories ( name, ships ( name ) ) ),
       booking_passengers ( full_name, booking_item_id, mobile_number ),
-      payments ( transaction_id, status, payment_methods ( name ) )
+      payments ( transaction_id, status, payment_methods ( name ) ),
+      deliveries ( delivery_method, address )
     `)
     .eq('id', bookingId)
     .single()
@@ -24,6 +26,11 @@ async function buildRow(supabase: NonNullable<ReturnType<typeof createAdminClien
   const category = first(item.ship_categories)
   const payment = first(data.payments)
   const coPassengers = ((data.booking_passengers ?? []) as Row[]).filter((person) => !person.mobile_number).map((person) => person.full_name)
+  const delivery = first(data.deliveries)
+  const ticketOption = TICKET_OPTIONS[delivery.delivery_method as TicketDelivery]
+  const ticketCollection = ticketOption
+    ? delivery.delivery_method === 'office' ? ticketOption.label : `${ticketOption.label} (${ticketOption.detail}): ${delivery.address ?? ''}`
+    : ''
   const bookedAt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Dhaka', dateStyle: 'short', timeStyle: 'short' }).format(new Date(data.created_at))
 
   return [
@@ -32,6 +39,8 @@ async function buildRow(supabase: NonNullable<ReturnType<typeof createAdminClien
     item.quantity ?? '', item.seat_preference ?? '', customer.full_name ?? '', customer.mobile_number ?? '', customer.email ?? '',
     coPassengers.join(', '), Number(data.grand_total), Number(data.advance_percentage), Number(data.advance_amount),
     Number(data.grand_total) - Number(data.advance_amount), first(payment.payment_methods).name ?? '', payment.transaction_id ?? '', payment.status ?? '',
+    // Five blanks keep the staff columns U to Y empty on a new row.
+    '', '', '', '', '', ticketCollection,
   ]
 }
 

@@ -1,26 +1,33 @@
+import Image from 'next/image'
 import Link from 'next/link'
-import { MessageCircle, PhoneCall, Mail, MapPin, Clock } from 'lucide-react'
-import { FaWhatsapp, FaFacebookF } from 'react-icons/fa'
-import { site, PHONE_NUMBER, WHATSAPP_NUMBER } from '@/lib/ships'
+import { Clock, Mail, MapPin, MessageCircle, Phone } from 'lucide-react'
+import { FaFacebookF } from 'react-icons/fa'
 import { ContactLink } from '@/components/contact-link'
+import { FooterGroup } from '@/components/footer-group'
+import { BOOKING_ENABLED } from '@/lib/bookings/validate'
+import { PHONE_NUMBER, WHATSAPP_NUMBER, isPreBooking, ships, site } from '@/lib/ships'
 
 const phoneHref = `tel:${PHONE_NUMBER.replace(/[^+\d]/g, '')}`
-const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}`
-const emailHref = `mailto:${site.email}`
+const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello ShipTickets.bd, I need help with a Saint Martin ship ticket.')}`
+const PAYMENT_OPTIONS = [
+  { src: '/logo/pay-bkash.png', alt: 'bKash', width: 72, height: 72, className: 'h-6', label: 'bKash' },
+  { src: '/logo/pay-bangla-qr.png', alt: 'Bangla QR', width: 59, height: 72, className: 'h-7' },
+  { src: '/logo/pay-visa.png', alt: 'Visa', width: 222, height: 72, className: 'h-4' },
+  { src: '/logo/pay-bank.png', alt: 'Southeast Bank', width: 100, height: 72, className: 'h-5', label: 'Bank transfer' },
+]
 
-/**
- * Footer navigation is grouped by intent rather than listed as one flat run of
- * links, which was hard to scan and gave no hint about what each area covered.
- */
-const footerGroups = [
+const linkClass = 'flex min-h-11 items-center text-sm text-prose transition-colors hover:text-brand-ink lg:min-h-8'
+const contactRow = 'flex min-h-11 items-center gap-2.5 text-sm text-prose transition-colors hover:text-brand-ink lg:min-h-8'
+
+const linkGroups = [
   {
     heading: 'Tickets & prices',
     links: [
+      ...(BOOKING_ENABLED ? [{ href: '/booking', label: 'Book online' }] : []),
       { href: '/saint-martin-ship-ticket-price', label: 'Ticket price' },
       { href: '/saint-martin-cabin-price', label: 'Cabin & class prices' },
       { href: '/cheapest-saint-martin-ship-ticket', label: 'Cheapest ticket' },
       { href: '/saint-martin-ship-schedule', label: 'Ship schedule' },
-      { href: '/saint-martin-ship', label: 'All ships' },
     ],
   },
   {
@@ -29,135 +36,118 @@ const footerGroups = [
       { href: '/saint-martin-travel-pass', label: 'Travel Pass' },
       { href: '/saint-martin-travel-rules', label: 'Travel rules' },
       { href: '/saint-martin-guide', label: 'Travel guide' },
-      { href: '/routes/coxs-bazar-to-saint-martin', label: "Cox's Bazar route" },
+      { href: '/routes/coxs-bazar-to-saint-martin', label: 'Cox’s Bazar route' },
       { href: '/routes/coxs-bazar-to-saint-martin-distance', label: 'Distance & journey time' },
       { href: '/saint-martin-trip-cost', label: 'Trip cost' },
+      { href: '/blog', label: 'Blog' },
     ],
   },
   {
     heading: 'Company',
     links: [
-      { href: '/how-we-verify-information', label: 'How we verify' },
       { href: '/about', label: 'About us' },
+      { href: '/how-we-verify-information', label: 'How we verify' },
       { href: '/contact', label: 'Contact' },
-      { href: '/privacy-policy', label: 'Privacy Policy' },
-      { href: '/booking-policy', label: 'Booking Policy' },
-      { href: '/blog', label: 'Blog' },
     ],
   },
 ]
 
+const LinkList = ({ links }: { links: { href: string; label: string }[] }) => (
+  <ul>
+    {links.map((link) => <li key={link.href}><Link href={link.href} className={linkClass}>{link.label}</Link></li>)}
+  </ul>
+)
+
 /**
- * Bottom padding is mobile-only and exists to clear the fixed MobileCallBar.
- * The bar is `sm:hidden`, so from `sm` up the normal padding applies and no
- * offset is needed. The clearance has to live here, after the footer content,
- * because the footer is the last element in the page — padding placed on a
- * container above it only opens a gap and still leaves the footer covered.
+ * Help first, then the site's pages, then who runs it.
+ *
+ * Bottom padding clears the fixed call bar on phones. It belongs here because the
+ * footer is the last element on the page.
  */
 export function Footer() {
   return (
-    <footer className="border-t border-line-soft bg-white px-5 pb-24 pt-16 lg:px-8 lg:pb-12 lg:pt-12">
-      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.15fr_2fr]">
-        {/* Brand + contact */}
-        <div>
-          <img
-            src="/Logo.png"
-            alt="ShipTickets.bd — Saint Martin ship tickets"
-            width={134}
-            height={40}
-            className="h-10 w-auto"
-          />
-
-          <p className="mt-4 max-w-xs text-sm leading-6 text-quiet">
-            ShipTickets.bd is a dedicated platform for Saint Martin’s ship tickets and travel information in Bangladesh. Operated by Tripzic.com.
-          </p>
-
-          <address className="mt-6 space-y-2.5 text-sm not-italic text-quiet">
-            <ContactLink href={phoneHref} kind="phone" eventLabel="footer_call" className="flex items-center gap-2.5 hover:text-brand-ink">
-              <PhoneCall size={15} className="shrink-0 text-brand-ink" aria-hidden="true" />
-              {PHONE_NUMBER}
+    <footer className="border-t border-line-soft bg-[#f7fbfa] px-4 pb-24 pt-5 md:px-5 lg:px-8 lg:pb-8 lg:pt-10">
+      <div className="mx-auto max-w-7xl">
+        <section aria-labelledby="footer-help" className="rounded-2xl border border-line-soft bg-white p-5 shadow-card lg:flex lg:items-center lg:justify-between lg:gap-8 lg:p-6">
+          <div>
+            <h2 id="footer-help" className="t-subtitle text-ink">Need help with your ticket?</h2>
+            <p lang="bn" className="mt-0.5 text-sm font-semibold text-brand-ink">টিকেট নিয়ে সাহায্য দরকার?</p>
+            <p className="t-small mt-1 flex items-center gap-1.5 text-prose"><Clock size={14} aria-hidden="true" className="shrink-0 text-brand-ink" /> {site.supportHours}</p>
+          </div>
+          <div className="mt-4 grid grid-cols-2 gap-2 lg:mt-0 lg:flex lg:shrink-0">
+            <ContactLink href={whatsappHref} kind="whatsapp" eventLabel="footer_whatsapp" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-brand-ink px-4 text-sm font-extrabold text-white transition duration-200 hover:bg-brand-ink-hover lg:px-6">
+              <MessageCircle size={17} aria-hidden="true" /> WhatsApp
             </ContactLink>
-            <ContactLink href={whatsappHref} kind="whatsapp" eventLabel="footer_whatsapp" className="flex items-center gap-2.5 hover:text-brand-ink">
-              <MessageCircle size={15} className="shrink-0 text-brand-ink" aria-hidden="true" />
-              WhatsApp support
+            <ContactLink href={phoneHref} kind="phone" eventLabel="footer_call" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-line bg-white px-4 text-sm font-extrabold text-ink transition duration-200 hover:border-brand-ink hover:text-brand-ink lg:px-6">
+              <Phone size={17} aria-hidden="true" /> Call us
             </ContactLink>
-            <a href={emailHref} className="flex items-center gap-2.5 hover:text-brand-ink">
-              <Mail size={15} className="shrink-0 text-brand-ink" aria-hidden="true" />
-              {site.email}
-            </a>
-            <div className="flex items-start gap-2.5">
-              <MapPin size={15} className="mt-0.5 shrink-0 text-brand-ink" aria-hidden="true" />
-              <span>{site.office}</span>
+          </div>
+        </section>
+
+        <div className="mt-3 grid lg:mt-10 lg:grid-cols-[1.3fr_repeat(4,1fr)] lg:gap-8">
+          <nav aria-label="Footer navigation" className="lg:contents">
+            <div className="lg:order-2">
+              <FooterGroup heading="Ships">
+                <ul>
+                  {ships.map((ship) => (
+                    <li key={ship.slug}>
+                      <Link href={`/saint-martin-ship/${ship.slug}`} className={`${linkClass} gap-2`}>
+                        {ship.name}
+                        {isPreBooking(ship) && <span className="shrink-0 rounded-md bg-[#fff8ee] px-1.5 py-0.5 text-[0.6875rem] font-bold text-[#8a5a2f]">Pre-booking</span>}
+                      </Link>
+                    </li>
+                  ))}
+                  <li><Link href="/saint-martin-ship" className="flex min-h-11 items-center text-sm font-bold text-brand-ink transition-colors hover:text-brand-ink-hover lg:min-h-8">Compare all ships</Link></li>
+                </ul>
+              </FooterGroup>
             </div>
-            <div className="flex items-center gap-2.5">
-              <Clock size={15} className="shrink-0 text-brand-ink" aria-hidden="true" />
-              {site.supportHours}
-            </div>
-          </address>
+            {linkGroups.map((group, index) => (
+              <div key={group.heading} className={['lg:order-3', 'lg:order-4', 'lg:order-5'][index]}>
+                <FooterGroup heading={group.heading}><LinkList links={group.links} /></FooterGroup>
+              </div>
+            ))}
+          </nav>
 
-<div className="mt-6 flex items-center gap-3">
-  {[
-    { name: 'WhatsApp', href: whatsappHref, icon: 'whatsapp' as const },
-    { name: 'Facebook', href: 'https://www.facebook.com/shiptickets', icon: 'facebook' as const },
-    { name: 'Phone', href: phoneHref, icon: 'phone' as const },
-  ].map((social) => (
-    <a
-      key={social.name}
-      href={social.href}
-      target={social.icon === 'phone' ? undefined : '_blank'}
-      rel={social.icon === 'phone' ? undefined : 'noopener noreferrer'}
-      aria-label={social.name}
-      className="flex size-10 items-center justify-center rounded-full border border-line bg-white text-ink transition-all hover:border-brand-ink hover:bg-brand-ink hover:text-white"
-    >
-      {social.icon === 'whatsapp' && (
-        <FaWhatsapp size={19} aria-hidden="true" />
-      )}
-
-      {social.icon === 'facebook' && (
-        <FaFacebookF size={17} aria-hidden="true" />
-      )}
-
-      {social.icon === 'phone' && (
-        <PhoneCall size={18} aria-hidden="true" />
-      )}
-    </a>
-  ))}
-</div>
+          <div className="mt-5 lg:order-1 lg:mt-0">
+            <img src="/Logo.png" alt="ShipTickets.bd, Saint Martin ship tickets" width={134} height={40} className="h-10 w-auto" />
+            <address className="mt-1 not-italic lg:mt-3">
+              {site.googleReviewsUrl ? (
+                <a href={site.googleReviewsUrl} target="_blank" rel="noopener noreferrer" className="flex min-h-11 items-start gap-2.5 py-2 text-sm text-prose transition-colors hover:text-brand-ink">
+                  <MapPin size={15} aria-hidden="true" className="mt-0.5 shrink-0 text-brand-ink" /> {site.office}
+                </a>
+              ) : (
+                <p className="flex items-start gap-2.5 py-2 text-sm text-prose"><MapPin size={15} aria-hidden="true" className="mt-0.5 shrink-0 text-brand-ink" /> {site.office}</p>
+              )}
+              <div className="flex flex-wrap gap-x-5 lg:block">
+                <a href={`mailto:${site.email}`} className={contactRow}><Mail size={15} aria-hidden="true" className="shrink-0 text-brand-ink" /> {site.email}</a>
+                <a href="https://www.facebook.com/shiptickets" target="_blank" rel="noopener noreferrer" className={contactRow}><FaFacebookF size={14} aria-hidden="true" className="shrink-0 text-brand-ink" /> Facebook</a>
+              </div>
+            </address>
+          </div>
         </div>
 
-        {/* Grouped navigation */}
-        <nav aria-label="Footer navigation" className="grid gap-10 sm:grid-cols-3">
-          {footerGroups.map((group) => (
-            <div key={group.heading}>
-              <h2 className="t-label text-ink">
-                {group.heading}
-              </h2>
-              <ul className="mt-4 space-y-2.5">
-                {group.links.map((link) => (
-                  <li key={link.href}>
-                    <Link href={link.href} className="text-sm text-quiet hover:text-brand-ink">
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </nav>
-      </div>
+        <div className="mt-3 border-t border-line-soft pt-4 lg:mt-8 lg:pt-5">
+          <p className="text-sm font-semibold text-ink">Pay {site.advancePercentage}% to book <span aria-hidden="true" className="text-faint">·</span> Printed ticket by office pickup or courier <span aria-hidden="true" className="text-faint">·</span> Travel Pass included</p>
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <h2 className="mr-1 text-xs font-bold text-quiet">We accept</h2>
+            <ul className="flex flex-wrap gap-1.5">
+              {PAYMENT_OPTIONS.map((option) => (
+                <li key={option.src} className="flex h-10 items-center gap-1.5 rounded-lg border border-line-soft bg-white px-2.5 text-xs font-bold text-ink">
+                  <Image src={option.src} alt={option.label ? '' : option.alt} width={option.width} height={option.height} unoptimized className={`${option.className} w-auto`} />
+                  {option.label}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
 
-      {/*
-        The review date is deliberately not repeated here. Every page already
-        states it once at the top, where a reader meets it before the fares
-        rather than after them. The footer keeps the guidance without the date
-        so nothing reads twice.
-      */}
-      <div className="mx-auto mt-12 max-w-7xl border-t border-line-soft pt-6 text-xs text-faint">
-        <p>&copy; 2026 ShipTickets.bd . Operated by <a href="https://www.tripzic.com" target="_blank" rel="noopener noreferrer" className="text-brand-ink underline underline-offset-2 hover:text-brand-ink-hover">
-          Tripzic.com
-        </a>.</p>
-        <p className="mt-2">
-        </p>
+        <div className="mt-4 border-t border-line-soft pt-1 text-xs text-quiet lg:mt-5 lg:flex lg:items-center lg:justify-between lg:pt-3">
+          <p className="flex items-center">© 2026 ShipTickets.bd. Operated by&nbsp;<a href="https://www.tripzic.com" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-brand-ink underline underline-offset-2 hover:text-brand-ink-hover lg:min-h-8">Tripzic</a>.</p>
+          <p className="flex flex-wrap gap-x-4">
+            <Link href="/booking-policy" className="inline-flex min-h-11 items-center font-semibold hover:text-brand-ink lg:min-h-8">Booking Policy</Link>
+            <Link href="/privacy-policy" className="inline-flex min-h-11 items-center font-semibold hover:text-brand-ink lg:min-h-8">Privacy Policy</Link>
+          </p>
+        </div>
       </div>
     </footer>
   )

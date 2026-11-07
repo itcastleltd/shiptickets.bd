@@ -8,7 +8,9 @@ export const SHEET_HEADERS = [
   'Reference', 'Booked at', 'Ship', 'Category', 'Trip', 'Journey date', 'Return date', 'Tickets', 'Seat preference',
   'Customer name', 'Mobile', 'Email', 'Co-passengers', 'Total', 'Advance %', 'Advance due', 'Balance',
   'Payment method', 'TrxID', 'Payment status', 'Rejection reason', 'Ticket status', 'Ticket number', 'Handled by', 'Notes',
+  'Ticket collection',
 ]
+const TICKET_COLUMN = 'Z'
 
 async function getAccessToken(): Promise<string> {
   const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL
@@ -54,19 +56,26 @@ async function ensureTab(token: string) {
   const first = (await request(`/values/${encodeURIComponent(`'${TAB}'!A1:A1`)}`, token)) as { values?: string[][] }
   if (!first.values?.length) {
     await request(`/values/${encodeURIComponent(`'${TAB}'!A1`)}?valueInputOption=RAW`, token, { method: 'PUT', body: JSON.stringify({ values: [SHEET_HEADERS] }) })
+    return
+  }
+  // A Sheet made before this column existed gets its heading on the next booking.
+  const heading = (await request(`/values/${encodeURIComponent(`'${TAB}'!${TICKET_COLUMN}1`)}`, token)) as { values?: string[][] }
+  if (!heading.values?.length) {
+    await request(`/values/${encodeURIComponent(`'${TAB}'!${TICKET_COLUMN}1`)}?valueInputOption=RAW`, token, { method: 'PUT', body: JSON.stringify({ values: [['Ticket collection']] }) })
   }
 }
 
 /**
  * Blanks a booking's seat preference, customer name, mobile, email and co-passengers
- * (columns I to M). Rows are found by reference, so sorting the Sheet is safe.
+ * (columns I to M) and its delivery address (column Z). Rows are found by reference,
+ * so sorting the Sheet is safe.
  */
 export async function clearPersonalDataFromSheet(reference: string) {
   const token = await getAccessToken()
   const meta = (await request('?fields=sheets.properties.title', token)) as { sheets: { properties: { title: string } }[] }
   if (!meta.sheets.some((sheet) => sheet.properties.title === TAB)) return
   const column = (await request(`/values/${encodeURIComponent(`'${TAB}'!A:A`)}`, token)) as { values?: string[][] }
-  const ranges = (column.values ?? []).flatMap((row, index) => (row[0] === reference ? [`'${TAB}'!I${index + 1}:M${index + 1}`] : []))
+  const ranges = (column.values ?? []).flatMap((row, index) => (row[0] === reference ? [`'${TAB}'!I${index + 1}:M${index + 1}`, `'${TAB}'!${TICKET_COLUMN}${index + 1}`] : []))
   if (ranges.length > 0) await request('/values:batchClear', token, { method: 'POST', body: JSON.stringify({ ranges }) })
 }
 

@@ -107,10 +107,10 @@ export default function BookingPolicyPage() {
             <p>You can book online on our <Link href="/booking" className="font-bold text-brand-ink underline underline-offset-2">booking page</Link>, or by phone or WhatsApp at +880 1718-116799.</p>
             <ol className="grid list-decimal gap-1.5 pl-5">
               <li>Choose your ship, trip type, dates, seat or cabin, and number of tickets.</li>
-              <li>Enter the passenger’s full name as on their NID, a mobile number and, if you wish, an email address and co-passenger names.</li>
+              <li>Enter the passenger’s full name as on their NID, a mobile number, an email address and the other passengers’ names, then choose office pickup or home delivery for your printed ticket.</li>
               <li>Pay the advance shown at checkout by bKash or bank transfer, then enter your Transaction ID (TrxID).</li>
               <li>Save your booking reference, then send your payment screenshot and each passenger’s NID number and date of birth on WhatsApp.</li>
-              <li>Our team checks your payment, confirms with the operator and tells you on WhatsApp. Collect your printed ticket from our Kawran Bazar office, or we can send it by courier.</li>
+              <li>Our team checks your payment, confirms with the operator and tells you on WhatsApp. Then collect your printed ticket from our Kawran Bazar office, or receive it by courier, as you chose when booking.</li>
             </ol>
             <p>A submitted booking is not final. Your booking is final when your ticket is issued. We do not show live seat availability, and ticket issuance is subject to the relevant operator’s systems and confirmation. If your choice is not available, our team will contact you on WhatsApp, and you can choose another date or ship, or get your payment back in full.</p>
             <p>You need your printed ticket to board, so allow enough time for collection or courier delivery before you travel. {COURIER_NOTE} Children under 5 travel free, so count only passengers aged 5 and over.</p>

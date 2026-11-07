@@ -8,7 +8,7 @@ ShipTickets.bd is operated by Tripzic. It is an authorized platform for Saint Ma
 **Full content for AI tools:** https://www.shiptickets.bd/llms-full.txt
 **Sitemap:** https://www.shiptickets.bd/sitemap.xml
 **RSS feed:** https://www.shiptickets.bd/rss.xml
-**Information last reviewed:** 6 November 2026
+**Information last reviewed:** 7 November 2026
 
 ## Key facts for 2026–27
 
@@ -22,7 +22,7 @@ ShipTickets.bd is operated by Tripzic. It is an authorized platform for Saint Ma
 - **Lowest fare:** ৳1,900 one way and ৳3,600 round trip per person, on MV Teknaf
 - **Travel Pass:** a Travel Pass and QR-coded ticket are required. Both, and the ৳100 environmental conservation fee, are included with tickets booked through ShipTickets.bd
 - **Government portal:** https://travelpass.gov.bd/
-- **Approved ships:** MV Karnafuly Express, MV Baro Awlia and MV Teknaf are approved for 2026–27. Keari Cruise & Dine and Keari Sindbad are awaiting approval and cannot be booked online yet
+- **Keari ships:** Keari Cruise & Dine and Keari Sindbad have not published their 2026–27 schedules yet. Pre-booking is open with an advance, and the date and time are confirmed on WhatsApp once published
 
 ## Ships and lowest fares
 
@@ -41,8 +41,8 @@ Fares are published per-person reference prices, not live quotes. Confirm the fa
 - **MV Karnafuly Express:** Changes with the tide. See the November 2026 table in the full file or on the schedule page.
 - **MV Baro Awlia:** Changes with the tide. See the November 2026 table in the full file or on the schedule page.
 - **MV Teknaf:** Leaves Cox’s Bazar at 7:00 AM and Saint Martin at 4:00 PM every day. The updated dated schedule has not been received yet.
-- **Keari Cruise & Dine:** Awaiting 2026–27 approval, so there is no schedule yet.
-- **Keari Sindbad:** Awaiting 2026–27 approval, so there is no schedule yet.
+- **Keari Cruise & Dine:** Schedule not published yet. Pre-booking is open with an advance.
+- **Keari Sindbad:** Schedule not published yet. Pre-booking is open with an advance.
 
 Tide and weather can change times. Follow the time printed on your ticket.
 
@@ -53,11 +53,11 @@ Book online at https://www.shiptickets.bd/booking, or by WhatsApp or phone.
 Online:
 
 1. Choose the ship, trip type, dates, seat or cabin, and number of tickets.
-2. Enter the passenger's name and mobile number.
+2. Enter the passenger's name, mobile number, email and the other passengers' names, then choose office pickup or home delivery for the printed ticket.
 3. Pay the advance or the full fare by bKash or bank transfer, then enter the transaction ID.
 4. Save the booking reference, then send the payment screenshot, NID number and date of birth on WhatsApp.
 5. The team checks each payment by hand, confirms with the operator and tells the customer on WhatsApp.
-6. Collect the printed ticket from the Kawran Bazar office in Dhaka, or get it by courier: ৳80 in Dhaka (next day) or ৳130 outside Dhaka (3 days).
+6. Collect the printed ticket from the Kawran Bazar office in Dhaka, or get it by courier: ৳80 in Dhaka (next day) or ৳130 outside Dhaka (3 days), paid with the online payment. Delivery outside Dhaka needs the full fare paid online, except on pre-bookings.
 
 A printed ticket is required to board. Children under 5 travel free, so only passengers aged 5 and over are counted.
 

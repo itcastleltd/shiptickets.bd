@@ -29,7 +29,7 @@ const faqs: [string, string][] = [
   ['Where is the Saint Martin ship jetty in Cox’s Bazar?', 'Tourist ships leave from the BIWTA Nuniarchhara Jetty in Cox’s Bazar. Follow the boarding point printed on your ticket.'],
   ['What time does the ship leave Cox’s Bazar?', `Ships leave in the morning. MV Teknaf leaves at ${teknaf?.departs} every day, and the dated times for MV Karnafuly Express and MV Baro Awlia change with the tide. See the Saint Martin ship schedule for your date.`],
   ['How many hours does the ship journey take?', 'Allow about 6 to 7 hours each way. The actual time depends on the ship, weather and sea conditions.'],
-  ['Is a round-trip ticket available?', 'Yes. Round-trip fares are published for every approved ship. Confirm your return date and sailing when you book.'],
+  ['Is a round-trip ticket available?', 'Yes. Round-trip fares are published for every ship. Confirm your return date and sailing when you book.'],
   ['Is Saint Martin open to tourists in 2026–27?', `Yes. The season runs from ${season.startDate} to ${season.endDate}, and tourist ships began sailing on 5 November 2026.`],
   ['Is there an additional environmental fee?', 'A ৳100 environmental conservation fee applies per tourist. It is included with tickets booked through ShipTickets.bd.'],
   ['Can I travel from Teknaf instead?', 'No. For the 2026–27 season, tourists are not permitted to travel by water from Teknaf. Ships leave from Cox’s Bazar. MV Teknaf is only the name of a ship.'],

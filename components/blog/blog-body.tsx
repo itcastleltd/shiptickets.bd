@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 const SITE = /^https?:\/\/(www\.)?shiptickets\.bd/
 
 function linkHtml(text: string, url: string) {
@@ -95,7 +96,9 @@ export function BlogBody({ body }: { body: string }) {
             return <blockquote key={index} className="my-5 rounded-r-2xl border-l-4 border-brand bg-[#f1f8f6] px-4 py-3 text-ink" dangerouslySetInnerHTML={{ __html: inline(block.lines.join('<br/>')) }} />
           case 'table':
             return (
-              <div key={index} tabIndex={0} role="region" aria-label="তথ্যের টেবিল" className="my-5 overflow-x-auto rounded-2xl border border-line-soft">
+              <Fragment key={index}>
+              {block.rows[0].length > 3 && <p className="mb-1 mt-5 text-xs font-semibold text-quiet sm:hidden" aria-hidden="true">পুরো টেবিল দেখতে পাশে সরান →</p>}
+              <div tabIndex={0} role="region" aria-label="তথ্যের টেবিল" className={`${block.rows[0].length > 3 ? 'mb-5 mt-1 sm:my-5' : 'my-5'} overflow-x-auto rounded-2xl border border-line-soft`}>
                 <table className={`w-full border-collapse text-left text-[0.9375rem] ${block.rows[0].length > 3 ? 'min-w-[520px]' : ''}`}>
                   <thead className="bg-[#e3ecea] text-ink">
                     <tr>{block.rows[0].map((cell, position) => <th key={position} scope="col" className="px-3 py-3 font-extrabold" dangerouslySetInnerHTML={{ __html: inline(cell) }} />)}</tr>
@@ -109,6 +112,7 @@ export function BlogBody({ body }: { body: string }) {
                   </tbody>
                 </table>
               </div>
+              </Fragment>
             )
           default:
             return <p key={index} className="my-4" dangerouslySetInnerHTML={{ __html: inline(block.lines.join('<br/>')) }} />

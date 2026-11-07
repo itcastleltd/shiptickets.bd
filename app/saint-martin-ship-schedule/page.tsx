@@ -47,7 +47,7 @@ const faqs: [string, string][] = [
   ['Where can I see today’s Saint Martin ship schedule?', 'The date buttons at the top of this page show every ship’s times for today and the next few days. Today is worked out in Bangladesh time, so it moves forward by itself.'],
   ['What time does the ship leave Saint Martin for Cox’s Bazar?', `Return sailings leave Saint Martin in the afternoon. On MV Karnafuly Express and MV Baro Awlia, they leave between ${firstReturn} and ${lastReturn} in ${DATED_SCHEDULE_PERIOD}, depending on the date. MV Teknaf leaves Saint Martin at ${teknaf?.returns} every day.`],
   ['What is the MV Teknaf schedule?', `MV Teknaf leaves Cox’s Bazar at ${teknaf?.departs} and Saint Martin at ${teknaf?.returns} every day. Its updated dated schedule has not been received yet, so follow the time printed on your ticket.`],
-  ['What is the Keari Sindbad ship schedule?', 'Keari Sindbad and Keari Cruise & Dine are awaiting approval for the 2026–27 season, so there is no schedule yet. We will add their times once they are approved.'],
+  ['What is the Keari Sindbad ship schedule?', 'Keari Sindbad and Keari Cruise & Dine have not published their 2026–27 schedules yet. Pre-booking is open with an advance, and we confirm your date and time on WhatsApp once the schedule is published.'],
   ['How early should I arrive at the jetty?', 'Arrive at least 1 hour before departure for check-in and boarding. Some operators list their own reporting time, which may be earlier, so follow the time printed on your ticket.'],
   ['Can Saint Martin ship schedules change?', 'Yes. Weather, tide, sea conditions and government permission can affect both departure and return times. Confirm any change on the day of travel.'],
   ['Where do Saint Martin ships depart from?', 'In the 2026–27 season, tourist ships leave from the BIWTA Nuniarchhara Jetty in Cox’s Bazar. Tourists are not permitted to travel by water from Teknaf. MV Teknaf is only the name of a ship, and it also sails from Cox’s Bazar.'],
@@ -148,7 +148,7 @@ export default function SchedulePage() {
                 <p className="t-small mt-2 flex-1 text-prose">
                   {board.rows && <>{board.name} leaves Cox’s Bazar between {firstDeparture} and {lastDeparture}, and Saint Martin between {firstReturn} and {lastReturn}. <a href="#november" className={link}>See every date</a>.</>}
                   {board.usual && <>Leaves Cox’s Bazar at {board.usual.departs} and Saint Martin at {board.usual.returns} every day.</>}
-                  {!board.rows && !board.usual && <>{board.name} is awaiting 2026–27 approval, so there is no schedule yet. <a href={askSchedule} className={link}>Ask about approved ships</a>.</>}
+                  {!board.rows && !board.usual && <>{board.name} has not published its schedule yet, and pre-booking is open. <a href={askSchedule} className={link}>Ask for your date</a>.</>}
                 </p>
                 <Link href={`/saint-martin-ship/${board.slug}`} className="mt-3 inline-flex min-h-11 items-center gap-1 text-sm font-extrabold text-brand-ink underline-offset-4 hover:underline">{board.name} fares and seats <ArrowRight size={15} aria-hidden="true" /></Link>
               </article>
@@ -257,7 +257,7 @@ export default function SchedulePage() {
         <h2 className="t-title">সেন্টমার্টিন জাহাজের সময়সূচি ২০২৬-২৭</h2>
         <p className="t-body mt-3 text-prose">সেন্টমার্টিনের জাহাজ সকালে কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে ছাড়ে। এমভি টেকনাফ প্রতিদিন সকাল ৭টায় ছাড়ে, আর বিকেল ৪টায় সেন্টমার্টিন থেকে ছাড়ে। এমভি কর্ণফুলী এক্সপ্রেস ও এমভি বার আউলিয়ার সময় জোয়ার-ভাটার কারণে তারিখভেদে বদলায়, নভেম্বর ২০২৬-এ ভোর ৪টা থেকে সকাল ১০টার মধ্যে।</p>
         <p className="t-body mt-3 text-prose">সেন্টমার্টিন থেকে ফেরার জাহাজ ছাড়ে বিকেলে, নভেম্বরের তালিকায় বিকেল ৩টা থেকে ৫টার মধ্যে। যাত্রায় প্রায় ৬ থেকে ৭ ঘণ্টা লাগে, আর ছাড়ার অন্তত ১ ঘণ্টা আগে জেটিতে পৌঁছে যাওয়া ভালো।</p>
-        <p className="t-body mt-3 text-prose">কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ এখনো ২০২৬–২৭ মৌসুমের অনুমোদন পায়নি। তাই তাদের সময়সূচি এখনো নেই। আপনার তারিখের সময় জানতে WhatsApp-এ মেসেজ দিন বা কল করুন: <a href={phoneHref} className={link}>{PHONE_NUMBER}</a>। ভাড়া দেখুন <Link href="/saint-martin-ship-ticket-price" className={link}>জাহাজের টিকিটের দাম</Link> পাতায়।</p>
+        <p className="t-body mt-3 text-prose">কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদের সময়সূচি এখনো প্রকাশ হয়নি, তবে অগ্রিম দিয়ে প্রি-বুকিং চলছে। আপনার তারিখের সময় জানতে WhatsApp-এ মেসেজ দিন বা কল করুন: <a href={phoneHref} className={link}>{PHONE_NUMBER}</a>। ভাড়া দেখুন <Link href="/saint-martin-ship-ticket-price" className={link}>জাহাজের টিকিটের দাম</Link> পাতায়।</p>
       </section>
 
       <FaqAccordion items={faqs} heading="Saint Martin ship schedule questions" id="faq" />

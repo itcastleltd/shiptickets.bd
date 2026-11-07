@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   title: { absolute: title },
   description,
   alternates: { canonical: url, types: { 'application/rss+xml': 'https://www.shiptickets.bd/rss.xml' } },
+  keywords: ['সেন্টমার্টিন ভ্রমণ ব্লগ', 'সেন্টমার্টিন জাহাজ', 'সেন্টমার্টিন ভ্রমণ গাইড'],
   openGraph: { title, description, type: 'website', url, siteName: 'ShipTickets.bd', locale: 'bn_BD', images: [{ url: '/opengraph.jpg', width: 1200, height: 630, alt: 'ShipTickets.bd সেন্টমার্টিন ভ্রমণ ব্লগ' }] },
   twitter: { card: 'summary_large_image', title, description, images: ['/opengraph.jpg'] },
 }
@@ -47,7 +48,7 @@ export default function BlogIndex() {
         publisher: { '@id': 'https://www.shiptickets.bd/#organization' },
         blogPost: posts.map((post) => ({ '@type': 'BlogPosting', headline: post.titleBn, url: `${url}/${post.slug}`, datePublished: post.date, dateModified: modifiedISO(post) })),
       },
-      breadcrumbSchema([{ name: 'Home', url: '/' }, { name: 'Blog' }]),
+      breadcrumbSchema([{ name: 'হোম', url: '/' }, { name: 'ব্লগ' }]),
     ],
   }
 
@@ -59,7 +60,7 @@ export default function BlogIndex() {
         <Schema data={schema} />
         <section className="border-b border-line-soft bg-white">
           <div className="mx-auto max-w-7xl px-5 pb-8 pt-5 md:pb-10">
-            <Breadcrumbs items={[{ name: 'Home', href: '/' }, { name: 'Blog' }]} />
+            <Breadcrumbs items={[{ name: 'হোম', href: '/' }, { name: 'ব্লগ' }]} />
             <h1 className="t-display mt-4 max-w-3xl text-[clamp(1.85rem,1.3rem+2.4vw,3rem)] text-ink">সেন্টমার্টিন যাওয়ার আগে যা জানা দরকার</h1>
             <p className="t-lede mt-3 max-w-2xl text-prose">জাহাজের ভাড়া, এখন কোন জাহাজ চলছে, টিকেট বুকিং, ট্রাভেল পাস ও ভ্রমণ খরচ নিয়ে সহজ বাংলা গাইড।</p>
           </div>

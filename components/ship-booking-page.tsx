@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ArrowDown, ArrowRight, Check, ChevronDown, Clock, MapPin, MessageCircle, Phone, Ticket } from 'lucide-react'
 import { BOOKING_ENABLED } from '@/lib/bookings/validate'
 import { NO_IMAGE, seatPhotoAlt, seatPhotoName, seatPhotoSrc } from '@/lib/seat-photos'
-import { isApproved, PHONE_NUMBER, WHATSAPP_NUMBER, getReviewsForShip, season, type Ship } from '@/lib/ships'
+import { isApproved, isPreBooking, site, PHONE_NUMBER, WHATSAPP_NUMBER, getReviewsForShip, season, type Ship } from '@/lib/ships'
 import { dhakaToday, getShipSchedule, getUsualTimes } from '@/content/ship-schedules'
 import { ContactLink } from '@/components/contact-link'
 import { CustomerReviews, FaqAccordion, ProvenanceNote } from '@/components/content-blocks'
@@ -50,6 +50,7 @@ const fareRange = (fares: (string | undefined)[]) => {
 const shortJetty = (jetty?: string) => (/nuniarchhara/i.test(jetty ?? 'Nuniarchhara') ? 'Nuniarchhara Jetty' : (jetty ?? '').split(/[,(/]/)[0].trim())
 /** "Approx. 6 to 7 hours (seasonal, confirm for your sailing)" becomes "About 6 to 7 hours". */
 const shortJourney = (journey?: string) => (journey ?? '').replace(/\s*\(.*$/, '').replace(/^Approx\.\s*/, 'About ').replace(/(\d)–(\d)/, '$1 to $2').trim()
+const banglaDigits = (value: number) => String(value).replace(/\d/g, (digit) => '০১২৩৪৫৬৭৮৯'[Number(digit)])
 const canBook = (ship: Ship) => BOOKING_ENABLED && isApproved(ship)
 const bookHref = (ship: Ship, category?: string) => `/booking?ship=${ship.slug}${category ? `&category=${seatPhotoName(category)}` : ''}`
 
@@ -88,11 +89,11 @@ function ShipHero({ ship, title, intro, seatFrom, roundFrom, hasCabins }: { ship
       <div className="lg:row-span-2">
         <p className="t-label mb-3 text-brand-ink"><Eyebrow text={`Ship guide · ${ship.nameBn}`} /></p>
         <h1 className="t-display text-[clamp(1.85rem,1.25rem+2.5vw,3.1rem)] text-ink">{SHIP_H1[ship.slug] ?? title}</h1>
-        {!isApproved(ship) && (
+        {isPreBooking(ship) && (
           <div className="mt-4 max-w-2xl rounded-2xl border border-[#f3d9bf] bg-[#fff8ee] p-4">
-            <p className="font-extrabold text-ink">{ship.name} is awaiting 2026–27 approval</p>
-            <p className="t-small mt-1 text-prose">It is not yet approved to sail this season, so online booking is closed. These are its last published fares. Contact us on WhatsApp to book an approved ship.</p>
-            <p lang="bn" className="t-small mt-1 font-semibold text-prose">এই জাহাজ এখনো ২০২৬–২৭ মৌসুমের অনুমোদন পায়নি, তাই অনলাইন বুকিং বন্ধ আছে।</p>
+            <p className="font-extrabold text-ink">Schedule not published yet: pre-booking is open</p>
+            <p className="t-small mt-1 text-prose">{ship.name} has not published its 2026–27 schedule. We are taking pre-bookings with a {site.advancePercentage}% advance, and we will confirm your date and time on WhatsApp once it is published. If your date is not available, you can choose another date or ship, or get your advance back in full.</p>
+            <p lang="bn" className="t-small mt-1 font-semibold text-prose">এই জাহাজের সময়সূচি এখনো প্রকাশ হয়নি। {banglaDigits(site.advancePercentage)}% অগ্রিম দিয়ে প্রি-বুকিং চলছে। সময়সূচি প্রকাশ হলে আমরা WhatsApp-এ আপনার তারিখ ও সময় জানিয়ে দেব।</p>
           </div>
         )}
 

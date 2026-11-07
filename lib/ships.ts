@@ -35,7 +35,7 @@ export type Facility = {
   available?: boolean
 }
 
-export type ShipStatus = 'verified' | 'needs_confirmation' | 'seasonal_confirmation' | 'awaiting_approval'
+export type ShipStatus = 'verified' | 'needs_confirmation' | 'seasonal_confirmation' | 'awaiting_approval' | 'pre_booking'
 
 export type ShipSpec = { label: string; value: string }
 
@@ -148,10 +148,11 @@ export type SiteConfig = {
 }
 
 export const STATUS_LABELS: Record<ShipStatus, string> = {
-  verified: 'Sailing 2026–27',
+  verified: 'Approved 2026–27',
   needs_confirmation: 'Check latest schedule',
   seasonal_confirmation: 'Seasonal confirmation',
   awaiting_approval: 'Awaiting 2026–27 approval',
+  pre_booking: 'Pre-booking open',
 }
 
 export const CONFIDENCE_LABELS = {
@@ -161,7 +162,7 @@ export const CONFIDENCE_LABELS = {
   confirm: 'Confirm before booking',
 } as const
 
-const SHIP_STATUSES: ShipStatus[] = ['verified', 'needs_confirmation', 'seasonal_confirmation', 'awaiting_approval']
+const SHIP_STATUSES: ShipStatus[] = ['verified', 'needs_confirmation', 'seasonal_confirmation', 'awaiting_approval', 'pre_booking']
 const REQUIRED_SHIP_FIELDS: (keyof Ship)[] = ['slug', 'name', 'nameBn', 'summaryBn', 'route', 'operator', 'status', 'lastVerified', 'source', 'detail', 'ticketClasses', 'facilities', 'faq']
 
   const toAmount = (fare: string) => { const n = Number(fare.replace(/[^0-9]/g, '')); return Number.isFinite(n) && n > 0 ? n : Infinity }
@@ -262,3 +263,6 @@ export const LAST_REVIEWED = site.lastReviewed
 
 /** Ships without approval this season keep their page and fares, but can't be booked online. */
 export const isApproved = (ship: Ship) => ship.status !== 'awaiting_approval'
+
+/** The schedule is not published yet, so bookings are taken with the advance only. */
+export const isPreBooking = (ship: Ship) => ship.status === 'pre_booking'

@@ -5,12 +5,12 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { Armchair, BedDouble, Check, ChevronDown, ChevronLeft, CircleAlert, Clock, Loader2, MessageCircle, Minus, Plus, Ticket } from 'lucide-react'
 import { getShipSchedule, getUsualTimes } from '@/content/ship-schedules'
+import { BookingNotice } from '@/components/booking/booking-notice'
 import { CopyButton } from '@/components/booking/copy-button'
 import { clearBookingFailure, saveBookingFailure, saveBookingOutcome, takeBookingResume } from '@/lib/bookings/outcome'
-import { COURIER_NOTE } from '@/lib/contact'
 import { trackBookingSubmitted, trackEvent, trackWhatsApp } from '@/lib/gtm-events'
 import type { BookingCatalog, CatalogCategory } from '@/lib/bookings/catalog'
-import { bookingSchema, todayInDhaka } from '@/lib/bookings/validate'
+import { bookingSchema, mustPayInFull, TICKET_OPTIONS, todayInDhaka, type TicketDelivery } from '@/lib/bookings/validate'
 
 type Step = 0 | 1 | 2 | 3
 type TripType = 'one_way' | 'round_trip'
@@ -24,7 +24,7 @@ const STEPS = [
 ]
 
 /** Order used to find the first field with an error. */
-const FIELD_ORDER = ['shipSlug', 'travelDate', 'returnDate', 'categoryCode', 'fullName', 'mobileNumber', 'email', 'coPassengers', 'transactionId', 'acceptedTerms']
+const FIELD_ORDER = ['shipSlug', 'travelDate', 'returnDate', 'categoryCode', 'fullName', 'mobileNumber', 'email', 'coPassengers', 'ticketDelivery', 'deliveryAddress', 'transactionId', 'acceptedTerms']
 const DRAFT_KEY = 'shiptickets-booking-draft'
 const DRAFT_MAX_AGE_MS = 6 * 60 * 60 * 1000
 const BEGUN_KEY = 'shiptickets-booking-begun'
@@ -129,8 +129,10 @@ export function BookingFlow({
   const [mobileNumber, setMobileNumber] = useState('')
   const [email, setEmail] = useState('')
   const [coPassengers, setCoPassengers] = useState<string[]>([])
+  const [ticketDelivery, setTicketDelivery] = useState<TicketDelivery | ''>('')
+  const [deliveryAddress, setDeliveryAddress] = useState('')
   const [paymentMethodType, setPaymentMethodType] = useState(catalog.paymentMethods[0]?.type ?? 'bkash_merchant')
-  const [payInFull, setPayInFull] = useState(false)
+  const [payInFullChoice, setPayInFull] = useState(false)
   const [transactionId, setTransactionId] = useState('')
   const [acceptedTerms, setAcceptedTerms] = useState(false)
   const [errors, setErrors] = useState<Errors>({})
@@ -146,13 +148,20 @@ export function BookingFlow({
   const finished = useRef(false)
 
   const ship = catalog.ships.find((item) => item.slug === shipSlug)
+  // Pre-bookings are taken with the advance only.
+  const fullFareRequired = mustPayInFull(ticketDelivery, ship?.preBooking)
+  const payInFull = (payInFullChoice || fullFareRequired) && !ship?.preBooking
   const category = ship?.categories.find((item) => item.code === categoryCode)
   const fareFor = useCallback((item: CatalogCategory) => (tripType === 'round_trip' ? item.roundTrip : item.oneWay), [tripType])
   const fare = category ? fareFor(category) : null
   const total = fare ? fare * quantity : 0
   const advance = Math.round(total * catalog.advancePercentage) / 100
-  const dueNow = payInFull ? total : advance
-  const balance = Math.round((total - dueNow) * 100) / 100
+  // The courier cost is paid now, on top of the fare or the advance on the fare.
+  const courierCharge = ticketDelivery ? TICKET_OPTIONS[ticketDelivery].charge : 0
+  const grandTotal = total + courierCharge
+  const dueNow = (payInFull ? total : advance) + courierCharge
+  const balance = Math.round((grandTotal - dueNow) * 100) / 100
+  const courierNote = courierCharge > 0 ? ' + courier' : ''
   const method = catalog.paymentMethods.find((item) => item.type === paymentMethodType)
   const today = useMemo(() => todayInDhaka(), [])
   const earliest = today > seasonStart ? today : seasonStart
@@ -190,6 +199,8 @@ export function BookingFlow({
         setMobileNumber(draft.mobileNumber ?? '')
         setEmail(draft.email ?? '')
         setCoPassengers(draft.coPassengers ?? [])
+        if (draft.ticketDelivery in TICKET_OPTIONS) setTicketDelivery(draft.ticketDelivery)
+        setDeliveryAddress(draft.deliveryAddress ?? '')
         if (draft.paymentMethodType) setPaymentMethodType(draft.paymentMethodType)
         setPayInFull(draft.payInFull === true)
         setTransactionId(draft.transactionId ?? '')
@@ -210,11 +221,11 @@ export function BookingFlow({
   useEffect(() => {
     if (!draftReady || finished.current) return
     try {
-      window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ savedAt: Date.now(), step, shipSlug, tripType, travelDate, returnDate, categoryCode, quantity, seatPreference, fullName, mobileNumber, email, coPassengers, paymentMethodType, payInFull, transactionId, clientRequestId }))
+      window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ savedAt: Date.now(), step, shipSlug, tripType, travelDate, returnDate, categoryCode, quantity, seatPreference, fullName, mobileNumber, email, coPassengers, ticketDelivery, deliveryAddress, paymentMethodType, payInFull: payInFullChoice, transactionId, clientRequestId }))
     } catch {
       // Without storage, the booking simply is not restored after a reload.
     }
-  }, [draftReady, step, shipSlug, tripType, travelDate, returnDate, categoryCode, quantity, seatPreference, fullName, mobileNumber, email, coPassengers, paymentMethodType, payInFull, transactionId, clientRequestId])
+  }, [draftReady, step, shipSlug, tripType, travelDate, returnDate, categoryCode, quantity, seatPreference, fullName, mobileNumber, email, coPassengers, ticketDelivery, deliveryAddress, paymentMethodType, payInFullChoice, transactionId, clientRequestId])
 
   // Counts one started booking per tab, however often the page reloads.
   useEffect(() => {
@@ -305,6 +316,12 @@ export function BookingFlow({
       if (!category) found.categoryCode = 'Choose a seat or cabin to continue'
       else if (!fareFor(category)) found.categoryCode = 'This option has no fare for your trip type. Choose another, or contact us on WhatsApp'
     }
+    if (current === 2) {
+      // The shared schema skips these two while the payment fields are still empty.
+      const names = coPassengers.slice(0, Math.max(0, quantity - 1)).filter((name) => (name ?? '').trim().length >= 2)
+      if (category?.type !== 'cabin' && names.length < quantity - 1) found.coPassengers = 'Enter a full name for each passenger'
+      if (ticketDelivery && ticketDelivery !== 'office' && deliveryAddress.trim().length < 10) found.deliveryAddress = 'Enter your full delivery address'
+    }
     return found
   }
 
@@ -312,7 +329,10 @@ export function BookingFlow({
     clientRequestId, shipSlug, categoryCode, tripType, travelDate,
     returnDate: tripType === 'round_trip' ? returnDate : null,
     quantity, seatPreference, fullName, mobileNumber, email,
-    coPassengers: coPassengers.slice(0, Math.max(0, quantity - 1)).map((name) => (name ?? '').trim()).filter(Boolean),
+    isCabin: category?.type === 'cabin',
+    // A cabin does not ask for other names, so names typed before switching to one are not sent.
+    coPassengers: category?.type === 'cabin' ? [] : coPassengers.slice(0, Math.max(0, quantity - 1)).map((name) => (name ?? '').trim()).filter(Boolean),
+    ticketDelivery, deliveryAddress: ticketDelivery === 'office' ? '' : deliveryAddress,
     paymentMethodType, payInFull, transactionId, acceptedTerms,
   })
 
@@ -327,7 +347,7 @@ export function BookingFlow({
     let found = validateStep(step)
     if (step === 2) {
       const all = fieldErrors()
-      found = Object.fromEntries(Object.entries(all).filter(([key]) => ['fullName', 'mobileNumber', 'email', 'coPassengers'].includes(key)))
+      found = { ...Object.fromEntries(Object.entries(all).filter(([key]) => ['fullName', 'mobileNumber', 'email', 'coPassengers', 'ticketDelivery', 'deliveryAddress'].includes(key))), ...found }
     }
     setErrors(found)
     if (Object.keys(found).length === 0) goTo((step + 1) as Step)
@@ -366,6 +386,8 @@ export function BookingFlow({
       leaving = true
       finished.current = true
       saveBookingOutcome({
+        preBooking: ship?.preBooking,
+        ticketDelivery: ticketDelivery || undefined,
         reference: data.reference, total: data.total, advance: data.advance, balance: data.balance, advancePercentage: data.advancePercentage,
         shipName: ship?.name ?? '', categoryName: category?.name ?? '', isCabin: category?.type === 'cabin', quantity, tripType, travelDate,
         returnDate: tripType === 'round_trip' ? returnDate : '', departs: outbound?.departs, returns: tripType === 'round_trip' ? inbound?.returns : undefined, paymentMethod: method?.name ?? '',
@@ -418,11 +440,19 @@ export function BookingFlow({
             <dd className="text-right font-bold text-ink">{prettyDate(returnDate)}{inbound && <span className="block text-xs font-semibold text-quiet">Leaves {inbound.returns}</span>}</dd>
           </div>
         )}
+        {ticketDelivery && (
+          <div className="flex justify-between gap-4">
+            <dt className="text-quiet">Ticket</dt>
+            <dd className="text-right font-bold text-ink">{TICKET_OPTIONS[ticketDelivery].label}{ticketDelivery !== 'office' && <span className="block text-xs font-semibold text-quiet">{TICKET_OPTIONS[ticketDelivery].detail}</span>}</dd>
+          </div>
+        )}
       </dl>
       <dl className="mt-3 space-y-2 border-t border-line-soft pt-3">
-        <div className="flex justify-between gap-4"><dt className="text-sm text-quiet">Total</dt><dd className="font-extrabold tabular-nums text-ink">{total ? taka(total) : '—'}</dd></div>
+        {total > 0 && courierCharge > 0 && <div className="flex justify-between gap-4"><dt className="text-sm text-quiet">Fare</dt><dd className="font-bold tabular-nums text-ink">{taka(total)}</dd></div>}
+        {total > 0 && courierCharge > 0 && <div className="flex justify-between gap-4"><dt className="text-sm text-quiet">Courier</dt><dd className="font-bold tabular-nums text-ink">{taka(courierCharge)}</dd></div>}
+        <div className="flex justify-between gap-4"><dt className="text-sm text-quiet">Total</dt><dd className="font-extrabold tabular-nums text-ink">{total ? taka(grandTotal) : '—'}</dd></div>
         {balance > 0 && <div className="flex justify-between gap-4"><dt className="text-sm text-quiet">Balance due later</dt><dd className="font-extrabold tabular-nums text-ink">{taka(balance)}</dd></div>}
-        <div className="flex items-baseline justify-between gap-4"><dt className="text-sm font-bold text-ink">{payInFull ? 'Pay now (full fare)' : `Pay now (${catalog.advancePercentage}%)`}</dt><dd className="text-xl font-black tabular-nums text-brand-ink">{total ? taka(dueNow) : '—'}</dd></div>
+        <div className="flex items-baseline justify-between gap-4"><dt className="text-sm font-bold text-ink">{payInFull ? `Pay now (full fare${courierNote})` : `Pay now (${catalog.advancePercentage}%${courierNote})`}</dt><dd className="text-xl font-black tabular-nums text-brand-ink">{total ? taka(dueNow) : '—'}</dd></div>
       </dl>
       <p className="t-small mt-3 flex items-start gap-2 text-prose"><Ticket size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-brand" /> QR-coded Travel Pass included</p>
       <button type="submit" form="booking-form" disabled={submitting} className={`${primaryButton} mt-4 hidden w-full lg:inline-flex`}>{primaryIcon}{primaryLabel}</button>
@@ -505,6 +535,7 @@ export function BookingFlow({
                   {catalog.ships.map((item) => <option key={item.slug} value={item.slug}>{item.name}{item.nameBn ? ` (${item.nameBn})` : ''}</option>)}
                 </select>
               </Field>
+              {ship?.preBooking && <p className="rounded-xl border border-[#f3d9bf] bg-[#fff8ee] p-3 text-sm font-semibold text-ink">{ship.name} has not published its schedule yet. This is a pre-booking with an advance, and we will confirm your date and time on WhatsApp once the schedule is published.</p>}
               <fieldset>
                 <legend className="text-sm font-bold text-ink">Trip type</legend>
                 <div className="mt-1.5 grid grid-cols-2 gap-1 rounded-xl bg-[#e9f0ee] p-1">
@@ -585,16 +616,16 @@ export function BookingFlow({
               <Field id="mobileNumber" label="Mobile number (WhatsApp)" hint="For example, 01712345678" error={errors.mobileNumber}>
                 <input id="mobileNumber" type="tel" inputMode="tel" autoComplete="tel" value={mobileNumber} onChange={(event) => { setMobileNumber(event.target.value); clearError('mobileNumber') }} aria-invalid={Boolean(errors.mobileNumber)} aria-describedby={describe('mobileNumber', true)} className={inputClass} />
               </Field>
-              <Field id="email" label="Email (optional)" error={errors.email}>
+              <Field id="email" label="Email" error={errors.email}>
                 <input id="email" type="email" inputMode="email" autoComplete="email" value={email} onChange={(event) => { setEmail(event.target.value); clearError('email') }} aria-invalid={Boolean(errors.email)} aria-describedby={describe('email')} className={inputClass} />
               </Field>
               {quantity > 1 && category?.type !== 'cabin' && (
                 <fieldset className="space-y-3">
-                  <legend className="text-sm font-bold text-ink">Other passengers (optional)</legend>
-                  <p className="t-small text-quiet">You can add their names now, or send them on WhatsApp later.</p>
+                  <legend className="text-sm font-bold text-ink">Other passengers</legend>
+                  <p className="t-small text-quiet">Enter each passenger’s full name as on their NID.</p>
                   {Array.from({ length: quantity - 1 }, (_, index) => {
                     const value = coPassengers[index] ?? ''
-                    const invalid = Boolean(errors.coPassengers) && value.trim().length > 0 && value.trim().length < 2
+                    const invalid = Boolean(errors.coPassengers) && value.trim().length < 2
                     return (
                       <div key={index}>
                         <label htmlFor={`co-${index}`} className="text-sm font-bold text-ink">Passenger {index + 2}</label>
@@ -602,14 +633,42 @@ export function BookingFlow({
                       </div>
                     )
                   })}
-                  <FieldError id="coPassengers-error" message={errors.coPassengers ? 'Enter a full name for each passenger you add' : undefined} />
+                  <FieldError id="coPassengers-error" message={errors.coPassengers ? 'Enter a full name for each passenger' : undefined} />
                 </fieldset>
+              )}
+
+              <fieldset id="ticketDelivery" tabIndex={-1} aria-describedby={describe('ticketDelivery')} className="outline-none">
+                <legend className="text-sm font-bold text-ink">How will you get your printed ticket?</legend>
+                <p lang="bn" className="text-sm font-semibold text-brand-ink">প্রিন্ট করা টিকেট কীভাবে নেবেন?</p>
+                <div className="mt-2 grid gap-2">
+                  {(Object.entries(TICKET_OPTIONS) as [TicketDelivery, (typeof TICKET_OPTIONS)[TicketDelivery]][]).map(([value, option]) => {
+                    const selected = ticketDelivery === value
+                    return (
+                      <label key={value} className={`relative flex min-h-16 cursor-pointer flex-col justify-center rounded-xl border bg-white py-2.5 pl-3.5 pr-10 transition duration-200 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand-ink/50 ${selected ? 'border-brand-ink ring-1 ring-brand-ink' : 'border-line hover:border-brand-ink'}`}>
+                        <input type="radio" name="ticketDelivery" value={value} checked={selected} onChange={() => { setTicketDelivery(value); clearError('ticketDelivery'); clearError('deliveryAddress') }} className="sr-only" />
+                        <span className="text-sm font-extrabold text-ink">{option.label}</span>
+                        <span lang="bn" className="text-[0.8125rem] font-semibold text-brand-ink">{option.labelBn}</span>
+                        <span className="text-[0.8125rem] font-semibold tabular-nums text-prose">{option.detail}</span>
+                        {mustPayInFull(value, ship?.preBooking) && <span className="text-[0.8125rem] font-bold text-[#8a4e06]">Full fare paid online <span lang="bn">(পুরো ভাড়া অনলাইনে)</span></span>}
+                        <span aria-hidden="true" className={`absolute right-3 top-1/2 grid size-6 -translate-y-1/2 place-items-center rounded-full border transition-colors ${selected ? 'border-brand-ink bg-brand-ink text-white' : 'border-line bg-white text-transparent'}`}><Check size={15} /></span>
+                      </label>
+                    )
+                  })}
+                </div>
+                <FieldError id="ticketDelivery-error" message={errors.ticketDelivery} />
+              </fieldset>
+              {ticketDelivery && ticketDelivery !== 'office' && (
+                <Field id="deliveryAddress" label="Delivery address" hint="House, road, area and district. The courier cost is added to your payment." error={errors.deliveryAddress}>
+                  <textarea id="deliveryAddress" rows={3} maxLength={500} autoComplete="street-address" value={deliveryAddress} onChange={(event) => { setDeliveryAddress(event.target.value); clearError('deliveryAddress') }} aria-invalid={Boolean(errors.deliveryAddress)} aria-describedby={describe('deliveryAddress', true)} className={inputClass} />
+                </Field>
               )}
             </div>
           )}
 
           {step === 3 && (
             <div className="space-y-5">
+              <BookingNotice title="পেমেন্টের আগে জেনে নিন" delivery={ticketDelivery} balance={balance} onChangeDelivery={() => goTo(2)} />
+
               <fieldset>
                 <legend className="text-sm font-bold text-ink">Payment method</legend>
                 <div className="mt-1.5 grid grid-cols-2 gap-1 rounded-xl bg-[#e9f0ee] p-1">
@@ -622,10 +681,15 @@ export function BookingFlow({
                 </div>
               </fieldset>
 
+              {fullFareRequired && (
+                <p className="rounded-xl bg-[#e9f0ee] p-3 text-sm font-bold text-ink">Delivery outside Dhaka needs the full fare online.<span lang="bn" className="mt-0.5 block font-semibold text-prose">ঢাকার বাইরে ডেলিভারিতে পুরো ভাড়া অনলাইনে দিতে হবে।</span></p>
+              )}
+
+              {!ship?.preBooking && !fullFareRequired && (
               <fieldset>
                 <legend className="text-sm font-bold text-ink">How much do you want to pay now?</legend>
                 <div className="mt-1.5 grid grid-cols-2 gap-1 rounded-xl bg-[#e9f0ee] p-1">
-                  {([[false, `${catalog.advancePercentage}% advance`, advance], [true, 'Full fare', total]] as const).map(([value, label, amount]) => (
+                  {([[false, `${catalog.advancePercentage}% advance`, advance + courierCharge], [true, 'Full fare', total + courierCharge]] as const).map(([value, label, amount]) => (
                     <label key={label} className={`flex min-h-12 cursor-pointer flex-col items-center justify-center rounded-lg px-2 py-1 text-center transition duration-200 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand-ink/50 ${payInFull === value ? 'bg-white text-ink shadow-card' : 'text-quiet hover:text-ink'}`}>
                       <input type="radio" name="payAmount" checked={payInFull === value} onChange={() => setPayInFull(value)} className="sr-only" />
                       <span className="text-sm font-extrabold">{label}</span>
@@ -634,11 +698,12 @@ export function BookingFlow({
                   ))}
                 </div>
               </fieldset>
+              )}
 
               <div className="rounded-2xl bg-[#f1f8f6] p-4">
                 <div className="flex items-center justify-between gap-3">
                   <div>
-                    <p className="text-xs font-bold text-quiet">{payInFull ? 'Pay now (full fare)' : `Pay now (${catalog.advancePercentage}% advance)`}</p>
+                    <p className="text-xs font-bold text-quiet">{payInFull ? `Pay now (full fare${courierNote})` : `Pay now (${catalog.advancePercentage}% advance${courierNote})`}</p>
                     <p className="text-[1.75rem] font-black leading-tight tabular-nums text-brand-ink">{taka(dueNow)}</p>
                   </div>
                   <CopyButton value={String(dueNow)} label="amount" />
@@ -654,8 +719,6 @@ export function BookingFlow({
                   </details>
                 )}
               </div>
-
-              <p className="t-small text-prose">{payInFull ? '' : 'Pay the balance when your ticket is issued, collected or delivered. '}Collect your printed ticket from our office, or we can send it by courier. {COURIER_NOTE} If your seat or cabin is not available, you can choose another date or ship, or get your payment back in full.</p>
 
               <Field id="transactionId" label="Transaction ID (TrxID)" hint="Enter this after you have paid. You will find it in your payment confirmation." error={errors.transactionId}>
                 <input id="transactionId" type="text" autoComplete="off" autoCapitalize="characters" spellCheck={false} value={transactionId} onChange={(event) => { setTransactionId(event.target.value.toUpperCase()); clearError('transactionId') }} aria-invalid={Boolean(errors.transactionId)} aria-describedby={describe('transactionId', true)} className={`${inputClass} font-bold tracking-wide`} />
@@ -692,7 +755,7 @@ export function BookingFlow({
           <div className="min-w-0 flex-1 px-1">
             <p className="text-xs font-bold leading-tight text-quiet">Pay now</p>
             <p className="text-lg font-black leading-tight tabular-nums text-brand-ink">{taka(dueNow)}</p>
-            <p className="truncate text-xs leading-tight text-quiet">Total {taka(total)}</p>
+            <p className="truncate text-xs leading-tight text-quiet">Total {taka(grandTotal)}</p>
           </div>
         )}
         <button type="submit" form="booking-form" disabled={submitting} className={`${primaryButton} ${total > 0 ? 'shrink-0 px-4' : 'flex-1'}`}>{primaryIcon}{primaryLabel}</button>

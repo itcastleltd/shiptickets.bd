@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ArrowRight, MessageCircle } from 'lucide-react'
 import { ContactLink } from '@/components/contact-link'
 import { whatsapp } from '@/components/seo-page'
-import { isApproved, type Ship } from '@/lib/ships'
+import { isPreBooking, type Ship } from '@/lib/ships'
 
 /** What each ship suits, from its published categories. */
 export const BEST_FOR: Record<string, { en: string; bn: string }> = {
@@ -24,7 +24,7 @@ export function ShipListCard({ ship, cheapest, eventLabel }: { ship: Ship; cheap
     <article className="group flex flex-col overflow-hidden rounded-3xl border border-line-soft bg-white shadow-card transition duration-200 hover:-translate-y-0.5 hover:shadow-raised">
       <Link href={`/saint-martin-ship/${ship.slug}`} tabIndex={-1} aria-hidden="true" className="relative block aspect-[5/2] overflow-hidden bg-[#dcefeb] sm:aspect-[16/9]">
         <Image src={ship.image || '/no-image.jpg'} alt={ship.image ? (ship.imageAlt ?? `${ship.name} passenger ship`) : ''} fill sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.03]" />
-        {!isApproved(ship) && <span className="absolute left-3 top-3 rounded-full bg-[#fff8ee] px-3 py-1 text-[0.8125rem] font-bold text-[#8a5a2f] shadow-card">Awaiting approval</span>}
+        {isPreBooking(ship) && <span className="absolute left-3 top-3 rounded-full bg-[#fff8ee] px-3 py-1 text-[0.8125rem] font-bold text-[#8a5a2f] shadow-card">Pre-booking open</span>}
         {cheapest && <span lang="bn" className="absolute left-3 top-3 rounded-full bg-brand-ink px-3 py-1 text-[0.8125rem] font-bold text-white shadow-card">সবচেয়ে কম ভাড়া</span>}
       </Link>
       <div className="flex flex-1 flex-col p-4 sm:p-5">
