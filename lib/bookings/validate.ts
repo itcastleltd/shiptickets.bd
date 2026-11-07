@@ -26,6 +26,7 @@ export const bookingSchema = z
     email: z.union([z.literal(''), z.string().trim().email('Enter a valid email address').max(200)]).optional().default(''),
     coPassengers: z.array(personName).max(19).optional().default([]),
     paymentMethodType: z.enum(['bkash_merchant', 'bank_transfer']),
+    payInFull: z.boolean().optional().default(false),
     transactionId: z
       .string()
       .trim()

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ArrowDown, ArrowRight, Check, ChevronDown, Clock, MapPin, MessageCircle, Phone, Ticket } from 'lucide-react'
 import { BOOKING_ENABLED } from '@/lib/bookings/validate'
 import { NO_IMAGE, seatPhotoAlt, seatPhotoName, seatPhotoSrc } from '@/lib/seat-photos'
-import { PHONE_NUMBER, WHATSAPP_NUMBER, getReviewsForShip, season, type Ship } from '@/lib/ships'
+import { isApproved, PHONE_NUMBER, WHATSAPP_NUMBER, getReviewsForShip, season, type Ship } from '@/lib/ships'
 import { dhakaToday, getShipSchedule, getUsualTimes } from '@/content/ship-schedules'
 import { ContactLink } from '@/components/contact-link'
 import { CustomerReviews, FaqAccordion, ProvenanceNote } from '@/components/content-blocks'
@@ -50,6 +50,7 @@ const fareRange = (fares: (string | undefined)[]) => {
 const shortJetty = (jetty?: string) => (/nuniarchhara/i.test(jetty ?? 'Nuniarchhara') ? 'Nuniarchhara Jetty' : (jetty ?? '').split(/[,(/]/)[0].trim())
 /** "Approx. 6 to 7 hours (seasonal, confirm for your sailing)" becomes "About 6 to 7 hours". */
 const shortJourney = (journey?: string) => (journey ?? '').replace(/\s*\(.*$/, '').replace(/^Approx\.\s*/, 'About ').replace(/(\d)–(\d)/, '$1 to $2').trim()
+const canBook = (ship: Ship) => BOOKING_ENABLED && isApproved(ship)
 const bookHref = (ship: Ship, category?: string) => `/booking?ship=${ship.slug}${category ? `&category=${seatPhotoName(category)}` : ''}`
 
 const inlineLink = 'font-bold text-brand-ink underline underline-offset-2 transition-colors hover:text-[#13734f]'
@@ -87,6 +88,13 @@ function ShipHero({ ship, title, intro, seatFrom, roundFrom, hasCabins }: { ship
       <div className="lg:row-span-2">
         <p className="t-label mb-3 text-brand-ink"><Eyebrow text={`Ship guide · ${ship.nameBn}`} /></p>
         <h1 className="t-display text-[clamp(1.85rem,1.25rem+2.5vw,3.1rem)] text-ink">{SHIP_H1[ship.slug] ?? title}</h1>
+        {!isApproved(ship) && (
+          <div className="mt-4 max-w-2xl rounded-2xl border border-[#f3d9bf] bg-[#fff8ee] p-4">
+            <p className="font-extrabold text-ink">{ship.name} is awaiting 2026–27 approval</p>
+            <p className="t-small mt-1 text-prose">It is not yet approved to sail this season, so online booking is closed. These are its last published fares. Contact us on WhatsApp to book an approved ship.</p>
+            <p lang="bn" className="t-small mt-1 font-semibold text-prose">এই জাহাজ এখনো ২০২৬–২৭ মৌসুমের অনুমোদন পায়নি, তাই অনলাইন বুকিং বন্ধ আছে।</p>
+          </div>
+        )}
 
         <div className="mt-5 grid grid-cols-2 divide-x divide-[#d9e8e4] rounded-2xl bg-[#f1f8f6] py-4">
           <div className="px-4">
@@ -104,7 +112,7 @@ function ShipHero({ ship, title, intro, seatFrom, roundFrom, hasCabins }: { ship
           shipName={ship.name}
           minDate={season.startISO}
           maxDate={season.endISO}
-          bookingEnabled={BOOKING_ENABLED}
+          bookingEnabled={canBook(ship)}
           hasCabins={hasCabins}
           whatsappNumber={WHATSAPP_NUMBER}
         />
@@ -214,7 +222,7 @@ function CategoryCard({ ship, name, nameBn, description, chipBn, chip, noteBn, b
           {saving > 0 && <p lang="bn" className="mt-2 text-right text-[0.8125rem] font-bold text-brand-ink">যাওয়া-আসা নিলে {bnTaka(saving)} বাঁচবে</p>}
         </div>
 
-        {BOOKING_ENABLED ? (
+        {canBook(ship) ? (
           <div className="grid grid-cols-[1.25fr_1fr] gap-2">
             <BookLink href={bookHref(ship, name)} location={`${kind}_card`} className="flex min-h-12 items-center justify-center rounded-xl bg-brand-ink px-3 text-sm font-extrabold text-white transition duration-200 hover:bg-brand-ink-hover">
               Book now
@@ -334,12 +342,12 @@ function SailingDetails({ ship, hasTimetable }: { ship: Ship; hasTimetable: bool
 }
 
 function HowToBook({ ship, checklist }: { ship: Ship; checklist: string[] }) {
-  const steps = BOOKING_ENABLED
+  const steps = canBook(ship)
     ? [
         { title: ship.cabins.length > 0 ? 'Choose your seat or cabin' : 'Choose your seat', text: `Pick a category on ${ship.name}, then your date and passenger count.` },
         { title: 'Enter passenger details', text: 'Add the names and mobile number for the ticket.' },
         { title: 'Pay the advance', text: 'Pay the advance shown at checkout, then submit your transaction ID.' },
-        { title: 'Get your ticket', text: 'Our team checks your payment, then sends your ticket details.' },
+        { title: 'Get your ticket', text: 'We confirm on WhatsApp after checking your payment. Collect your printed ticket from our Kawran Bazar office, or we can send it by courier.' },
       ]
     : [
         { title: 'Send your travel date', text: `Tell us the date you plan to travel on ${ship.name}.` },
@@ -451,18 +459,18 @@ function FinalCta({ ship }: { ship: Ship }) {
   const message = `Hello ShipTickets.bd, please check my travel date, passenger count and preferred category on ${ship.name}.`
   return (
     <section className="mb-12 rounded-3xl bg-[#0d1b2a] p-7 text-white md:p-10">
-      <h2 className="t-title">{BOOKING_ENABLED ? `Ready to book ${ship.name}?` : `Check ${ship.name} availability`}</h2>
+      <h2 className="t-title">{canBook(ship) ? `Ready to book ${ship.name}?` : `Check ${ship.name} availability`}</h2>
       <p className="t-body mt-2 t-measure text-on-dark">
-        {BOOKING_ENABLED ? 'Book online, or send us your travel date, passenger count and preferred category on WhatsApp.' : 'Send your travel date, passenger count and preferred category. We will confirm the current fare, availability, boarding information and Travel Pass requirements before you book.'}
+        {canBook(ship) ? 'Book online, or send us your travel date, passenger count and preferred category on WhatsApp.' : 'Send your travel date, passenger count and preferred category. We will confirm the current fare, availability, boarding information and Travel Pass requirements before you book.'}
       </p>
       <div className="mt-5 flex flex-wrap gap-3">
-        {BOOKING_ENABLED && (
+        {canBook(ship) && (
           <BookLink href={bookHref(ship)} location="final_cta" className="inline-flex min-h-12 items-center rounded-xl bg-brand-ink px-6 text-sm font-extrabold text-white transition duration-200 hover:bg-brand-ink-hover">
             Book now
           </BookLink>
         )}
-        <ContactLink href={whatsappHref(message)} kind="whatsapp" eventLabel="booking_cta" className={`inline-flex min-h-12 items-center gap-2 rounded-xl px-5 text-sm font-extrabold text-white transition duration-200 ${BOOKING_ENABLED ? 'border border-white/30 hover:bg-white/10' : 'bg-brand-ink hover:bg-brand-ink-hover'}`}>
-          <MessageCircle size={16} aria-hidden="true" /> {BOOKING_ENABLED ? 'WhatsApp' : 'Check availability on WhatsApp'}
+        <ContactLink href={whatsappHref(message)} kind="whatsapp" eventLabel="booking_cta" className={`inline-flex min-h-12 items-center gap-2 rounded-xl px-5 text-sm font-extrabold text-white transition duration-200 ${canBook(ship) ? 'border border-white/30 hover:bg-white/10' : 'bg-brand-ink hover:bg-brand-ink-hover'}`}>
+          <MessageCircle size={16} aria-hidden="true" /> {canBook(ship) ? 'WhatsApp' : 'Check availability on WhatsApp'}
         </ContactLink>
         <Link href="/saint-martin-ship-ticket-price" className="inline-flex min-h-12 items-center rounded-xl border border-white/30 px-5 text-sm font-extrabold text-white transition duration-200 hover:bg-white/10">
           Compare all fares
@@ -509,13 +517,13 @@ function BookingPanel({ ship, seatFrom, roundFrom }: { ship: Ship; seatFrom: num
         <p className="mt-1 text-sm font-bold text-prose">Round trip from {taka(roundFrom)}</p>
 
         <div className="mt-5 grid gap-2">
-          {BOOKING_ENABLED ? (
+          {canBook(ship) ? (
             <BookLink href={bookHref(ship)} location="side_panel" className="flex min-h-12 items-center justify-center rounded-xl bg-brand-ink px-4 text-sm font-extrabold text-white transition duration-200 hover:bg-brand-ink-hover">
               Book now
             </BookLink>
           ) : null}
-          <ContactLink href={whatsappHref(message)} kind="whatsapp" eventLabel="side_panel" className={`flex min-h-12 items-center justify-center gap-2 rounded-xl px-4 text-sm font-extrabold transition duration-200 ${BOOKING_ENABLED ? 'border border-line text-ink hover:border-brand-ink hover:text-brand-ink' : 'bg-brand-ink text-white hover:bg-brand-ink-hover'}`}>
-            <MessageCircle size={16} aria-hidden="true" /> {BOOKING_ENABLED ? 'Ask on WhatsApp' : 'Check on WhatsApp'}
+          <ContactLink href={whatsappHref(message)} kind="whatsapp" eventLabel="side_panel" className={`flex min-h-12 items-center justify-center gap-2 rounded-xl px-4 text-sm font-extrabold transition duration-200 ${canBook(ship) ? 'border border-line text-ink hover:border-brand-ink hover:text-brand-ink' : 'bg-brand-ink text-white hover:bg-brand-ink-hover'}`}>
+            <MessageCircle size={16} aria-hidden="true" /> {canBook(ship) ? 'Ask on WhatsApp' : 'Check on WhatsApp'}
           </ContactLink>
           <ContactLink href={phoneHref} kind="phone" eventLabel="side_panel" className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-line px-4 text-sm font-extrabold text-ink transition duration-200 hover:border-brand-ink hover:text-brand-ink">
             <Phone size={16} aria-hidden="true" /> {PHONE_NUMBER}
@@ -674,7 +682,7 @@ export function ShipBookingPage({
       modifiedISO={ship.pageUpdated}
       crumbs={crumbs}
       hero={<ShipHero ship={ship} title={title} intro={linkedIntro} seatFrom={seatFrom} roundFrom={roundFrom} hasCabins={ship.cabins.length > 0} />}
-      mobileBar={<ShipMobileBar bookHref={BOOKING_ENABLED ? bookHref(ship) : undefined} whatsappHref={whatsappHref(`Hello ShipTickets.bd, I want to check ${ship.name} availability for my travel date.`)} phoneHref={phoneHref} />}
+      mobileBar={<ShipMobileBar bookHref={canBook(ship) ? bookHref(ship) : undefined} whatsappHref={whatsappHref(`Hello ShipTickets.bd, I want to check ${ship.name} availability for my travel date.`)} phoneHref={phoneHref} />}
       backToTopDesktopOnly
     >
       <ShipViewTracker slug={ship.slug} name={ship.name} />

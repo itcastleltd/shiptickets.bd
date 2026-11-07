@@ -9,7 +9,7 @@ import { trackClickCTA, trackPhoneClick, trackWhatsApp } from '@/lib/gtm-events'
 /** A Book now link that reports its click, for use from server-rendered pages. */
 export function BookLink({ href, location, className, children }: { href: string; location: string; className?: string; children: ReactNode }) {
   return (
-    <Link href={href} rel="nofollow" className={className} onClick={() => trackClickCTA('book_now', location)}>
+    <Link href={href} className={className} onClick={() => trackClickCTA('book_now', location)}>
       {children}
     </Link>
   )

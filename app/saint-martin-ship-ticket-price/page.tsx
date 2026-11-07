@@ -270,7 +270,7 @@ export default function PricePage() {
             <p className="text-4xl font-black tabular-nums text-ink">{cheapest.oneWay}</p>
             <p className="mt-1 text-sm font-bold text-prose">one way, {taka(lowestRound)} round trip</p>
             <div className="mt-5 grid gap-2">
-              {BOOKING_ENABLED && <Link href="/booking" rel="nofollow" className="flex min-h-12 items-center justify-center rounded-xl bg-brand-ink px-4 text-sm font-extrabold text-white transition duration-200 hover:bg-brand-ink-hover">Book now</Link>}
+              {BOOKING_ENABLED && <Link href="/booking" className="flex min-h-12 items-center justify-center rounded-xl bg-brand-ink px-4 text-sm font-extrabold text-white transition duration-200 hover:bg-brand-ink-hover">Book now</Link>}
               <ContactLink href={askFare} kind="whatsapp" eventLabel="price_page_whatsapp" className={`flex min-h-12 items-center justify-center gap-2 rounded-xl px-4 text-sm font-extrabold transition duration-200 ${BOOKING_ENABLED ? 'border border-line text-ink hover:border-brand-ink hover:text-brand-ink' : 'bg-brand-ink text-white hover:bg-brand-ink-hover'}`}><MessageCircle size={16} aria-hidden="true" /> Fare for my date</ContactLink>
               <ContactLink href={phoneHref} kind="phone" eventLabel="price_page_phone" className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-line px-4 text-sm font-extrabold text-ink transition duration-200 hover:border-brand-ink hover:text-brand-ink"><Phone size={16} aria-hidden="true" /> {PHONE_NUMBER}</ContactLink>
             </div>

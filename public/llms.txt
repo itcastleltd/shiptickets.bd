@@ -22,6 +22,7 @@ ShipTickets.bd is operated by Tripzic. It is an authorized platform for Saint Ma
 - **Lowest fare:** ৳1,900 one way and ৳3,600 round trip per person, on MV Teknaf
 - **Travel Pass:** a Travel Pass and QR-coded ticket are required. Both, and the ৳100 environmental conservation fee, are included with tickets booked through ShipTickets.bd
 - **Government portal:** https://travelpass.gov.bd/
+- **Approved ships:** MV Karnafuly Express, MV Baro Awlia and MV Teknaf are approved for 2026–27. Keari Cruise & Dine and Keari Sindbad are awaiting approval and cannot be booked online yet
 
 ## Ships and lowest fares
 
@@ -40,8 +41,8 @@ Fares are published per-person reference prices, not live quotes. Confirm the fa
 - **MV Karnafuly Express:** Changes with the tide. See the November 2026 table in the full file or on the schedule page.
 - **MV Baro Awlia:** Changes with the tide. See the November 2026 table in the full file or on the schedule page.
 - **MV Teknaf:** Leaves Cox’s Bazar at 7:00 AM and Saint Martin at 4:00 PM every day. The updated dated schedule has not been received yet.
-- **Keari Cruise & Dine:** Sailing this season. The updated schedule has not been received yet, so ask for the time on your date.
-- **Keari Sindbad:** Sailing this season. The updated schedule has not been received yet, so ask for the time on your date.
+- **Keari Cruise & Dine:** Awaiting 2026–27 approval, so there is no schedule yet.
+- **Keari Sindbad:** Awaiting 2026–27 approval, so there is no schedule yet.
 
 Tide and weather can change times. Follow the time printed on your ticket.
 
@@ -53,11 +54,14 @@ Online:
 
 1. Choose the ship, trip type, dates, seat or cabin, and number of tickets.
 2. Enter the passenger's name and mobile number.
-3. Pay the advance shown at checkout by bKash or bank transfer, then enter the transaction ID.
+3. Pay the advance or the full fare by bKash or bank transfer, then enter the transaction ID.
 4. Save the booking reference, then send the payment screenshot, NID number and date of birth on WhatsApp.
-5. The team checks each payment by hand and confirms with the operator. The ticket and Travel Pass then come on WhatsApp.
+5. The team checks each payment by hand, confirms with the operator and tells the customer on WhatsApp.
+6. Collect the printed ticket from the Kawran Bazar office in Dhaka, or get it by courier: ৳80 in Dhaka (next day) or ৳130 outside Dhaka (3 days).
 
-A submitted booking is not final. It is final when the ticket is issued. The advance is currently 20%, and the rest is paid when the ticket is issued, collected or delivered. If the chosen seat or cabin is not available, the customer can choose another date or ship, or get the advance back in full.
+A printed ticket is required to board. Children under 5 travel free, so only passengers aged 5 and over are counted.
+
+A submitted booking is not final. It is final when the ticket is issued. The advance is currently 20%, and the rest is paid when the ticket is issued, collected or delivered. If the chosen seat or cabin is not available, the customer can choose another date or ship, or get the payment back in full.
 
 On WhatsApp or by phone, send the travel date, passenger count and preferred seat or cabin, and the team confirms the fare and availability before you pay.
 
@@ -67,7 +71,7 @@ The site does not show live seat availability. Refunds depend on the operator’
 
 - **Phone and WhatsApp:** +880 1718-116799
 - **Email:** support@tripzic.com
-- **Support hours:** Sun - Thu, 9:00 AM - 6:00 PM
+- **Support hours:** Every day, 9:00 AM - 9:00 PM
 - **Office:** 33, Hafiz Manson, (1st Floor) Kawran Bazar, Dhaka, Bangladesh, 1215
 - **Facebook:** https://www.facebook.com/shiptickets
 - **Instagram:** https://www.instagram.com/shipticketsbd

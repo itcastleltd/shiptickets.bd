@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Check, Info, MapPin, Plus, ShieldCheck, Sparkles } from 'lucide-react'
 import { BOOKING_ENABLED } from '@/lib/bookings/validate'
 import { seatPhotoAlt, seatPhotoName, seatPhotoSrc } from '@/lib/seat-photos'
-import { CONFIDENCE_LABELS, LAST_REVIEWED, STATUS_LABELS, WHATSAPP_NUMBER, getReviewsForShip, season, type Cabin, type CategoryGuidance, type Ship, type ShipSpec, type TicketClass } from '@/lib/ships'
+import { isApproved, CONFIDENCE_LABELS, LAST_REVIEWED, STATUS_LABELS, WHATSAPP_NUMBER, getReviewsForShip, season, type Cabin, type CategoryGuidance, type Ship, type ShipSpec, type TicketClass } from '@/lib/ships'
 import { ContactLink } from '@/components/contact-link'
 
 const whatsapp = `https://wa.me/${WHATSAPP_NUMBER}?text=`
@@ -107,11 +107,10 @@ export function TicketCards({ ship, id }: { ship: Ship; id?: string }) {
 
 /** Sits beside "Check availability" once online booking is switched on. */
 function BookNowLink({ ship, categoryName }: { ship: Ship; categoryName: string }) {
-  if (!BOOKING_ENABLED) return null
+  if (!BOOKING_ENABLED || !isApproved(ship)) return null
   return (
     <Link
-      href={`/booking?ship=${ship.slug}&category=${seatPhotoName(categoryName)}`}
-      rel="nofollow"
+      href={`/booking?ship=${ship.slug}&category=${seatPhotoName(categoryName)}`}
       className="mt-2 inline-flex min-h-11 items-center justify-center rounded-full bg-brand-ink px-4 py-2.5 text-xs font-extrabold text-white transition hover:bg-[#13734f]"
     >
       Book now

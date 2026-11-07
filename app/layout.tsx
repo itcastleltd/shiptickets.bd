@@ -7,6 +7,7 @@ import { GTMPageTracker } from '@/components/GTMPageTracker'
 import { FaqTracker } from '@/components/faq-tracker'
 import { ImageGuard } from '@/components/image-guard'
 import { MobileCallBar } from '@/components/mobile-call-bar'
+import { SiteActionTracker } from '@/components/site-action-tracker'
 
 const nunito = Nunito({ subsets: ['latin'], display: 'swap', variable: '--font-nunito' })
 
@@ -68,11 +69,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             }}
           />
         )}
-      <Script id="meta-pixel" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];var l=function(){if(n.l)return;n.l=1;t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)};['pointerdown','keydown','scroll'].forEach(function(k){f.addEventListener(k,l,{once:!0,passive:!0})});f.addEventListener('load',function(){setTimeout(l,4000)})}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','29740631978871614');fbq('track','PageView');" }} />
       </head>
       <body className={`antialiased ${nunito.variable} font-sans`}>
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-extrabold focus:text-brand-ink focus:shadow-raised">Skip to main content</a>
-        <noscript dangerouslySetInnerHTML={{ __html: '<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=29740631978871614&amp;ev=PageView&amp;noscript=1" />' }} />
         {gtmId && (
           <noscript
             dangerouslySetInnerHTML={{
@@ -82,6 +81,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         )}
         <GTMPageTracker />
         <FaqTracker />
+        <SiteActionTracker />
         {children}
         <ImageGuard />
         <MobileCallBar />

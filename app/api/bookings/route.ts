@@ -2,6 +2,7 @@ import { after, NextResponse } from 'next/server'
 import { BOOKING_ENABLED, bookingSchema, type BookingResult } from '@/lib/bookings/validate'
 import { isOverBookingLimit } from '@/lib/bookings/rate-limit'
 import { processSheetQueue } from '@/lib/sheets/sync'
+import { getShipBySlug, isApproved } from '@/lib/ships'
 import { createAdminClient } from '@/lib/supabase/admin'
 
 const fail = (status: number, code: string, message: string, fields?: Record<string, string>) =>
@@ -38,6 +39,10 @@ export async function POST(request: Request) {
   if (!supabase) return fail(503, 'UNAVAILABLE', 'Online booking is unavailable right now. Please contact us on WhatsApp.')
 
   const input = parsed.data
+  const requestedShip = getShipBySlug(input.shipSlug)
+  if (requestedShip && !isApproved(requestedShip)) {
+    return fail(409, 'SHIP_NOT_APPROVED', `${requestedShip.name} is not yet approved to sail this season. Please choose another ship, or contact us on WhatsApp.`)
+  }
   if (await isOverBookingLimit(supabase, input.mobileNumber, input.clientRequestId)) {
     return fail(429, 'TOO_MANY_BOOKINGS', 'This mobile number has made several bookings in the last hour. Please contact us on WhatsApp to book more tickets.')
   }
@@ -58,6 +63,8 @@ export async function POST(request: Request) {
       p_co_passengers: input.coPassengers,
       p_payment_method_type: input.paymentMethodType,
       p_transaction_id: input.transactionId,
+      // Sent only when chosen, so advance bookings work whichever of the site and database updates first.
+      ...(input.payInFull ? { p_pay_in_full: true } : {}),
     })
 
   let { data, error } = await callBooking()

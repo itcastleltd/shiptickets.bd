@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Book a Saint Martin Ship Ticket',
-  description: 'Book your Saint Martin ship ticket with ShipTickets.bd.',
+  description: 'Book your Saint Martin ship ticket online: choose your ship, date and seat, pay the advance by bKash or bank, and collect your printed ticket.',
   alternates: { canonical: 'https://www.shiptickets.bd/booking' },
   robots: { index: false, follow: true },
 }

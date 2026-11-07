@@ -13,13 +13,14 @@ import { blogPosts } from '@/content/blog'
 import { TEKNAF_TIME_NOTE, dhakaToday, getShipSchedule, getUsualTimes } from '@/content/ship-schedules'
 import { BOOKING_ENABLED } from '@/lib/bookings/validate'
 import { newestFirst, photosFirst } from '@/lib/blog-helpers'
-import { PHONE_NUMBER, WHATSAPP_NUMBER, season, ships, site, type Ship } from '@/lib/ships'
+import { COURIER_NOTE } from '@/lib/contact'
+import { PHONE_NUMBER, WHATSAPP_NUMBER, isApproved, season, ships, site, type Ship } from '@/lib/ships'
 
 /** Refresh hourly, so crawlers without JavaScript get sailing times from today, not the build date. */
 export const revalidate = 3600
 
 const url = 'https://www.shiptickets.bd/'
-const pageTitle = 'Saint Martin Ship Ticket Booking 2026-27 | ShipTickets.bd'
+const pageTitle = 'Saint Martin Ship Ticket Booking | সেন্টমার্টিন জাহাজের টিকেট'
 const link = 'font-bold text-brand-ink underline underline-offset-2'
 const card = 'rounded-2xl border border-line-soft bg-white p-5 shadow-card'
 
@@ -39,7 +40,7 @@ const phoneHref = `tel:${PHONE_NUMBER.replace(/[^+\d]/g, '')}`
 const teknaf = getUsualTimes('mv-teknaf')
 
 const h1 = 'Saint Martin Ship Ticket Online Booking'
-const description = `Book Saint Martin ship tickets from Cox’s Bazar: compare all 5 ships, fares from ${cheapest.oneWay} one way, schedules and cabins. Travel Pass included.`
+const description = `Book Saint Martin ship tickets from Cox’s Bazar: compare ships, fares from ${cheapest.oneWay} one way, schedules and cabins. Travel Pass included.`
 
 export const metadata: Metadata = {
   title: { absolute: pageTitle },
@@ -52,9 +53,11 @@ export const metadata: Metadata = {
 
 const faqs: [string, string][] = [
   ['How do I book a Saint Martin ship ticket online?', BOOKING_ENABLED
-    ? 'On our booking page, choose your ship, dates and seat or cabin, then add your name and mobile number. Pay the advance shown at checkout by bKash or bank transfer and enter your transaction ID. You get a booking reference, then send your payment screenshot, NID number and date of birth on WhatsApp. Your ticket and Travel Pass come on WhatsApp after your payment is checked.'
-    : `Send your travel date, passenger count and preferred seat or cabin to ShipTickets.bd on WhatsApp, or call ${PHONE_NUMBER}. We confirm the fare and availability, you pay by bKash or bank transfer, and your ticket comes on WhatsApp after your payment is checked.`],
-  ...(BOOKING_ENABLED ? [['How much do I pay when I book online?', `You pay a ${site.advancePercentage}% advance to book, and the rest when your ticket is issued, collected or delivered. If your seat or cabin is not available, you can choose another date or ship, or get your advance back in full.`] as [string, string]] : []),
+    ? 'On our booking page, choose your ship, dates and seat or cabin, then add your name and mobile number. Pay the advance shown at checkout by bKash or bank transfer and enter your transaction ID. You get a booking reference, then send your payment screenshot, NID number and date of birth on WhatsApp. We confirm on WhatsApp after your payment is checked. Collect your printed ticket from our Kawran Bazar office, or we can send it by courier.'
+    : `Send your travel date, passenger count and preferred seat or cabin to ShipTickets.bd on WhatsApp, or call ${PHONE_NUMBER}. We confirm the fare and availability, you pay by bKash or bank transfer, and we confirm on WhatsApp after your payment is checked. Collect your printed ticket from our Kawran Bazar office, or we can send it by courier.`],
+  ['Do I need a printed ticket?', `Yes. Bring your printed ticket to the jetty. After we confirm your booking on WhatsApp, collect it from our Kawran Bazar office in Dhaka, or we can send it to your address by courier. ${COURIER_NOTE}`],
+  ['Do children need to pay?', 'Children under 5 travel free. Count only passengers aged 5 and over when you book.'],
+  ...(BOOKING_ENABLED ? [['How much do I pay when I book online?', `You pay a ${site.advancePercentage}% advance to book, and the rest when your ticket is issued, collected or delivered. You can also pay the full fare at once. If your seat or cabin is not available, you can choose another date or ship, or get your advance back in full.`] as [string, string]] : []),
   ['How much is a Saint Martin ship ticket?', `Published seat fares start at ${cheapest.oneWay} one way and ${taka(lowestRound)} round trip per person, and reach ${taka(highestSeat)} one way for the highest lounge. Private cabins start at ${taka(lowestCabin)} one way. Fares vary by ship, seat class and date, so confirm yours before you pay.`],
   ['Can I book a ticket by WhatsApp?', 'Yes. Send your travel date, passenger count and preferred ship or class. Our support team will confirm current availability and the fare before you pay.'],
   ['Do I need a Travel Pass?', 'Yes. Every ship ticket booked through ShipTickets.bd includes the QR-coded Travel Pass, so you do not need to apply for it separately. Government rules can change, so read the latest guidance before your journey.'],
@@ -64,7 +67,7 @@ const faqs: [string, string][] = [
   ['What time do Saint Martin ships leave?', `Ships leave Cox’s Bazar in the morning. MV Teknaf leaves at ${teknaf?.departs} every day, and the dated times for MV Karnafuly Express and MV Baro Awlia change with the tide. See the Saint Martin ship schedule, then follow the time on your ticket.`],
   ['How do I go to Saint Martin from Dhaka?', 'First travel from Dhaka to Cox’s Bazar, then board your ship at the BIWTA Nuniarchhara Jetty. The crossing takes about 6 to 7 hours, so plan to reach Cox’s Bazar before your sailing day, especially for an early departure.'],
   ['Is ShipTickets.bd an authorized seller?', 'Yes. ShipTickets.bd is an authorized platform for Saint Martin ship tickets and a corporate partner of all five ships listed on this site.'],
-  ['কক্সবাজার থেকে সেন্টমার্টিন কোন জাহাজ যায়?', 'এই মৌসুমের জন্য পাঁচটি জাহাজের তথ্য আছে: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া, এমভি টেকনাফ, কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ। সব জাহাজ কক্সবাজারের নুনিয়ারছড়া জেটি থেকে ছাড়ে।'],
+  ['কক্সবাজার থেকে সেন্টমার্টিন কোন জাহাজ যায়?', 'এই মৌসুমে অনুমোদিত জাহাজ: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া ও এমভি টেকনাফ। কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ এখনো ২০২৬–২৭ মৌসুমের অনুমোদন পায়নি। জাহাজ কক্সবাজারের নুনিয়ারছড়া জেটি থেকে ছাড়ে।'],
   ['সেন্টমার্টিন জাহাজের টিকেটের দাম কত?', `সিটের ভাড়া জনপ্রতি একমুখী ${bangla(cheapest.oneWay)} এবং যাওয়া-আসা ${bangla(taka(lowestRound))} থেকে শুরু। ভাড়া জাহাজ, সিটের ধরন ও তারিখভেদে আলাদা হয়, তাই টাকা দেওয়ার আগে আপনার তারিখের ভাড়া জেনে নিন।`],
 ]
 
@@ -99,16 +102,16 @@ function Hero() {
   const stats = [
     { label: 'One way from', value: cheapest.oneWay, note: cheapest.name },
     { label: 'Round trip from', value: taka(lowestRound), note: cheapest.name },
-    { label: 'Ships this season', value: String(ships.length), note: 'from Cox’s Bazar' },
+    { label: 'Approved ships', value: String(ships.filter(isApproved).length), note: `${ships.filter((ship) => !isApproved(ship)).length} more awaiting approval` },
   ]
   return (
     <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-x-12">
       <div>
         <h1 className="t-display mt-2 max-w-3xl text-[clamp(1.9rem,1.3rem+2.6vw,3.25rem)] text-ink">Saint Martin Ship Ticket Online Booking</h1>
-        <p className="t-lede mt-3 max-w-2xl text-prose"><strong className="font-extrabold text-ink">Compare all five Saint Martin ships from Cox’s Bazar,</strong> {BOOKING_ENABLED ? 'book online or on WhatsApp' : 'send your travel date on WhatsApp'}, and get your ticket from ShipTickets.bd with the Travel Pass included.</p>
+        <p className="t-lede mt-3 max-w-2xl text-prose"><strong className="font-extrabold text-ink">Compare Saint Martin ships from Cox’s Bazar,</strong> {BOOKING_ENABLED ? 'book online or on WhatsApp' : 'send your travel date on WhatsApp'}, and get your ticket from ShipTickets.bd with the Travel Pass included.</p>
         <p lang="bn" className="mt-2 max-w-2xl font-semibold text-prose">সেন্টমার্টিনের জাহাজের টিকেট: ভাড়া দেখুন, {BOOKING_ENABLED ? 'তারিখ বেছে নিন' : 'তারিখ জানান'}, টিকেট নিন।</p>
       </div>
-      <div className="lg:row-span-2 lg:mt-2"><HomeTripPanel ships={ships.map(({ slug, name }) => ({ slug, name }))} minDate={season.startISO} maxDate={season.endISO} bookingEnabled={BOOKING_ENABLED} whatsappNumber={WHATSAPP_NUMBER} phoneHref={phoneHref} phoneNumber={PHONE_NUMBER} /></div>
+      <div className="lg:row-span-2 lg:mt-2"><HomeTripPanel ships={ships.filter(isApproved).map(({ slug, name }) => ({ slug, name }))} minDate={season.startISO} maxDate={season.endISO} bookingEnabled={BOOKING_ENABLED} whatsappNumber={WHATSAPP_NUMBER} phoneHref={phoneHref} phoneNumber={PHONE_NUMBER} /></div>
       <div>
         <dl className="grid grid-cols-3 divide-x divide-[#d9e8e4] rounded-2xl bg-[#f1f8f6] py-4">
           {stats.map((stat) => (
@@ -167,7 +170,7 @@ export default function Page() {
             </tbody>
           </table>
         </div>
-        <p className="t-small mt-3 text-prose">See every seat and cabin fare in our <Link href="/saint-martin-ship-ticket-price" className={link}>Saint Martin ship ticket price guide</Link>, or find the <Link href="/cheapest-saint-martin-ship-ticket" className={link}>cheapest ship ticket</Link>. The lowest fare is on the <Link href="/saint-martin-ship/mv-teknaf" className={link}>MV Teknaf ship ticket</Link>.</p>
+        <p className="t-small mt-3 text-prose">See every seat and cabin fare in our <Link href="/saint-martin-ship-ticket-price" className={link}>Saint Martin ship ticket price guide</Link>, or find the <Link href="/cheapest-saint-martin-ship-ticket" className={link}>cheapest ship ticket</Link>. The lowest fare is on the <Link href="/saint-martin-ship/mv-teknaf" className={link}>MV Teknaf ship ticket</Link>. Keari Cruise &amp; Dine and Keari Sindbad are awaiting 2026–27 approval.</p>
       </section>
 
       <Section id="ships" title="Choose your Saint Martin ship" intro={`MV Teknaf ship tickets have the lowest published fare, from ${cheapest.oneWay} one way.`} action={textLink('/saint-martin-ship', 'Compare all Saint Martin ships')} size={[2276, 1719, 1193]}>
@@ -226,18 +229,18 @@ export default function Page() {
         <p className="t-small mt-2 text-prose">See every date and return time on the <Link href="/saint-martin-ship-schedule" className={link}>Saint Martin ship schedule</Link>.</p>
       </Section>
 
-      <Section id="book" title={`How to book a Saint Martin ship ticket${BOOKING_ENABLED ? ' online' : ''}`} intro={<>{BOOKING_ENABLED ? <Link href="/booking" rel="nofollow" className={link}>Book online here</Link> : 'Book through WhatsApp'}, or call us on <a href={phoneHref} className={link}>{PHONE_NUMBER}</a>.</>} size={[725, 475, 329]}>
+      <Section id="book" title={`How to book a Saint Martin ship ticket${BOOKING_ENABLED ? ' online' : ''}`} intro={<>{BOOKING_ENABLED ? <Link href="/booking" className={link}>Book online here</Link> : 'Book through WhatsApp'}, or call us on <a href={phoneHref} className={link}>{PHONE_NUMBER}</a>.</>} size={[725, 475, 329]}>
         <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {(BOOKING_ENABLED ? [
             ['Choose your trip', 'Pick your ship, dates, and the seat or cabin you want.'],
             ['Add your details', 'Enter the name and mobile number for your ticket.'],
             ['Pay the advance', 'Pay by bKash or bank, then enter your transaction ID.'],
-            ['Message us on WhatsApp', 'Send your payment screenshot, NID and date of birth. Your ticket and Travel Pass follow once your payment is checked.'],
+            ['Message us on WhatsApp', 'Send your payment screenshot, NID and date of birth. Once we confirm, collect your printed ticket from our office or get it by courier.'],
           ] : [
             ['Tell us your trip', 'Send your date, passenger count and the seat or cabin you want.'],
             ['Get your fare', 'We confirm the fare and availability before you pay anything.'],
             ['Pay by bKash or bank', 'Send your payment, then share the transaction ID with us.'],
-            ['Receive your ticket', 'Your ticket and Travel Pass come on WhatsApp after your payment is checked.'],
+            ['Get your printed ticket', 'We confirm on WhatsApp after your payment is checked. Collect your ticket from our office or get it by courier.'],
           ]).map(([heading, text], index) => (
             <li key={heading} className={`${card} flex gap-3 sm:block`}>
               <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-ink text-sm font-black text-white">{index + 1}</span>
@@ -350,9 +353,9 @@ export default function Page() {
 
       <Section id="bangla" lang="bn" title="সেন্টমার্টিন জাহাজের টিকেট: ভাড়া, সময় ও বুকিং" size={[738, 411, 358]}>
         <div className="rounded-3xl border border-line-soft bg-white p-5 shadow-card md:p-7">
-          <p className="t-body text-prose">এই মৌসুমে কক্সবাজার থেকে সেন্টমার্টিনের জন্য পাঁচটি জাহাজের তথ্য আছে: {ships.map((ship) => ship.nameBn).join(', ')}। অনেকে একে লঞ্চের টিকেটও বলেন। জাহাজের টিকিটের দাম জনপ্রতি একমুখী {bangla(cheapest.oneWay)} এবং যাওয়া-আসা {bangla(taka(lowestRound))} থেকে শুরু, আর কেবিনের একমুখী ভাড়া {bangla(taka(lowestCabin))} থেকে।</p>
+          <p className="t-body text-prose">এই মৌসুমে অনুমোদিত জাহাজ: এমভি কর্ণফুলী এক্সপ্রেস, এমভি বার আউলিয়া ও এমভি টেকনাফ। কেয়ারী ক্রুজ অ্যান্ড ডাইন ও কেয়ারী সিন্দবাদ এখনো ২০২৬–২৭ মৌসুমের অনুমোদন পায়নি। অনেকে একে লঞ্চের টিকেটও বলেন। জাহাজের টিকিটের দাম জনপ্রতি একমুখী {bangla(cheapest.oneWay)} এবং যাওয়া-আসা {bangla(taka(lowestRound))} থেকে শুরু, আর কেবিনের একমুখী ভাড়া {bangla(taka(lowestCabin))} থেকে।</p>
           <p className="t-body mt-3 text-prose">জাহাজ ছাড়ে কক্সবাজারের নুনিয়ারছড়া বিআইডব্লিউটিএ জেটি থেকে। এমভি টেকনাফ প্রতিদিন সকাল ৭টায় ছাড়ে, আর অন্য জাহাজের সময় তারিখভেদে বদলাতে পারে। দেখে নিন <Link href="/saint-martin-ship-schedule" className={link}>জাহাজের সময়সূচি</Link>।</p>
-          <p className="t-body mt-3 text-prose">{BOOKING_ENABLED ? <><Link href="/booking" rel="nofollow" className={link}>বুকিং পাতায়</Link> অনলাইনে টিকেট বুক করুন, অথবা WhatsApp-এ মেসেজ দিন বা কল করুন: </> : 'টিকেট বুকিং করতে যাত্রার তারিখ ও যাত্রীর সংখ্যা জানিয়ে WhatsApp-এ মেসেজ দিন, অথবা কল করুন: '}<a href={phoneHref} className={link}>{PHONE_NUMBER}</a>। ট্রাভেল পাস টিকেটের সঙ্গেই থাকে। বিস্তারিত দেখুন <Link href="/blog/saint-martin-ship-ticket-booking-guide" className={link}>টিকেট বুকিং গাইডে</Link>।</p>
+          <p className="t-body mt-3 text-prose">{BOOKING_ENABLED ? <><Link href="/booking" className={link}>বুকিং পাতায়</Link> অনলাইনে টিকেট বুক করুন, অথবা WhatsApp-এ মেসেজ দিন বা কল করুন: </> : 'টিকেট বুকিং করতে যাত্রার তারিখ ও যাত্রীর সংখ্যা জানিয়ে WhatsApp-এ মেসেজ দিন, অথবা কল করুন: '}<a href={phoneHref} className={link}>{PHONE_NUMBER}</a>। ট্রাভেল পাস টিকেটের সঙ্গেই থাকে। বিস্তারিত দেখুন <Link href="/blog/saint-martin-ship-ticket-booking-guide" className={link}>টিকেট বুকিং গাইডে</Link>।</p>
         </div>
       </Section>
 
@@ -378,7 +381,7 @@ export default function Page() {
           '@context': 'https://schema.org',
           '@graph': [
             siteSchema,
-            { '@type': 'LocalBusiness', '@id': 'https://www.shiptickets.bd/#business', name: 'ShipTickets.bd', url, image: 'https://www.shiptickets.bd/opengraph.jpg', telephone: '+880-1718-116799', address: { '@type': 'PostalAddress', streetAddress: site.office.split(', Dhaka')[0], addressLocality: 'Dhaka', postalCode: site.office.match(/\d{4}$/)?.[0], addressCountry: 'BD' }, areaServed: { '@type': 'Country', name: 'Bangladesh' }, priceRange: '$$', openingHoursSpecification: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'], opens: '09:00', closes: '18:00' } },
+            { '@type': 'TravelAgency', '@id': 'https://www.shiptickets.bd/#business', name: 'ShipTickets.bd', url, image: 'https://www.shiptickets.bd/opengraph.jpg', telephone: '+880-1718-116799', address: { '@type': 'PostalAddress', streetAddress: site.office.split(', Dhaka')[0], addressLocality: 'Dhaka', postalCode: site.office.match(/\d{4}$/)?.[0], addressCountry: 'BD' }, areaServed: { '@type': 'Country', name: 'Bangladesh' }, priceRange: '$$', openingHoursSpecification: { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].map((day) => `https://schema.org/${day}`), opens: '09:00', closes: '21:00' } },
             websiteSchema,
             ...ships.map(productSchema),
             faqSchema(faqs),

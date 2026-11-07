@@ -29,7 +29,7 @@ const planSteps = [
   { name: 'Compare ticket class and fare', text: 'Review one-way and round-trip fares for seats, lounges and cabins.' },
   { name: 'Sort your Travel Pass', text: 'The QR-coded pass comes with tickets booked through ShipTickets.bd.' },
   { name: 'Confirm jetty and time', text: 'Ships leave from the BIWTA Nuniarchhara Jetty. Arrive at least 1 hour before departure.' },
-  { name: 'Keep your ticket ready', text: 'Save your ticket and QR code on your phone, and carry your ID.' },
+  { name: 'Keep your ticket ready', text: 'Bring your printed ticket with its QR code, and carry your ID.' },
 ]
 
 const faqs: [string, string][] = [

@@ -5,6 +5,7 @@ import { ContactLink } from '@/components/contact-link'
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
 import { SeasonBar } from '@/components/season-bar'
+import { PageNotFoundTracker } from '@/components/site-action-tracker'
 import { PHONE_NUMBER, WHATSAPP_NUMBER } from '@/lib/contact'
 import { BOOKING_ENABLED } from '@/lib/bookings/validate'
 
@@ -26,6 +27,7 @@ export default function NotFound() {
   const phoneHref = `tel:${PHONE_NUMBER.replace(/[^+\d]/g, '')}`
   return (
     <main id="main" className="min-h-screen bg-white text-ink">
+      <PageNotFoundTracker />
       <SeasonBar />
       <Header />
       <section className="bg-[#f7fbfa]">
@@ -35,7 +37,7 @@ export default function NotFound() {
           <p lang="bn" className="mt-2 font-semibold text-prose">এই পাতাটি খুঁজে পাওয়া যায়নি।</p>
           <p className="t-body mt-3 max-w-xl text-prose">The link may be old, or the address may have a typing mistake. You can still find your ship ticket from here.</p>
           <div className="mt-6 grid gap-2 sm:flex sm:flex-wrap">
-            <Link href={BOOKING_ENABLED ? '/booking' : '/'} rel={BOOKING_ENABLED ? 'nofollow' : undefined} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-brand-ink px-6 text-sm font-extrabold text-white transition duration-200 hover:bg-brand-ink-hover">{BOOKING_ENABLED ? 'Book a ticket' : 'Go to the home page'}</Link>
+            <Link href={BOOKING_ENABLED ? '/booking' : '/'} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-brand-ink px-6 text-sm font-extrabold text-white transition duration-200 hover:bg-brand-ink-hover">{BOOKING_ENABLED ? 'Book a ticket' : 'Go to the home page'}</Link>
             <ContactLink href={whatsappHref} kind="whatsapp" eventLabel="not_found_whatsapp" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-line bg-white px-6 text-sm font-extrabold text-ink transition duration-200 hover:border-brand-ink hover:text-brand-ink"><MessageCircle size={17} aria-hidden="true" /> Ask on WhatsApp</ContactLink>
             <ContactLink href={phoneHref} kind="phone" eventLabel="not_found_phone" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-line bg-white px-6 text-sm font-extrabold text-ink transition duration-200 hover:border-brand-ink hover:text-brand-ink"><Phone size={17} aria-hidden="true" /> {PHONE_NUMBER}</ContactLink>
           </div>

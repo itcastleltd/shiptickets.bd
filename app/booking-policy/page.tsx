@@ -3,6 +3,7 @@ import { BadgeCheck, CircleDollarSign, FileText, ShieldAlert, Undo2 } from 'luci
 import { FaqAccordion } from '@/components/faq-accordion'
 import { BanglaBox, CtaBand, GuideHero, IconCards, KitSection, LinkGrid, pageMeta, pageUrl } from '@/components/page-kit'
 import { Schema, SeoPage, breadcrumbSchema, faqSchema, siteSchema, websiteSchema } from '@/components/seo-page'
+import { COURIER_NOTE } from '@/lib/contact'
 
 const path = '/booking-policy'
 const pageTitle = 'Booking Policy – Saint Martin Ship Tickets'
@@ -21,6 +22,9 @@ const faqs: [string, string][] = [
   ['Is my booking confirmed after I pay the advance online?', 'Not yet. You receive a booking reference, then send your payment screenshot, NID number and date of birth on WhatsApp. Our team checks your payment and confirms the ticket with the operator. Your booking is final when your ticket is issued.'],
   ['When do I pay the rest of the fare?', 'You pay the advance when you book online, and the balance when your ticket is issued, collected or delivered.'],
   ['What if my seat is not available after I pay the advance?', 'Our team will contact you on WhatsApp. You can choose another date or ship, or get your advance back in full.'],
+  ['Do I need a printed ticket?', `Yes. Bring your printed ticket to the jetty. After we confirm your booking on WhatsApp, collect the ticket from our Kawran Bazar office in Dhaka, or we can send it to your address by courier. ${COURIER_NOTE}`],
+  ['Can I pay the full fare online?', 'Yes. On the payment step, choose the advance or the full fare. If your seat or cabin is not available, you can choose another date or ship, or get your payment back in full.'],
+  ['Do children need to pay?', 'Children under 5 travel free. Count only passengers aged 5 and over when you book.'],
   ['What information is required to issue a ticket?', 'Depending on operator requirements, you may need to provide your name, mobile number, identification details, date of birth, journey date, passenger count and preferred seat or cabin category.'],
   ['Are ship tickets refundable?', 'Refund eligibility depends on the ticket conditions and the relevant operator’s cancellation policy. Confirm the applicable terms before payment.'],
   ['What should I do if my ticket has no QR code or Travel Pass?', 'If a QR code or Travel Pass is required but missing, contact the relevant operator or ShipTickets.bd support for verification before travelling.'],
@@ -100,25 +104,26 @@ export default function BookingPolicyPage() {
             <p>If a required QR code or Travel Pass is missing from an issued ticket, contact the relevant operator or ShipTickets.bd support for verification before travelling.</p>
           </PolicySection>
           <PolicySection index={3}>
-            <p>You can book online on our <Link href="/booking" rel="nofollow" className="font-bold text-brand-ink underline underline-offset-2">booking page</Link>, or by phone or WhatsApp at +880 1718-116799.</p>
+            <p>You can book online on our <Link href="/booking" className="font-bold text-brand-ink underline underline-offset-2">booking page</Link>, or by phone or WhatsApp at +880 1718-116799.</p>
             <ol className="grid list-decimal gap-1.5 pl-5">
               <li>Choose your ship, trip type, dates, seat or cabin, and number of tickets.</li>
               <li>Enter the passenger’s full name as on their NID, a mobile number and, if you wish, an email address and co-passenger names.</li>
               <li>Pay the advance shown at checkout by bKash or bank transfer, then enter your Transaction ID (TrxID).</li>
               <li>Save your booking reference, then send your payment screenshot and each passenger’s NID number and date of birth on WhatsApp.</li>
-              <li>Our team checks your payment and confirms with the operator, then sends your QR-coded ticket and Travel Pass on WhatsApp.</li>
+              <li>Our team checks your payment, confirms with the operator and tells you on WhatsApp. Collect your printed ticket from our Kawran Bazar office, or we can send it by courier.</li>
             </ol>
-            <p>A submitted booking is not final. Your booking is final when your ticket is issued. We do not show live seat availability, and ticket issuance is subject to the relevant operator’s systems and confirmation. If your choice is not available, our team will contact you on WhatsApp, and you can choose another date or ship, or get your advance back in full.</p>
+            <p>A submitted booking is not final. Your booking is final when your ticket is issued. We do not show live seat availability, and ticket issuance is subject to the relevant operator’s systems and confirmation. If your choice is not available, our team will contact you on WhatsApp, and you can choose another date or ship, or get your payment back in full.</p>
+            <p>You need your printed ticket to board, so allow enough time for collection or courier delivery before you travel. {COURIER_NOTE} Children under 5 travel free, so count only passengers aged 5 and over.</p>
             <p>To book by phone or WhatsApp, share your travel date, passenger count, preferred vessel, seat or cabin category, and return-trip requirements. To protect against misuse, we limit how many online bookings one mobile number can make in an hour. For a larger booking, contact us on WhatsApp.</p>
           </PolicySection>
           <PolicySection index={4}>
-            <p>Online bookings require an advance, shown with your total and balance before you pay. You pay the balance when your ticket is issued, collected or delivered. Before making a payment, verify your booking details and the payment instructions on the payment step, or ask ShipTickets.bd support. Check the recipient name, account number, payment type and transaction amount carefully.</p>
+            <p>When you book online, you can pay an advance or the full fare. Your total and any balance are shown before you pay. You pay any balance when your ticket is issued, collected or delivered. Before making a payment, verify your booking details and the payment instructions on the payment step, or ask ShipTickets.bd support. Check the recipient name, account number, payment type and transaction amount carefully.</p>
             <p>Each Transaction ID can be used for one booking only. Our team checks every payment by hand, so a submitted Transaction ID does not mean your payment has been verified.</p>
             <p>Keep your transaction receipt until your booking and ticket issuance have been confirmed. If confirmation is delayed, contact support before making another payment for the same booking.</p>
             <p className="rounded-xl bg-[#fff8ee] p-3 font-bold text-ink">Security notice: Never share your banking PIN, password or one-time password (OTP) with anyone.</p>
           </PolicySection>
           <PolicySection index={5}>
-            <p>If we cannot confirm the seat or cabin you booked online, you can choose another date or ship, or get your advance back in full.</p>
+            <p>If we cannot confirm the seat or cabin you booked online, you can choose another date or ship, or get your payment back in full.</p>
             <p>Once your ticket is issued, cancellation, refunds and rescheduling are governed by the applicable operator policy and ticket conditions. Some tickets may be non-cancellable and non-refundable.</p>
             <p>Before payment, confirm:</p>
             <CheckList items={['Whether cancellation is permitted', 'Applicable cancellation deadlines and charges', 'Whether documented medical emergencies qualify for an exception', 'Rescheduling eligibility and any additional fees', 'Options if the operator cancels or changes the sailing', 'Refund conditions and expected processing time']} />
@@ -132,7 +137,7 @@ export default function BookingPolicyPage() {
             <p>If a ticket is lost, passenger information is incorrect, or a QR code or Travel Pass cannot be verified, contact ShipTickets.bd support promptly. Identity verification, ticket replacement and any corrective action are subject to the relevant operator’s rules.</p>
           </PolicySection>
           <PolicySection index={8}>
-            <CheckList items={['Your ticket and booking confirmation', 'Correct passenger details', 'Required identification and Travel Pass documentation', 'Confirmed vessel name, boarding point and reporting time', 'Reviewed ticket conditions and return-trip details', 'Saved your payment receipt']} />
+            <CheckList items={['Your printed ticket', 'Correct passenger details', 'Required identification and Travel Pass documentation', 'Confirmed vessel name, boarding point and reporting time', 'Reviewed ticket conditions and return-trip details', 'Saved your payment receipt']} />
           </PolicySection>
         </div>
       </div>
@@ -140,6 +145,7 @@ export default function BookingPolicyPage() {
       <BanglaBox id="bangla" title="বুকিং নীতিমালা, সংক্ষেপে">
         <p>টিকেট বুকিং, যাত্রীর তথ্য, পেমেন্ট, ট্রাভেল পাস, টিকেট বাতিল ও তারিখ বদলের নিয়ম এই পাতায় আছে। টাকা দেওয়ার আগে ভাড়া ও টিকেটের শর্ত জেনে নিন, আর পেমেন্টের রসিদ রেখে দিন।</p>
         <p>অনলাইনে বুকিং করলে অগ্রিম পেমেন্ট করে ট্রানজেকশন আইডি দিন, তারপর WhatsApp-এ স্ক্রিনশট, এনআইডি নম্বর ও জন্মতারিখ পাঠান। আমাদের টিম পেমেন্ট যাচাই করার পর টিকেট দেয়, আর টিকেট হাতে পেলে তবেই বুকিং চূড়ান্ত হয়। বাকি টাকা দিতে হয় টিকেট ইস্যু, সংগ্রহ বা ডেলিভারির সময়। সিট না থাকলে আপনি অন্য তারিখ বা জাহাজ বেছে নিতে পারবেন, অথবা অগ্রিমের পুরো টাকা ফেরত পাবেন।</p>
+        <p>জাহাজে উঠতে প্রিন্ট করা টিকেট লাগবে। WhatsApp-এ নিশ্চিত হওয়ার পর টিকেট আমাদের কাওরান বাজার অফিস থেকে নিন, অথবা কুরিয়ারে আপনার ঠিকানায় পাঠানো যাবে। ৫ বছরের কম বয়সী শিশুদের ভাড়া লাগে না।</p>
         <p>টাকা ফেরত পাওয়া যাবে কি না, তা জাহাজ কর্তৃপক্ষের নিয়মের ওপর নির্ভর করে। কাউকে কখনো আপনার পিন, পাসওয়ার্ড বা ওটিপি দেবেন না।</p>
       </BanglaBox>
 

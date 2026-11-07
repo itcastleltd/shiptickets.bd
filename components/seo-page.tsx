@@ -214,7 +214,7 @@ export const vehicleSchema = (ship: Ship) => {
     description: `${ship.name} is a passenger vessel serving ${ship.route}. ${ship.detail}`,
     vehicleConfiguration: 'Passenger ship',
     brand: { '@type': 'Brand', name: ship.operator },
-    ...(publishedCapacity > 0 ? { passengerCapacity: { '@type': 'QuantitativeValue', value: publishedCapacity } } : {}),
+    ...(publishedCapacity > 0 ? { vehicleSeatingCapacity: { '@type': 'QuantitativeValue', value: publishedCapacity } } : {}),
   }
 }
 

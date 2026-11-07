@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Check, CircleAlert, MessageCircle, Phone, RotateCcw } from 'lucide-react'
 import { CopyButton } from '@/components/booking/copy-button'
-import { PHONE_NUMBER, WHATSAPP_NUMBER } from '@/lib/contact'
+import { COURIER_NOTE, PHONE_NUMBER, WHATSAPP_NUMBER } from '@/lib/contact'
 import { readBookingFailure, readBookingOutcome, type BookingFailure, type BookingOutcome } from '@/lib/bookings/outcome'
 import { trackPhoneClick, trackWhatsApp } from '@/lib/gtm-events'
 
@@ -62,6 +62,7 @@ export function BookingSuccess() {
     '',
     'NID Number:',
     'Date of Birth:',
+    'Ticket (office collection, or courier with full address):',
   ].join('\n')
 
   return (
@@ -96,17 +97,17 @@ export function BookingSuccess() {
         {outcome.tripType === 'round_trip' && outcome.returnDate && <Row label="Return">{prettyDate(outcome.returnDate)}{outcome.returns && <span className="block text-xs font-semibold text-quiet">Published time: {outcome.returns}</span>}</Row>}
         <Row label="Payment method">{outcome.paymentMethod}</Row>
         <Row label="Total">{taka(outcome.total)}</Row>
-        <Row label={`${outcome.advancePercentage}% advance`}>{taka(outcome.advance)}</Row>
-        <Row label="Balance due later">{taka(outcome.balance)}</Row>
+        <Row label={outcome.balance > 0 ? `${outcome.advancePercentage}% advance` : 'Full fare submitted'}>{taka(outcome.advance)}</Row>
+        {outcome.balance > 0 && <Row label="Balance due later">{taka(outcome.balance)}</Row>}
       </dl>
 
       <h2 className="t-subtitle mt-6 text-ink">What happens next</h2>
       <ol className="t-small mt-2 grid list-decimal gap-1.5 pl-5 text-prose">
         <li>You send us the WhatsApp message.</li>
         <li>Our team checks your payment and confirms the ticket with the operator.</li>
-        <li>We send your QR-coded ticket and Travel Pass on WhatsApp. You pay the balance when your ticket is issued, collected or delivered.</li>
+        <li>We confirm on WhatsApp. Collect your printed ticket from our Kawran Bazar office, or we can send it by courier. {COURIER_NOTE}{outcome.balance > 0 ? ' You pay the balance when your ticket is issued, collected or delivered.' : ''}</li>
       </ol>
-      <p className="t-small mt-3 text-prose">If your seat or cabin is not available, you can choose another date or ship, or get your advance back in full.</p>
+      <p className="t-small mt-3 text-prose">If your seat or cabin is not available, you can choose another date or ship, or get your payment back in full. You need your printed ticket to board.</p>
       <p className="t-small mt-4 text-prose">Please save your booking reference. See our <Link href="/booking-policy" className={textLink}>booking policy</Link> for refunds and changes, or call <a href={phoneHref} onClick={() => trackPhoneClick('booking_confirmation')} className={textLink}>{PHONE_NUMBER}</a> if you need help.</p>
     </section>
   )

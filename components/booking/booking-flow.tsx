@@ -7,6 +7,7 @@ import { Armchair, BedDouble, Check, ChevronDown, ChevronLeft, CircleAlert, Cloc
 import { getShipSchedule, getUsualTimes } from '@/content/ship-schedules'
 import { CopyButton } from '@/components/booking/copy-button'
 import { clearBookingFailure, saveBookingFailure, saveBookingOutcome, takeBookingResume } from '@/lib/bookings/outcome'
+import { COURIER_NOTE } from '@/lib/contact'
 import { trackBookingSubmitted, trackEvent, trackWhatsApp } from '@/lib/gtm-events'
 import type { BookingCatalog, CatalogCategory } from '@/lib/bookings/catalog'
 import { bookingSchema, todayInDhaka } from '@/lib/bookings/validate'
@@ -19,13 +20,14 @@ const STEPS = [
   { name: 'Trip', bn: 'যাত্রা', title: 'কবে যাবেন?', subtitle: 'Choose your ship, trip type and dates.' },
   { name: 'Seats', bn: 'সিট', title: 'কোন সিট নেবেন?', subtitle: 'Choose how many tickets, then your seat or cabin.' },
   { name: 'Details', bn: 'তথ্য', title: 'যাত্রীর তথ্য দিন', subtitle: 'We use these details for your ticket.' },
-  { name: 'Pay', bn: 'পেমেন্ট', title: 'অগ্রিম পেমেন্ট করুন', subtitle: 'Pay the advance, then enter your Transaction ID.' },
+  { name: 'Pay', bn: 'পেমেন্ট', title: 'পেমেন্ট করুন', subtitle: 'Pay the advance or the full fare, then enter your Transaction ID.' },
 ]
 
 /** Order used to find the first field with an error. */
 const FIELD_ORDER = ['shipSlug', 'travelDate', 'returnDate', 'categoryCode', 'fullName', 'mobileNumber', 'email', 'coPassengers', 'transactionId', 'acceptedTerms']
 const DRAFT_KEY = 'shiptickets-booking-draft'
 const DRAFT_MAX_AGE_MS = 6 * 60 * 60 * 1000
+const BEGUN_KEY = 'shiptickets-booking-begun'
 const MAX_TICKETS = 20
 
 const taka = (amount: number) => `৳${amount.toLocaleString('en-US', { maximumFractionDigits: 2 })}`
@@ -128,6 +130,7 @@ export function BookingFlow({
   const [email, setEmail] = useState('')
   const [coPassengers, setCoPassengers] = useState<string[]>([])
   const [paymentMethodType, setPaymentMethodType] = useState(catalog.paymentMethods[0]?.type ?? 'bkash_merchant')
+  const [payInFull, setPayInFull] = useState(false)
   const [transactionId, setTransactionId] = useState('')
   const [acceptedTerms, setAcceptedTerms] = useState(false)
   const [errors, setErrors] = useState<Errors>({})
@@ -148,7 +151,8 @@ export function BookingFlow({
   const fare = category ? fareFor(category) : null
   const total = fare ? fare * quantity : 0
   const advance = Math.round(total * catalog.advancePercentage) / 100
-  const balance = Math.round((total - advance) * 100) / 100
+  const dueNow = payInFull ? total : advance
+  const balance = Math.round((total - dueNow) * 100) / 100
   const method = catalog.paymentMethods.find((item) => item.type === paymentMethodType)
   const today = useMemo(() => todayInDhaka(), [])
   const earliest = today > seasonStart ? today : seasonStart
@@ -187,6 +191,7 @@ export function BookingFlow({
         setEmail(draft.email ?? '')
         setCoPassengers(draft.coPassengers ?? [])
         if (draft.paymentMethodType) setPaymentMethodType(draft.paymentMethodType)
+        setPayInFull(draft.payInFull === true)
         setTransactionId(draft.transactionId ?? '')
         if (draft.clientRequestId) setClientRequestId(draft.clientRequestId)
         // Return to the same step only after a reload or back navigation. A new visit starts at the beginning, with the answers kept.
@@ -205,11 +210,25 @@ export function BookingFlow({
   useEffect(() => {
     if (!draftReady || finished.current) return
     try {
-      window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ savedAt: Date.now(), step, shipSlug, tripType, travelDate, returnDate, categoryCode, quantity, seatPreference, fullName, mobileNumber, email, coPassengers, paymentMethodType, transactionId, clientRequestId }))
+      window.sessionStorage.setItem(DRAFT_KEY, JSON.stringify({ savedAt: Date.now(), step, shipSlug, tripType, travelDate, returnDate, categoryCode, quantity, seatPreference, fullName, mobileNumber, email, coPassengers, paymentMethodType, payInFull, transactionId, clientRequestId }))
     } catch {
       // Without storage, the booking simply is not restored after a reload.
     }
-  }, [draftReady, step, shipSlug, tripType, travelDate, returnDate, categoryCode, quantity, seatPreference, fullName, mobileNumber, email, coPassengers, paymentMethodType, transactionId, clientRequestId])
+  }, [draftReady, step, shipSlug, tripType, travelDate, returnDate, categoryCode, quantity, seatPreference, fullName, mobileNumber, email, coPassengers, paymentMethodType, payInFull, transactionId, clientRequestId])
+
+  // Counts one started booking per tab, however often the page reloads.
+  useEffect(() => {
+    if (!draftReady) return
+    try {
+      if (window.sessionStorage.getItem(BEGUN_KEY)) return
+      window.sessionStorage.setItem(BEGUN_KEY, '1')
+    } catch {
+      // Without storage, a reload may count the booking as started again.
+    }
+    trackEvent('begin_checkout', ship ? { ship_name: ship.name } : undefined)
+    // Runs once, when the saved draft has been read.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [draftReady])
 
   // The phone's back button moves between steps instead of leaving the booking.
   useEffect(() => {
@@ -294,7 +313,7 @@ export function BookingFlow({
     returnDate: tripType === 'round_trip' ? returnDate : null,
     quantity, seatPreference, fullName, mobileNumber, email,
     coPassengers: coPassengers.slice(0, Math.max(0, quantity - 1)).map((name) => (name ?? '').trim()).filter(Boolean),
-    paymentMethodType, transactionId, acceptedTerms,
+    paymentMethodType, payInFull, transactionId, acceptedTerms,
   })
 
   const fieldErrors = () => {
@@ -312,14 +331,19 @@ export function BookingFlow({
     }
     setErrors(found)
     if (Object.keys(found).length === 0) goTo((step + 1) as Step)
+    else trackEvent('booking_error', { error_code: 'validation', event_label: Object.keys(found).join(', '), step: STEPS[step].name })
   }
 
   const submit = async () => {
     const found = fieldErrors()
     setErrors(found)
     setFormError('')
-    if (Object.keys(found).length > 0) return
+    if (Object.keys(found).length > 0) {
+      trackEvent('booking_error', { error_code: 'validation', event_label: Object.keys(found).join(', '), step: STEPS[step].name })
+      return
+    }
 
+    trackEvent('add_payment_info', { payment_type: paymentMethodType, event_label: payInFull ? 'full_fare' : 'advance', ...(ship ? { ship_name: ship.name } : {}) })
     setSubmitting(true)
     let leaving = false
     try {
@@ -334,6 +358,7 @@ export function BookingFlow({
           router.push('/booking/failed')
           return
         }
+        trackEvent('booking_error', { error_code: data.error?.code ?? `HTTP_${response.status}`, step: STEPS[step].name })
         setErrors(data.error?.fields ?? {})
         setFormError(data.error?.message ?? 'We could not save your booking. Please try again.')
         return
@@ -347,14 +372,16 @@ export function BookingFlow({
       })
       clearBookingFailure()
       try {
+        window.sessionStorage.removeItem(BEGUN_KEY)
         window.sessionStorage.removeItem(DRAFT_KEY)
       } catch {
         // Nothing to clear if storage is blocked.
       }
-      trackBookingSubmitted({ shipName: ship?.name ?? '', category: category?.name ?? '', tripType, tickets: quantity, value: data.total })
+      trackBookingSubmitted({ shipName: ship?.name ?? '', seatCategory: category?.name ?? '', tripType, tickets: quantity, value: data.total })
       // Replace, so the back button cannot return to a form that has already been sent.
       router.replace('/booking/success')
     } catch {
+      trackEvent('booking_error', { error_code: 'NETWORK', step: STEPS[step].name })
       setFormError('We could not reach our server. Your details are still here, so please try again. If you have already paid, contact us on WhatsApp.')
     } finally {
       if (!leaving) setSubmitting(false)
@@ -394,8 +421,8 @@ export function BookingFlow({
       </dl>
       <dl className="mt-3 space-y-2 border-t border-line-soft pt-3">
         <div className="flex justify-between gap-4"><dt className="text-sm text-quiet">Total</dt><dd className="font-extrabold tabular-nums text-ink">{total ? taka(total) : '—'}</dd></div>
-        {total > 0 && <div className="flex justify-between gap-4"><dt className="text-sm text-quiet">Balance due later</dt><dd className="font-extrabold tabular-nums text-ink">{taka(balance)}</dd></div>}
-        <div className="flex items-baseline justify-between gap-4"><dt className="text-sm font-bold text-ink">Pay now ({catalog.advancePercentage}%)</dt><dd className="text-xl font-black tabular-nums text-brand-ink">{total ? taka(advance) : '—'}</dd></div>
+        {balance > 0 && <div className="flex justify-between gap-4"><dt className="text-sm text-quiet">Balance due later</dt><dd className="font-extrabold tabular-nums text-ink">{taka(balance)}</dd></div>}
+        <div className="flex items-baseline justify-between gap-4"><dt className="text-sm font-bold text-ink">{payInFull ? 'Pay now (full fare)' : `Pay now (${catalog.advancePercentage}%)`}</dt><dd className="text-xl font-black tabular-nums text-brand-ink">{total ? taka(dueNow) : '—'}</dd></div>
       </dl>
       <p className="t-small mt-3 flex items-start gap-2 text-prose"><Ticket size={16} aria-hidden="true" className="mt-0.5 shrink-0 text-brand" /> QR-coded Travel Pass included</p>
       <button type="submit" form="booking-form" disabled={submitting} className={`${primaryButton} mt-4 hidden w-full lg:inline-flex`}>{primaryIcon}{primaryLabel}</button>
@@ -411,7 +438,7 @@ export function BookingFlow({
     const Icon = item.type === 'cabin' ? BedDouble : Armchair
     return (
       <label key={item.code} className={`relative flex overflow-hidden rounded-2xl border bg-white transition duration-200 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand-ink/50 ${price ? 'cursor-pointer hover:shadow-card' : 'cursor-not-allowed opacity-60'} ${selected ? 'border-brand-ink ring-1 ring-brand-ink' : 'border-line-soft hover:border-line'}`}>
-        <input type="radio" name="category" value={item.code} checked={selected} disabled={!price} onChange={() => { setCategoryCode(item.code); clearError('categoryCode') }} className="sr-only" />
+        <input type="radio" name="category" value={item.code} checked={selected} disabled={!price} onChange={() => { setCategoryCode(item.code); clearError('categoryCode'); trackEvent('select_seat', { ship_name: ship?.name, seat_category: item.name, trip_type: tripType }) }} className="sr-only" />
         <span className="relative min-h-28 w-28 shrink-0 self-stretch bg-[#e7e7e7]">
           {item.photo ? (
             <Image src={item.photo} alt={item.photoAlt} fill sizes="112px" className="object-cover" />
@@ -516,6 +543,8 @@ export function BookingFlow({
                 </div>
               </div>
 
+              <p className="t-small mt-2 text-prose">Children under 5 travel free. Count only passengers aged 5 and over.</p>
+
               <fieldset id="categoryCode" tabIndex={-1} aria-describedby={describe('categoryCode')} className="mt-5 outline-none">
                 <legend className="sr-only">Choose your seat or cabin on {ship.name}</legend>
                 <FieldError id="categoryCode-error" message={errors.categoryCode} />
@@ -586,8 +615,21 @@ export function BookingFlow({
                 <div className="mt-1.5 grid grid-cols-2 gap-1 rounded-xl bg-[#e9f0ee] p-1">
                   {catalog.paymentMethods.map((item) => (
                     <label key={item.type} className={`flex min-h-12 cursor-pointer items-center justify-center rounded-lg px-2 py-1 text-center text-sm font-extrabold transition duration-200 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand-ink/50 ${paymentMethodType === item.type ? 'bg-white text-ink shadow-card' : 'text-quiet hover:text-ink'}`}>
-                      <input type="radio" name="paymentMethod" value={item.type} checked={paymentMethodType === item.type} onChange={() => setPaymentMethodType(item.type)} className="sr-only" />
+                      <input type="radio" name="paymentMethod" value={item.type} checked={paymentMethodType === item.type} onChange={() => { setPaymentMethodType(item.type); trackEvent('payment_method_select', { payment_type: item.type }) }} className="sr-only" />
                       {item.name}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend className="text-sm font-bold text-ink">How much do you want to pay now?</legend>
+                <div className="mt-1.5 grid grid-cols-2 gap-1 rounded-xl bg-[#e9f0ee] p-1">
+                  {([[false, `${catalog.advancePercentage}% advance`, advance], [true, 'Full fare', total]] as const).map(([value, label, amount]) => (
+                    <label key={label} className={`flex min-h-12 cursor-pointer flex-col items-center justify-center rounded-lg px-2 py-1 text-center transition duration-200 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand-ink/50 ${payInFull === value ? 'bg-white text-ink shadow-card' : 'text-quiet hover:text-ink'}`}>
+                      <input type="radio" name="payAmount" checked={payInFull === value} onChange={() => setPayInFull(value)} className="sr-only" />
+                      <span className="text-sm font-extrabold">{label}</span>
+                      <span className="text-xs font-semibold tabular-nums">{taka(amount)}</span>
                     </label>
                   ))}
                 </div>
@@ -596,10 +638,10 @@ export function BookingFlow({
               <div className="rounded-2xl bg-[#f1f8f6] p-4">
                 <div className="flex items-center justify-between gap-3">
                   <div>
-                    <p className="text-xs font-bold text-quiet">Pay now ({catalog.advancePercentage}% advance)</p>
-                    <p className="text-[1.75rem] font-black leading-tight tabular-nums text-brand-ink">{taka(advance)}</p>
+                    <p className="text-xs font-bold text-quiet">{payInFull ? 'Pay now (full fare)' : `Pay now (${catalog.advancePercentage}% advance)`}</p>
+                    <p className="text-[1.75rem] font-black leading-tight tabular-nums text-brand-ink">{taka(dueNow)}</p>
                   </div>
-                  <CopyButton value={String(advance)} label="amount" />
+                  <CopyButton value={String(dueNow)} label="amount" />
                 </div>
                 {method?.instructionsBn && <PaymentInstructions text={method.instructionsBn} />}
                 {method?.instructions && (
@@ -613,7 +655,7 @@ export function BookingFlow({
                 )}
               </div>
 
-              <p className="t-small text-prose">Pay the balance when your ticket is issued, collected or delivered. If your seat or cabin is not available, you can choose another date or ship, or get your advance back in full.</p>
+              <p className="t-small text-prose">{payInFull ? '' : 'Pay the balance when your ticket is issued, collected or delivered. '}Collect your printed ticket from our office, or we can send it by courier. {COURIER_NOTE} If your seat or cabin is not available, you can choose another date or ship, or get your payment back in full.</p>
 
               <Field id="transactionId" label="Transaction ID (TrxID)" hint="Enter this after you have paid. You will find it in your payment confirmation." error={errors.transactionId}>
                 <input id="transactionId" type="text" autoComplete="off" autoCapitalize="characters" spellCheck={false} value={transactionId} onChange={(event) => { setTransactionId(event.target.value.toUpperCase()); clearError('transactionId') }} aria-invalid={Boolean(errors.transactionId)} aria-describedby={describe('transactionId', true)} className={`${inputClass} font-bold tracking-wide`} />
@@ -649,7 +691,7 @@ export function BookingFlow({
         {total > 0 && (
           <div className="min-w-0 flex-1 px-1">
             <p className="text-xs font-bold leading-tight text-quiet">Pay now</p>
-            <p className="text-lg font-black leading-tight tabular-nums text-brand-ink">{taka(advance)}</p>
+            <p className="text-lg font-black leading-tight tabular-nums text-brand-ink">{taka(dueNow)}</p>
             <p className="truncate text-xs leading-tight text-quiet">Total {taka(total)}</p>
           </div>
         )}

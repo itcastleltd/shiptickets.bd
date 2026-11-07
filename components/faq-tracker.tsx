@@ -19,7 +19,8 @@ export function FaqTracker() {
       const summary = target.closest('summary')
       if (!summary) return
       const details = summary.closest('details')
-      if (!details) return
+      // Only opening a question counts. The click runs before the panel changes.
+      if (!details || details.open) return
 
       const question = summary.textContent?.trim() || ''
       if (question) trackFaqToggle(question)

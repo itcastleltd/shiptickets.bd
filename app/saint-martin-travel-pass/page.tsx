@@ -59,7 +59,7 @@ export default function TravelPassPage() {
         <div className="grid gap-4 md:grid-cols-2">
           <div className="rounded-2xl border border-[#cfe5de] bg-[#f1f8f6] p-5 md:p-6">
             <h3 className="t-subtitle">Booking with ShipTickets.bd</h3>
-            <p className="t-small mt-2 text-prose">The pass is included, with nothing separate to apply for. Send accurate passenger details when you book, and we send your ticket and QR code on WhatsApp.</p>
+            <p className="t-small mt-2 text-prose">The pass is included, with nothing separate to apply for. Send accurate passenger details when you book, and we confirm on WhatsApp. Collect your printed ticket from our Kawran Bazar office, or we can send it by courier.</p>
           </div>
           <div className="rounded-2xl border border-line-soft bg-white p-5 shadow-card md:p-6">
             <h3 className="t-subtitle">Booking elsewhere</h3>
@@ -99,7 +99,7 @@ export default function TravelPassPage() {
       <KitSection id="check" title="Check your pass before you travel">
         <IconCards columns={3} items={[
           { icon: IdCard, heading: 'Passenger details', text: 'The names on your ticket should match each traveller’s ID.' },
-          { icon: BadgeCheck, heading: 'QR code', text: 'Make sure your ticket shows the QR code, and keep it saved on your phone.' },
+          { icon: BadgeCheck, heading: 'QR code', text: 'Make sure your printed ticket shows the QR code, and bring it to the jetty.' },
           { icon: CalendarDays, heading: 'Date and ship', text: 'Check your date, ship, boarding point and departure time.' },
           { icon: Globe, heading: 'Latest rules', text: 'Rules can change, so check the government portal before you leave.' },
         ]} />

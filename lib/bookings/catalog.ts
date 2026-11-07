@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache'
 import { seatPhotoAlt, seatPhotoSrc } from '@/lib/seat-photos'
 import { getShipBySlug } from '@/lib/ships'
 import { createAdminClient } from '@/lib/supabase/admin'
@@ -33,7 +34,7 @@ export type BookingCatalog = {
  * Everything the booking steps need. Returns null when the database cannot
  * supply a complete catalog, and the page then offers WhatsApp booking.
  */
-export async function getBookingCatalog(): Promise<BookingCatalog | null> {
+async function loadBookingCatalog(): Promise<BookingCatalog | null> {
   const supabase = createAdminClient()
   if (!supabase) return null
 
@@ -100,6 +101,24 @@ export async function getBookingCatalog(): Promise<BookingCatalog | null> {
     }
   } catch {
     console.error('Booking catalog could not be loaded')
+    return null
+  }
+}
+
+// A failure throws here so it is never cached, and the next visitor tries again.
+const cachedCatalog = unstable_cache(async () => {
+  const catalog = await loadBookingCatalog()
+  if (!catalog) throw new Error('Booking catalog unavailable')
+  return catalog
+}, ['booking-catalog'], { revalidate: 300 })
+
+/** The form's fares can be up to 5 minutes old. create_booking always charges the current database fare. */
+export async function getBookingCatalog(): Promise<BookingCatalog | null> {
+  try {
+    const catalog = await cachedCatalog()
+    // Outside the cache, so a change in a ship's approval applies straight away.
+    return { ...catalog, ships: catalog.ships.filter((ship) => getShipBySlug(ship.slug)?.status !== 'awaiting_approval') }
+  } catch {
     return null
   }
 }
